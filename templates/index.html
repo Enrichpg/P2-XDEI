@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ _('FIWARE Smart Store') }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="lang-selector">
+        <a href="?lang=es">ES</a>
+        <a href="?lang=en">EN</a>
+    </div>
+
+    <header>
+        <h1>{{ _('FIWARE Smart Store') }}</h1>
+        <p>{{ _('Gestión inteligente para tu cadena de supermercados.') }}</p>
+    </header>
+
+    <main>
+        <section class="stores-section">
+            <h2>{{ _('Nuestras Tiendas') }}</h2>
+            <div class="grid">
+                {% for store in stores %}
+                <div class="card">
+                    <h3>{{ _(store.name) }}</h3>
+                    <p class="location">{{ _(store.location) }}</p>
+                    <h4>{{ _('Productos en Stock:') }}</h4>
+                    <ul>
+                        {% for product in store.products %}
+                        <li>{{ _(product.name) }} - {{ "%.2f"|format(product.price) }}€</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="products-section">
+            <h2>{{ _('Catálogo Global de Productos') }}</h2>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>{{ _('Nombre') }}</th>
+                        <th>{{ _('Precio Base') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ _(product.name) }}</td>
+                        <td>{{ "%.2f"|format(product.price) }}€</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 {{ _('FIWARE Smart Store') }}</p>
+    </footer>
+</body>
+
+</html>

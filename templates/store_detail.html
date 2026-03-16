@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}{{ store.name }} - {{ _('FIWARE Smart Store') }}{% endblock %}
+
+{% block header_title %}{{ _(store.name) }}{% endblock %}
+{% block header_subtitle %}{{ _('Detalles de la ubicación.') }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<style>
+    #map {
+        height: 300px;
+        border-radius: var(--border-radius);
+        margin-top: 1rem;
+        box-shadow: var(--shadow);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="detail-view">
+    <div class="detail-header">
+        <a href="{{ url_for('list_stores') }}" class="btn-text"><i class="fas fa-arrow-left"></i> {{ _('Volver') }}</a>
+        <div class="actions">
+            <a href="{{ url_for('edit_store', id=store.id) }}" class="btn-secondary"><i class="fas fa-edit"></i> {{
+                _('Editar') }}</a>
+            <form action="{{ url_for('delete_store', id=store.id) }}" method="POST" style="display:inline;"
+                onsubmit="return confirm('{{ _('¿Estás seguro?') }}');">
+                <button type="submit" class="btn-danger"><i class="fas fa-trash"></i> {{ _('Borrar') }}</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="detail-grid">
+        <div class="detail-image">
+            {% if store.image %}
+            <img src="{{ store.image }}" alt="{{ store.name }}">
+            {% else %}
+            <div class="image-placeholder"><i class="fas fa-store fa-5x"></i></div>
+            {% endif %}
+        </div>
+        <div class="detail-info">
+            <div class="info-group">
+                <label>{{ _('Dirección') }}</label>
+                <p>{{ _(store.address or 'N/A') }}</p>
+            </div>
+            <div class="info-group">
+                <label>{{ _('Coordenadas (Location)') }}</label>
+                <p>{{ store.location or 'N/A' }}</p>
+            </div>
+            <div class="info-group">
+                <label>{{ _('Inventario de Productos') }}</label>
+                <div class="inventory-crud">
+                    <ul class="item-list">
+                        {% for item in store.inventory_items %}
+                        <li class="list-item">
+                            <div class="item-main">
+                                <a href="{{ url_for('product_detail', id=item.product.id) }}">{{ _(item.product.name)
+                                    }}</a>
+                                <span class="text-muted">- {{ _('Stock') }}: {{ item.stock }}</span>
+                            </div>
+                            <div class="item-actions">
+                                <form
+                                    action="{{ url_for('edit_inventory', store_id=store.id, product_id=item.product_id) }}"
+                                    method="POST" class="inline-form">
+                                    <input type="number" name="stock" value="{{ item.stock }}" min="0"
+                                        class="input-mini">
+                                    <button type="submit" class="btn-icon" title="{{ _('Modificar') }}"><i
+                                            class="fas fa-save"></i></button>
+                                </form>
+                                <form
+                                    action="{{ url_for('delete_from_inventory', store_id=store.id, product_id=item.product_id) }}"
+                                    method="POST" class="inline-form"
+                                    onsubmit="return confirm('{{ _('¿Borrar producto del inventario?') }}');">
+                                    <button type="submit" class="btn-icon btn-danger-text" title="{{ _('Borrar') }}"><i
+                                            class="fas fa-trash"></i></button>
+                                </form>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="add-box">
+                        <form action="{{ url_for('add_to_inventory', store_id=store.id) }}" method="POST"
+                            class="add-form">
+                            <select name="product_id" required>
+                                <option value="" disabled selected>{{ _('Añadir producto...') }}</option>
+                                {% for product in all_products %}
+                                <option value="{{ product.id }}">{{ _(product.name) }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="number" name="stock" placeholder="{{ _('Stock') }}" min="1" required
+                                class="input-small">
+                            <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-group">
+                <label>{{ _('Baldas') }}</label>
+                <div class="shelves-crud">
+                    <ul class="item-list">
+                        {% for shelf in store.shelves %}
+                        <li class="list-item">
+                            <form action="{{ url_for('edit_shelf', store_id=store.id, shelf_id=shelf.id) }}"
+                                method="POST" class="inline-form flex-grow">
+                                <input type="text" name="name" value="{{ _(shelf.name) }}" required class="input-flat">
+                                <button type="submit" class="btn-icon" title="{{ _('Modificar') }}"><i
+                                        class="fas fa-save"></i></button>
+                            </form>
+                            <form action="{{ url_for('delete_shelf', store_id=store.id, shelf_id=shelf.id) }}"
+                                method="POST" class="inline-form"
+                                onsubmit="return confirm('{{ _('¿Borrar balda?') }}');">
+                                <button type="submit" class="btn-icon btn-danger-text" title="{{ _('Borrar') }}"><i
+                                        class="fas fa-trash"></i></button>
+                            </form>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="add-box">
+                        <form action="{{ url_for('create_shelf', store_id=store.id) }}" method="POST" class="add-form">
+                            <input type="text" name="name" placeholder="{{ _('Nombre de la balda') }}" required>
+                            <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-group">
+                <label>{{ _('Plantilla de Empleados') }}</label>
+                <div class="employee-badges">
+                    {% for employee in store.employees %}
+                    <a href="{{ url_for('employee_detail', id=employee.id) }}" class="badge">{{ employee.name }} ({{
+                        _(employee.role) }})</a>
+                    {% else %}
+                    <p>{{ _('Sin empleados asignados.') }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if store.location %}
+    <div id="map"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var coords = "{{ store.location }}".split(',');
+            if (coords.length === 2) {
+                var lat = parseFloat(coords[0].trim());
+                var lng = parseFloat(coords[1].trim());
+                var map = L.map('map').setView([lat, lng], 15);
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+                L.marker([lat, lng]).addTo(map)
+                    .bindPopup("<b>{{ store.name }}</b><br>{{ store.address }}").openPopup();
+            }
+        });
+    </script>
+    {% endif %}
+</div>
+{% endblock %}

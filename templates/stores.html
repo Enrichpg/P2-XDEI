@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Tiendas - FIWARE Smart Store') }}{% endblock %}
+
+{% block header_title %}{{ _('Nuestras Tiendas') }}{% endblock %}
+{% block header_subtitle %}{{ _('Explora las ubicaciones de nuestra cadena.') }}{% endblock %}
+
+{% block content %}
+<div class="actions-bar">
+    <a href="{{ url_for('create_store') }}" class="btn-primary"><i class="fas fa-plus"></i> {{ _('Añadir Tienda') }}</a>
+</div>
+
+<div class="grid">
+    {% for store in stores %}
+    <div class="card">
+        <div class="card-image">
+            <img src="{{ store.image }}" alt="{{ store.name }}">
+        </div>
+        <div class="card-body">
+            <h3>{{ _(store.name) }}</h3>
+            <p><i class="fas fa-map-marker-alt"></i> {{ _(store.address) }}</p>
+            <div class="card-footer">
+                <a href="{{ url_for('store_detail', id=store.id) }}" class="btn-secondary">{{ _('Detalles') }}</a>
+                <a href="{{ url_for('edit_store', id=store.id) }}" class="btn-text"><i class="fas fa-edit"></i></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

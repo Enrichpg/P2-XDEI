@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if store %}{{ _('Editar Tienda') }}{% else %}{{ _('Nueva Tienda') }}{% endif %} - {{ _('FIWARE Smart Store') }}
+{% endblock %}
+
+{% block header_title %}
+{% if store %}{{ _('Editar Tienda') }}{% else %}{{ _('Nueva Tienda') }}{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <a href="{{ url_for('list_stores') }}" class="btn-text"><i class="fas fa-arrow-left"></i> {{ _('Cancelar') }}</a>
+
+    <form method="POST" class="crud-form">
+        <div class="form-group">
+            <label for="name">{{ _('Nombre de la Tienda') }} *</label>
+            <input type="text" id="name" name="name" value="{{ store.name if store else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">{{ _('Dirección') }}</label>
+            <input type="text" id="address" name="address" value="{{ store.address if store else '' }}">
+        </div>
+
+        <div class="form-group">
+            <label for="location">{{ _('Coordenadas (Lat, Long)') }}</label>
+            <input type="text" id="location" name="location" value="{{ store.location if store else '' }}"
+                placeholder="e.g. 52.5075, 13.3903">
+        </div>
+
+        <div class="form-group">
+            <label for="image">{{ _('URL de la Imagen') }}</label>
+            <input type="url" id="image" name="image" value="{{ store.image if store else '' }}"
+                placeholder="https://...">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">
+                {% if store %}{{ _('Guardar Cambios') }}{% else %}{{ _('Crear Tienda') }}{% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - {{ _('FIWARE Smart Store') }}{% endblock %}
+
+{% block header_title %}{{ _(product.name) }}{% endblock %}
+{% block header_subtitle %}{{ _('Detalles del producto.') }}{% endblock %}
+
+{% block content %}
+<div class="detail-view">
+    <div class="detail-header">
+        <a href="{{ url_for('list_products') }}" class="btn-text"><i class="fas fa-arrow-left"></i> {{ _('Volver')
+            }}</a>
+        <div class="actions">
+            <a href="{{ url_for('edit_product', id=product.id) }}" class="btn-secondary"><i class="fas fa-edit"></i> {{
+                _('Editar') }}</a>
+            <form action="{{ url_for('delete_product', id=product.id) }}" method="POST" style="display:inline;"
+                onsubmit="return confirm('{{ _('¿Estás seguro?') }}');">
+                <button type="submit" class="btn-danger"><i class="fas fa-trash"></i> {{ _('Borrar') }}</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="detail-grid">
+        <div class="detail-image">
+            {% if product.image %}
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+            {% else %}
+            <div class="image-placeholder"><i class="fas fa-box fa-5x"></i></div>
+            {% endif %}
+        </div>
+        <div class="detail-info">
+            <div class="info-group">
+                <label>{{ _('Precio') }}</label>
+                <p class="price">{{ "%.2f"|format(product.price) }}€</p>
+            </div>
+            <div class="info-group">
+                <label>{{ _('Tamaño / Formato') }}</label>
+                <p>{{ _(product.size) if product.size else 'N/A' }}</p>
+            </div>
+            <div class="info-group">
+                <label>{{ _('País de Origen') }}</label>
+                <p>{{ product.originCountry or 'N/A' }}</p>
+            </div>
+            <div class="info-group">
+                <label>{{ _('Tiendas disponibles') }}</label>
+                <div class="inventory-crud">
+                    <ul class="item-list">
+                        {% for item in product.inventory_items %}
+                        <li class="list-item">
+                            <div class="item-main">
+                                <a href="{{ url_for('store_detail', id=item.store.id) }}">{{ _(item.store.name) }}</a>
+                                <span class="text-muted">- {{ _('Stock') }}: {{ item.stock }}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="add-box">
+                        <form action="{{ url_for('add_product_to_store', product_id=product.id) }}" method="POST"
+                            class="add-form">
+                            <select name="store_id" required>
+                                <option value="" disabled selected>{{ _('Añadir a tienda...') }}</option>
+                                {% for store in all_stores %}
+                                <option value="{{ store.id }}">{{ _(store.name) }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="number" name="stock" placeholder="{{ _('Stock') }}" min="1" required
+                                class="input-small">
+                            <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

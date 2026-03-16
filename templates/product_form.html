@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if product %}{{ _('Editar Producto') }}{% else %}{{ _('Nuevo Producto') }}{% endif %} - {{ _('FIWARE Smart Store') }}
+{% endblock %}
+
+{% block header_title %}
+{% if product %}{{ _('Editar Producto') }}{% else %}{{ _('Nuevo Producto') }}{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <a href="{{ url_for('list_products') }}" class="btn-text"><i class="fas fa-arrow-left"></i> {{ _('Cancelar') }}</a>
+
+    <form method="POST" class="crud-form">
+        <div class="form-group">
+            <label for="name">{{ _('Nombre del Producto') }} *</label>
+            <input type="text" id="name" name="name" value="{{ product.name if product else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="price">{{ _('Precio Base') }} *</label>
+            <input type="number" step="0.01" id="price" name="price" value="{{ product.price if product else '' }}"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label for="size">{{ _('Tamaño / Formato') }}</label>
+            <input type="text" id="size" name="size" value="{{ product.size if product else '' }}"
+                placeholder="e.g. 1L, 500g">
+        </div>
+
+        <div class="form-group">
+            <label for="originCountry">{{ _('País de Origen (ISO Code)') }}</label>
+            <input type="text" id="originCountry" name="originCountry"
+                value="{{ product.originCountry if product else '' }}" placeholder="e.g. ES, IT, FR">
+        </div>
+
+        <div class="form-group">
+            <label for="image">{{ _('URL de la Imagen') }}</label>
+            <input type="url" id="image" name="image" value="{{ product.image if product else '' }}"
+                placeholder="https://...">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">
+                {% if product %}{{ _('Guardar Cambios') }}{% else %}{{ _('Crear Producto') }}{% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}{{ employee.name }} - {{ _('Employee Detail') }}{% endblock %}
+
+{% block content %}
+<div class="detail-view">
+    <div class="detail-header">
+        <a href="{{ url_for('list_employees') }}" class="btn-text"><i class="fas fa-arrow-left"></i> {{ _('Volver')
+            }}</a>
+        <div class="actions">
+            <a href="{{ url_for('edit_employee', id=employee.id) }}" class="btn-secondary"><i class="fas fa-edit"></i>
+                {{
+                _('Editar') }}</a>
+            <form action="{{ url_for('delete_employee', id=employee.id) }}" method="POST" style="display:inline;"
+                onsubmit="return confirm('{{ _('¿Estás seguro?') }}');">
+                <button type="submit" class="btn-danger"><i class="fas fa-trash"></i> {{ _('Borrar') }}</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="detail-grid">
+        <div class="detail-image">
+            {% if employee.image %}
+            <img src="{{ employee.image }}" alt="{{ employee.name }}">
+            {% else %}
+            <div class="image-placeholder"><i class="fas fa-user-tie fa-5x"></i></div>
+            {% endif %}
+        </div>
+        <div class="detail-info">
+            <div class="info-group">
+                <label>{{ _('Name') }}</label>
+                <p>{{ employee.name }}</p>
+            </div>
+            <div class="info-group">
+                <label>{{ _('Role') }}</label>
+                <p class="role-badge" style="display: inline-block;">{{ _(employee.role) }}</p>
+            </div>
+            <div class="info-group">
+                <label>{{ _('Salary') }}</label>
+                <p>{{ employee.salary }} €</p>
+            </div>
+            <div class="info-group">
+                <label>{{ _('Assigned Store') }}</label>
+                <p><a href="{{ url_for('store_detail', id=employee.store_id) }}">{{ _(employee.store.name) }}</a></p>
+            </div>
+            <div class="info-group">
+                <label>{{ _('NGSI refStore') }}</label>
+                <p class="code"
+                    style="font-family: monospace; background: #f4f4f4; padding: 4px 8px; border-radius: 4px;">{{
+                    employee.refStore }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

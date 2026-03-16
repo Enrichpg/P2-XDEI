@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ _('FIWARE Smart Store') }}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+    <div class="lang-selector">
+        <a href="{{ url_for('set_language', lang='es') }}">ES</a>
+        <a href="{{ url_for('set_language', lang='en') }}">EN</a>
+    </div>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="{{ url_for('dashboard') }}" class="logo">{{ _('FIWARE Smart Store') }}</a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('dashboard') }}">{{ _('Dashboard') }}</a></li>
+                <li><a href="{{ url_for('list_stores') }}">{{ _('Stores') }}</a></li>
+                <li><a href="{{ url_for('list_products') }}">{{ _('Products') }}</a></li>
+                <li><a href="{{ url_for('list_employees') }}">{{ _('Employees') }}</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1>{% block header_title %}{{ _('FIWARE Smart Store') }}{% endblock %}</h1>
+            <p>{% block header_subtitle %}{{ _('Gestión inteligente para tu cadena de supermercados.') }}{% endblock %}
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 {{ _('FIWARE Smart Store') }}</p>
+    </footer>
+</body>
+
+</html>

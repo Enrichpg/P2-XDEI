@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Edit Employee') if employee else _('New Employee') }}{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>{{ _('Edit Employee') if employee else _('New Employee') }}</h1>
+
+    <form method="POST" class="modern-form">
+        <div class="form-group">
+            <label for="name">{{ _('Name') }}</label>
+            <input type="text" id="name" name="name" value="{{ employee.name if employee else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="role">{{ _('Role') }}</label>
+            <input type="text" id="role" name="role" value="{{ employee.role if employee else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="salary">{{ _('Salary') }}</label>
+            <input type="number" id="salary" name="salary" step="0.01"
+                value="{{ employee.salary if employee else '' }}">
+        </div>
+
+        <div class="form-group">
+            <label for="image">{{ _('Image URL') }}</label>
+            <input type="url" id="image" name="image" value="{{ employee.image if employee else '' }}">
+        </div>
+
+        <div class="form-group">
+            <label for="store_id">{{ _('Store') }}</label>
+            <select id="store_id" name="store_id" required>
+                <option value="">-- {{ _('Select Store') }} --</option>
+                {% for store in stores %}
+                <option value="{{ store.id }}" {{ 'selected' if employee and employee.store_id==store.id else '' }}>{{
+                    _(store.name) }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{{ _('Save') }}</button>
+            <a href="{{ url_for('list_employees') }}" class="btn btn-secondary">{{ _('Cancel') }}</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
