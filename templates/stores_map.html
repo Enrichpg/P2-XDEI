@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Stores Map') }} – FIWARE Smart Store{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title"><i class="fa-solid fa-map-location-dot"></i> {{ _('Stores Map') }}</h1>
+</div>
+
+<div id="stores-map-full" style="height:600px"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var map = L.map('stores-map-full').setView([52.52, 13.40], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var storesData = [
+        {% for s in stores %}
+    {% set loc = s.location %}
+    {% if loc is mapping and loc.value is defined and loc.value.coordinates is defined %}
+    {% set slng = loc.value.coordinates[0] %}
+    {% set slat = loc.value.coordinates[1] %}
+    {% else %}
+    {% set slat, slng = 52.52, 13.40 %}
+    {% endif %}
+    {% set sname = s.name.value if s.name is mapping else s.name %}
+    {% set simg = s.image.value if s.image is mapping else (s.image or '') %}
+    {% set scc = s.countryCode.value if s.countryCode is mapping else (s.countryCode or '') %}
+    {% set sdesc = s.description.value if s.description is mapping else (s.description or '') %}
+    {% set addr = s.address %}
+    {% set addrval = addr.value if addr is mapping else { } %}
+    {% set street = addrval.streetAddress if addrval is mapping else '' %}
+    {
+        id: "{{ s.id }}",
+            lat: { { slat } },
+        lng: { { slng } },
+        name: "{{ sname|e }}",
+            image: "{{ simg|e }}",
+                countryCode: "{{ scc|lower }}",
+                    description: "{{ (sdesc[:80] + '…') if sdesc|length > 80 else sdesc|e }}",
+                        street: "{{ street|e }}",
+                            url: "{{ url_for('store_detail', store_id=s.id) }}"
+    } {% if not loop.last %}, {% endif %}
+    {% endfor %}
+];
+
+    var customIcon = L.divIcon({
+        className: '',
+        html: '<div style="background:linear-gradient(135deg,#667eea,#764ba2);width:32px;height:32px;border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:white;font-size:14px">🏪</div>',
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
+        popupAnchor: [0, -20]
+    });
+
+    storesData.forEach(function (s) {
+        var marker = L.marker([s.lat, s.lng], { icon: customIcon }).addTo(map);
+
+        var popupHtml = '<div class="store-map-card">';
+        if (s.image) {
+            popupHtml += '<img src="' + s.image + '" alt="' + s.name + '">';
+        }
+        popupHtml += '<strong>' + s.name + '</strong>';
+        if (s.countryCode) {
+            popupHtml += '<br><img src="https://flagcdn.com/16x12/' + s.countryCode + '.png"> ' + s.countryCode.toUpperCase();
+        }
+        if (s.street) {
+            popupHtml += '<br><small>' + s.street + '</small>';
+        }
+        if (s.description) {
+            popupHtml += '<br><small style="color:#718096">' + s.description + '</small>';
+        }
+        popupHtml += '<br><a href="' + s.url + '" style="color:#667eea;font-size:0.8rem">{{ _("View details") }} →</a>';
+        popupHtml += '</div>';
+
+        marker.bindPopup(popupHtml, { maxWidth: 220 });
+        marker.on('mouseover', function () { this.openPopup(); });
+        marker.on('click', function () { window.location.href = s.url; });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Home') }} – FIWARE Smart Store{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title"><i class="fa-solid fa-house"></i> {{ _('Dashboard') }}</h1>
+</div>
+
+<!-- Stats -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-building-columns" style="color:#667eea"></i></div>
+        <div class="stat-value">{{ store_count }}</div>
+        <div class="stat-label">{{ _('Stores') }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-box-open" style="color:#ed8936"></i></div>
+        <div class="stat-value">{{ product_count }}</div>
+        <div class="stat-label">{{ _('Products') }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-users" style="color:#48bb78"></i></div>
+        <div class="stat-value">{{ employee_count }}</div>
+        <div class="stat-label">{{ _('Employees') }}</div>
+    </div>
+</div>
+
+<!-- Price change notification panel -->
+<div id="notifications-panel" style="margin-bottom:1.5rem"></div>
+
+<!-- UML Diagram -->
+<div class="card" style="margin-bottom:2rem">
+    <div class="card-body">
+        <h2 style="font-size:1.1rem;font-weight:600;margin-bottom:1rem;color:var(--accent)">
+            <i class="fa-solid fa-diagram-project"></i> {{ _('Entity Model (UML)') }}
+        </h2>
+        <div class="mermaid-wrap">
+            <div class="mermaid">
+                erDiagram
+                STORE ||--o{ SHELF : has
+                STORE ||--o{ INVENTORYITEM : stocks
+                STORE ||--o{ EMPLOYEE : employs
+                PRODUCT ||--o{ INVENTORYITEM : "placed in"
+                SHELF ||--o{ INVENTORYITEM : contains
+
+                STORE {
+                string id
+                string name
+                PostalAddress address
+                GeoJSON location
+                string image
+                string url
+                string telephone
+                string countryCode
+                float capacity
+                string description
+                float temperature
+                float relativeHumidity
+                string tweets
+                }
+                PRODUCT {
+                string id
+                string name
+                integer price
+                string size
+                string image
+                string originCountry
+                string color
+                }
+                SHELF {
+                string id
+                string name
+                integer maxCapacity
+                string refStore
+                }
+                EMPLOYEE {
+                string id
+                string name
+                string image
+                float salary
+                string category
+                string email
+                date dateOfContract
+                array skills
+                string username
+                string refStore
+                }
+                INVENTORYITEM {
+                string id
+                string refStore
+                string refShelf
+                string refProduct
+                integer stockCount
+                integer shelfCount
+                }
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

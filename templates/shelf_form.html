@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Shelf Form') }} – FIWARE Smart Store{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">
+        {% if shelf %}
+        <i class="fa-solid fa-pen"></i> {{ _('Edit Shelf') }}
+        {% else %}
+        <i class="fa-solid fa-plus"></i> {{ _('New Shelf') }}
+        {% endif %}
+    </h1>
+    <a href="{{ url_for('store_detail', store_id=store.id) }}" class="btn btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i> {{ _('Back') }}
+    </a>
+</div>
+
+{% macro val(attr, default='') %}{{ (attr.value if attr is mapping else attr) if attr is not none else default }}{%
+endmacro %}
+
+<div class="form-card">
+    {% if error %}<div class="flash flash-error">{{ error }}</div>{% endif %}
+    <form method="POST" novalidate>
+        <div class="form-group">
+            <label class="form-label">{{ _('Store') }}</label>
+            <input type="text" class="form-control"
+                value="{{ store.name.value if store.name is mapping else store.name }}" disabled>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label class="form-label" for="name">{{ _('Shelf Name') }} *</label>
+                <input type="text" id="name" name="name" class="form-control"
+                    value="{{ val(shelf.name) if shelf else '' }}" required maxlength="100"
+                    placeholder="{{ _('e.g. Corner Unit') }}">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="maxCapacity">{{ _('Max Capacity') }}</label>
+                <input type="number" id="maxCapacity" name="maxCapacity" class="form-control"
+                    value="{{ val(shelf.maxCapacity) if shelf else 50 }}" min="1" step="1">
+            </div>
+        </div>
+        <div style="display:flex;gap:0.75rem;justify-content:flex-end;margin-top:1.5rem">
+            <a href="{{ url_for('store_detail', store_id=store.id) }}" class="btn btn-secondary">{{ _('Cancel') }}</a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> {{ _('Save') }}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

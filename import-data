@@ -1,0 +1,356 @@
+#!/bin/bash
+#
+#  curl commands to reload the data from the previous tutorial
+#  Práctica 2 – Extended data: 4 stores, 4 shelves/store, 10 products, 4 employees
+#  InventoryItems: at least 4 products per shelf
+#
+
+set -e
+
+printf "⏳ Loading context data "
+
+#
+# Create four Store Entities in various locations across Berlin
+#
+curl -s -o /dev/null -X POST \
+  'http://orion:1026/v2/op/update' \
+  -H 'Content-Type: application/json' \
+  -g -d '{
+  "actionType": "append",
+  "entities": [
+    {
+      "id":"urn:ngsi-ld:Store:001","type":"Store",
+      "name":{"type":"Text","value":"Bösebrücke Einkauf"},
+      "address":{"type":"PostalAddress","value":{"streetAddress":"Bornholmer Straße 65","addressRegion":"Berlin","addressLocality":"Prenzlauer Berg","postalCode":"10439"}},
+      "location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.3986,52.5547]}},
+      "image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Supermarket_in_Amsterdam.jpg/1280px-Supermarket_in_Amsterdam.jpg"},
+      "url":{"type":"Text","value":"https://bosebrucke.example.com"},
+      "telephone":{"type":"Text","value":"+49 30 1234567"},
+      "countryCode":{"type":"Text","value":"DE"},
+      "capacity":{"type":"Number","value":1500},
+      "description":{"type":"Text","value":"Main Berlin flagship store located near the famous Bösebrücke bridge in Prenzlauer Berg."}
+    },
+    {
+      "id":"urn:ngsi-ld:Store:002","type":"Store",
+      "name":{"type":"Text","value":"Checkpoint Markt"},
+      "address":{"type":"PostalAddress","value":{"streetAddress":"Friedrichstraße 44","addressRegion":"Berlin","addressLocality":"Kreuzberg","postalCode":"10969"}},
+      "location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.3903,52.5075]}},
+      "image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Supermarkt.jpg/1280px-Supermarkt.jpg"},
+      "url":{"type":"Text","value":"https://checkpoint.example.com"},
+      "telephone":{"type":"Text","value":"+49 30 2345678"},
+      "countryCode":{"type":"Text","value":"DE"},
+      "capacity":{"type":"Number","value":2200},
+      "description":{"type":"Text","value":"Historic Kreuzberg store near Checkpoint Charlie. Specialises in international products."}
+    },
+    {
+      "id":"urn:ngsi-ld:Store:003","type":"Store",
+      "name":{"type":"Text","value":"East Side Galleria"},
+      "address":{"type":"PostalAddress","value":{"streetAddress":"Mühlenstrasse 10","addressRegion":"Berlin","addressLocality":"Friedrichshain","postalCode":"10243"}},
+      "location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4447,52.5031]}},
+      "image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Supermarket_in_Amsterdam.jpg/1280px-Supermarket_in_Amsterdam.jpg"},
+      "url":{"type":"Text","value":"https://eastside.example.com"},
+      "telephone":{"type":"Text","value":"+49 30 3456789"},
+      "countryCode":{"type":"Text","value":"DE"},
+      "capacity":{"type":"Number","value":1800},
+      "description":{"type":"Text","value":"Trendy Friedrichshain store adjacent to the East Side Gallery, Berlin art wall landmark."}
+    },
+    {
+      "id":"urn:ngsi-ld:Store:004","type":"Store",
+      "name":{"type":"Text","value":"Tower Trödelmarkt"},
+      "address":{"type":"PostalAddress","value":{"streetAddress":"Panoramastraße 1A","addressRegion":"Berlin","addressLocality":"Mitte","postalCode":"10178"}},
+      "location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4094,52.5208]}},
+      "image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Supermarkt.jpg/1280px-Supermarkt.jpg"},
+      "url":{"type":"Text","value":"https://tower.example.com"},
+      "telephone":{"type":"Text","value":"+49 30 4567890"},
+      "countryCode":{"type":"Text","value":"DE"},
+      "capacity":{"type":"Number","value":3000},
+      "description":{"type":"Text","value":"Premium store in Berlin Mitte, steps from the TV Tower and Museum Island."}
+    }
+  ]
+}'
+
+#
+# Register Weather Context Providers for all 4 Stores
+#
+for STORE_ID in 001 002 003 004; do
+  curl -s -o /dev/null -X POST \
+    http://orion:1026/v2/registrations \
+    -H 'Content-Type: application/json' \
+    -d "{
+     \"description\": \"Weather Conditions Store:${STORE_ID}\",
+     \"dataProvided\": {
+       \"entities\": [{\"id\": \"urn:ngsi-ld:Store:${STORE_ID}\",\"type\": \"Store\"}],
+       \"attrs\": [\"temperature\", \"relativeHumidity\"]
+     },
+     \"provider\": {
+       \"http\": {\"url\": \"http://tutorial:3000/proxy/v1/random/weatherConditions\"},
+       \"legacyForwarding\": true
+     },
+     \"status\": \"active\"
+  }"
+done
+
+#
+# Register Tweet Context Providers for all 4 Stores
+#
+for STORE_ID in 001 002 003 004; do
+  curl -s -o /dev/null -X POST \
+    http://orion:1026/v2/registrations \
+    -H 'Content-Type: application/json' \
+    -d "{
+     \"description\": \"Tweeting Cat Facts Store:${STORE_ID}\",
+     \"dataProvided\": {
+       \"entities\": [{\"id\": \"urn:ngsi-ld:Store:${STORE_ID}\",\"type\": \"Store\"}],
+       \"attrs\": [\"tweets\"]
+     },
+     \"provider\": {
+       \"http\": {\"url\": \"http://tutorial:3000/proxy/v1/catfacts/tweets\"},
+       \"legacyForwarding\": true
+     },
+     \"status\": \"active\"
+  }"
+done
+
+#
+# Create 4 Shelf Entities per Store (16 total)
+#
+curl -s -o /dev/null -X POST \
+  'http://orion:1026/v2/op/update' \
+  -H 'Content-Type: application/json' \
+  -g -d '{
+  "actionType": "append",
+  "entities": [
+    {"id":"urn:ngsi-ld:Shelf:unit001","type":"Shelf","name":{"type":"Text","value":"Corner Unit"},"maxCapacity":{"type":"Integer","value":50},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.3986112,52.554699]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"}},
+    {"id":"urn:ngsi-ld:Shelf:unit002","type":"Shelf","name":{"type":"Text","value":"Wall Unit 1"},"maxCapacity":{"type":"Integer","value":100},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.3987221,52.554664]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"}},
+    {"id":"urn:ngsi-ld:Shelf:unit003","type":"Shelf","name":{"type":"Text","value":"Wall Unit 2"},"maxCapacity":{"type":"Integer","value":100},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.3987221,52.554670]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"}},
+    {"id":"urn:ngsi-ld:Shelf:unit004","type":"Shelf","name":{"type":"Text","value":"Long Wall Unit"},"maxCapacity":{"type":"Integer","value":200},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.3988000,52.554680]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"}},
+
+    {"id":"urn:ngsi-ld:Shelf:unit005","type":"Shelf","name":{"type":"Text","value":"Corner Unit"},"maxCapacity":{"type":"Integer","value":50},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.390311,52.507522]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"}},
+    {"id":"urn:ngsi-ld:Shelf:unit006","type":"Shelf","name":{"type":"Text","value":"Wall Unit 1"},"maxCapacity":{"type":"Integer","value":100},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.390309,52.507510]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"}},
+    {"id":"urn:ngsi-ld:Shelf:unit007","type":"Shelf","name":{"type":"Text","value":"Wall Unit 2"},"maxCapacity":{"type":"Integer","value":100},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.390320,52.507500]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"}},
+    {"id":"urn:ngsi-ld:Shelf:unit008","type":"Shelf","name":{"type":"Text","value":"Long Wall Unit"},"maxCapacity":{"type":"Integer","value":200},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.390330,52.507490]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"}},
+
+    {"id":"urn:ngsi-ld:Shelf:unit009","type":"Shelf","name":{"type":"Text","value":"Corner Unit"},"maxCapacity":{"type":"Integer","value":50},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4447112,52.503199]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"}},
+    {"id":"urn:ngsi-ld:Shelf:unit010","type":"Shelf","name":{"type":"Text","value":"Wall Unit 1"},"maxCapacity":{"type":"Integer","value":100},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4447221,52.503164]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"}},
+    {"id":"urn:ngsi-ld:Shelf:unit011","type":"Shelf","name":{"type":"Text","value":"Wall Unit 2"},"maxCapacity":{"type":"Integer","value":100},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4447221,52.503170]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"}},
+    {"id":"urn:ngsi-ld:Shelf:unit012","type":"Shelf","name":{"type":"Text","value":"Long Wall Unit"},"maxCapacity":{"type":"Integer","value":200},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4448000,52.503180]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"}},
+
+    {"id":"urn:ngsi-ld:Shelf:unit013","type":"Shelf","name":{"type":"Text","value":"Corner Unit"},"maxCapacity":{"type":"Integer","value":50},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4094111,52.520803]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"}},
+    {"id":"urn:ngsi-ld:Shelf:unit014","type":"Shelf","name":{"type":"Text","value":"Wall Unit 1"},"maxCapacity":{"type":"Integer","value":100},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4094221,52.520770]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"}},
+    {"id":"urn:ngsi-ld:Shelf:unit015","type":"Shelf","name":{"type":"Text","value":"Wall Unit 2"},"maxCapacity":{"type":"Integer","value":100},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4094221,52.520760]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"}},
+    {"id":"urn:ngsi-ld:Shelf:unit016","type":"Shelf","name":{"type":"Text","value":"Long Wall Unit"},"maxCapacity":{"type":"Integer","value":200},"location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4094500,52.520750]}},"refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"}}
+  ]
+}'
+
+#
+# Create 10 Product Entities with color attribute
+#
+curl -s -o /dev/null -X POST \
+  'http://orion:1026/v2/op/update' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "actionType":"APPEND",
+  "entities":[
+    {"id":"urn:ngsi-ld:Product:001","type":"Product","name":{"type":"Text","value":"Apples"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":99},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#FF5733"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/800px-Red_Apple.jpg"}},
+    {"id":"urn:ngsi-ld:Product:002","type":"Product","name":{"type":"Text","value":"Bananas"},"size":{"type":"Text","value":"M"},"price":{"type":"Integer","value":149},"originCountry":{"type":"Text","value":"EC"},"color":{"type":"Text","value":"#FFD700"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Chocolate-Chip-Cookies-Recipe.jpg/640px-Banana-Chocolate-Chip-Cookies-Recipe.jpg"}},
+    {"id":"urn:ngsi-ld:Product:003","type":"Product","name":{"type":"Text","value":"Coconuts"},"size":{"type":"Text","value":"M"},"price":{"type":"Integer","value":299},"originCountry":{"type":"Text","value":"PH"},"color":{"type":"Text","value":"#8B4513"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Coconut_on_white_background.jpg/640px-Coconut_on_white_background.jpg"}},
+    {"id":"urn:ngsi-ld:Product:004","type":"Product","name":{"type":"Text","value":"Melons"},"size":{"type":"Text","value":"XL"},"price":{"type":"Integer","value":499},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#90EE90"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Melon_2.jpg/640px-Melon_2.jpg"}},
+    {"id":"urn:ngsi-ld:Product:005","type":"Product","name":{"type":"Text","value":"Kiwi Fruits"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":189},"originCountry":{"type":"Text","value":"NZ"},"color":{"type":"Text","value":"#6B8E23"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Kiwi_aka.jpg/640px-Kiwi_aka.jpg"}},
+    {"id":"urn:ngsi-ld:Product:006","type":"Product","name":{"type":"Text","value":"Strawberries"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":249},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#DC143C"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/640px-PerfectStrawberry.jpg"}},
+    {"id":"urn:ngsi-ld:Product:007","type":"Product","name":{"type":"Text","value":"Raspberries"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":329},"originCountry":{"type":"Text","value":"FR"},"color":{"type":"Text","value":"#C71585"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/640px-Hapus_Mango.jpg"}},
+    {"id":"urn:ngsi-ld:Product:008","type":"Product","name":{"type":"Text","value":"Pineapples"},"size":{"type":"Text","value":"L"},"price":{"type":"Integer","value":189},"originCountry":{"type":"Text","value":"CR"},"color":{"type":"Text","value":"#FFA500"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pineapple_and_cross_section.jpg/800px-Pineapple_and_cross_section.jpg"}},
+    {"id":"urn:ngsi-ld:Product:009","type":"Product","name":{"type":"Text","value":"Oranges"},"size":{"type":"Text","value":"M"},"price":{"type":"Integer","value":129},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#FF8C00"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oranges_and_orange_juice.jpg/800px-Oranges_and_orange_juice.jpg"}},
+    {"id":"urn:ngsi-ld:Product:010","type":"Product","name":{"type":"Text","value":"Grapes"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":219},"originCountry":{"type":"Text","value":"IT"},"color":{"type":"Text","value":"#800080"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/800px-Table_grapes_on_white.jpg"}}
+  ]
+}'
+
+#
+# Create 4 Employee Entities (one per store)
+#
+curl -s -o /dev/null -X POST \
+  'http://orion:1026/v2/op/update' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "actionType":"APPEND",
+  "entities":[
+    {
+      "id":"urn:ngsi-ld:Employee:001","type":"Employee",
+      "name":{"type":"Text","value":"Alice Smith"},
+      "image":{"type":"Text","value":"https://randomuser.me/api/portraits/women/44.jpg"},
+      "salary":{"type":"Number","value":2800},
+      "category":{"type":"Text","value":"Manager"},
+      "email":{"type":"Text","value":"alice.smith@bosebrucke.example"},
+      "dateOfContract":{"type":"DateTime","value":"2019-06-15T00:00:00Z"},
+      "skills":{"type":"StructuredValue","value":["MachineryDriving","WritingReports","CustomerRelationships"]},
+      "username":{"type":"Text","value":"alice"},
+      "password":{"type":"Text","value":"hashed_alice123"},
+      "refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"}
+    },
+    {
+      "id":"urn:ngsi-ld:Employee:002","type":"Employee",
+      "name":{"type":"Text","value":"Bob Jones"},
+      "image":{"type":"Text","value":"https://randomuser.me/api/portraits/men/32.jpg"},
+      "salary":{"type":"Number","value":1900},
+      "category":{"type":"Text","value":"Cashier"},
+      "email":{"type":"Text","value":"bob.jones@checkpoint.example"},
+      "dateOfContract":{"type":"DateTime","value":"2021-03-01T00:00:00Z"},
+      "skills":{"type":"StructuredValue","value":["CustomerRelationships"]},
+      "username":{"type":"Text","value":"bob"},
+      "password":{"type":"Text","value":"hashed_bob456"},
+      "refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"}
+    },
+    {
+      "id":"urn:ngsi-ld:Employee:003","type":"Employee",
+      "name":{"type":"Text","value":"Clara Müller"},
+      "image":{"type":"Text","value":"https://randomuser.me/api/portraits/women/68.jpg"},
+      "salary":{"type":"Number","value":2100},
+      "category":{"type":"Text","value":"StockClerk"},
+      "email":{"type":"Text","value":"clara.muller@eastside.example"},
+      "dateOfContract":{"type":"DateTime","value":"2020-09-10T00:00:00Z"},
+      "skills":{"type":"StructuredValue","value":["MachineryDriving","WritingReports"]},
+      "username":{"type":"Text","value":"clara"},
+      "password":{"type":"Text","value":"hashed_clara789"},
+      "refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"}
+    },
+    {
+      "id":"urn:ngsi-ld:Employee:004","type":"Employee",
+      "name":{"type":"Text","value":"David López"},
+      "image":{"type":"Text","value":"https://randomuser.me/api/portraits/men/75.jpg"},
+      "salary":{"type":"Number","value":3200},
+      "category":{"type":"Text","value":"Manager"},
+      "email":{"type":"Text","value":"david.lopez@tower.example"},
+      "dateOfContract":{"type":"DateTime","value":"2018-01-20T00:00:00Z"},
+      "skills":{"type":"StructuredValue","value":["WritingReports","CustomerRelationships"]},
+      "username":{"type":"Text","value":"david"},
+      "password":{"type":"Text","value":"hashed_david000"},
+      "refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"}
+    }
+  ]
+}'
+
+#
+# Create InventoryItems – Store:001 (shelves unit001-unit004)
+# Each shelf has 4+ products
+#
+curl -s -o /dev/null -X POST \
+  'http://orion:1026/v2/op/update' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "actionType":"APPEND",
+  "entities":[
+    {"id":"urn:ngsi-ld:InventoryItem:001","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit001"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:001"},"stockCount":{"type":"Integer","value":10000},"shelfCount":{"type":"Integer","value":15}},
+    {"id":"urn:ngsi-ld:InventoryItem:002","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit001"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:002"},"stockCount":{"type":"Integer","value":8000},"shelfCount":{"type":"Integer","value":20}},
+    {"id":"urn:ngsi-ld:InventoryItem:003","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit001"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:003"},"stockCount":{"type":"Integer","value":5000},"shelfCount":{"type":"Integer","value":10}},
+    {"id":"urn:ngsi-ld:InventoryItem:004","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit001"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:004"},"stockCount":{"type":"Integer","value":3000},"shelfCount":{"type":"Integer","value":8}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:005","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit002"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:005"},"stockCount":{"type":"Integer","value":12000},"shelfCount":{"type":"Integer","value":40}},
+    {"id":"urn:ngsi-ld:InventoryItem:006","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit002"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:006"},"stockCount":{"type":"Integer","value":6000},"shelfCount":{"type":"Integer","value":30}},
+    {"id":"urn:ngsi-ld:InventoryItem:007","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit002"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:007"},"stockCount":{"type":"Integer","value":4000},"shelfCount":{"type":"Integer","value":25}},
+    {"id":"urn:ngsi-ld:InventoryItem:008","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit002"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:008"},"stockCount":{"type":"Integer","value":7000},"shelfCount":{"type":"Integer","value":35}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:009","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit003"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:009"},"stockCount":{"type":"Integer","value":9000},"shelfCount":{"type":"Integer","value":50}},
+    {"id":"urn:ngsi-ld:InventoryItem:010","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit003"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:010"},"stockCount":{"type":"Integer","value":11000},"shelfCount":{"type":"Integer","value":45}},
+    {"id":"urn:ngsi-ld:InventoryItem:011","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit003"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:001"},"stockCount":{"type":"Integer","value":5000},"shelfCount":{"type":"Integer","value":20}},
+    {"id":"urn:ngsi-ld:InventoryItem:012","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit003"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:002"},"stockCount":{"type":"Integer","value":3000},"shelfCount":{"type":"Integer","value":15}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:013","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit004"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:003"},"stockCount":{"type":"Integer","value":8000},"shelfCount":{"type":"Integer","value":80}},
+    {"id":"urn:ngsi-ld:InventoryItem:014","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit004"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:004"},"stockCount":{"type":"Integer","value":2000},"shelfCount":{"type":"Integer","value":10}},
+    {"id":"urn:ngsi-ld:InventoryItem:015","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit004"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:005"},"stockCount":{"type":"Integer","value":6000},"shelfCount":{"type":"Integer","value":60}},
+    {"id":"urn:ngsi-ld:InventoryItem:016","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:001"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit004"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:006"},"stockCount":{"type":"Integer","value":4000},"shelfCount":{"type":"Integer","value":40}}
+  ]
+}'
+
+#
+# InventoryItems – Store:002 (shelves unit005-unit008)
+#
+curl -s -o /dev/null -X POST \
+  'http://orion:1026/v2/op/update' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "actionType":"APPEND",
+  "entities":[
+    {"id":"urn:ngsi-ld:InventoryItem:101","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit005"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:003"},"stockCount":{"type":"Integer","value":5000},"shelfCount":{"type":"Integer","value":12}},
+    {"id":"urn:ngsi-ld:InventoryItem:102","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit005"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:004"},"stockCount":{"type":"Integer","value":3000},"shelfCount":{"type":"Integer","value":8}},
+    {"id":"urn:ngsi-ld:InventoryItem:103","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit005"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:005"},"stockCount":{"type":"Integer","value":7000},"shelfCount":{"type":"Integer","value":18}},
+    {"id":"urn:ngsi-ld:InventoryItem:104","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit005"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:006"},"stockCount":{"type":"Integer","value":9000},"shelfCount":{"type":"Integer","value":22}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:105","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit006"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:007"},"stockCount":{"type":"Integer","value":4000},"shelfCount":{"type":"Integer","value":35}},
+    {"id":"urn:ngsi-ld:InventoryItem:106","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit006"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:008"},"stockCount":{"type":"Integer","value":6000},"shelfCount":{"type":"Integer","value":40}},
+    {"id":"urn:ngsi-ld:InventoryItem:107","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit006"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:009"},"stockCount":{"type":"Integer","value":8000},"shelfCount":{"type":"Integer","value":50}},
+    {"id":"urn:ngsi-ld:InventoryItem:108","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit006"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:010"},"stockCount":{"type":"Integer","value":5000},"shelfCount":{"type":"Integer","value":45}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:109","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit007"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:001"},"stockCount":{"type":"Integer","value":12000},"shelfCount":{"type":"Integer","value":30}},
+    {"id":"urn:ngsi-ld:InventoryItem:110","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit007"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:002"},"stockCount":{"type":"Integer","value":8000},"shelfCount":{"type":"Integer","value":25}},
+    {"id":"urn:ngsi-ld:InventoryItem:111","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit007"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:003"},"stockCount":{"type":"Integer","value":3000},"shelfCount":{"type":"Integer","value":15}},
+    {"id":"urn:ngsi-ld:InventoryItem:112","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit007"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:004"},"stockCount":{"type":"Integer","value":1500},"shelfCount":{"type":"Integer","value":8}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:113","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit008"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:005"},"stockCount":{"type":"Integer","value":9000},"shelfCount":{"type":"Integer","value":60}},
+    {"id":"urn:ngsi-ld:InventoryItem:114","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit008"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:006"},"stockCount":{"type":"Integer","value":7000},"shelfCount":{"type":"Integer","value":55}},
+    {"id":"urn:ngsi-ld:InventoryItem:115","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit008"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:007"},"stockCount":{"type":"Integer","value":5000},"shelfCount":{"type":"Integer","value":70}},
+    {"id":"urn:ngsi-ld:InventoryItem:116","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:002"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit008"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:008"},"stockCount":{"type":"Integer","value":3000},"shelfCount":{"type":"Integer","value":50}}
+  ]
+}'
+
+#
+# InventoryItems – Store:003 (shelves unit009-unit012)
+#
+curl -s -o /dev/null -X POST \
+  'http://orion:1026/v2/op/update' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "actionType":"APPEND",
+  "entities":[
+    {"id":"urn:ngsi-ld:InventoryItem:201","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit009"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:001"},"stockCount":{"type":"Integer","value":10000},"shelfCount":{"type":"Integer","value":18}},
+    {"id":"urn:ngsi-ld:InventoryItem:202","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit009"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:005"},"stockCount":{"type":"Integer","value":6000},"shelfCount":{"type":"Integer","value":14}},
+    {"id":"urn:ngsi-ld:InventoryItem:203","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit009"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:006"},"stockCount":{"type":"Integer","value":4000},"shelfCount":{"type":"Integer","value":10}},
+    {"id":"urn:ngsi-ld:InventoryItem:204","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit009"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:007"},"stockCount":{"type":"Integer","value":2000},"shelfCount":{"type":"Integer","value":8}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:205","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit010"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:008"},"stockCount":{"type":"Integer","value":7000},"shelfCount":{"type":"Integer","value":40}},
+    {"id":"urn:ngsi-ld:InventoryItem:206","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit010"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:009"},"stockCount":{"type":"Integer","value":5000},"shelfCount":{"type":"Integer","value":50}},
+    {"id":"urn:ngsi-ld:InventoryItem:207","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit010"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:010"},"stockCount":{"type":"Integer","value":8000},"shelfCount":{"type":"Integer","value":60}},
+    {"id":"urn:ngsi-ld:InventoryItem:208","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit010"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:002"},"stockCount":{"type":"Integer","value":3000},"shelfCount":{"type":"Integer","value":30}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:209","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit011"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:003"},"stockCount":{"type":"Integer","value":4000},"shelfCount":{"type":"Integer","value":35}},
+    {"id":"urn:ngsi-ld:InventoryItem:210","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit011"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:004"},"stockCount":{"type":"Integer","value":2500},"shelfCount":{"type":"Integer","value":25}},
+    {"id":"urn:ngsi-ld:InventoryItem:211","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit011"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:005"},"stockCount":{"type":"Integer","value":6500},"shelfCount":{"type":"Integer","value":55}},
+    {"id":"urn:ngsi-ld:InventoryItem:212","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit011"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:006"},"stockCount":{"type":"Integer","value":5000},"shelfCount":{"type":"Integer","value":45}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:213","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit012"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:007"},"stockCount":{"type":"Integer","value":9000},"shelfCount":{"type":"Integer","value":80}},
+    {"id":"urn:ngsi-ld:InventoryItem:214","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit012"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:008"},"stockCount":{"type":"Integer","value":7000},"shelfCount":{"type":"Integer","value":70}},
+    {"id":"urn:ngsi-ld:InventoryItem:215","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit012"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:009"},"stockCount":{"type":"Integer","value":11000},"shelfCount":{"type":"Integer","value":90}},
+    {"id":"urn:ngsi-ld:InventoryItem:216","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:003"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit012"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:010"},"stockCount":{"type":"Integer","value":4000},"shelfCount":{"type":"Integer","value":35}}
+  ]
+}'
+
+#
+# InventoryItems – Store:004 (shelves unit013-unit016)
+#
+curl -s -o /dev/null -X POST \
+  'http://orion:1026/v2/op/update' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "actionType":"APPEND",
+  "entities":[
+    {"id":"urn:ngsi-ld:InventoryItem:301","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit013"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:001"},"stockCount":{"type":"Integer","value":15000},"shelfCount":{"type":"Integer","value":20}},
+    {"id":"urn:ngsi-ld:InventoryItem:302","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit013"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:002"},"stockCount":{"type":"Integer","value":10000},"shelfCount":{"type":"Integer","value":15}},
+    {"id":"urn:ngsi-ld:InventoryItem:303","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit013"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:009"},"stockCount":{"type":"Integer","value":8000},"shelfCount":{"type":"Integer","value":12}},
+    {"id":"urn:ngsi-ld:InventoryItem:304","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit013"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:010"},"stockCount":{"type":"Integer","value":6000},"shelfCount":{"type":"Integer","value":10}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:305","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit014"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:003"},"stockCount":{"type":"Integer","value":7000},"shelfCount":{"type":"Integer","value":45}},
+    {"id":"urn:ngsi-ld:InventoryItem:306","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit014"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:004"},"stockCount":{"type":"Integer","value":4000},"shelfCount":{"type":"Integer","value":25}},
+    {"id":"urn:ngsi-ld:InventoryItem:307","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit014"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:005"},"stockCount":{"type":"Integer","value":9000},"shelfCount":{"type":"Integer","value":55}},
+    {"id":"urn:ngsi-ld:InventoryItem:308","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit014"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:006"},"stockCount":{"type":"Integer","value":5000},"shelfCount":{"type":"Integer","value":35}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:309","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit015"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:007"},"stockCount":{"type":"Integer","value":6000},"shelfCount":{"type":"Integer","value":50}},
+    {"id":"urn:ngsi-ld:InventoryItem:310","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit015"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:008"},"stockCount":{"type":"Integer","value":8000},"shelfCount":{"type":"Integer","value":60}},
+    {"id":"urn:ngsi-ld:InventoryItem:311","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit015"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:009"},"stockCount":{"type":"Integer","value":12000},"shelfCount":{"type":"Integer","value":75}},
+    {"id":"urn:ngsi-ld:InventoryItem:312","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit015"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:010"},"stockCount":{"type":"Integer","value":9000},"shelfCount":{"type":"Integer","value":65}},
+
+    {"id":"urn:ngsi-ld:InventoryItem:313","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit016"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:001"},"stockCount":{"type":"Integer","value":20000},"shelfCount":{"type":"Integer","value":100}},
+    {"id":"urn:ngsi-ld:InventoryItem:314","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit016"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:002"},"stockCount":{"type":"Integer","value":15000},"shelfCount":{"type":"Integer","value":90}},
+    {"id":"urn:ngsi-ld:InventoryItem:315","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit016"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:003"},"stockCount":{"type":"Integer","value":7000},"shelfCount":{"type":"Integer","value":70}},
+    {"id":"urn:ngsi-ld:InventoryItem:316","type":"InventoryItem","refStore":{"type":"Relationship","value":"urn:ngsi-ld:Store:004"},"refShelf":{"type":"Relationship","value":"urn:ngsi-ld:Shelf:unit016"},"refProduct":{"type":"Relationship","value":"urn:ngsi-ld:Product:004"},"stockCount":{"type":"Integer","value":3000},"shelfCount":{"type":"Integer","value":20}}
+  ]
+}'
+
+echo -e " \033[1;32mdone\033[0m"
