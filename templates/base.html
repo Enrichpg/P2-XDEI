@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <div id="notifications-panel" class="notifications-panel"></div>
     <div class="lang-selector">
         <a href="{{ url_for('set_language', lang='es') }}">ES</a>
         <a href="{{ url_for('set_language', lang='en') }}">EN</a>
@@ -44,6 +45,8 @@
     <footer>
         <p>&copy; 2024 {{ _('FIWARE Smart Store') }}</p>
     </footer>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 
 </html>

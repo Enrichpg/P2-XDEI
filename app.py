@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_babel import Babel, gettext as _, refresh
+from flask_socketio import SocketIO
+import logging
 import os
 
 app = Flask(__name__)
@@ -12,6 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'super-secret-key' # Required for sessions
 
 db = SQLAlchemy(app)
+socketio = SocketIO(app)
 
 def get_locale():
     # 1. Check if lang is in query params (highest priority)
@@ -470,8 +473,47 @@ def delete_employee(id):
         db.session.commit()
     return redirect(url_for('list_employees'))
 
+# ---------------------------------------------------------------------------
+# Orion subscription callback endpoints
+# ---------------------------------------------------------------------------
+
+@app.route('/subscriptions/price-change', methods=['POST'])
+def subscription_price_change():
+    """Receive Orion notification when a Product price changes."""
+    payload = request.get_json(silent=True) or {}
+    app.logger.info('[subscription] Price-change notification received: %s', payload)
+    for entity in payload.get('data', []):
+        product_id = entity.get('id', '')
+        price = entity.get('price', {}).get('value') if isinstance(entity.get('price'), dict) else entity.get('price')
+        name = entity.get('name', {}).get('value') if isinstance(entity.get('name'), dict) else entity.get('name', '')
+        socketio.emit('price_change', {
+            'product_id': product_id,
+            'price': price,
+            'name': name,
+        })
+    return jsonify(status='ok'), 200
+
+
+@app.route('/subscriptions/low-stock', methods=['POST'])
+def subscription_low_stock():
+    """Receive Orion notification when InventoryItem shelfCount is low."""
+    payload = request.get_json(silent=True) or {}
+    app.logger.info('[subscription] Low-stock notification received: %s', payload)
+    for entity in payload.get('data', []):
+        item_id = entity.get('id', '')
+        shelf_count = entity.get('shelfCount', {}).get('value') if isinstance(entity.get('shelfCount'), dict) else entity.get('shelfCount')
+        product_ref = entity.get('refProduct', {}).get('value') if isinstance(entity.get('refProduct'), dict) else entity.get('refProduct', '')
+        store_ref = entity.get('refStore', {}).get('value') if isinstance(entity.get('refStore'), dict) else entity.get('refStore', '')
+        socketio.emit('low_stock', {
+            'item_id': item_id,
+            'product_id': product_ref,
+            'store_id': store_ref,
+            'shelfCount': shelf_count,
+        })
+    return jsonify(status='ok'), 200
+
+
 if __name__ == '__main__':
-    import logging
     logging.basicConfig(level=logging.INFO)
     with app.app_context():
         db.create_all()
@@ -479,12 +521,13 @@ if __name__ == '__main__':
     # Initialise the data layer (probes Orion; falls back to SQLite if unavailable)
     import data_layer
     data_layer.init_data_layer(app, db)
-    
+
     if data_layer.USE_ORION:
         import orion
         with app.app_context():
             store_ids = [f"urn:ngsi-ld:Store:{s.id:03d}" for s in Store.query.all()]
         if store_ids:
             orion.register_context_providers(store_ids)
-            
-    app.run(debug=True)
+        orion.register_subscriptions()
+
+    socketio.run(app, debug=True)
