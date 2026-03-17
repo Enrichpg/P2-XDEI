@@ -21,6 +21,7 @@ erDiagram
         string description
         float temperature "context-provided"
         float relativeHumidity "context-provided"
+        string tweets "context-provided"
     }
     PRODUCT {
         int id PK
@@ -72,9 +73,10 @@ Represents a physical retail location.
 - `description` (Text): Free-text description of the store.
 - `temperature` (Float, **context-provided**): Current ambient temperature. Not persisted locally; served by the FIWARE tutorial context-provider container via Orion.
 - `relativeHumidity` (Float, **context-provided**): Current relative humidity (%). Not persisted locally; served by the FIWARE tutorial context-provider container via Orion.
+- `tweets` (JSON / list, **context-provided**): Current tweets about the store. Not persisted locally; served by the FIWARE tutorial context-provider container via Orion.
 
 > [!NOTE]
-> `temperature` and `relativeHumidity` are **not stored** in SQLite or Orion. They are supplied on-the-fly by the external context provider registered in Orion at application startup.
+> `temperature`, `relativeHumidity` and `tweets` are **not stored** in SQLite. They are supplied on-the-fly by the external context provider registered in Orion at application startup.
 
 ### Product
 Items available for sale across the chain.
@@ -130,13 +132,9 @@ The system is provisioned via the **`import-data.sh`** script with the following
 | Products | 10 | Each with color, size, price, and origin |
 | Products / Shelf | ≥ 4 | At least 4 products assigned to every shelf |
 
-- **Products**: Leche (ES), Pan (FR), Huevos (ES), Arroz (IT), Pasta (IT), Manzanas (ES), Plátanos (EC), Pollo (ES), Ternera (AR), Agua (ES). Each with specific `size`, `price`, `color`, and `image`.
-- **Stores**:
-    - **Store Alpha**: Friedrichstraße 44, Berlin (DE). Includes products 1-5 and assigned employees.
-    - **Store Beta**: Gran Vía 1, Madrid (ES). Includes products 6-10 and assigned employees.
-    - **Store Gamma**: Corso Vittorio Emanuele II, Torino (IT). Includes products 1, 3, 5, 7, 10 and assigned employees.
-    - **Store Delta**: Champs-Élysées, Paris (FR). Includes products 2, 4, 6, 8, 9 and assigned employees.
-- **Employees**: 4 employees (e.g., "Alice Smith", "Bob Jones") assigned across stores with roles like `Manager`, `Cashier`, and `Stock Clerk`, each with email, dateOfContract, skills, username, and password.
+- **Products**: 10 products (Leche, Pan, Huevos, Arroz, Pasta, Manzanas, Plátanos, Pollo, Ternera, Agua). Each includes `size`, `price`, `color` (e.g. RGB hex), and `image`.
+- **Stores**: 4 stores (Store Alpha, Beta, Gamma, Delta) distributed across different countries. Each includes the new attributes: `url`, `telephone`, `countryCode`, `capacity`, and `description`.
+- **Employees**: 4 employees assigned across stores. Each employee record includes `email`, `dateOfContract`, `skills`, `username`, and `password`.
 
 ---
 
@@ -217,9 +215,9 @@ The `location` field (stored as `"lat, lng"` in SQLite) is converted to a GeoJSO
 | `Store.countryCode` | `countryCode` | `Text` | 2-char ISO 3166-1 alpha-2 |
 | `Store.capacity` | `capacity` | `Number` | Cubic metres (m³) |
 | `Store.description` | `description` | `Text` | |
-| `Store.temperature` | `temperature` | `Number` | **Context-provided** — not stored in Orion |
-| `Store.relativeHumidity` | `relativeHumidity` | `Number` | **Context-provided** — not stored in Orion |
-| `Store.tweets` | `tweets` | `StructuredValue` | **Context-provided** — not stored in Orion |
+| `Store.temperature` | `temperature` | `Number` | **Context-provided** — not stored in SQLite |
+| `Store.relativeHumidity` | `relativeHumidity` | `Number` | **Context-provided** — not stored in SQLite |
+| `Store.tweets` | `tweets` | `StructuredValue` | **Context-provided** — not stored in SQLite |
 | `Product.name` | `name` | `Text` | |
 | `Product.price` | `price` | `Number` | |
 | `Product.size` | `size` | `Text` | |
