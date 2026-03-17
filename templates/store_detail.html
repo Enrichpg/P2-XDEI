@@ -17,6 +17,60 @@
         margin-top: 1rem;
         box-shadow: var(--shadow);
     }
+
+    .temp-hot {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+
+    .temp-cold {
+        color: #3498db;
+        font-weight: bold;
+    }
+
+    .hum-wet {
+        color: #2ecc71;
+        font-weight: bold;
+    }
+
+    .hum-dry {
+        color: #f39c12;
+        font-weight: bold;
+    }
+
+    .tweet-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .tweet-card {
+        background-color: var(--card-bg, #f8f9fa);
+        padding: 0.8rem;
+        border-radius: var(--border-radius);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .tweet-icon {
+        color: #1DA1F2;
+        font-size: 1.2rem;
+    }
+
+    .weather-container {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .weather-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+    }
 </style>
 {% endblock %}
 
@@ -43,6 +97,38 @@
             {% endif %}
         </div>
         <div class="detail-info">
+            {% if temperature is not none or relativeHumidity is not none %}
+            <div class="info-group">
+                <label>{{ _('Condiciones Climáticas') }}</label>
+                <div class="weather-container">
+                    {% if temperature is not none %}
+                    <div class="weather-item {{ 'temp-hot' if temperature > 20 else 'temp-cold' }}">
+                        <i class="fas fa-thermometer-half"></i> {{ temperature }} °C
+                    </div>
+                    {% endif %}
+                    {% if relativeHumidity is not none %}
+                    <div class="weather-item {{ 'hum-wet' if relativeHumidity > 50 else 'hum-dry' }}">
+                        <i class="fas fa-tint"></i> {{ relativeHumidity }} %
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if tweets %}
+            <div class="info-group">
+                <label>{{ _('Últimos Tweets') }}</label>
+                <ul class="tweet-list">
+                    {% for tweet in tweets %}
+                    <li class="tweet-card">
+                        <i class="fab fa-twitter tweet-icon" title="Twitter"></i>
+                        <span>{{ tweet }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
             <div class="info-group">
                 <label>{{ _('Dirección') }}</label>
                 <p>{{ _(store.address or 'N/A') }}</p>

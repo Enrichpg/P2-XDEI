@@ -196,7 +196,35 @@ def store_detail(id):
     if not store:
         return "Store not found", 404
     all_products = Product.query.all()
-    return render_template('store_detail.html', store=store, all_products=all_products)
+    
+    temperature = None
+    relativeHumidity = None
+    tweets = []
+    
+    import data_layer
+    if getattr(data_layer, 'USE_ORION', False):
+        import orion
+        urn = f"urn:ngsi-ld:Store:{store.id:03d}"
+        try:
+            orion_store = orion.get_store(urn)
+            if orion_store:
+                temp_obj = orion_store.get('temperature', {})
+                if 'value' in temp_obj:
+                    temperature = temp_obj['value']
+                    
+                hum_obj = orion_store.get('relativeHumidity', {})
+                if 'value' in hum_obj:
+                    relativeHumidity = hum_obj['value']
+                    
+                tweets_obj = orion_store.get('tweets', {})
+                t_val = tweets_obj.get('value', [])
+                if isinstance(t_val, list):
+                    tweets = t_val
+        except Exception as e:
+            app.logger.warning("Could not fetch context for %s: %s", urn, e)
+            
+    return render_template('store_detail.html', store=store, all_products=all_products,
+                           temperature=temperature, relativeHumidity=relativeHumidity, tweets=tweets)
 
 @app.route('/stores/new', methods=['GET', 'POST'])
 def create_store():
@@ -451,4 +479,12 @@ if __name__ == '__main__':
     # Initialise the data layer (probes Orion; falls back to SQLite if unavailable)
     import data_layer
     data_layer.init_data_layer(app, db)
+    
+    if data_layer.USE_ORION:
+        import orion
+        with app.app_context():
+            store_ids = [f"urn:ngsi-ld:Store:{s.id:03d}" for s in Store.query.all()]
+        if store_ids:
+            orion.register_context_providers(store_ids)
+            
     app.run(debug=True)

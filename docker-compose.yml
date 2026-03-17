@@ -35,6 +35,20 @@ services:
       test: curl --fail -s http://orion:${ORION_PORT}/version || exit 1
       interval: 5s
 
+  # Tutorial Dummy Context Provider
+  tutorial:
+    labels:
+      org.fiware: 'tutorial'
+    image: fiware/tutorials.context-provider
+    hostname: tutorial
+    container_name: fiware-tutorial
+    depends_on:
+      - orion-v2
+    networks:
+      - default
+    ports:
+      - "${TUTORIAL_APP_PORT}:${TUTORIAL_APP_PORT}"
+
   # Databases
   mongo-db:
     labels:
