@@ -30,6 +30,8 @@ services:
       - default
     ports:
       - "${ORION_PORT}:${ORION_PORT}" # localhost:1026
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     command: -dbURI mongodb://mongo-db -logLevel DEBUG -noCache
     healthcheck:
       test: curl --fail -s http://orion:${ORION_PORT}/version || exit 1

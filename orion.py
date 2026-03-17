@@ -7,7 +7,8 @@ import requests
 
 ORION_URL = os.getenv("ORION_URL", "http://localhost:1026/v2")
 FLASK_PORT = int(os.getenv("FLASK_PORT", 5000))
-NOTIFY_URL = f"http://host.docker.internal:{FLASK_PORT}/notify"
+PRICE_NOTIFY_URL = f"http://host.docker.internal:{FLASK_PORT}/subscriptions/price-change"
+STOCK_NOTIFY_URL = f"http://host.docker.internal:{FLASK_PORT}/subscriptions/low-stock"
 LOW_STOCK_THRESHOLD = int(os.getenv("LOW_STOCK_THRESHOLD", 10))
 
 HEADERS = {
@@ -377,7 +378,7 @@ def register_subscriptions():
                     "condition": {"attrs": ["price"]}
                 },
                 "notification": {
-                    "http": {"url": NOTIFY_URL},
+                    "http": {"url": PRICE_NOTIFY_URL},
                     "attrs": ["price", "name"]
                 }
             })
@@ -399,7 +400,7 @@ def register_subscriptions():
                     }
                 },
                 "notification": {
-                    "http": {"url": NOTIFY_URL},
+                    "http": {"url": STOCK_NOTIFY_URL},
                     "attrs": ["shelfCount", "stockCount", "refProduct", "refStore", "refShelf"]
                 }
             })

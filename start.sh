@@ -36,4 +36,4 @@ echo "🚀 Starting Flask application on port $FLASK_PORT ..."
 if [ -d "$REPO_DIR/.venv" ]; then
   source "$REPO_DIR/.venv/bin/activate"
 fi
-python app.py
+python3 app.py

@@ -47,8 +47,8 @@ graph TD
     - **MongoDB**: Orion's backing store. Managed by Docker Compose.
     - **Context Provider** (tutorial container): Provides `temperature`, `relativeHumidity`, and `tweets` attributes for Store entities. Registered in Orion at app startup.
     - **Subscriptions**: Two NGSIv2 subscriptions created at startup:
-      1. **Price change** — watches `price` on `Product` entities.
-      2. **Low stock** — watches `shelfCount` on `InventoryItem` entities.
+      1. **Price change** — watches `price` on `Product` entities. URL: `/subscriptions/price-change`
+      2. **Low stock** — watches `shelfCount` on `InventoryItem` entities. URL: `/subscriptions/low-stock`
     - Notification URL uses `host.docker.internal` so containerised Orion can reach the host Flask app.
 - **Data Model**:
     - **Entities**: Store, Product, Employee, Inventory, Shelf.
