@@ -35,6 +35,7 @@ erDiagram
     INVENTORY {
         int store_id FK
         int product_id FK
+        int shelf_id FK
         int stock
     }
     SHELF {
@@ -89,10 +90,11 @@ Items available for sale across the chain.
 - `color` (String): RGB hex color code, e.g., "#FF5733". Stored as `Text` in both SQLite and NGSIv2.
 
 ### Inventory
-Specific stock levels linking products to stores.
+Specific stock levels linking products to specific shelves within stores.
 - `store_id` (Integer, Foreign Key to Store)
 - `product_id` (Integer, Foreign Key to Product)
-- `stock` (Integer, Default: 0): Current number of items in the store.
+- `shelf_id` (Integer, Foreign Key to Shelf)
+- `stock` (Integer, Default: 0): Current number of items on the shelf.
 
 ### Shelf
 Storage units within a store.

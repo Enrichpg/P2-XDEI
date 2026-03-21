@@ -47,19 +47,21 @@ def set_language(lang):
     return redirect(request.referrer or url_for('dashboard'))
 
 # Models
-class Inventory(db.Model):
-    __tablename__ = 'inventory'
-    store_id = db.Column(db.Integer, db.ForeignKey('store.id'), primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True)
-    stock = db.Column(db.Integer, default=0)
-    store = db.relationship("Store", back_populates="inventory_items")
-    product = db.relationship("Product", back_populates="inventory_items")
-
 class Shelf(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     store_id = db.Column(db.Integer, db.ForeignKey('store.id'), nullable=False)
     store = db.relationship('Store', backref=db.backref('shelves', lazy=True, cascade="all, delete-orphan"))
+
+class Inventory(db.Model):
+    __tablename__ = 'inventory'
+    store_id = db.Column(db.Integer, db.ForeignKey('store.id'), primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True)
+    shelf_id = db.Column(db.Integer, db.ForeignKey('shelf.id'), primary_key=True)
+    stock = db.Column(db.Integer, default=0)
+    store = db.relationship("Store", back_populates="inventory_items")
+    product = db.relationship("Product", back_populates="inventory_items")
+    shelf = db.relationship("Shelf", backref=db.backref('inventory_items', cascade="all, delete-orphan"))
 
 class Store(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -67,6 +69,11 @@ class Store(db.Model):
     address = db.Column(db.String(200))
     location = db.Column(db.String(200))
     image = db.Column(db.String(255))
+    url = db.Column(db.String(255))
+    telephone = db.Column(db.String(50))
+    countryCode = db.Column(db.String(2))
+    capacity = db.Column(db.Integer)
+    description = db.Column(db.Text)
     inventory_items = db.relationship("Inventory", back_populates="store", cascade="all, delete-orphan")
 
 class Product(db.Model):
@@ -76,6 +83,7 @@ class Product(db.Model):
     size = db.Column(db.String(50))
     image = db.Column(db.String(255))
     originCountry = db.Column(db.String(50))
+    color = db.Column(db.String(20))
     inventory_items = db.relationship("Inventory", back_populates="product", cascade="all, delete-orphan")
 
 class Employee(db.Model):
@@ -84,6 +92,11 @@ class Employee(db.Model):
     image = db.Column(db.String(255))
     salary = db.Column(db.Float)
     role = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(100))
+    dateOfContract = db.Column(db.String(50))
+    skills = db.Column(db.String(255))
+    username = db.Column(db.String(50))
+    password = db.Column(db.String(255))
     store_id = db.Column(db.Integer, db.ForeignKey('store.id'), nullable=False)
     store = db.relationship('Store', backref=db.backref('employees', lazy=True))
 
@@ -92,67 +105,143 @@ def seed_data():
     if Store.query.count() > 0:
         return
 
+    import json
+
     # Create Products
-    products = [
-        Product(name='Leche', price=1.20, size='1L', originCountry='ES', image='/static/img/products/leche.png'),
-        Product(name='Pan', price=0.85, size='250g', originCountry='FR', image='https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80'),
-        Product(name='Huevos', price=2.10, size='12 unidades', originCountry='ES', image='https://images.unsplash.com/photo-1506976785307-8732e854ad03?auto=format&fit=crop&w=300&q=80'),
-        Product(name='Arroz', price=1.10, size='1kg', originCountry='IT', image='https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=300&q=80'),
-        Product(name='Pasta', price=0.95, size='500g', originCountry='IT', image='https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=300&q=80'),
-        Product(name='Manzanas', price=1.50, size='1kg', originCountry='ES', image='/static/img/products/manzanas.png'),
-        Product(name='Plátanos', price=1.30, size='1kg', originCountry='EC', image='https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=300&q=80'),
-        Product(name='Pollo', price=5.50, size='1.5kg', originCountry='ES', image='https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=300&q=80'),
-        Product(name='Ternera', price=9.80, size='500g', originCountry='AR', image='/static/img/products/ternera.png'),
-        Product(name='Agua', price=0.50, size='1.5L', originCountry='ES', image='https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=300&q=80')
+    products_data = [
+        ("Apples", 0.99, "S", "ES", "#FF5733", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/800px-Red_Apple.jpg"),
+        ("Bananas", 1.49, "M", "EC", "#FFD700", "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Chocolate-Chip-Cookies-Recipe.jpg/640px-Banana-Chocolate-Chip-Cookies-Recipe.jpg"),
+        ("Coconuts", 2.99, "M", "PH", "#8B4513", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Coconut_on_white_background.jpg/640px-Coconut_on_white_background.jpg"),
+        ("Melons", 4.99, "XL", "ES", "#90EE90", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Melon_2.jpg/640px-Melon_2.jpg"),
+        ("Kiwi Fruits", 1.89, "S", "NZ", "#6B8E23", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Kiwi_aka.jpg/640px-Kiwi_aka.jpg"),
+        ("Strawberries", 2.49, "S", "ES", "#DC143C", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/640px-PerfectStrawberry.jpg"),
+        ("Raspberries", 3.29, "S", "FR", "#C71585", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/640px-Hapus_Mango.jpg"),
+        ("Pineapples", 1.89, "L", "CR", "#FFA500", "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pineapple_and_cross_section.jpg/800px-Pineapple_and_cross_section.jpg"),
+        ("Oranges", 1.29, "M", "ES", "#FF8C00", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oranges_and_orange_juice.jpg/800px-Oranges_and_orange_juice.jpg"),
+        ("Grapes", 2.19, "S", "IT", "#800080", "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/800px-Table_grapes_on_white.jpg")
     ]
-    for p in products:
-        db.session.add(p)
+    products = []
+    for p in products_data:
+        prod = Product(name=p[0], price=p[1], size=p[2], originCountry=p[3], color=p[4], image=p[5])
+        db.session.add(prod)
+        products.append(prod)
     db.session.commit()
 
     # Create Stores
-    stores = [
-        Store(name='Store Alpha', address='Friedrichstraße 44, 10969 Kreuzberg, Berlin', location='52.5075, 13.3903', image='https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=600'),
-        Store(name='Store Beta', address='Gran Vía 1, 28013 Madrid, Spain', location='40.4196, -3.6991', image='https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=300&q=80'),
-        Store(name='Store Gamma', address='Corso Vittorio Emanuele II, 10123 Torino TO, Italy', location='45.0623, 7.6785', image='https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=300&q=80'),
-        Store(name='Store Delta', address='Champs-Élysées, 75008 Paris, France', location='48.8698, 2.3075', image='https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=300&q=80')
+    stores_data = [
+        ("Bösebrücke Einkauf", "Bornholmer Straße 65, 10439 Berlin", "13.3986, 52.5547", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Supermarket_in_Amsterdam.jpg/1280px-Supermarket_in_Amsterdam.jpg", "https://bosebrucke.example.com", "+49 30 1234567", "DE", 1500, "Main Berlin flagship store located near the famous Bösebrücke bridge in Prenzlauer Berg."),
+        ("Checkpoint Markt", "Friedrichstraße 44, 10969 Berlin", "13.3903, 52.5075", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Supermarkt.jpg/1280px-Supermarkt.jpg", "https://checkpoint.example.com", "+49 30 2345678", "DE", 2200, "Historic Kreuzberg store near Checkpoint Charlie. Specialises in international products."),
+        ("East Side Galleria", "Mühlenstrasse 10, 10243 Berlin", "13.4447, 52.5031", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Supermarket_in_Amsterdam.jpg/1280px-Supermarket_in_Amsterdam.jpg", "https://eastside.example.com", "+49 30 3456789", "DE", 1800, "Trendy Friedrichshain store adjacent to the East Side Gallery, Berlin art wall landmark."),
+        ("Tower Trödelmarkt", "Panoramastraße 1A, 10178 Berlin", "13.4094, 52.5208", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Supermarkt.jpg/1280px-Supermarkt.jpg", "https://tower.example.com", "+49 30 4567890", "DE", 3000, "Premium store in Berlin Mitte, steps from the TV Tower and Museum Island.")
     ]
-    for s in stores:
-        db.session.add(s)
-    db.session.commit()
-
-    # Assign Products to Stores with Stock (Inventory)
-    ps = Product.query.all()
-    ss = Store.query.all()
-    # Store Alpha with first 5 products
-    for i in range(5):
-        db.session.add(Inventory(store_id=ss[0].id, product_id=ps[i].id, stock=100))
-    # Store Beta with next 5 products
-    for i in range(5, 10):
-        db.session.add(Inventory(store_id=ss[1].id, product_id=ps[i].id, stock=150))
-    # Store Gamma with mixed products
-    for i in [0, 2, 4, 6, 9]:
-        db.session.add(Inventory(store_id=ss[2].id, product_id=ps[i].id, stock=80))
-    # Store Delta with remaining products
-    for i in [1, 3, 5, 7, 8]:
-        db.session.add(Inventory(store_id=ss[3].id, product_id=ps[i].id, stock=120))
+    stores = []
+    for s in stores_data:
+        store = Store(name=s[0], address=s[1], location=s[2], image=s[3], url=s[4], telephone=s[5], countryCode=s[6], capacity=s[7], description=s[8])
+        db.session.add(store)
+        stores.append(store)
     db.session.commit()
 
     # Create Shelves
-    for s in ss:
-        for i in range(1, 4):
-            db.session.add(Shelf(store_id=s.id, name=f'Balda {i}'))
+    shelf_names = ["Corner Unit", "Wall Unit 1", "Wall Unit 2", "Long Wall Unit"]
+    shelves = {}
+    for store in stores:
+        shelves[store.id] = []
+        for name in shelf_names:
+            shelf = Shelf(name=name, store_id=store.id)
+            db.session.add(shelf)
+            shelves[store.id].append(shelf)
     db.session.commit()
 
     # Create Employees
-    employees = [
-        Employee(name='Ana', role='Manager', store_id=ss[0].id, salary=2500.0, image='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300'),
-        Employee(name='Luis', role='Cashier', store_id=ss[0].id, salary=1400.0, image='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300'),
-        Employee(name='Marta', role='Manager', store_id=ss[1].id, salary=2600.0, image='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300'),
-        Employee(name='Jorge', role='Stock Clerk', store_id=ss[2].id, salary=1300.0, image='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300'),
-        Employee(name='Elena', role='Cashier', store_id=ss[3].id, salary=1450.0, image='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300')
+    employees_data = [
+        ("Alice Smith", "https://randomuser.me/api/portraits/women/44.jpg", 2800, "Manager", "alice.smith@bosebrucke.example", "2019-06-15T00:00:00Z", ["MachineryDriving","WritingReports","CustomerRelationships"], "alice", "hashed_alice123", stores[0].id),
+        ("Bob Jones", "https://randomuser.me/api/portraits/men/32.jpg", 1900, "Cashier", "bob.jones@checkpoint.example", "2021-03-01T00:00:00Z", ["CustomerRelationships"], "bob", "hashed_bob456", stores[1].id),
+        ("Clara Müller", "https://randomuser.me/api/portraits/women/68.jpg", 2100, "StockClerk", "clara.muller@eastside.example", "2020-09-10T00:00:00Z", ["MachineryDriving","WritingReports"], "clara", "hashed_clara789", stores[2].id),
+        ("David López", "https://randomuser.me/api/portraits/men/75.jpg", 3200, "Manager", "david.lopez@tower.example", "2018-01-20T00:00:00Z", ["WritingReports","CustomerRelationships"], "david", "hashed_david000", stores[3].id)
     ]
-    for e in employees:
-        db.session.add(e)
+    for e in employees_data:
+        emp = Employee(name=e[0], image=e[1], salary=e[2], role=e[3], email=e[4], dateOfContract=e[5], skills=json.dumps(e[6]), username=e[7], password=e[8], store_id=e[9])
+        db.session.add(emp)
+    db.session.commit()
+
+    # Assign Products to Shelves/Stores (Inventory)
+    # Give a subset of products to each shelf so there's at least 4 per shelf
+    inv_data = [
+        # Store 1 Shelves
+        (stores[0].id, products[0].id, shelves[stores[0].id][0].id, 10000),
+        (stores[0].id, products[1].id, shelves[stores[0].id][0].id, 8000),
+        (stores[0].id, products[2].id, shelves[stores[0].id][0].id, 5000),
+        (stores[0].id, products[3].id, shelves[stores[0].id][0].id, 3000),
+        (stores[0].id, products[4].id, shelves[stores[0].id][1].id, 12000),
+        (stores[0].id, products[5].id, shelves[stores[0].id][1].id, 6000),
+        (stores[0].id, products[6].id, shelves[stores[0].id][1].id, 4000),
+        (stores[0].id, products[7].id, shelves[stores[0].id][1].id, 7000),
+        (stores[0].id, products[8].id, shelves[stores[0].id][2].id, 9000),
+        (stores[0].id, products[9].id, shelves[stores[0].id][2].id, 11000),
+        (stores[0].id, products[0].id, shelves[stores[0].id][2].id, 5000),
+        (stores[0].id, products[1].id, shelves[stores[0].id][2].id, 3000),
+        (stores[0].id, products[2].id, shelves[stores[0].id][3].id, 8000),
+        (stores[0].id, products[3].id, shelves[stores[0].id][3].id, 2000),
+        (stores[0].id, products[4].id, shelves[stores[0].id][3].id, 6000),
+        (stores[0].id, products[5].id, shelves[stores[0].id][3].id, 4000),
+
+        # Store 2 Shelves
+        (stores[1].id, products[2].id, shelves[stores[1].id][0].id, 5000),
+        (stores[1].id, products[3].id, shelves[stores[1].id][0].id, 3000),
+        (stores[1].id, products[4].id, shelves[stores[1].id][0].id, 7000),
+        (stores[1].id, products[5].id, shelves[stores[1].id][0].id, 9000),
+        (stores[1].id, products[6].id, shelves[stores[1].id][1].id, 4000),
+        (stores[1].id, products[7].id, shelves[stores[1].id][1].id, 6000),
+        (stores[1].id, products[8].id, shelves[stores[1].id][1].id, 8000),
+        (stores[1].id, products[9].id, shelves[stores[1].id][1].id, 5000),
+        (stores[1].id, products[0].id, shelves[stores[1].id][2].id, 12000),
+        (stores[1].id, products[1].id, shelves[stores[1].id][2].id, 8000),
+        (stores[1].id, products[2].id, shelves[stores[1].id][2].id, 3000),
+        (stores[1].id, products[3].id, shelves[stores[1].id][2].id, 1500),
+        (stores[1].id, products[4].id, shelves[stores[1].id][3].id, 9000),
+        (stores[1].id, products[5].id, shelves[stores[1].id][3].id, 7000),
+        (stores[1].id, products[6].id, shelves[stores[1].id][3].id, 5000),
+        (stores[1].id, products[7].id, shelves[stores[1].id][3].id, 3000),
+
+        # Store 3 Shelves
+        (stores[2].id, products[0].id, shelves[stores[2].id][0].id, 10000),
+        (stores[2].id, products[4].id, shelves[stores[2].id][0].id, 6000),
+        (stores[2].id, products[5].id, shelves[stores[2].id][0].id, 4000),
+        (stores[2].id, products[6].id, shelves[stores[2].id][0].id, 2000),
+        (stores[2].id, products[7].id, shelves[stores[2].id][1].id, 7000),
+        (stores[2].id, products[8].id, shelves[stores[2].id][1].id, 5000),
+        (stores[2].id, products[9].id, shelves[stores[2].id][1].id, 8000),
+        (stores[2].id, products[1].id, shelves[stores[2].id][1].id, 3000),
+        (stores[2].id, products[2].id, shelves[stores[2].id][2].id, 4000),
+        (stores[2].id, products[3].id, shelves[stores[2].id][2].id, 2500),
+        (stores[2].id, products[4].id, shelves[stores[2].id][2].id, 6500),
+        (stores[2].id, products[5].id, shelves[stores[2].id][2].id, 5000),
+        (stores[2].id, products[6].id, shelves[stores[2].id][3].id, 9000),
+        (stores[2].id, products[7].id, shelves[stores[2].id][3].id, 7000),
+        (stores[2].id, products[8].id, shelves[stores[2].id][3].id, 11000),
+        (stores[2].id, products[9].id, shelves[stores[2].id][3].id, 4000),
+
+        # Store 4 Shelves
+        (stores[3].id, products[0].id, shelves[stores[3].id][0].id, 15000),
+        (stores[3].id, products[1].id, shelves[stores[3].id][0].id, 10000),
+        (stores[3].id, products[8].id, shelves[stores[3].id][0].id, 8000),
+        (stores[3].id, products[9].id, shelves[stores[3].id][0].id, 6000),
+        (stores[3].id, products[2].id, shelves[stores[3].id][1].id, 7000),
+        (stores[3].id, products[3].id, shelves[stores[3].id][1].id, 4000),
+        (stores[3].id, products[4].id, shelves[stores[3].id][1].id, 9000),
+        (stores[3].id, products[5].id, shelves[stores[3].id][1].id, 5000),
+        (stores[3].id, products[6].id, shelves[stores[3].id][2].id, 6000),
+        (stores[3].id, products[7].id, shelves[stores[3].id][2].id, 8000),
+        (stores[3].id, products[8].id, shelves[stores[3].id][2].id, 12000),
+        (stores[3].id, products[9].id, shelves[stores[3].id][2].id, 9000),
+        (stores[3].id, products[0].id, shelves[stores[3].id][3].id, 20000),
+        (stores[3].id, products[1].id, shelves[stores[3].id][3].id, 15000),
+        (stores[3].id, products[2].id, shelves[stores[3].id][3].id, 7000),
+        (stores[3].id, products[3].id, shelves[stores[3].id][3].id, 3000)
+    ]
+    for s_id, p_id, sh_id, stock in inv_data:
+        db.session.add(Inventory(store_id=s_id, product_id=p_id, shelf_id=sh_id, stock=stock))
+    
     db.session.commit()
 
 # --- ROUTES ---
@@ -530,4 +619,4 @@ if __name__ == '__main__':
             orion.register_context_providers(store_ids)
         orion.register_subscriptions()
 
-    socketio.run(app, debug=True)
+    socketio.run(app, debug=True, allow_unsafe_werkzeug=True, port=int(os.getenv("FLASK_PORT", 5000)))

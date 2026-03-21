@@ -78,10 +78,15 @@ def _store_to_ngsi(data: dict) -> dict:
             pass
 
     return {
-        "name":     {"type": "Text",     "value": data.get("name", "")},
-        "address":  {"type": "Text",     "value": data.get("address", "") or ""},
-        "location": {"type": "geo:json", "value": location_val},
-        "image":    {"type": "Text",     "value": data.get("image", "") or ""},
+        "name":        {"type": "Text",     "value": data.get("name", "")},
+        "address":     {"type": "Text",     "value": data.get("address", "") or ""},
+        "location":    {"type": "geo:json", "value": location_val},
+        "image":       {"type": "Text",     "value": data.get("image", "") or ""},
+        "url":         {"type": "Text",     "value": data.get("url", "") or ""},
+        "telephone":   {"type": "Text",     "value": data.get("telephone", "") or ""},
+        "countryCode": {"type": "Text",     "value": data.get("countryCode", "") or ""},
+        "capacity":    {"type": "Number",   "value": int(data.get("capacity", 0)) if data.get("capacity") else 0},
+        "description": {"type": "Text",     "value": data.get("description", "") or ""}
     }
 
 
@@ -95,6 +100,7 @@ def _product_to_ngsi(data: dict) -> dict:
         "price":         {"type": "Number", "value": price_val},
         "originCountry": {"type": "Text",   "value": data.get("originCountry", "") or ""},
         "image":         {"type": "Text",   "value": data.get("image", "") or ""},
+        "color":         {"type": "Text",   "value": data.get("color", "") or ""}
     }
 
 
@@ -108,12 +114,26 @@ def _employee_to_ngsi(data: dict, store_int_id=None) -> dict:
         ref_store = _to_urn("Store", int(store_int_id))
     elif data.get("store_id"):
         ref_store = _to_urn("Store", int(data["store_id"]))
+        
+    import json
+    skills_val = []
+    if data.get("skills"):
+        try:
+            skills_val = json.loads(data["skills"]) if isinstance(data["skills"], str) else data["skills"]
+        except Exception:
+            pass
+
     return {
-        "name":     {"type": "Text",      "value": data.get("name", "")},
-        "salary":   {"type": "Number",    "value": salary_val},
-        "role":     {"type": "Text",      "value": data.get("role", "") or ""},
-        "refStore": {"type": "Reference", "value": ref_store},
-        "image":    {"type": "Text",      "value": data.get("image", "") or ""},
+        "name":           {"type": "Text",            "value": data.get("name", "")},
+        "salary":         {"type": "Number",          "value": salary_val},
+        "role":           {"type": "Text",            "value": data.get("role", "") or ""},
+        "refStore":       {"type": "Relationship",    "value": ref_store},
+        "image":          {"type": "Text",            "value": data.get("image", "") or ""},
+        "email":          {"type": "Text",            "value": data.get("email", "") or ""},
+        "dateOfContract": {"type": "DateTime",        "value": data.get("dateOfContract", "") or ""},
+        "skills":         {"type": "StructuredValue", "value": skills_val},
+        "username":       {"type": "Text",            "value": data.get("username", "") or ""},
+        "password":       {"type": "Text",            "value": data.get("password", "") or ""}
     }
 
 
@@ -137,6 +157,11 @@ def _ngsi_to_store(entity: dict):
         address=_val("address"),
         location=location_str,
         image=_val("image"),
+        url=_val("url"),
+        telephone=_val("telephone"),
+        countryCode=_val("countryCode"),
+        capacity=_val("capacity"),
+        description=_val("description"),
         inventory_items=[],  # Not managed via Orion
         shelves=[],          # Not managed via Orion
         employees=[],        # Not managed via Orion
@@ -153,6 +178,7 @@ def _ngsi_to_product(entity: dict):
         price=_val("price"),
         originCountry=_val("originCountry"),
         image=_val("image"),
+        color=_val("color"),
         size="",  # Not in NGSIv2 model
         inventory_items=[],
     )
@@ -165,12 +191,21 @@ def _ngsi_to_employee(entity: dict):
     ref = _val("refStore")
     store_id = _from_urn(ref) if ref else None
 
+    import json
+    skills_val = entity.get("skills", {}).get("value", [])
+    skills_str = json.dumps(skills_val) if isinstance(skills_val, list) else str(skills_val)
+
     return types.SimpleNamespace(
         id=_from_urn(entity["id"]),
         name=_val("name"),
         salary=_val("salary"),
         role=_val("role"),
         image=_val("image"),
+        email=_val("email"),
+        dateOfContract=_val("dateOfContract"),
+        skills=skills_str,
+        username=_val("username"),
+        password=_val("password"),
         store_id=store_id,
         store=None,  # Lazy – not fetched
     )
@@ -265,6 +300,11 @@ def _sqlite_create_store(data: dict):
         address=data.get("address"),
         location=data.get("location"),
         image=data.get("image"),
+        url=data.get("url"),
+        telephone=data.get("telephone"),
+        countryCode=data.get("countryCode"),
+        capacity=int(data.get("capacity")) if data.get("capacity") else None,
+        description=data.get("description"),
     )
     db.session.add(store)
     db.session.commit()
@@ -280,6 +320,12 @@ def _sqlite_update_store(int_id: int, data: dict):
     store.address = data.get("address", store.address)
     store.location = data.get("location", store.location)
     store.image = data.get("image", store.image)
+    store.url = data.get("url", store.url)
+    store.telephone = data.get("telephone", store.telephone)
+    store.countryCode = data.get("countryCode", store.countryCode)
+    if data.get("capacity") is not None:
+        store.capacity = int(data.get("capacity"))
+    store.description = data.get("description", store.description)
     db.session.commit()
     return True
 
@@ -382,6 +428,7 @@ def _sqlite_create_product(data: dict):
         size=data.get("size"),
         originCountry=data.get("originCountry"),
         image=data.get("image"),
+        color=data.get("color"),
     )
     db.session.add(product)
     db.session.commit()
@@ -398,6 +445,7 @@ def _sqlite_update_product(int_id: int, data: dict):
     product.size = data.get("size", product.size)
     product.originCountry = data.get("originCountry", product.originCountry)
     product.image = data.get("image", product.image)
+    product.color = data.get("color", product.color)
     db.session.commit()
     return True
 
@@ -498,6 +546,11 @@ def _sqlite_create_employee(data: dict):
         salary=data.get("salary"),
         role=data.get("role"),
         store_id=data.get("store_id"),
+        email=data.get("email"),
+        dateOfContract=data.get("dateOfContract"),
+        skills=data.get("skills"),
+        username=data.get("username"),
+        password=data.get("password"),
     )
     db.session.add(employee)
     db.session.commit()
@@ -513,6 +566,11 @@ def _sqlite_update_employee(int_id: int, data: dict):
     employee.image = data.get("image", employee.image)
     employee.salary = data.get("salary", employee.salary)
     employee.role = data.get("role", employee.role)
+    employee.email = data.get("email", employee.email)
+    employee.dateOfContract = data.get("dateOfContract", employee.dateOfContract)
+    employee.skills = data.get("skills", employee.skills)
+    employee.username = data.get("username", employee.username)
+    employee.password = data.get("password", employee.password)
     if data.get("store_id"):
         employee.store_id = int(data["store_id"])
     db.session.commit()

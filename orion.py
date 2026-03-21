@@ -22,7 +22,8 @@ HEADERS = {
 # ---------------------------------------------------------------------------
 
 def _get(path, params=None):
-    r = requests.get(f"{ORION_URL}{path}", headers=HEADERS, params=params, timeout=10)
+    headers = {"Accept": "application/json"}
+    r = requests.get(f"{ORION_URL}{path}", headers=headers, params=params, timeout=10)
     r.raise_for_status()
     return r.json()
 
@@ -40,7 +41,8 @@ def _patch(path, payload):
 
 
 def _delete(path):
-    r = requests.delete(f"{ORION_URL}{path}", headers=HEADERS, timeout=10)
+    headers = {"Accept": "application/json"}
+    r = requests.delete(f"{ORION_URL}{path}", headers=headers, timeout=10)
     r.raise_for_status()
     return r
 
