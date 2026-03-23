@@ -13,6 +13,19 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+body.dark-mode {
+    --primary-color: #4db6ac;
+    --secondary-color: #80cbc4;
+    --accent-color: #ffd54f;
+    --danger-color: #ef5350;
+    --text-color: #e0e0e0;
+    --text-light: #aaaaaa;
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -34,7 +47,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background: white;
+    background: var(--card-bg);
     padding: 1rem 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     position: sticky;
@@ -98,7 +111,7 @@ header p {
     right: 20px;
     display: flex;
     gap: 10px;
-    background: white;
+    background: var(--card-bg);
     padding: 5px;
     border-radius: 30px;
     box-shadow: var(--shadow-hover);
@@ -186,7 +199,7 @@ header p {
 }
 
 .card {
-    background: white;
+    background: var(--card-bg);
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -280,7 +293,7 @@ header p {
 }
 
 .stat-card {
-    background: white;
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: var(--border-radius);
     text-align: center;
@@ -300,7 +313,7 @@ header p {
 
 /* Detail View */
 .detail-view {
-    background: white;
+    background: var(--card-bg);
     padding: 2.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
@@ -369,7 +382,7 @@ header p {
 .form-container {
     max-width: 600px;
     margin: 2rem auto;
-    background: white;
+    background: var(--card-bg);
     padding: 2.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
@@ -529,7 +542,7 @@ footer {
     padding: 0.5rem;
     border-radius: 4px;
     border: 1px solid #ddd;
-    background: white;
+    background: var(--card-bg);
 }
 
 .input-small {
@@ -571,7 +584,7 @@ footer {
     gap: 10px;
     font-size: 0.9rem;
     animation: notif-slide-in 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-               notif-fade-out 0.5s ease 7.5s forwards;
+        notif-fade-out 0.5s ease 7.5s forwards;
 }
 
 .notification-item.price {
@@ -592,10 +605,20 @@ footer {
 }
 
 @keyframes notif-slide-in {
-    from { transform: translateX(100%); opacity: 0; }
-    to   { transform: translateX(0);    opacity: 1; }
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 @keyframes notif-fade-out {
-    to { opacity: 0; transform: translateX(40px); }
+    to {
+        opacity: 0;
+        transform: translateX(40px);
+    }
 }

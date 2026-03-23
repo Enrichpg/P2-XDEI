@@ -76,7 +76,7 @@
         if (s.description) {
             popupHtml += '<br><small style="color:#718096">' + s.description + '</small>';
         }
-        popupHtml += '<br><a href="' + s.url + '" style="color:#667eea;font-size:0.8rem">{{ _("View details") }} →</a>';
+        popupHtml += '<br><a href="' + s.url + '" style="color:#667eea;font-size:0.8rem" data-i18n="View details">{{ _("View details") }} →</a>';
         popupHtml += '</div>';
 
         marker.bindPopup(popupHtml, { maxWidth: 220 });

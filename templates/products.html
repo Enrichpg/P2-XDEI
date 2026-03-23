@@ -20,9 +20,9 @@
         <div class="card-body">
             <h3>{{ _(product.name) }}</h3>
             <p class="price">{{ "%.2f"|format(product.price) }}€</p>
-            <p><small>{{ _('Origen:') }} {{ product.originCountry or _('Desconocido') }}</small></p>
+            <p><small data-i18n="Origen:">{{ _('Origen:') }} {{ product.originCountry or _('Desconocido') }}</small></p>
             <div class="card-footer">
-                <a href="{{ url_for('product_detail', id=product.id) }}" class="btn-secondary">{{ _('Detalles') }}</a>
+                <a href="{{ url_for('product_detail', id=product.id) }}" class="btn-secondary" data-i18n="Detalles">{{ _('Detalles') }}</a>
                 <a href="{{ url_for('edit_product', id=product.id) }}" class="btn-text"><i class="fas fa-edit"></i></a>
             </div>
         </div>

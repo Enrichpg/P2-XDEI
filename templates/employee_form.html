@@ -4,32 +4,32 @@
 
 {% block content %}
 <div class="form-container">
-    <h1>{{ _('Edit Employee') if employee else _('New Employee') }}</h1>
+    <h1 data-i18n="Edit Employee') if employee else _('New Employee">{{ _('Edit Employee') if employee else _('New Employee') }}</h1>
 
     <form method="POST" class="modern-form">
         <div class="form-group">
-            <label for="name">{{ _('Name') }}</label>
+            <label for="name" data-i18n="Name">{{ _('Name') }}</label>
             <input type="text" id="name" name="name" value="{{ employee.name if employee else '' }}" required>
         </div>
 
         <div class="form-group">
-            <label for="role">{{ _('Role') }}</label>
+            <label for="role" data-i18n="Role">{{ _('Role') }}</label>
             <input type="text" id="role" name="role" value="{{ employee.role if employee else '' }}" required>
         </div>
 
         <div class="form-group">
-            <label for="salary">{{ _('Salary') }}</label>
+            <label for="salary" data-i18n="Salary">{{ _('Salary') }}</label>
             <input type="number" id="salary" name="salary" step="0.01"
                 value="{{ employee.salary if employee else '' }}">
         </div>
 
         <div class="form-group">
-            <label for="image">{{ _('Image URL') }}</label>
+            <label for="image" data-i18n="Image URL">{{ _('Image URL') }}</label>
             <input type="url" id="image" name="image" value="{{ employee.image if employee else '' }}">
         </div>
 
         <div class="form-group">
-            <label for="store_id">{{ _('Store') }}</label>
+            <label for="store_id" data-i18n="Store">{{ _('Store') }}</label>
             <select id="store_id" name="store_id" required>
                 <option value="">-- {{ _('Select Store') }} --</option>
                 {% for store in stores %}
@@ -40,8 +40,8 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">{{ _('Save') }}</button>
-            <a href="{{ url_for('list_employees') }}" class="btn btn-secondary">{{ _('Cancel') }}</a>
+            <button type="submit" class="btn btn-primary" data-i18n="Save">{{ _('Save') }}</button>
+            <a href="{{ url_for('list_employees') }}" class="btn btn-secondary" data-i18n="Cancel">{{ _('Cancel') }}</a>
         </div>
     </form>
 </div>

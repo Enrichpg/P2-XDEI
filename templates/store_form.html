@@ -14,23 +14,23 @@
 
     <form method="POST" class="crud-form">
         <div class="form-group">
-            <label for="name">{{ _('Nombre de la Tienda') }} *</label>
+            <label for="name" data-i18n="Nombre de la Tienda">{{ _('Nombre de la Tienda') }} *</label>
             <input type="text" id="name" name="name" value="{{ store.name if store else '' }}" required>
         </div>
 
         <div class="form-group">
-            <label for="address">{{ _('Dirección') }}</label>
+            <label for="address" data-i18n="Dirección">{{ _('Dirección') }}</label>
             <input type="text" id="address" name="address" value="{{ store.address if store else '' }}">
         </div>
 
         <div class="form-group">
-            <label for="location">{{ _('Coordenadas (Lat, Long)') }}</label>
+            <label for="location" data-i18n="Coordenadas (Lat, Long)">{{ _('Coordenadas (Lat, Long)') }}</label>
             <input type="text" id="location" name="location" value="{{ store.location if store else '' }}"
                 placeholder="e.g. 52.5075, 13.3903">
         </div>
 
         <div class="form-group">
-            <label for="image">{{ _('URL de la Imagen') }}</label>
+            <label for="image" data-i18n="URL de la Imagen">{{ _('URL de la Imagen') }}</label>
             <input type="url" id="image" name="image" value="{{ store.image if store else '' }}"
                 placeholder="https://...">
         </div>

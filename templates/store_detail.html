@@ -99,7 +99,7 @@
         <div class="detail-info">
             {% if temperature is not none or relativeHumidity is not none %}
             <div class="info-group">
-                <label>{{ _('Condiciones Climáticas') }}</label>
+                <label data-i18n="Condiciones Climáticas">{{ _('Condiciones Climáticas') }}</label>
                 <div class="weather-container">
                     {% if temperature is not none %}
                     <div class="weather-item {{ 'temp-hot' if temperature > 20 else 'temp-cold' }}">
@@ -117,7 +117,7 @@
 
             {% if tweets %}
             <div class="info-group">
-                <label>{{ _('Últimos Tweets') }}</label>
+                <label data-i18n="Últimos Tweets">{{ _('Últimos Tweets') }}</label>
                 <ul class="tweet-list">
                     {% for tweet in tweets %}
                     <li class="tweet-card">
@@ -130,15 +130,15 @@
             {% endif %}
 
             <div class="info-group">
-                <label>{{ _('Dirección') }}</label>
+                <label data-i18n="Dirección">{{ _('Dirección') }}</label>
                 <p>{{ _(store.address or 'N/A') }}</p>
             </div>
             <div class="info-group">
-                <label>{{ _('Coordenadas (Location)') }}</label>
+                <label data-i18n="Coordenadas (Location)">{{ _('Coordenadas (Location)') }}</label>
                 <p>{{ store.location or 'N/A' }}</p>
             </div>
             <div class="info-group">
-                <label>{{ _('Inventario de Productos') }}</label>
+                <label data-i18n="Inventario de Productos">{{ _('Inventario de Productos') }}</label>
                 <div class="inventory-crud">
                     <ul class="item-list">
                         {% for item in store.inventory_items %}
@@ -173,12 +173,12 @@
                         <form action="{{ url_for('add_to_inventory', store_id=store.id) }}" method="POST"
                             class="add-form">
                             <select name="product_id" required>
-                                <option value="" disabled selected>{{ _('Añadir producto...') }}</option>
+                                <option value="" disabled selected data-i18n="Añadir producto...">{{ _('Añadir producto...') }}</option>
                                 {% for product in all_products %}
                                 <option value="{{ product.id }}">{{ _(product.name) }}</option>
                                 {% endfor %}
                             </select>
-                            <input type="number" name="stock" placeholder="{{ _('Stock') }}" min="1" required
+                            <input type="number" name="stock" placeholder="{{ _('Stock') }}" data-i18n-placeholder="Stock" min="1" required
                                 class="input-small">
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
@@ -187,7 +187,7 @@
             </div>
 
             <div class="info-group">
-                <label>{{ _('Baldas') }}</label>
+                <label data-i18n="Baldas">{{ _('Baldas') }}</label>
                 <div class="shelves-crud">
                     <ul class="item-list">
                         {% for shelf in store.shelves %}
@@ -209,7 +209,7 @@
                     </ul>
                     <div class="add-box">
                         <form action="{{ url_for('create_shelf', store_id=store.id) }}" method="POST" class="add-form">
-                            <input type="text" name="name" placeholder="{{ _('Nombre de la balda') }}" required>
+                            <input type="text" name="name" placeholder="{{ _('Nombre de la balda') }}" data-i18n-placeholder="Nombre de la balda" required>
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
                     </div>
@@ -217,13 +217,13 @@
             </div>
 
             <div class="info-group">
-                <label>{{ _('Plantilla de Empleados') }}</label>
+                <label data-i18n="Plantilla de Empleados">{{ _('Plantilla de Empleados') }}</label>
                 <div class="employee-badges">
                     {% for employee in store.employees %}
                     <a href="{{ url_for('employee_detail', id=employee.id) }}" class="badge">{{ employee.name }} ({{
                         _(employee.role) }})</a>
                     {% else %}
-                    <p>{{ _('Sin empleados asignados.') }}</p>
+                    <p data-i18n="Sin empleados asignados.">{{ _('Sin empleados asignados.') }}</p>
                     {% endfor %}
                 </div>
             </div>

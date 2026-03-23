@@ -1,5 +1,34 @@
 /* main.js – FIWARE Smart Store client-side JS */
 
+/* ── Localization (i18n) ── */
+function setLanguage(lang) {
+    if (!translations || !translations[lang]) return;
+    localStorage.setItem('lang', lang);
+
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+            el.placeholder = translations[lang][key];
+        }
+    });
+}
+
+(function () {
+    const savedLang = localStorage.getItem('lang');
+    if (savedLang) {
+        setLanguage(savedLang);
+    }
+})();
+
 /* ── Dark/Light Theme ── */
 (function () {
     const saved = localStorage.getItem('theme');
@@ -50,11 +79,21 @@ function formatPrice(cents) {
 function addNotification(type, message, storeId) {
     // Global panel if present
     const panel = document.getElementById('notifications-panel');
-    if (panel) {
-        const el = document.createElement('div');
-        el.className = 'notification-item ' + (type === 'price' ? 'price' : '');
-        const icon = type === 'price' ? 'fa-tag' : 'fa-triangle-exclamation';
-        el.innerHTML = '<i class="fa-solid ' + icon + '"></i><span>' + message + '</span>';
+    const tpl = document.getElementById('notification-template');
+    if (panel && tpl) {
+        const clone = tpl.content.cloneNode(true);
+        const el = clone.querySelector('.notification-item');
+        const icon = clone.querySelector('i');
+        const text = clone.querySelector('.notification-text');
+
+        if (type === 'price') {
+            el.classList.add('price');
+            icon.className = 'fa-solid fa-tag';
+        } else {
+            icon.className = 'fa-solid fa-triangle-exclamation';
+        }
+
+        text.textContent = message;
         panel.prepend(el);
     }
 }
