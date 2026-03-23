@@ -49,6 +49,16 @@ body.dark-mode .card-footer {
     border-top-color: #333;
 }
 
+body.dark-mode .btn-secondary {
+    background: #1a3a38;
+    color: var(--secondary-color);
+}
+
+body.dark-mode .btn-danger {
+    background: #3b1a1a;
+    color: var(--danger-color);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
