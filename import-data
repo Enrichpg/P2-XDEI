@@ -23,7 +23,7 @@ curl -s -o /dev/null -X POST \
       "name":{"type":"Text","value":"Bösebrücke Einkauf"},
       "address":{"type":"PostalAddress","value":{"streetAddress":"Bornholmer Straße 65","addressRegion":"Berlin","addressLocality":"Prenzlauer Berg","postalCode":"10439"}},
       "location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.3986,52.5547]}},
-      "image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Supermarket_in_Amsterdam.jpg/1280px-Supermarket_in_Amsterdam.jpg"},
+      "image":{"type":"Text","value":"https://picsum.photos/seed/store_ams/400/300"},
       "url":{"type":"Text","value":"https://bosebrucke.example.com"},
       "telephone":{"type":"Text","value":"+49 30 1234567"},
       "countryCode":{"type":"Text","value":"DE"},
@@ -35,7 +35,7 @@ curl -s -o /dev/null -X POST \
       "name":{"type":"Text","value":"Checkpoint Markt"},
       "address":{"type":"PostalAddress","value":{"streetAddress":"Friedrichstraße 44","addressRegion":"Berlin","addressLocality":"Kreuzberg","postalCode":"10969"}},
       "location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.3903,52.5075]}},
-      "image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Supermarkt.jpg/1280px-Supermarkt.jpg"},
+      "image":{"type":"Text","value":"https://picsum.photos/seed/store_super/400/300"},
       "url":{"type":"Text","value":"https://checkpoint.example.com"},
       "telephone":{"type":"Text","value":"+49 30 2345678"},
       "countryCode":{"type":"Text","value":"DE"},
@@ -47,7 +47,7 @@ curl -s -o /dev/null -X POST \
       "name":{"type":"Text","value":"East Side Galleria"},
       "address":{"type":"PostalAddress","value":{"streetAddress":"Mühlenstrasse 10","addressRegion":"Berlin","addressLocality":"Friedrichshain","postalCode":"10243"}},
       "location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4447,52.5031]}},
-      "image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Supermarket_in_Amsterdam.jpg/1280px-Supermarket_in_Amsterdam.jpg"},
+      "image":{"type":"Text","value":"https://picsum.photos/seed/store_ams/400/300"},
       "url":{"type":"Text","value":"https://eastside.example.com"},
       "telephone":{"type":"Text","value":"+49 30 3456789"},
       "countryCode":{"type":"Text","value":"DE"},
@@ -59,7 +59,7 @@ curl -s -o /dev/null -X POST \
       "name":{"type":"Text","value":"Tower Trödelmarkt"},
       "address":{"type":"PostalAddress","value":{"streetAddress":"Panoramastraße 1A","addressRegion":"Berlin","addressLocality":"Mitte","postalCode":"10178"}},
       "location":{"type":"geo:json","value":{"type":"Point","coordinates":[13.4094,52.5208]}},
-      "image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Supermarkt.jpg/1280px-Supermarkt.jpg"},
+      "image":{"type":"Text","value":"https://picsum.photos/seed/store_super/400/300"},
       "url":{"type":"Text","value":"https://tower.example.com"},
       "telephone":{"type":"Text","value":"+49 30 4567890"},
       "countryCode":{"type":"Text","value":"DE"},
@@ -151,16 +151,16 @@ curl -s -o /dev/null -X POST \
   -d '{
   "actionType":"APPEND",
   "entities":[
-    {"id":"urn:ngsi-ld:Product:001","type":"Product","name":{"type":"Text","value":"Apples"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":99},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#FF5733"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/800px-Red_Apple.jpg"}},
-    {"id":"urn:ngsi-ld:Product:002","type":"Product","name":{"type":"Text","value":"Bananas"},"size":{"type":"Text","value":"M"},"price":{"type":"Integer","value":149},"originCountry":{"type":"Text","value":"EC"},"color":{"type":"Text","value":"#FFD700"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Chocolate-Chip-Cookies-Recipe.jpg/640px-Banana-Chocolate-Chip-Cookies-Recipe.jpg"}},
-    {"id":"urn:ngsi-ld:Product:003","type":"Product","name":{"type":"Text","value":"Coconuts"},"size":{"type":"Text","value":"M"},"price":{"type":"Integer","value":299},"originCountry":{"type":"Text","value":"PH"},"color":{"type":"Text","value":"#8B4513"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Coconut_on_white_background.jpg/640px-Coconut_on_white_background.jpg"}},
-    {"id":"urn:ngsi-ld:Product:004","type":"Product","name":{"type":"Text","value":"Melons"},"size":{"type":"Text","value":"XL"},"price":{"type":"Integer","value":499},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#90EE90"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Melon_2.jpg/640px-Melon_2.jpg"}},
-    {"id":"urn:ngsi-ld:Product:005","type":"Product","name":{"type":"Text","value":"Kiwi Fruits"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":189},"originCountry":{"type":"Text","value":"NZ"},"color":{"type":"Text","value":"#6B8E23"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Kiwi_aka.jpg/640px-Kiwi_aka.jpg"}},
-    {"id":"urn:ngsi-ld:Product:006","type":"Product","name":{"type":"Text","value":"Strawberries"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":249},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#DC143C"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/640px-PerfectStrawberry.jpg"}},
-    {"id":"urn:ngsi-ld:Product:007","type":"Product","name":{"type":"Text","value":"Raspberries"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":329},"originCountry":{"type":"Text","value":"FR"},"color":{"type":"Text","value":"#C71585"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/640px-Hapus_Mango.jpg"}},
-    {"id":"urn:ngsi-ld:Product:008","type":"Product","name":{"type":"Text","value":"Pineapples"},"size":{"type":"Text","value":"L"},"price":{"type":"Integer","value":189},"originCountry":{"type":"Text","value":"CR"},"color":{"type":"Text","value":"#FFA500"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pineapple_and_cross_section.jpg/800px-Pineapple_and_cross_section.jpg"}},
-    {"id":"urn:ngsi-ld:Product:009","type":"Product","name":{"type":"Text","value":"Oranges"},"size":{"type":"Text","value":"M"},"price":{"type":"Integer","value":129},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#FF8C00"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oranges_and_orange_juice.jpg/800px-Oranges_and_orange_juice.jpg"}},
-    {"id":"urn:ngsi-ld:Product:010","type":"Product","name":{"type":"Text","value":"Grapes"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":219},"originCountry":{"type":"Text","value":"IT"},"color":{"type":"Text","value":"#800080"},"image":{"type":"Text","value":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/800px-Table_grapes_on_white.jpg"}}
+    {"id":"urn:ngsi-ld:Product:001","type":"Product","name":{"type":"Text","value":"Apples"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":99},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#FF5733"},"image":{"type":"Text","value":"https://picsum.photos/seed/apple/400/300"}},
+    {"id":"urn:ngsi-ld:Product:002","type":"Product","name":{"type":"Text","value":"Bananas"},"size":{"type":"Text","value":"M"},"price":{"type":"Integer","value":149},"originCountry":{"type":"Text","value":"EC"},"color":{"type":"Text","value":"#FFD700"},"image":{"type":"Text","value":"https://picsum.photos/seed/banana/400/300"}},
+    {"id":"urn:ngsi-ld:Product:003","type":"Product","name":{"type":"Text","value":"Coconuts"},"size":{"type":"Text","value":"M"},"price":{"type":"Integer","value":299},"originCountry":{"type":"Text","value":"PH"},"color":{"type":"Text","value":"#8B4513"},"image":{"type":"Text","value":"https://picsum.photos/seed/coconut/400/300"}},
+    {"id":"urn:ngsi-ld:Product:004","type":"Product","name":{"type":"Text","value":"Melons"},"size":{"type":"Text","value":"XL"},"price":{"type":"Integer","value":499},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#90EE90"},"image":{"type":"Text","value":"https://picsum.photos/seed/melon/400/300"}},
+    {"id":"urn:ngsi-ld:Product:005","type":"Product","name":{"type":"Text","value":"Kiwi Fruits"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":189},"originCountry":{"type":"Text","value":"NZ"},"color":{"type":"Text","value":"#6B8E23"},"image":{"type":"Text","value":"https://picsum.photos/seed/kiwi/400/300"}},
+    {"id":"urn:ngsi-ld:Product:006","type":"Product","name":{"type":"Text","value":"Strawberries"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":249},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#DC143C"},"image":{"type":"Text","value":"https://picsum.photos/seed/strawberry/400/300"}},
+    {"id":"urn:ngsi-ld:Product:007","type":"Product","name":{"type":"Text","value":"Raspberries"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":329},"originCountry":{"type":"Text","value":"FR"},"color":{"type":"Text","value":"#C71585"},"image":{"type":"Text","value":"https://picsum.photos/seed/raspberry/400/300"}},
+    {"id":"urn:ngsi-ld:Product:008","type":"Product","name":{"type":"Text","value":"Pineapples"},"size":{"type":"Text","value":"L"},"price":{"type":"Integer","value":189},"originCountry":{"type":"Text","value":"CR"},"color":{"type":"Text","value":"#FFA500"},"image":{"type":"Text","value":"https://picsum.photos/seed/pineapple/400/300"}},
+    {"id":"urn:ngsi-ld:Product:009","type":"Product","name":{"type":"Text","value":"Oranges"},"size":{"type":"Text","value":"M"},"price":{"type":"Integer","value":129},"originCountry":{"type":"Text","value":"ES"},"color":{"type":"Text","value":"#FF8C00"},"image":{"type":"Text","value":"https://picsum.photos/seed/orange/400/300"}},
+    {"id":"urn:ngsi-ld:Product:010","type":"Product","name":{"type":"Text","value":"Grapes"},"size":{"type":"Text","value":"S"},"price":{"type":"Integer","value":219},"originCountry":{"type":"Text","value":"IT"},"color":{"type":"Text","value":"#800080"},"image":{"type":"Text","value":"https://picsum.photos/seed/grapes/400/300"}}
   ]
 }'
 

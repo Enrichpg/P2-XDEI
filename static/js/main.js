@@ -10,7 +10,15 @@ function setLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang][key]) {
-            el.innerHTML = translations[lang][key];
+            if (el.children.length === 0) {
+                el.textContent = translations[lang][key];
+            } else {
+                Array.from(el.childNodes).forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+                        node.textContent = translations[lang][key];
+                    }
+                });
+            }
         }
     });
 
@@ -30,13 +38,13 @@ function setLanguage(lang) {
 })();
 
 /* ── Dark/Light Theme ── */
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
     const saved = localStorage.getItem('theme');
     if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.body.classList.add('dark-mode');
     }
     updateThemeIcon();
-})();
+});
 
 function updateThemeIcon() {
     const icon = document.getElementById('theme-icon');
@@ -50,6 +58,7 @@ function toggleTheme() {
     const dark = document.body.classList.contains('dark-mode');
     localStorage.setItem('theme', dark ? 'dark' : 'light');
     updateThemeIcon();
+    document.dispatchEvent(new Event('themeChanged'));
 }
 
 /* ── Socket.IO real-time notifications ── */

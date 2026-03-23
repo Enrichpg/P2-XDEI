@@ -91,7 +91,8 @@
     <div class="detail-grid">
         <div class="detail-image">
             {% if store.image %}
-            <img src="{{ store.image }}" alt="{{ store.name }}">
+            <img src="{{ store.image }}" alt="{{ store.name }}"
+                onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
             {% else %}
             <div class="image-placeholder"><i class="fas fa-store fa-5x"></i></div>
             {% endif %}
@@ -141,7 +142,10 @@
                 <label data-i18n="Inventario de Productos">{{ _('Inventario de Productos') }}</label>
                 <div class="inventory-crud">
                     <ul class="item-list">
+                        {% set seen_products = {} %}
                         {% for item in store.inventory_items %}
+                        {% if not seen_products.get(item.product_id) %}
+                        {% set _ = seen_products.update({item.product_id: True}) %}
                         <li class="list-item">
                             <div class="item-main">
                                 <a href="{{ url_for('product_detail', id=item.product.id) }}">{{ _(item.product.name)
@@ -166,6 +170,7 @@
                                 </form>
                             </div>
                         </li>
+                        {% endif %}
                         {% endfor %}
                     </ul>
 
@@ -173,13 +178,14 @@
                         <form action="{{ url_for('add_to_inventory', store_id=store.id) }}" method="POST"
                             class="add-form">
                             <select name="product_id" required>
-                                <option value="" disabled selected data-i18n="Añadir producto...">{{ _('Añadir producto...') }}</option>
+                                <option value="" disabled selected data-i18n="Añadir producto...">{{ _('Añadir
+                                    producto...') }}</option>
                                 {% for product in all_products %}
                                 <option value="{{ product.id }}">{{ _(product.name) }}</option>
                                 {% endfor %}
                             </select>
-                            <input type="number" name="stock" placeholder="{{ _('Stock') }}" data-i18n-placeholder="Stock" min="1" required
-                                class="input-small">
+                            <input type="number" name="stock" placeholder="{{ _('Stock') }}"
+                                data-i18n-placeholder="Stock" min="1" required class="input-small">
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
                     </div>
@@ -209,7 +215,8 @@
                     </ul>
                     <div class="add-box">
                         <form action="{{ url_for('create_shelf', store_id=store.id) }}" method="POST" class="add-form">
-                            <input type="text" name="name" placeholder="{{ _('Nombre de la balda') }}" data-i18n-placeholder="Nombre de la balda" required>
+                            <input type="text" name="name" placeholder="{{ _('Nombre de la balda') }}"
+                                data-i18n-placeholder="Nombre de la balda" required>
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
                     </div>
@@ -239,10 +246,32 @@
                 var lat = parseFloat(coords[0].trim());
                 var lng = parseFloat(coords[1].trim());
                 var map = L.map('map').setView([lat, lng], 15);
-                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+                var lightTiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                }).addTo(map);
+                });
+
+                var darkTiles = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>'
+                });
+
+                if (document.body.classList.contains('dark-mode')) {
+                    darkTiles.addTo(map);
+                } else {
+                    lightTiles.addTo(map);
+                }
+
+                document.addEventListener('themeChanged', function () {
+                    if (document.body.classList.contains('dark-mode')) {
+                        map.removeLayer(lightTiles);
+                        darkTiles.addTo(map);
+                    } else {
+                        map.removeLayer(darkTiles);
+                        lightTiles.addTo(map);
+                    }
+                });
                 L.marker([lat, lng]).addTo(map)
                     .bindPopup("<b>{{ store.name }}</b><br>{{ store.address }}").openPopup();
             }

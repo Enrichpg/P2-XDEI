@@ -17,9 +17,30 @@
 {% block scripts %}
 <script>
     var map = L.map('stores-map-full').setView([52.52, 13.40], 12);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+    var lightTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+    });
+
+    var darkTiles = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+        attribution: '© CARTO'
+    });
+
+    if (document.body.classList.contains('dark-mode')) {
+        darkTiles.addTo(map);
+    } else {
+        lightTiles.addTo(map);
+    }
+
+    document.addEventListener('themeChanged', function () {
+        if (document.body.classList.contains('dark-mode')) {
+            map.removeLayer(lightTiles);
+            darkTiles.addTo(map);
+        } else {
+            map.removeLayer(darkTiles);
+            lightTiles.addTo(map);
+        }
+    });
 
     var storesData = [
         {% for s in stores %}
@@ -64,7 +85,7 @@
 
         var popupHtml = '<div class="store-map-card">';
         if (s.image) {
-            popupHtml += '<img src="' + s.image + '" alt="' + s.name + '">';
+            popupHtml += '<img src="' + s.image + '" alt="' + s.name + '" onerror="this.onerror=null; this.src=\'/static/img/placeholder.png\';">';
         }
         popupHtml += '<strong>' + s.name + '</strong>';
         if (s.countryCode) {

@@ -369,7 +369,14 @@ def delete_store(int_id: int):
 def _orion_get_all_products():
     resp = _orion_request("GET", "/entities?type=Product&limit=1000")
     if resp and resp.ok:
-        return [_ngsi_to_product(e) for e in resp.json()]
+        products = [_ngsi_to_product(e) for e in resp.json()]
+        unique_prods = []
+        seen = set()
+        for p in products:
+            if p.name not in seen:
+                seen.add(p.name)
+                unique_prods.append(p)
+        return unique_prods
     return []
 
 
@@ -412,7 +419,14 @@ def _orion_delete_product(int_id: int):
 
 def _sqlite_get_all_products():
     from app import Product
-    return Product.query.all()
+    products = Product.query.all()
+    unique_prods = []
+    seen = set()
+    for p in products:
+        if p.name not in seen:
+            seen.add(p.name)
+            unique_prods.append(p)
+    return unique_prods
 
 
 def _sqlite_get_product(int_id: int):

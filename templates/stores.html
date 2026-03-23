@@ -14,13 +14,15 @@
     {% for store in stores %}
     <div class="card">
         <div class="card-image">
-            <img src="{{ store.image }}" alt="{{ store.name }}">
+            <img src="{{ store.image }}" alt="{{ store.name }}"
+                onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
         </div>
         <div class="card-body">
             <h3>{{ _(store.name) }}</h3>
             <p><i class="fas fa-map-marker-alt"></i> {{ _(store.address) }}</p>
             <div class="card-footer">
-                <a href="{{ url_for('store_detail', id=store.id) }}" class="btn-secondary" data-i18n="Detalles">{{ _('Detalles') }}</a>
+                <a href="{{ url_for('store_detail', id=store.id) }}" class="btn-secondary" data-i18n="Detalles">{{
+                    _('Detalles') }}</a>
                 <a href="{{ url_for('edit_store', id=store.id) }}" class="btn-text"><i class="fas fa-edit"></i></a>
             </div>
         </div>
