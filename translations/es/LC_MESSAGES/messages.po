@@ -501,3 +501,71 @@ msgstr "Balda 3"
 #: dummy_translations.py
 msgid "12 unidades"
 msgstr "12 unidades"
+
+#: dynamic_db_keys
+msgid "Apples"
+msgstr "Manzanas"
+
+#: dynamic_db_keys
+msgid "Bananas"
+msgstr "Plátanos"
+
+#: dynamic_db_keys
+msgid "Coconuts"
+msgstr "Cocos"
+
+#: dynamic_db_keys
+msgid "Melons"
+msgstr "Melones"
+
+#: dynamic_db_keys
+msgid "Kiwi Fruits"
+msgstr "Kiwis"
+
+#: dynamic_db_keys
+msgid "Strawberries"
+msgstr "Fresas"
+
+#: dynamic_db_keys
+msgid "Raspberries"
+msgstr "Frambuesas"
+
+#: dynamic_db_keys
+msgid "Pineapples"
+msgstr "Piñas"
+
+#: dynamic_db_keys
+msgid "Oranges"
+msgstr "Naranjas"
+
+#: dynamic_db_keys
+msgid "Grapes"
+msgstr "Uvas"
+
+#: dynamic_db_keys
+msgid "Bösebrücke Einkauf"
+msgstr "Bösebrücke Einkauf"
+
+#: dynamic_db_keys
+msgid "Checkpoint Markt"
+msgstr "Checkpoint Markt"
+
+#: dynamic_db_keys
+msgid "East Side Galleria"
+msgstr "East Side Galleria"
+
+#: dynamic_db_keys
+msgid "Tower Trödelmarkt"
+msgstr "Tower Trödelmarkt"
+
+#: dynamic_db_keys
+msgid "Manager"
+msgstr "Gerente"
+
+#: dynamic_db_keys
+msgid "Cashier"
+msgstr "Cajero/a"
+
+#: dynamic_db_keys
+msgid "StockClerk"
+msgstr "Reponedor/a"

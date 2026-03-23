@@ -618,6 +618,25 @@ if __name__ == '__main__':
         db.create_all()
         seed_data()
 
+        # Update product image seeds to be more descriptive
+        products_update_map = {
+            "Apples": "https://picsum.photos/seed/apple/400/300",
+            "Bananas": "https://picsum.photos/seed/banana/400/300",
+            "Coconuts": "https://picsum.photos/seed/coconut/400/300",
+            "Melons": "https://picsum.photos/seed/melon/400/300",
+            "Kiwi Fruits": "https://picsum.photos/seed/kiwi/400/300",
+            "Strawberries": "https://picsum.photos/seed/strawberry/400/300",
+            "Raspberries": "https://picsum.photos/seed/raspberry/400/300",
+            "Pineapples": "https://picsum.photos/seed/pineapple/400/300",
+            "Oranges": "https://picsum.photos/seed/orange/400/300",
+            "Grapes": "https://picsum.photos/seed/grape/400/300"
+        }
+        for name, img_url in products_update_map.items():
+            prod = Product.query.filter_by(name=name).first()
+            if prod and "product" in prod.image:
+                prod.image = img_url
+        db.session.commit()
+
         # Cleanup orphan inventory items (broken FK references)
         orphans = Inventory.query.all()
         deleted = False

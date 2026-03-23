@@ -46,15 +46,23 @@
                 <label>{{ _('Tiendas disponibles') }}</label>
                 <div class="inventory-crud">
                     <ul class="item-list">
+                        {% set store_totals = {} %}
+                        {% set store_names = {} %}
                         {% for item in product.inventory_items %}
                         {% if item.store %}
+                        {% set current_stock = store_totals.get(item.store_id, 0) %}
+                        {% set dummy = store_totals.update({item.store_id: current_stock + item.stock}) %}
+                        {% set dummy = store_names.update({item.store_id: item.store.name}) %}
+                        {% endif %}
+                        {% endfor %}
+
+                        {% for store_id, total_stock in store_totals.items() %}
                         <li class="list-item">
                             <div class="item-main">
-                                <a href="{{ url_for('store_detail', id=item.store.id) }}">{{ _(item.store.name) }}</a>
-                                <span class="text-muted">- {{ _('Stock') }}: {{ item.stock }}</span>
+                                <a href="{{ url_for('store_detail', id=store_id) }}">{{ _(store_names[store_id]) }}</a>
+                                <span class="text-muted">- {{ _('Stock') }}: {{ total_stock }}</span>
                             </div>
                         </li>
-                        {% endif %}
                         {% endfor %}
                     </ul>
 
@@ -68,8 +76,8 @@
                                 <option value="{{ store.id }}">{{ _(store.name) }}</option>
                                 {% endfor %}
                             </select>
-                            <input type="number" name="stock" placeholder="{{ _('Stock') }}"
-                                min="1" required class="input-small">
+                            <input type="number" name="stock" placeholder="{{ _('Stock') }}" min="1" required
+                                class="input-small">
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
                     </div>
