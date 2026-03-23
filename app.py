@@ -430,12 +430,17 @@ def add_to_inventory(store_id):
     product_id = request.form.get('product_id', type=int)
     stock = request.form.get('stock', default=0, type=int)
     if product_id:
+        # Try to find an existing Inventory row for this store+product (any shelf)
         item = Inventory.query.filter_by(store_id=store_id, product_id=product_id).first()
-        if not item:
-            item = Inventory(store_id=store_id, product_id=product_id, stock=stock)
-            db.session.add(item)
-        else:
+        if item:
             item.stock += stock
+        else:
+            # Need a shelf_id for the composite PK — use the store's first shelf
+            shelf = Shelf.query.filter_by(store_id=store_id).first()
+            if shelf:
+                item = Inventory(store_id=store_id, product_id=product_id,
+                                 shelf_id=shelf.id, stock=stock)
+                db.session.add(item)
         db.session.commit()
     return redirect(url_for('store_detail', id=store_id))
 
@@ -461,12 +466,17 @@ def add_product_to_store(product_id):
     store_id = request.form.get('store_id', type=int)
     stock = request.form.get('stock', default=0, type=int)
     if store_id:
+        # Try to find an existing Inventory row for this store+product (any shelf)
         item = Inventory.query.filter_by(store_id=store_id, product_id=product_id).first()
-        if not item:
-            item = Inventory(store_id=store_id, product_id=product_id, stock=stock)
-            db.session.add(item)
-        else:
+        if item:
             item.stock += stock
+        else:
+            # Need a shelf_id for the composite PK — use the store's first shelf
+            shelf = Shelf.query.filter_by(store_id=store_id).first()
+            if shelf:
+                item = Inventory(store_id=store_id, product_id=product_id,
+                                 shelf_id=shelf.id, stock=stock)
+                db.session.add(item)
         db.session.commit()
     return redirect(url_for('product_detail', id=product_id))
 
@@ -607,12 +617,15 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         seed_data()
-        
-        # Cleanup orphan inventory items
+
+        # Cleanup orphan inventory items (broken FK references)
         orphans = Inventory.query.all()
         deleted = False
         for inv in orphans:
-            if not Product.query.get(inv.product_id) or not Store.query.get(inv.store_id):
+            missing_product = not Product.query.get(inv.product_id)
+            missing_store = not Store.query.get(inv.store_id)
+            missing_shelf = not Shelf.query.get(inv.shelf_id)
+            if missing_product or missing_store or missing_shelf:
                 db.session.delete(inv)
                 deleted = True
         if deleted:
