@@ -48,6 +48,14 @@
     {% if loc is mapping and loc.value is defined and loc.value.coordinates is defined %}
     {% set slng = loc.value.coordinates[0] %}
     {% set slat = loc.value.coordinates[1] %}
+    {% elif loc is string %}
+    {% set parts = loc.split(',') %}
+    {% if parts | length == 2 %}
+    {% set slng = parts[0] | float %}
+    {% set slat = parts[1] | float %}
+    {% else %}
+    {% set slat, slng = 52.52, 13.40 %}
+    {% endif %}
     {% else %}
     {% set slat, slng = 52.52, 13.40 %}
     {% endif %}
