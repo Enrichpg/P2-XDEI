@@ -14,30 +14,30 @@
 
     <form method="POST" class="crud-form">
         <div class="form-group">
-            <label for="name" data-i18n="Nombre del Producto">{{ _('Nombre del Producto') }} *</label>
+            <label for="name">{{ _('Nombre del Producto') }} *</label>
             <input type="text" id="name" name="name" value="{{ product.name if product else '' }}" required>
         </div>
 
         <div class="form-group">
-            <label for="price" data-i18n="Precio Base">{{ _('Precio Base') }} *</label>
+            <label for="price">{{ _('Precio Base') }} *</label>
             <input type="number" step="0.01" id="price" name="price" value="{{ product.price if product else '' }}"
                 required>
         </div>
 
         <div class="form-group">
-            <label for="size" data-i18n="Tamaño / Formato">{{ _('Tamaño / Formato') }}</label>
+            <label for="size">{{ _('Tamaño / Formato') }}</label>
             <input type="text" id="size" name="size" value="{{ product.size if product else '' }}"
                 placeholder="e.g. 1L, 500g">
         </div>
 
         <div class="form-group">
-            <label for="originCountry" data-i18n="País de Origen (ISO Code)">{{ _('País de Origen (ISO Code)') }}</label>
+            <label for="originCountry">{{ _('País de Origen (ISO Code)') }}</label>
             <input type="text" id="originCountry" name="originCountry"
                 value="{{ product.originCountry if product else '' }}" placeholder="e.g. ES, IT, FR">
         </div>
 
         <div class="form-group">
-            <label for="image" data-i18n="URL de la Imagen">{{ _('URL de la Imagen') }}</label>
+            <label for="image">{{ _('URL de la Imagen') }}</label>
             <input type="url" id="image" name="image" value="{{ product.image if product else '' }}"
                 placeholder="https://...">
         </div>

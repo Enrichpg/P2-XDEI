@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="header-actions">
-    <h1 data-i18n="Employees">{{ _('Employees') }}</h1>
+    <h1>{{ _('Employees') }}</h1>
     <a href="{{ url_for('create_employee') }}" class="btn btn-primary">
         <span class="icon">＋</span> {{ _('Add Employee') }}
     </a>
@@ -24,14 +24,14 @@
         <div class="card-content">
             <h3>{{ employee.name }}</h3>
             <p class="subtitle">{{ _(employee.role) }}</p>
-            <p><strong data-i18n="Store">{{ _('Store') }}:</strong> {{ _(employee.store.name) }}</p>
+            <p><strong>{{ _('Store') }}:</strong> {{ _(employee.store.name) }}</p>
             <div class="card-actions">
-                <a href="{{ url_for('employee_detail', id=employee.id) }}" class="btn btn-secondary" data-i18n="Details">{{ _('Details') }}</a>
+                <a href="{{ url_for('employee_detail', id=employee.id) }}" class="btn btn-secondary">{{ _('Details') }}</a>
             </div>
         </div>
     </div>
     {% else %}
-    <p data-i18n="No employees found.">{{ _('No employees found.') }}</p>
+    <p>{{ _('No employees found.') }}</p>
     {% endfor %}
 </div>
 {% endblock %}

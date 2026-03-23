@@ -1,41 +1,7 @@
 /* main.js – FIWARE Smart Store client-side JS */
 
 /* ── Localization (i18n) ── */
-function setLanguage(lang) {
-    if (!translations || !translations[lang]) return;
-    localStorage.setItem('lang', lang);
-
-    document.documentElement.lang = lang;
-
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-            if (el.children.length === 0) {
-                el.textContent = translations[lang][key];
-            } else {
-                Array.from(el.childNodes).forEach(node => {
-                    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
-                        node.textContent = translations[lang][key];
-                    }
-                });
-            }
-        }
-    });
-
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-        const key = el.getAttribute('data-i18n-placeholder');
-        if (translations[lang][key]) {
-            el.placeholder = translations[lang][key];
-        }
-    });
-}
-
-(function () {
-    const savedLang = localStorage.getItem('lang');
-    if (savedLang) {
-        setLanguage(savedLang);
-    }
-})();
+// Superseded by Flask-Babel server-side templating
 
 /* ── Dark/Light Theme ── */
 document.addEventListener('DOMContentLoaded', function () {

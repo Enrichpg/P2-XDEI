@@ -100,7 +100,7 @@
         <div class="detail-info">
             {% if temperature is not none or relativeHumidity is not none %}
             <div class="info-group">
-                <label data-i18n="Condiciones Climáticas">{{ _('Condiciones Climáticas') }}</label>
+                <label>{{ _('Condiciones Climáticas') }}</label>
                 <div class="weather-container">
                     {% if temperature is not none %}
                     <div class="weather-item {{ 'temp-hot' if temperature > 20 else 'temp-cold' }}">
@@ -118,7 +118,7 @@
 
             {% if tweets %}
             <div class="info-group">
-                <label data-i18n="Últimos Tweets">{{ _('Últimos Tweets') }}</label>
+                <label>{{ _('Últimos Tweets') }}</label>
                 <ul class="tweet-list">
                     {% for tweet in tweets %}
                     <li class="tweet-card">
@@ -131,20 +131,21 @@
             {% endif %}
 
             <div class="info-group">
-                <label data-i18n="Dirección">{{ _('Dirección') }}</label>
+                <label>{{ _('Dirección') }}</label>
                 <p>{{ _(store.address or 'N/A') }}</p>
             </div>
             <div class="info-group">
-                <label data-i18n="Coordenadas (Location)">{{ _('Coordenadas (Location)') }}</label>
+                <label>{{ _('Coordenadas (Location)') }}</label>
                 <p>{{ store.location or 'N/A' }}</p>
             </div>
             <div class="info-group">
-                <label data-i18n="Inventario de Productos">{{ _('Inventario de Productos') }}</label>
+                <label>{{ _('Inventario de Productos') }}</label>
                 <div class="inventory-crud">
                     <ul class="item-list">
                         {% set seen_products = {} %}
                         {% for item in store.inventory_items %}
                         {% if not seen_products.get(item.product_id) %}
+                        {% if item.product %}
                         {% set _ = seen_products.update({item.product_id: True}) %}
                         <li class="list-item">
                             <div class="item-main">
@@ -171,6 +172,7 @@
                             </div>
                         </li>
                         {% endif %}
+                        {% endif %}
                         {% endfor %}
                     </ul>
 
@@ -178,14 +180,14 @@
                         <form action="{{ url_for('add_to_inventory', store_id=store.id) }}" method="POST"
                             class="add-form">
                             <select name="product_id" required>
-                                <option value="" disabled selected data-i18n="Añadir producto...">{{ _('Añadir
+                                <option value="" disabled selected>{{ _('Añadir
                                     producto...') }}</option>
                                 {% for product in all_products %}
                                 <option value="{{ product.id }}">{{ _(product.name) }}</option>
                                 {% endfor %}
                             </select>
                             <input type="number" name="stock" placeholder="{{ _('Stock') }}"
-                                data-i18n-placeholder="Stock" min="1" required class="input-small">
+                                min="1" required class="input-small">
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
                     </div>
@@ -193,7 +195,7 @@
             </div>
 
             <div class="info-group">
-                <label data-i18n="Baldas">{{ _('Baldas') }}</label>
+                <label>{{ _('Baldas') }}</label>
                 <div class="shelves-crud">
                     <ul class="item-list">
                         {% for shelf in store.shelves %}
@@ -216,7 +218,7 @@
                     <div class="add-box">
                         <form action="{{ url_for('create_shelf', store_id=store.id) }}" method="POST" class="add-form">
                             <input type="text" name="name" placeholder="{{ _('Nombre de la balda') }}"
-                                data-i18n-placeholder="Nombre de la balda" required>
+                                required>
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
                     </div>
@@ -224,13 +226,13 @@
             </div>
 
             <div class="info-group">
-                <label data-i18n="Plantilla de Empleados">{{ _('Plantilla de Empleados') }}</label>
+                <label>{{ _('Plantilla de Empleados') }}</label>
                 <div class="employee-badges">
                     {% for employee in store.employees %}
                     <a href="{{ url_for('employee_detail', id=employee.id) }}" class="badge">{{ employee.name }} ({{
                         _(employee.role) }})</a>
                     {% else %}
-                    <p data-i18n="Sin empleados asignados.">{{ _('Sin empleados asignados.') }}</p>
+                    <p>{{ _('Sin empleados asignados.') }}</p>
                     {% endfor %}
                 </div>
             </div>

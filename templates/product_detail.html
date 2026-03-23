@@ -31,28 +31,30 @@
         </div>
         <div class="detail-info">
             <div class="info-group">
-                <label data-i18n="Precio">{{ _('Precio') }}</label>
+                <label>{{ _('Precio') }}</label>
                 <p class="price">{{ "%.2f"|format(product.price) }}€</p>
             </div>
             <div class="info-group">
-                <label data-i18n="Tamaño / Formato">{{ _('Tamaño / Formato') }}</label>
+                <label>{{ _('Tamaño / Formato') }}</label>
                 <p>{{ _(product.size) if product.size else 'N/A' }}</p>
             </div>
             <div class="info-group">
-                <label data-i18n="País de Origen">{{ _('País de Origen') }}</label>
+                <label>{{ _('País de Origen') }}</label>
                 <p>{{ product.originCountry or 'N/A' }}</p>
             </div>
             <div class="info-group">
-                <label data-i18n="Tiendas disponibles">{{ _('Tiendas disponibles') }}</label>
+                <label>{{ _('Tiendas disponibles') }}</label>
                 <div class="inventory-crud">
                     <ul class="item-list">
                         {% for item in product.inventory_items %}
+                        {% if item.store %}
                         <li class="list-item">
                             <div class="item-main">
                                 <a href="{{ url_for('store_detail', id=item.store.id) }}">{{ _(item.store.name) }}</a>
                                 <span class="text-muted">- {{ _('Stock') }}: {{ item.stock }}</span>
                             </div>
                         </li>
+                        {% endif %}
                         {% endfor %}
                     </ul>
 
@@ -60,14 +62,14 @@
                         <form action="{{ url_for('add_product_to_store', product_id=product.id) }}" method="POST"
                             class="add-form">
                             <select name="store_id" required>
-                                <option value="" disabled selected data-i18n="Añadir a tienda...">{{ _('Añadir a
+                                <option value="" disabled selected>{{ _('Añadir a
                                     tienda...') }}</option>
                                 {% for store in all_stores %}
                                 <option value="{{ store.id }}">{{ _(store.name) }}</option>
                                 {% endfor %}
                             </select>
                             <input type="number" name="stock" placeholder="{{ _('Stock') }}"
-                                data-i18n-placeholder="Stock" min="1" required class="input-small">
+                                min="1" required class="input-small">
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
                     </div>

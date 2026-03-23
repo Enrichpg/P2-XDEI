@@ -607,6 +607,16 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         seed_data()
+        
+        # Cleanup orphan inventory items
+        orphans = Inventory.query.all()
+        deleted = False
+        for inv in orphans:
+            if not Product.query.get(inv.product_id) or not Store.query.get(inv.store_id):
+                db.session.delete(inv)
+                deleted = True
+        if deleted:
+            db.session.commit()
     # Initialise the data layer (probes Orion; falls back to SQLite if unavailable)
     import data_layer
     data_layer.init_data_layer(app, db)

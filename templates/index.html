@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="FIWARE Smart Store">{{ _('FIWARE Smart Store') }}</title>
+    <title>{{ _('FIWARE Smart Store') }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -16,19 +16,19 @@
     </div>
 
     <header>
-        <h1 data-i18n="FIWARE Smart Store">{{ _('FIWARE Smart Store') }}</h1>
-        <p data-i18n="Gestión inteligente para tu cadena de supermercados.">{{ _('Gestión inteligente para tu cadena de supermercados.') }}</p>
+        <h1>{{ _('FIWARE Smart Store') }}</h1>
+        <p>{{ _('Gestión inteligente para tu cadena de supermercados.') }}</p>
     </header>
 
     <main>
         <section class="stores-section">
-            <h2 data-i18n="Nuestras Tiendas">{{ _('Nuestras Tiendas') }}</h2>
+            <h2>{{ _('Nuestras Tiendas') }}</h2>
             <div class="grid">
                 {% for store in stores %}
                 <div class="card">
                     <h3>{{ _(store.name) }}</h3>
                     <p class="location">{{ _(store.location) }}</p>
-                    <h4 data-i18n="Productos en Stock:">{{ _('Productos en Stock:') }}</h4>
+                    <h4>{{ _('Productos en Stock:') }}</h4>
                     <ul>
                         {% for product in store.products %}
                         <li>{{ _(product.name) }} - {{ "%.2f"|format(product.price) }}€</li>
@@ -40,12 +40,12 @@
         </section>
 
         <section class="products-section">
-            <h2 data-i18n="Catálogo Global de Productos">{{ _('Catálogo Global de Productos') }}</h2>
+            <h2>{{ _('Catálogo Global de Productos') }}</h2>
             <table class="product-table">
                 <thead>
                     <tr>
-                        <th data-i18n="Nombre">{{ _('Nombre') }}</th>
-                        <th data-i18n="Precio Base">{{ _('Precio Base') }}</th>
+                        <th>{{ _('Nombre') }}</th>
+                        <th>{{ _('Precio Base') }}</th>
                     </tr>
                 </thead>
                 <tbody>
