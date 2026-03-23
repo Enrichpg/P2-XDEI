@@ -146,7 +146,7 @@
                         {% for item in store.inventory_items %}
                         {% if not seen_products.get(item.product_id) %}
                         {% if item.product %}
-                        {% set _ = seen_products.update({item.product_id: True}) %}
+                        {% set dummy = seen_products.update({item.product_id: True}) %}
                         <li class="list-item">
                             <div class="item-main">
                                 <a href="{{ url_for('product_detail', id=item.product.id) }}">{{ _(item.product.name)
@@ -186,8 +186,8 @@
                                 <option value="{{ product.id }}">{{ _(product.name) }}</option>
                                 {% endfor %}
                             </select>
-                            <input type="number" name="stock" placeholder="{{ _('Stock') }}"
-                                min="1" required class="input-small">
+                            <input type="number" name="stock" placeholder="{{ _('Stock') }}" min="1" required
+                                class="input-small">
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
                     </div>
@@ -217,8 +217,7 @@
                     </ul>
                     <div class="add-box">
                         <form action="{{ url_for('create_shelf', store_id=store.id) }}" method="POST" class="add-form">
-                            <input type="text" name="name" placeholder="{{ _('Nombre de la balda') }}"
-                                required>
+                            <input type="text" name="name" placeholder="{{ _('Nombre de la balda') }}" required>
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
                     </div>
@@ -249,7 +248,7 @@
                 var lng = parseFloat(coords[1].trim());
                 var map = L.map('map').setView([lat, lng], 15);
 
-                var lightTiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                var lightTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 });
