@@ -109,16 +109,16 @@ def seed_data():
 
     # Create Products
     products_data = [
-        ("Apples", 0.99, "S", "ES", "#FF5733", "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/800px-Red_Apple.jpg"),
-        ("Bananas", 1.49, "M", "EC", "#FFD700", "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Chocolate-Chip-Cookies-Recipe.jpg/640px-Banana-Chocolate-Chip-Cookies-Recipe.jpg"),
-        ("Coconuts", 2.99, "M", "PH", "#8B4513", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Coconut_on_white_background.jpg/640px-Coconut_on_white_background.jpg"),
-        ("Melons", 4.99, "XL", "ES", "#90EE90", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Melon_2.jpg/640px-Melon_2.jpg"),
-        ("Kiwi Fruits", 1.89, "S", "NZ", "#6B8E23", "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Kiwi_aka.jpg/640px-Kiwi_aka.jpg"),
-        ("Strawberries", 2.49, "S", "ES", "#DC143C", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/640px-PerfectStrawberry.jpg"),
-        ("Raspberries", 3.29, "S", "FR", "#C71585", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/640px-Hapus_Mango.jpg"),
-        ("Pineapples", 1.89, "L", "CR", "#FFA500", "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Pineapple_and_cross_section.jpg/800px-Pineapple_and_cross_section.jpg"),
-        ("Oranges", 1.29, "M", "ES", "#FF8C00", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Oranges_and_orange_juice.jpg/800px-Oranges_and_orange_juice.jpg"),
-        ("Grapes", 2.19, "S", "IT", "#800080", "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Table_grapes_on_white.jpg/800px-Table_grapes_on_white.jpg")
+        ("Apples", 0.99, "S", "ES", "#FF5733", "https://picsum.photos/seed/product1/400/300"),
+        ("Bananas", 1.49, "M", "EC", "#FFD700", "https://picsum.photos/seed/product2/400/300"),
+        ("Coconuts", 2.99, "M", "PH", "#8B4513", "https://picsum.photos/seed/product3/400/300"),
+        ("Melons", 4.99, "XL", "ES", "#90EE90", "https://picsum.photos/seed/product4/400/300"),
+        ("Kiwi Fruits", 1.89, "S", "NZ", "#6B8E23", "https://picsum.photos/seed/product5/400/300"),
+        ("Strawberries", 2.49, "S", "ES", "#DC143C", "https://picsum.photos/seed/product6/400/300"),
+        ("Raspberries", 3.29, "S", "FR", "#C71585", "https://picsum.photos/seed/product7/400/300"),
+        ("Pineapples", 1.89, "L", "CR", "#FFA500", "https://picsum.photos/seed/product8/400/300"),
+        ("Oranges", 1.29, "M", "ES", "#FF8C00", "https://picsum.photos/seed/product9/400/300"),
+        ("Grapes", 2.19, "S", "IT", "#800080", "https://picsum.photos/seed/product10/400/300")
     ]
     products = []
     for p in products_data:
@@ -129,10 +129,10 @@ def seed_data():
 
     # Create Stores
     stores_data = [
-        ("Bösebrücke Einkauf", "Bornholmer Straße 65, 10439 Berlin", "13.3986, 52.5547", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Supermarket_in_Amsterdam.jpg/1280px-Supermarket_in_Amsterdam.jpg", "https://bosebrucke.example.com", "+49 30 1234567", "DE", 1500, "Main Berlin flagship store located near the famous Bösebrücke bridge in Prenzlauer Berg."),
-        ("Checkpoint Markt", "Friedrichstraße 44, 10969 Berlin", "13.3903, 52.5075", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Supermarkt.jpg/1280px-Supermarkt.jpg", "https://checkpoint.example.com", "+49 30 2345678", "DE", 2200, "Historic Kreuzberg store near Checkpoint Charlie. Specialises in international products."),
-        ("East Side Galleria", "Mühlenstrasse 10, 10243 Berlin", "13.4447, 52.5031", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Supermarket_in_Amsterdam.jpg/1280px-Supermarket_in_Amsterdam.jpg", "https://eastside.example.com", "+49 30 3456789", "DE", 1800, "Trendy Friedrichshain store adjacent to the East Side Gallery, Berlin art wall landmark."),
-        ("Tower Trödelmarkt", "Panoramastraße 1A, 10178 Berlin", "13.4094, 52.5208", "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Supermarkt.jpg/1280px-Supermarkt.jpg", "https://tower.example.com", "+49 30 4567890", "DE", 3000, "Premium store in Berlin Mitte, steps from the TV Tower and Museum Island.")
+        ("Bösebrücke Einkauf", "Bornholmer Straße 65, 10439 Berlin", "13.3986, 52.5547", "https://picsum.photos/seed/store1/800/600", "https://bosebrucke.example.com", "+49 30 1234567", "DE", 1500, "Main Berlin flagship store located near the famous Bösebrücke bridge in Prenzlauer Berg."),
+        ("Checkpoint Markt", "Friedrichstraße 44, 10969 Berlin", "13.3903, 52.5075", "https://picsum.photos/seed/store2/800/600", "https://checkpoint.example.com", "+49 30 2345678", "DE", 2200, "Historic Kreuzberg store near Checkpoint Charlie. Specialises in international products."),
+        ("East Side Galleria", "Mühlenstrasse 10, 10243 Berlin", "13.4447, 52.5031", "https://picsum.photos/seed/store3/800/600", "https://eastside.example.com", "+49 30 3456789", "DE", 1800, "Trendy Friedrichshain store adjacent to the East Side Gallery, Berlin art wall landmark."),
+        ("Tower Trödelmarkt", "Panoramastraße 1A, 10178 Berlin", "13.4094, 52.5208", "https://picsum.photos/seed/store4/800/600", "https://tower.example.com", "+49 30 4567890", "DE", 3000, "Premium store in Berlin Mitte, steps from the TV Tower and Museum Island.")
     ]
     stores = []
     for s in stores_data:
