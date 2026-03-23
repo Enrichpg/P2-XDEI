@@ -23,7 +23,8 @@
     <div class="detail-grid">
         <div class="detail-image">
             {% if product.image %}
-            <img src="{{ product.image }}" alt="{{ product.name }}">
+            <img src="{{ product.image }}" alt="{{ product.name }}"
+                onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
             {% else %}
             <div class="image-placeholder"><i class="fas fa-box fa-5x"></i></div>
             {% endif %}
@@ -59,13 +60,14 @@
                         <form action="{{ url_for('add_product_to_store', product_id=product.id) }}" method="POST"
                             class="add-form">
                             <select name="store_id" required>
-                                <option value="" disabled selected data-i18n="Añadir a tienda...">{{ _('Añadir a tienda...') }}</option>
+                                <option value="" disabled selected data-i18n="Añadir a tienda...">{{ _('Añadir a
+                                    tienda...') }}</option>
                                 {% for store in all_stores %}
                                 <option value="{{ store.id }}">{{ _(store.name) }}</option>
                                 {% endfor %}
                             </select>
-                            <input type="number" name="stock" placeholder="{{ _('Stock') }}" data-i18n-placeholder="Stock" min="1" required
-                                class="input-small">
+                            <input type="number" name="stock" placeholder="{{ _('Stock') }}"
+                                data-i18n-placeholder="Stock" min="1" required class="input-small">
                             <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
                         </form>
                     </div>
