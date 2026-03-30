@@ -74,5 +74,7 @@ graph TD
     - `product_detail.html` & `employee_detail.html`: Full attribute display.
     - `store_form.html`, `product_form.html` & `employee_form.html`: CRUD forms.
 - `static/css/style.css`: Modern, responsive design system with dark/light themes.
+- `static/img/products/`: AI-generated product images (`.png`, excluded from version control via `.gitignore`).
+- `static/img/stores/`: AI-generated store facade images (`.png`, excluded from version control via `.gitignore`).
 - `static/js/`: Client-side JavaScript (Socket.IO handler, Three.js scene, Mermaid init, etc.).
 - `dummy_translations.py`: Helper for dynamic string extraction.

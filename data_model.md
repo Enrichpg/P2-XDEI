@@ -85,7 +85,7 @@ Items available for sale across the chain.
 - `name` (String, Required): e.g., "Leche".
 - `price` (Float, Required): Base price of the product.
 - `size` (String): e.g., "1L", "500g".
-- `image` (String): URL or relative path (e.g., `/static/img/products/leche.png`) to an image of the product.
+- `image` (String): Local path to an AI-generated image (e.g., `/static/img/products/apples.png`). Not version-controlled.
 - `originCountry` (String): ISO country code, e.g., "ES".
 - `color` (String): RGB hex color code, e.g., "#FF5733". Stored as `Text` in both SQLite and NGSIv2.
 

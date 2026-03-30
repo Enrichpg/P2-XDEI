@@ -51,7 +51,7 @@ The two backends are **independent** — no data is synchronised between SQLite 
 ## User Experience (UX)
 - **Premium Design**: Modern, responsive interface with deep teal and gold accents.
 - **Dark / Light Mode**: User-toggleable dark and light themes with persistent preference.
-- **Card-Based Layout**: List views for stores, products, and employees use centered cards with optimized image display (`object-fit: cover`) and centered information.
+- **Card-Based Layout**: List views for stores, products, and employees use centered cards with optimized image display (`object-fit: cover`) and centered information. Product and store images are AI-generated and stored locally.
 - **Visual Evidence**: Rich use of images, interactive Leaflet maps, and a Three.js 3D virtual store tour.
 - **Responsive Layout**: Seamless transition across phone, tablet, and desktop views.
 - **Font Awesome Icons**: Icon library integrated across navigation, buttons, and status indicators.
@@ -64,7 +64,7 @@ The two backends are **independent** — no data is synchronised between SQLite 
 - **Subscriptions**: Two NGSIv2 subscriptions are created in Orion at startup to watch for price changes and low-stock events.
 - **Containerisation**: `docker-compose.yml` (extended from the official FIWARE tutorial) provides Orion Context Broker, MongoDB, and the tutorial context-provider container.
 - **Internationalization**: Implemented via Flask-Babel with `.po` and `.mo` catalogs. Dynamic content extraction is supported by `dummy_translations.py`.
-- **Image Serving**: Optimized image handling ensures consistent presentation regardless of source (local or external).
+- **Image Serving**: Product and store images are **AI-generated** and stored locally in `static/img/products/` and `static/img/stores/`. These assets are excluded from version control via `.gitignore` and must be regenerated locally. Employee images use `randomuser.me` portrait URLs.
 - **Import Data Script**: `import-data.sh` provisions the system with seed data: **4 stores**, **4 employees**, **4 shelves per store**, **10 products** (at least 4 products per shelf).
 - **Frontend Libraries**:
   - [Leaflet.js](https://leafletjs.com/) — interactive store maps.
