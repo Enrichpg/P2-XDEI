@@ -109,16 +109,16 @@ def seed_data():
 
     # Create Products
     products_data = [
-        ("Apples", 0.99, "S", "ES", "#FF5733", "https://picsum.photos/seed/product1/400/300"),
-        ("Bananas", 1.49, "M", "EC", "#FFD700", "https://picsum.photos/seed/product2/400/300"),
-        ("Coconuts", 2.99, "M", "PH", "#8B4513", "https://picsum.photos/seed/product3/400/300"),
-        ("Melons", 4.99, "XL", "ES", "#90EE90", "https://picsum.photos/seed/product4/400/300"),
-        ("Kiwi Fruits", 1.89, "S", "NZ", "#6B8E23", "https://picsum.photos/seed/product5/400/300"),
-        ("Strawberries", 2.49, "S", "ES", "#DC143C", "https://picsum.photos/seed/product6/400/300"),
-        ("Raspberries", 3.29, "S", "FR", "#C71585", "https://picsum.photos/seed/product7/400/300"),
-        ("Pineapples", 1.89, "L", "CR", "#FFA500", "https://picsum.photos/seed/product8/400/300"),
-        ("Oranges", 1.29, "M", "ES", "#FF8C00", "https://picsum.photos/seed/product9/400/300"),
-        ("Grapes", 2.19, "S", "IT", "#800080", "https://picsum.photos/seed/product10/400/300")
+        ("Apples", 0.99, "S", "ES", "#FF5733", "/static/img/products/apples.png"),
+        ("Bananas", 1.49, "M", "EC", "#FFD700", "/static/img/products/bananas.png"),
+        ("Coconuts", 2.99, "M", "PH", "#8B4513", "/static/img/products/coconuts.png"),
+        ("Melons", 4.99, "XL", "ES", "#90EE90", "/static/img/products/melons.png"),
+        ("Kiwi Fruits", 1.89, "S", "NZ", "#6B8E23", "/static/img/products/kiwi.png"),
+        ("Strawberries", 2.49, "S", "ES", "#DC143C", "/static/img/products/strawberries.png"),
+        ("Raspberries", 3.29, "S", "FR", "#C71585", "/static/img/products/raspberries.png"),
+        ("Pineapples", 1.89, "L", "CR", "#FFA500", "/static/img/products/pineapples.png"),
+        ("Oranges", 1.29, "M", "ES", "#FF8C00", "/static/img/products/oranges.png"),
+        ("Grapes", 2.19, "S", "IT", "#800080", "/static/img/products/grapes.png")
     ]
     products = []
     for p in products_data:
@@ -129,10 +129,10 @@ def seed_data():
 
     # Create Stores
     stores_data = [
-        ("Bösebrücke Einkauf", "Bornholmer Straße 65, 10439 Berlin", "13.3986, 52.5547", "https://picsum.photos/seed/store1/800/600", "https://bosebrucke.example.com", "+49 30 1234567", "DE", 1500, "Main Berlin flagship store located near the famous Bösebrücke bridge in Prenzlauer Berg."),
-        ("Checkpoint Markt", "Friedrichstraße 44, 10969 Berlin", "13.3903, 52.5075", "https://picsum.photos/seed/store2/800/600", "https://checkpoint.example.com", "+49 30 2345678", "DE", 2200, "Historic Kreuzberg store near Checkpoint Charlie. Specialises in international products."),
-        ("East Side Galleria", "Mühlenstrasse 10, 10243 Berlin", "13.4447, 52.5031", "https://picsum.photos/seed/store3/800/600", "https://eastside.example.com", "+49 30 3456789", "DE", 1800, "Trendy Friedrichshain store adjacent to the East Side Gallery, Berlin art wall landmark."),
-        ("Tower Trödelmarkt", "Panoramastraße 1A, 10178 Berlin", "13.4094, 52.5208", "https://picsum.photos/seed/store4/800/600", "https://tower.example.com", "+49 30 4567890", "DE", 3000, "Premium store in Berlin Mitte, steps from the TV Tower and Museum Island.")
+        ("Bösebrücke Einkauf", "Bornholmer Straße 65, 10439 Berlin", "13.3986, 52.5547", "/static/img/stores/store_001.png", "https://bosebrucke.example.com", "+49 30 1234567", "DE", 1500, "Main Berlin flagship store located near the famous Bösebrücke bridge in Prenzlauer Berg."),
+        ("Checkpoint Markt", "Friedrichstraße 44, 10969 Berlin", "13.3903, 52.5075", "/static/img/stores/store_002.png", "https://checkpoint.example.com", "+49 30 2345678", "DE", 2200, "Historic Kreuzberg store near Checkpoint Charlie. Specialises in international products."),
+        ("East Side Galleria", "Mühlenstrasse 10, 10243 Berlin", "13.4447, 52.5031", "/static/img/stores/store_003.png", "https://eastside.example.com", "+49 30 3456789", "DE", 1800, "Trendy Friedrichshain store adjacent to the East Side Gallery, Berlin art wall landmark."),
+        ("Tower Trödelmarkt", "Panoramastraße 1A, 10178 Berlin", "13.4094, 52.5208", "/static/img/stores/store_004.png", "https://tower.example.com", "+49 30 4567890", "DE", 3000, "Premium store in Berlin Mitte, steps from the TV Tower and Museum Island.")
     ]
     stores = []
     for s in stores_data:
@@ -620,20 +620,20 @@ if __name__ == '__main__':
 
         # Update product image seeds to be more descriptive
         products_update_map = {
-            "Apples": "https://picsum.photos/seed/apple/400/300",
-            "Bananas": "https://picsum.photos/seed/banana/400/300",
-            "Coconuts": "https://picsum.photos/seed/coconut/400/300",
-            "Melons": "https://picsum.photos/seed/melon/400/300",
-            "Kiwi Fruits": "https://picsum.photos/seed/kiwi/400/300",
-            "Strawberries": "https://picsum.photos/seed/strawberry/400/300",
-            "Raspberries": "https://picsum.photos/seed/raspberry/400/300",
-            "Pineapples": "https://picsum.photos/seed/pineapple/400/300",
-            "Oranges": "https://picsum.photos/seed/orange/400/300",
-            "Grapes": "https://picsum.photos/seed/grape/400/300"
+            "Apples": "/static/img/products/apples.png",
+            "Bananas": "/static/img/products/bananas.png",
+            "Coconuts": "/static/img/products/coconuts.png",
+            "Melons": "/static/img/products/melons.png",
+            "Kiwi Fruits": "/static/img/products/kiwi.png",
+            "Strawberries": "/static/img/products/strawberries.png",
+            "Raspberries": "/static/img/products/raspberries.png",
+            "Pineapples": "/static/img/products/pineapples.png",
+            "Oranges": "/static/img/products/oranges.png",
+            "Grapes": "/static/img/products/grapes.png"
         }
         for name, img_url in products_update_map.items():
             prod = Product.query.filter_by(name=name).first()
-            if prod and "product" in prod.image:
+            if prod and "wikimedia" in prod.image or "picsum" in prod.image:
                 prod.image = img_url
         db.session.commit()
 
