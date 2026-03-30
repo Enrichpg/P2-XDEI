@@ -10,23 +10,51 @@
     <a href="{{ url_for('create_store') }}" class="btn-primary"><i class="fas fa-plus"></i> {{ _('Añadir Tienda') }}</a>
 </div>
 
-<div class="grid">
-    {% for store in stores %}
-    <div class="card">
-        <div class="card-image">
-            <img src="{{ store.image }}" alt="{{ store.name }}"
-                onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
-        </div>
-        <div class="card-body">
-            <h3>{{ _(store.name) }}</h3>
-            <p><i class="fas fa-map-marker-alt"></i> {{ _(store.address) }}</p>
-            <div class="card-footer">
-                <a href="{{ url_for('store_detail', id=store.id) }}" class="btn-secondary">{{
-                    _('Detalles') }}</a>
-                <a href="{{ url_for('edit_store', id=store.id) }}" class="btn-text"><i class="fas fa-edit"></i></a>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
+<div class="table-responsive">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>{{ _('Imagen') }}</th>
+                <th>{{ _('Nombre') }}</th>
+                <th>{{ _('Dirección') }}</th>
+                <th>{{ _('Capacidad') }}</th>
+                <th>{{ _('Teléfono') }}</th>
+                <th class="text-center">{{ _('Acciones') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for store in stores %}
+            <tr>
+                <td class="col-image text-center">
+                    <img class="thumbnail-avatar" src="{{ store.image }}" alt="{{ store.name }}"
+                        onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
+                </td>
+                <td class="col-main"><strong>{{ _(store.name) }}</strong></td>
+                <td><i class="fas fa-map-marker-alt text-muted"></i> {{ _(store.address) }}</td>
+                <td>{{ store.capacity or '-' }}</td>
+                <td>{{ store.telephone or '-' }}</td>
+                <td class="col-actions text-center">
+                    <div class="inline-actions">
+                        <a href="{{ url_for('store_detail', id=store.id) }}" class="btn-icon btn-secondary-icon" title="{{ _('Ver Detalles') }}">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="{{ url_for('edit_store', id=store.id) }}" class="btn-icon btn-text-icon" title="{{ _('Editar') }}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <form action="{{ url_for('delete_store', id=store.id) }}" method="POST" class="inline-form" onsubmit="return confirm('{{ _('¿Estás seguro de eliminar esta tienda de forma permanente?') }}');">
+                            <button type="submit" class="btn-icon btn-danger-icon" title="{{ _('Eliminar') }}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center empty-state">{{ _('No existen tiendas registradas en este momento.') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}

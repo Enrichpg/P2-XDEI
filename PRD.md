@@ -51,7 +51,7 @@ The two backends are **independent** — no data is synchronised between SQLite 
 ## User Experience (UX)
 - **Premium Design**: Modern, responsive interface with deep teal and gold accents.
 - **Dark / Light Mode**: User-toggleable dark and light themes with persistent preference.
-- **Card-Based Layout**: List views for stores, products, and employees use centered cards with optimized image display (`object-fit: cover`) and centered information. Product and store images are AI-generated and stored locally.
+- **Table-Based Layout**: List views for stores, products, and employees use responsive, data-rich tables featuring inline actions, badges, and circular thumbnail avatars. Product and store images are AI-generated and stored locally.
 - **Visual Evidence**: Rich use of images, interactive Leaflet maps, and a Three.js 3D virtual store tour.
 - **Responsive Layout**: Seamless transition across phone, tablet, and desktop views.
 - **Font Awesome Icons**: Icon library integrated across navigation, buttons, and status indicators.

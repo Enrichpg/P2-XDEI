@@ -655,3 +655,167 @@ footer {
         transform: translateX(40px);
     }
 }
+
+/* --- Table Views (Issue 2) --- */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    vertical-align: middle;
+}
+
+body.dark-mode .data-table th,
+body.dark-mode .data-table td {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.data-table th {
+    background: rgba(0, 0, 0, 0.02);
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+body.dark-mode .data-table th {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.data-table tbody tr {
+    transition: var(--transition);
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(0, 77, 64, 0.03);
+}
+
+body.dark-mode .data-table tbody tr:hover {
+    background-color: rgba(77, 182, 172, 0.1);
+}
+
+/* Table Specific Components */
+.thumbnail-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: block;
+    margin: 0 auto;
+}
+
+.avatar-placeholder {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0 auto;
+}
+
+.price-badge {
+    font-weight: 700;
+    color: var(--secondary-color);
+    background: rgba(0, 121, 107, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+body.dark-mode .price-badge {
+    background: rgba(128, 203, 196, 0.1);
+}
+
+.color-swatch {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.1);
+    vertical-align: middle;
+}
+
+.role-badge {
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.empty-state {
+    padding: 3rem !important;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Actions in standard tables */
+.inline-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary-icon {
+    background: #e0f2f1;
+    color: var(--secondary-color);
+}
+.btn-secondary-icon:hover { background: #b2dfdb; }
+
+.btn-text-icon {
+    background: transparent;
+    color: var(--secondary-color);
+    border: 1px solid #e0f2f1;
+}
+.btn-text-icon:hover { background: #e0f2f1; }
+
+.btn-danger-icon {
+    background: #ffebee;
+    color: var(--danger-color);
+}
+.btn-danger-icon:hover { background: #ffcdd2; }
+
+body.dark-mode .btn-secondary-icon { background: rgba(128,203,196,0.1); }
+body.dark-mode .btn-secondary-icon:hover { background: rgba(128,203,196,0.2); }
+body.dark-mode .btn-text-icon { border-color: rgba(128,203,196,0.2); }
+body.dark-mode .btn-text-icon:hover { background: rgba(128,203,196,0.1); }
+body.dark-mode .btn-danger-icon { background: rgba(239,83,80,0.1); }
+body.dark-mode .btn-danger-icon:hover { background: rgba(239,83,80,0.2); }
+
+.text-center { text-align: center !important; }

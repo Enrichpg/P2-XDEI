@@ -10,29 +10,55 @@
     </a>
 </div>
 
-<div class="grid">
-    {% for employee in employees %}
-    <div class="card">
-        <div class="card-image">
-            {% if employee.image %}
-            <img src="{{ employee.image }}" alt="{{ employee.name }}" style="width:100%; height:100%; object-fit:cover;"
-                onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
+<div class="table-responsive">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>{{ _('Avatar') }}</th>
+                <th>{{ _('Nombre') }}</th>
+                <th>{{ _('Rol') }}</th>
+                <th>{{ _('Tienda') }}</th>
+                <th>{{ _('Salario') }}</th>
+                <th class="text-center">{{ _('Acciones') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td class="col-image text-center">
+                    {% if employee.image %}
+                    <img class="thumbnail-avatar" src="{{ employee.image }}" alt="{{ employee.name }}"
+                        onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
+                    {% else %}
+                    <div class="avatar-placeholder">{{ employee.name[0] }}</div>
+                    {% endif %}
+                </td>
+                <td class="col-main"><strong>{{ employee.name }}</strong></td>
+                <td><span class="role-badge">{{ _(employee.role) }}</span></td>
+                <td><i class="fas fa-store text-muted"></i> {{ _(employee.store.name) }}</td>
+                <td>{{ "%.2f"|format(employee.salary or 0) }}€</td>
+                <td class="col-actions text-center">
+                    <div class="inline-actions">
+                        <a href="{{ url_for('employee_detail', id=employee.id) }}" class="btn-icon btn-secondary-icon" title="{{ _('Ver Detalles') }}">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="{{ url_for('edit_employee', id=employee.id) }}" class="btn-icon btn-text-icon" title="{{ _('Editar') }}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <form action="{{ url_for('delete_employee', id=employee.id) }}" method="POST" class="inline-form" onsubmit="return confirm('{{ _('¿Estás seguro de eliminar este empleado de forma permanente?') }}');">
+                            <button type="submit" class="btn-icon btn-danger-icon" title="{{ _('Eliminar') }}">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
             {% else %}
-            <div class="image-placeholder">{{ employee.name[0] }}</div>
-            {% endif %}
-        </div>
-        <div class="card-content">
-            <h3>{{ employee.name }}</h3>
-            <p class="subtitle">{{ _(employee.role) }}</p>
-            <p><strong>{{ _('Store') }}:</strong> {{ _(employee.store.name) }}</p>
-            <div class="card-actions">
-                <a href="{{ url_for('employee_detail', id=employee.id) }}" class="btn btn-secondary">{{ _('Details')
-                    }}</a>
-            </div>
-        </div>
-    </div>
-    {% else %}
-    <p>{{ _('No employees found.') }}</p>
-    {% endfor %}
+            <tr>
+                <td colspan="6" class="text-center empty-state">{{ _('No se encontraron empleados registrados.') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
