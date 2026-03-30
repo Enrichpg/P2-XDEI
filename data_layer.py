@@ -98,6 +98,7 @@ def _product_to_ngsi(data: dict) -> dict:
     return {
         "name":          {"type": "Text",   "value": data.get("name", "")},
         "price":         {"type": "Number", "value": price_val},
+        "size":          {"type": "Text",   "value": data.get("size", "") or ""},
         "originCountry": {"type": "Text",   "value": data.get("originCountry", "") or ""},
         "image":         {"type": "Text",   "value": data.get("image", "") or ""},
         "color":         {"type": "Text",   "value": data.get("color", "") or ""}
@@ -179,7 +180,7 @@ def _ngsi_to_product(entity: dict):
         originCountry=_val("originCountry"),
         image=_val("image"),
         color=_val("color"),
-        size="",  # Not in NGSIv2 model
+        size=_val("size"),
         inventory_items=[],
     )
 
