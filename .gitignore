@@ -3,3 +3,10 @@ __pycache__/
 *.pyc
 *.db
 *Zone.Identifier
+
+# Heavy image assets (AI-generated, not version-controlled)
+static/img/products/*.png
+static/img/stores/*.png
+
+# Log backups
+*.log.bak
