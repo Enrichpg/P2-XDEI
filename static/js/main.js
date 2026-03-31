@@ -119,3 +119,66 @@ function loadProductsForShelf(shelfId, selectId) {
         })
         .catch(() => { sel.innerHTML = '<option value="">Error</option>'; });
 }
+
+/* ── Form Validation Helpers ── */
+document.addEventListener('DOMContentLoaded', function() {
+    const forms = document.querySelectorAll('.validated-form');
+    
+    forms.forEach(form => {
+        const inputs = form.querySelectorAll('input, select, textarea');
+        
+        // Show validation on blur or input after initial blur
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                validateInput(input);
+            });
+            input.addEventListener('input', () => {
+                // If it already has an error or was blurred once, validate on input
+                if (!input.validity.valid) {
+                    validateInput(input);
+                } else {
+                    hideError(input);
+                }
+            });
+        });
+
+        // Validate all on submit
+        form.addEventListener('submit', function(e) {
+            let isValid = true;
+            inputs.forEach(input => {
+                if (!validateInput(input)) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+                // Focus the first invalid input
+                const firstInvalid = form.querySelector(':invalid');
+                if (firstInvalid) firstInvalid.focus();
+            }
+        });
+    });
+
+    function validateInput(input) {
+        if (!input.willValidate) return true;
+        
+        const errorSpan = input.parentElement.querySelector('.field-error');
+        if (!errorSpan) return input.validity.valid;
+
+        if (!input.validity.valid) {
+            errorSpan.classList.remove('hidden');
+            return false;
+        } else {
+            errorSpan.classList.add('hidden');
+            return true;
+        }
+    }
+
+    function hideError(input) {
+        const errorSpan = input.parentElement.querySelector('.field-error');
+        if (errorSpan) {
+            errorSpan.classList.add('hidden');
+        }
+    }
+});

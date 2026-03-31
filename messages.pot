@@ -1,0 +1,689 @@
+# Translations template for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-03-31 09:37+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app.py:335 app.py:356
+msgid "El nombre es obligatorio y debe tener al menos 2 caracteres."
+msgstr ""
+
+#: app.py:343
+msgid "Store created successfully!"
+msgstr ""
+
+#: app.py:351
+msgid "Store not found."
+msgstr ""
+
+#: app.py:370
+msgid "Store updated successfully!"
+msgstr ""
+
+#: app.py:423 app.py:447
+msgid "El nombre es obligatorio y el precio debe ser mayor a 0."
+msgstr ""
+
+#: app.py:429
+msgid "Product created successfully!"
+msgstr ""
+
+#: app.py:437
+msgid "Product not found."
+msgstr ""
+
+#: app.py:457
+msgid "Product updated successfully!"
+msgstr ""
+
+#: app.py:593 app.py:623
+msgid "Information is incomplete. Please check required fields."
+msgstr ""
+
+#: app.py:604
+msgid "Employee created successfully!"
+msgstr ""
+
+#: app.py:612
+msgid "Employee not found."
+msgstr ""
+
+#: app.py:645
+msgid "Employee updated successfully!"
+msgstr ""
+
+#: templates/base.html:7 templates/base.html:29 templates/base.html:44
+#: templates/base.html:64 templates/employee_form.html:4 templates/index.html:7
+#: templates/index.html:19 templates/index.html:64
+#: templates/product_detail.html:3 templates/product_form.html:4
+#: templates/store_detail.html:3 templates/store_form.html:4
+msgid "FIWARE Smart Store"
+msgstr ""
+
+#: templates/base.html:32 templates/dashboard.html:5 templates/home.html:6
+msgid "Dashboard"
+msgstr ""
+
+#: templates/base.html:33 templates/home.html:14
+msgid "Stores"
+msgstr ""
+
+#: templates/base.html:34 templates/home.html:19
+msgid "Products"
+msgstr ""
+
+#: templates/base.html:35 templates/employees.html:3 templates/employees.html:7
+#: templates/home.html:24
+msgid "Employees"
+msgstr ""
+
+#: templates/base.html:45 templates/index.html:20
+msgid "Gestión inteligente para tu cadena de supermercados."
+msgstr ""
+
+#: templates/dashboard.html:3
+msgid "Dashboard - FIWARE Smart Store"
+msgstr ""
+
+#: templates/dashboard.html:6
+msgid "Resumen de la cadena de supermercados."
+msgstr ""
+
+#: templates/dashboard.html:50
+msgid "Tiendas"
+msgstr ""
+
+#: templates/dashboard.html:51
+msgid "Ver Tiendas"
+msgstr ""
+
+#: templates/dashboard.html:56
+msgid "Productos"
+msgstr ""
+
+#: templates/dashboard.html:57
+msgid "Ver Productos"
+msgstr ""
+
+#: templates/dashboard.html:62
+msgid "Empleados"
+msgstr ""
+
+#: templates/dashboard.html:63
+msgid "Ver Empleados"
+msgstr ""
+
+#: templates/dashboard.html:69
+msgid "Modelo de Datos — Diagrama UML"
+msgstr ""
+
+#: templates/employee_detail.html:3
+msgid "Employee Detail"
+msgstr ""
+
+#: templates/employee_detail.html:8 templates/product_detail.html:11
+#: templates/store_detail.html:80
+msgid "Volver"
+msgstr ""
+
+#: templates/employee_detail.html:13 templates/employees.html:45
+#: templates/product_detail.html:15 templates/products.html:50
+#: templates/store_detail.html:83 templates/stores.html:41
+msgid "Editar"
+msgstr ""
+
+#: templates/employee_detail.html:15 templates/product_detail.html:17
+#: templates/store_detail.html:85
+msgid "¿Estás seguro?"
+msgstr ""
+
+#: templates/employee_detail.html:16 templates/product_detail.html:18
+#: templates/store_detail.html:86 templates/store_detail.html:169
+#: templates/store_detail.html:212
+msgid "Borrar"
+msgstr ""
+
+#: templates/employee_detail.html:32
+msgid "Name"
+msgstr ""
+
+#: templates/employee_detail.html:36
+msgid "Role"
+msgstr ""
+
+#: templates/employee_detail.html:40
+msgid "Salary"
+msgstr ""
+
+#: templates/employee_detail.html:44
+msgid "Assigned Store"
+msgstr ""
+
+#: templates/employee_detail.html:48
+msgid "NGSI refStore"
+msgstr ""
+
+#: templates/employee_form.html:4 templates/employee_form.html:8
+msgid "Editar Empleado"
+msgstr ""
+
+#: templates/employee_form.html:4 templates/employee_form.html:8
+msgid "Nuevo Empleado"
+msgstr ""
+
+#: templates/employee_form.html:13 templates/product_form.html:13
+#: templates/store_form.html:13
+msgid "Cancelar"
+msgstr ""
+
+#: templates/employee_form.html:17 templates/employees.html:18
+#: templates/index.html:47 templates/products.html:19 templates/stores.html:18
+msgid "Nombre"
+msgstr ""
+
+#: templates/employee_form.html:19 templates/product_form.html:19
+#: templates/store_form.html:19
+msgid "El nombre es obligatorio (2-100 caracteres)."
+msgstr ""
+
+#: templates/employee_form.html:23 templates/employees.html:19
+msgid "Rol"
+msgstr ""
+
+#: templates/employee_form.html:25
+msgid "Selecciona un rol..."
+msgstr ""
+
+#: templates/employee_form.html:26
+msgid "Manager"
+msgstr ""
+
+#: templates/employee_form.html:27
+msgid "Cashier"
+msgstr ""
+
+#: templates/employee_form.html:28
+msgid "StockClerk"
+msgstr ""
+
+#: templates/employee_form.html:30
+msgid "Debes seleccionar un rol válido."
+msgstr ""
+
+#: templates/employee_form.html:34 templates/employees.html:21
+msgid "Salario"
+msgstr ""
+
+#: templates/employee_form.html:36
+msgid "El salario debe ser mayor o igual a 0."
+msgstr ""
+
+#: templates/employee_form.html:40
+msgid "Correo Electrónico"
+msgstr ""
+
+#: templates/employee_form.html:42
+msgid "Introduce una dirección de correo válida."
+msgstr ""
+
+#: templates/employee_form.html:46
+msgid "Fecha de Contratación"
+msgstr ""
+
+#: templates/employee_form.html:49
+msgid "Selecciona una fecha y hora válidas."
+msgstr ""
+
+#: templates/employee_form.html:53
+msgid "Habilidades (Skills)"
+msgstr ""
+
+#: templates/employee_form.html:58
+msgid "Conducción de Maquinaria"
+msgstr ""
+
+#: templates/employee_form.html:63
+msgid "Redacción de Informes"
+msgstr ""
+
+#: templates/employee_form.html:68
+msgid "Atención al Cliente"
+msgstr ""
+
+#: templates/employee_form.html:74
+msgid "Nombre de Usuario"
+msgstr ""
+
+#: templates/employee_form.html:76
+msgid "El nombre de usuario es obligatorio (max 50)."
+msgstr ""
+
+#: templates/employee_form.html:80
+msgid "Contraseña"
+msgstr ""
+
+#: templates/employee_form.html:83
+msgid "Deja en blanco para no cambiarla."
+msgstr ""
+
+#: templates/employee_form.html:83
+msgid "Mínimo 6 caracteres."
+msgstr ""
+
+#: templates/employee_form.html:85
+msgid "La contraseña debe tener al menos 6 caracteres."
+msgstr ""
+
+#: templates/employee_form.html:89 templates/product_form.html:44
+#: templates/store_form.html:36
+msgid "URL de la Imagen"
+msgstr ""
+
+#: templates/employee_form.html:91 templates/product_form.html:47
+#: templates/store_form.html:39 templates/store_form.html:46
+msgid "Debe ser una URL válida (ej. https://...)."
+msgstr ""
+
+#: templates/employee_form.html:95
+msgid "Tienda Asignada"
+msgstr ""
+
+#: templates/employee_form.html:97
+msgid "Seleccionar Tienda"
+msgstr ""
+
+#: templates/employee_form.html:102
+msgid "Debes asignar una tienda."
+msgstr ""
+
+#: templates/employee_form.html:107 templates/product_form.html:65
+#: templates/store_form.html:76
+msgid "Guardar Cambios"
+msgstr ""
+
+#: templates/employee_form.html:107
+msgid "Crear Empleado"
+msgstr ""
+
+#: templates/employees.html:9
+msgid "Add Employee"
+msgstr ""
+
+#: templates/employees.html:17
+msgid "Avatar"
+msgstr ""
+
+#: templates/employees.html:20
+msgid "Tienda"
+msgstr ""
+
+#: templates/employees.html:22 templates/products.html:24
+#: templates/stores.html:22
+msgid "Acciones"
+msgstr ""
+
+#: templates/employees.html:42 templates/products.html:47
+#: templates/stores.html:38
+msgid "Ver Detalles"
+msgstr ""
+
+#: templates/employees.html:48
+msgid "¿Estás seguro de eliminar este empleado de forma permanente?"
+msgstr ""
+
+#: templates/employees.html:49 templates/products.html:54
+#: templates/stores.html:45
+msgid "Eliminar"
+msgstr ""
+
+#: templates/employees.html:58
+msgid "No se encontraron empleados registrados."
+msgstr ""
+
+#: templates/home.html:2
+msgid "Home"
+msgstr ""
+
+#: templates/home.html:35
+msgid "Entity Model (UML)"
+msgstr ""
+
+#: templates/index.html:25 templates/stores.html:5
+msgid "Nuestras Tiendas"
+msgstr ""
+
+#: templates/index.html:31
+msgid "Productos en Stock:"
+msgstr ""
+
+#: templates/index.html:43 templates/products.html:5
+msgid "Catálogo Global de Productos"
+msgstr ""
+
+#: templates/index.html:48 templates/product_form.html:23
+msgid "Precio Base"
+msgstr ""
+
+#: templates/product_detail.html:6
+msgid "Detalles del producto."
+msgstr ""
+
+#: templates/product_detail.html:34 templates/products.html:20
+msgid "Precio"
+msgstr ""
+
+#: templates/product_detail.html:38 templates/product_form.html:29
+msgid "Tamaño / Formato"
+msgstr ""
+
+#: templates/product_detail.html:42
+msgid "País de Origen"
+msgstr ""
+
+#: templates/product_detail.html:46
+msgid "Tiendas disponibles"
+msgstr ""
+
+#: templates/product_detail.html:63 templates/product_detail.html:79
+#: templates/store_detail.html:154 templates/store_detail.html:189
+msgid "Stock"
+msgstr ""
+
+#: templates/product_detail.html:73
+msgid ""
+"Añadir a\n"
+"                                    tienda..."
+msgstr ""
+
+#: templates/product_form.html:4 templates/product_form.html:8
+msgid "Editar Producto"
+msgstr ""
+
+#: templates/product_form.html:4 templates/product_form.html:8
+msgid "Nuevo Producto"
+msgstr ""
+
+#: templates/product_form.html:17
+msgid "Nombre del Producto"
+msgstr ""
+
+#: templates/product_form.html:25
+msgid "El precio debe ser mayor a 0."
+msgstr ""
+
+#: templates/product_form.html:32
+msgid "No debe exceder los 50 caracteres."
+msgstr ""
+
+#: templates/product_form.html:36
+msgid "País de Origen (ISO Code)"
+msgstr ""
+
+#: templates/product_form.html:39
+msgid "2 o 3 letras (ej. ES, FR)"
+msgstr ""
+
+#: templates/product_form.html:40
+msgid "Use el código ISO de 2 o 3 letras (ej. ES)."
+msgstr ""
+
+#: templates/product_form.html:51
+msgid "Color (#Hex)"
+msgstr ""
+
+#: templates/product_form.html:65
+msgid "Crear Producto"
+msgstr ""
+
+#: templates/products.html:3
+msgid "Productos - FIWARE Smart Store"
+msgstr ""
+
+#: templates/products.html:6
+msgid "Todos los artículos disponibles en nuestra red."
+msgstr ""
+
+#: templates/products.html:10
+msgid "Añadir Producto"
+msgstr ""
+
+#: templates/products.html:18 templates/stores.html:17
+msgid "Imagen"
+msgstr ""
+
+#: templates/products.html:21
+msgid "Tamaño"
+msgstr ""
+
+#: templates/products.html:22
+msgid "Color"
+msgstr ""
+
+#: templates/products.html:23
+msgid "Origen"
+msgstr ""
+
+#: templates/products.html:44
+msgid "N/A"
+msgstr ""
+
+#: templates/products.html:53
+msgid "¿Estás seguro de eliminar este producto de forma permanente?"
+msgstr ""
+
+#: templates/products.html:63
+msgid "No existen productos registrados en este momento."
+msgstr ""
+
+#: templates/shelf_form.html:2
+msgid "Shelf Form"
+msgstr ""
+
+#: templates/shelf_form.html:8
+msgid "Edit Shelf"
+msgstr ""
+
+#: templates/shelf_form.html:10
+msgid "New Shelf"
+msgstr ""
+
+#: templates/shelf_form.html:14
+msgid "Back"
+msgstr ""
+
+#: templates/shelf_form.html:25
+msgid "Store"
+msgstr ""
+
+#: templates/shelf_form.html:31
+msgid "Shelf Name"
+msgstr ""
+
+#: templates/shelf_form.html:34
+msgid "e.g. Corner Unit"
+msgstr ""
+
+#: templates/shelf_form.html:37
+msgid "Max Capacity"
+msgstr ""
+
+#: templates/shelf_form.html:43
+msgid "Cancel"
+msgstr ""
+
+#: templates/shelf_form.html:45
+msgid "Save"
+msgstr ""
+
+#: templates/store_detail.html:6
+msgid "Detalles de la ubicación."
+msgstr ""
+
+#: templates/store_detail.html:103
+msgid "Condiciones Climáticas"
+msgstr ""
+
+#: templates/store_detail.html:121
+msgid "Últimos Tweets"
+msgstr ""
+
+#: templates/store_detail.html:134 templates/store_form.html:23
+#: templates/stores.html:19
+msgid "Dirección"
+msgstr ""
+
+#: templates/store_detail.html:138
+msgid "Coordenadas (Location)"
+msgstr ""
+
+#: templates/store_detail.html:142
+msgid "Inventario de Productos"
+msgstr ""
+
+#: templates/store_detail.html:162 templates/store_detail.html:206
+msgid "Modificar"
+msgstr ""
+
+#: templates/store_detail.html:168
+msgid "¿Borrar producto del inventario?"
+msgstr ""
+
+#: templates/store_detail.html:183
+msgid ""
+"Añadir\n"
+"                                    producto..."
+msgstr ""
+
+#: templates/store_detail.html:198
+msgid "Baldas"
+msgstr ""
+
+#: templates/store_detail.html:211
+msgid "¿Borrar balda?"
+msgstr ""
+
+#: templates/store_detail.html:220
+msgid "Nombre de la balda"
+msgstr ""
+
+#: templates/store_detail.html:228
+msgid "Plantilla de Empleados"
+msgstr ""
+
+#: templates/store_detail.html:234
+msgid "Sin empleados asignados."
+msgstr ""
+
+#: templates/store_form.html:4 templates/store_form.html:8
+msgid "Editar Tienda"
+msgstr ""
+
+#: templates/store_form.html:4 templates/store_form.html:8
+msgid "Nueva Tienda"
+msgstr ""
+
+#: templates/store_form.html:17
+msgid "Nombre de la Tienda"
+msgstr ""
+
+#: templates/store_form.html:25
+msgid "La dirección no debe exceder 200 caracteres."
+msgstr ""
+
+#: templates/store_form.html:29
+msgid "Coordenadas (Lat, Long)"
+msgstr ""
+
+#: templates/store_form.html:32
+msgid "Formato inválido. Use \"Latitud, Longitud\" con números decimales."
+msgstr ""
+
+#: templates/store_form.html:43
+msgid "URL de la Tienda"
+msgstr ""
+
+#: templates/store_form.html:50 templates/stores.html:21
+msgid "Teléfono"
+msgstr ""
+
+#: templates/store_form.html:52
+msgid "El teléfono no debe exceder 50 caracteres."
+msgstr ""
+
+#: templates/store_form.html:56
+msgid "Código ISO del País"
+msgstr ""
+
+#: templates/store_form.html:58
+msgid "Dos letras (ej. ES, US, DE)"
+msgstr ""
+
+#: templates/store_form.html:59
+msgid "Debe ser exactamente 2 letras (código ISO)."
+msgstr ""
+
+#: templates/store_form.html:63
+msgid "Capacidad (m³)"
+msgstr ""
+
+#: templates/store_form.html:65
+msgid "La capacidad debe ser un número entero positivo o cero."
+msgstr ""
+
+#: templates/store_form.html:69
+msgid "Descripción"
+msgstr ""
+
+#: templates/store_form.html:71
+msgid "Descripción inválida."
+msgstr ""
+
+#: templates/store_form.html:76
+msgid "Crear Tienda"
+msgstr ""
+
+#: templates/stores.html:3
+msgid "Tiendas - FIWARE Smart Store"
+msgstr ""
+
+#: templates/stores.html:6
+msgid "Explora las ubicaciones de nuestra cadena."
+msgstr ""
+
+#: templates/stores.html:10
+msgid "Añadir Tienda"
+msgstr ""
+
+#: templates/stores.html:20
+msgid "Capacidad"
+msgstr ""
+
+#: templates/stores.html:44
+msgid "¿Estás seguro de eliminar esta tienda de forma permanente?"
+msgstr ""
+
+#: templates/stores.html:54
+msgid "No existen tiendas registradas en este momento."
+msgstr ""
+
+#: templates/stores_map.html:2 templates/stores_map.html:11
+msgid "Stores Map"
+msgstr ""
+
+#: templates/stores_map.html:108
+msgid "View details"
+msgstr ""
+

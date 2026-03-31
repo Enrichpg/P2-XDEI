@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_babel import Babel, gettext as _, refresh
 from flask_socketio import SocketIO
@@ -325,13 +325,22 @@ def create_store():
         address = request.form.get('address')
         location = request.form.get('location')
         image = request.form.get('image')
+        url = request.form.get('url')
+        telephone = request.form.get('telephone')
+        countryCode = request.form.get('countryCode')
+        capacity = request.form.get('capacity')
+        description = request.form.get('description')
         
-        if not name:
-            return "Name is required", 400
+        if not name or len(name) < 2:
+            flash(_('El nombre es obligatorio y debe tener al menos 2 caracteres.'), 'error')
+            return render_template('store_form.html', store=None)
             
-        store = Store(name=name, address=address, location=location, image=image)
+        store = Store(name=name, address=address, location=location, image=image,
+                     url=url, telephone=telephone, countryCode=countryCode,
+                     capacity=int(capacity) if capacity else None, description=description)
         db.session.add(store)
         db.session.commit()
+        flash(_('Store created successfully!'), 'success')
         return redirect(url_for('list_stores'))
     return render_template('store_form.html', store=None)
 
@@ -339,13 +348,26 @@ def create_store():
 def edit_store(id):
     store = Store.query.get(id)
     if not store:
-        return "Store not found", 404
+        flash(_('Store not found.'), 'error')
+        return redirect(url_for('list_stores'))
     if request.method == 'POST':
-        store.name = request.form.get('name')
+        name = request.form.get('name')
+        if not name or len(name) < 2:
+            flash(_('El nombre es obligatorio y debe tener al menos 2 caracteres.'), 'error')
+            return render_template('store_form.html', store=store)
+
+        store.name = name
         store.address = request.form.get('address')
         store.location = request.form.get('location')
         store.image = request.form.get('image')
+        store.url = request.form.get('url')
+        store.telephone = request.form.get('telephone')
+        store.countryCode = request.form.get('countryCode')
+        cap = request.form.get('capacity')
+        store.capacity = int(cap) if cap else None
+        store.description = request.form.get('description')
         db.session.commit()
+        flash(_('Store updated successfully!'), 'success')
         return redirect(url_for('store_detail', id=id))
     return render_template('store_form.html', store=store)
 
@@ -387,17 +409,24 @@ def product_detail(id):
 def create_product():
     if request.method == 'POST':
         name = request.form.get('name')
-        price = float(request.form.get('price', 0))
+        try:
+            price = float(request.form.get('price', 0))
+        except ValueError:
+            price = 0
+            
         size = request.form.get('size')
         originCountry = request.form.get('originCountry')
         image = request.form.get('image')
+        color = request.form.get('color')
         
-        if not name or not price:
-            return "Name and Price are required", 400
+        if not name or price <= 0:
+            flash(_('El nombre es obligatorio y el precio debe ser mayor a 0.'), 'error')
+            return render_template('product_form.html', product=None)
             
-        product = Product(name=name, price=price, size=size, originCountry=originCountry, image=image)
+        product = Product(name=name, price=price, size=size, originCountry=originCountry, image=image, color=color)
         db.session.add(product)
         db.session.commit()
+        flash(_('Product created successfully!'), 'success')
         return redirect(url_for('list_products'))
     return render_template('product_form.html', product=None)
 
@@ -405,14 +434,27 @@ def create_product():
 def edit_product(id):
     product = Product.query.get(id)
     if not product:
-        return "Product not found", 404
+        flash(_('Product not found.'), 'error')
+        return redirect(url_for('list_products'))
     if request.method == 'POST':
-        product.name = request.form.get('name')
-        product.price = float(request.form.get('price', 0))
+        name = request.form.get('name')
+        try:
+            price = float(request.form.get('price', 0))
+        except ValueError:
+            price = 0
+            
+        if not name or price <= 0:
+            flash(_('El nombre es obligatorio y el precio debe ser mayor a 0.'), 'error')
+            return render_template('product_form.html', product=product)
+
+        product.name = name
+        product.price = price
         product.size = request.form.get('size')
         product.originCountry = request.form.get('originCountry')
         product.image = request.form.get('image')
+        product.color = request.form.get('color')
         db.session.commit()
+        flash(_('Product updated successfully!'), 'success')
         return redirect(url_for('product_detail', id=id))
     return render_template('product_form.html', product=product)
 
@@ -535,16 +577,31 @@ def create_employee():
     if request.method == 'POST':
         name = request.form.get('name')
         image = request.form.get('image')
-        salary = float(request.form.get('salary', 0))
+        try:
+            salary = float(request.form.get('salary', 0))
+        except ValueError:
+            salary = 0
         role = request.form.get('role')
         store_id = request.form.get('store_id')
+        email = request.form.get('email')
+        dateOfContract = request.form.get('dateOfContract')
+        skills = request.form.getlist('skills')
+        username = request.form.get('username')
+        password = request.form.get('password')
         
-        if not name or not role or not store_id:
-            return "Name, Role, and Store are required", 400
+        if not name or not role or not store_id or not username or not password or not email:
+            flash(_('Information is incomplete. Please check required fields.'), 'error')
+            return render_template('employee_form.html', employee=None, stores=stores)
             
-        employee = Employee(name=name, image=image, salary=salary, role=role, store_id=int(store_id))
+        import json
+        employee = Employee(
+            name=name, image=image, salary=salary, role=role, 
+            store_id=int(store_id), email=email, dateOfContract=dateOfContract,
+            skills=json.dumps(skills), username=username, password=password
+        )
         db.session.add(employee)
         db.session.commit()
+        flash(_('Employee created successfully!'), 'success')
         return redirect(url_for('list_employees'))
     return render_template('employee_form.html', employee=None, stores=stores)
 
@@ -552,15 +609,40 @@ def create_employee():
 def edit_employee(id):
     employee = Employee.query.get(id)
     if not employee:
-        return "Employee not found", 404
+        flash(_('Employee not found.'), 'error')
+        return redirect(url_for('list_employees'))
     stores = Store.query.all()
     if request.method == 'POST':
-        employee.name = request.form.get('name')
+        name = request.form.get('name')
+        role = request.form.get('role')
+        store_id = request.form.get('store_id')
+        username = request.form.get('username')
+        email = request.form.get('email')
+
+        if not name or not role or not store_id or not username or not email:
+            flash(_('Information is incomplete. Please check required fields.'), 'error')
+            return render_template('employee_form.html', employee=employee, stores=stores)
+
+        employee.name = name
         employee.image = request.form.get('image')
-        employee.salary = float(request.form.get('salary', 0))
-        employee.role = request.form.get('role')
-        employee.store_id = int(request.form.get('store_id'))
+        try:
+            employee.salary = float(request.form.get('salary', 0))
+        except ValueError:
+            pass
+        employee.role = role
+        employee.store_id = int(store_id)
+        employee.email = email
+        employee.dateOfContract = request.form.get('dateOfContract')
+        import json
+        employee.skills = json.dumps(request.form.getlist('skills'))
+        employee.username = username
+        
+        password = request.form.get('password')
+        if password:  # ONLY update if provided
+            employee.password = password
+
         db.session.commit()
+        flash(_('Employee updated successfully!'), 'success')
         return redirect(url_for('employee_detail', id=id))
     return render_template('employee_form.html', employee=employee, stores=stores)
 

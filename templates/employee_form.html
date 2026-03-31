@@ -1,47 +1,111 @@
 {% extends "base.html" %}
 
-{% block title %}{{ _('Edit Employee') if employee else _('New Employee') }}{% endblock %}
+{% block title %}
+{% if employee %}{{ _('Editar Empleado') }}{% else %}{{ _('Nuevo Empleado') }}{% endif %} - {{ _('FIWARE Smart Store') }}
+{% endblock %}
+
+{% block header_title %}
+{% if employee %}{{ _('Editar Empleado') }}{% else %}{{ _('Nuevo Empleado') }}{% endif %}
+{% endblock %}
 
 {% block content %}
 <div class="form-container">
-    <h1>{{ _('Edit Employee') if employee else _('New Employee') }}</h1>
+    <a href="{{ url_for('list_employees') }}" class="btn-text"><i class="fas fa-arrow-left"></i> {{ _('Cancelar') }}</a>
 
-    <form method="POST" class="modern-form">
+    <form method="POST" class="crud-form validated-form" novalidate>
         <div class="form-group">
-            <label for="name">{{ _('Name') }}</label>
-            <input type="text" id="name" name="name" value="{{ employee.name if employee else '' }}" required>
+            <label for="name">{{ _('Nombre') }} *</label>
+            <input type="text" id="name" name="name" value="{{ employee.name if employee else '' }}" required minlength="2" maxlength="100">
+            <span class="field-error hidden">{{ _('El nombre es obligatorio (2-100 caracteres).') }}</span>
         </div>
 
         <div class="form-group">
-            <label for="role">{{ _('Role') }}</label>
-            <input type="text" id="role" name="role" value="{{ employee.role if employee else '' }}" required>
+            <label for="role">{{ _('Rol') }} *</label>
+            <select id="role" name="role" required>
+                <option value="" disabled {% if not employee or not employee.role %}selected{% endif %}>{{ _('Selecciona un rol...') }}</option>
+                <option value="Manager" {% if employee and employee.role == 'Manager' %}selected{% endif %}>{{ _('Manager') }}</option>
+                <option value="Cashier" {% if employee and employee.role == 'Cashier' %}selected{% endif %}>{{ _('Cashier') }}</option>
+                <option value="StockClerk" {% if employee and employee.role == 'StockClerk' %}selected{% endif %}>{{ _('StockClerk') }}</option>
+            </select>
+            <span class="field-error hidden">{{ _('Debes seleccionar un rol válido.') }}</span>
         </div>
 
         <div class="form-group">
-            <label for="salary">{{ _('Salary') }}</label>
-            <input type="number" id="salary" name="salary" step="0.01"
-                value="{{ employee.salary if employee else '' }}">
+            <label for="salary">{{ _('Salario') }}</label>
+            <input type="number" id="salary" name="salary" step="0.01" value="{{ employee.salary if employee else '' }}" min="0">
+            <span class="field-error hidden">{{ _('El salario debe ser mayor o igual a 0.') }}</span>
         </div>
 
         <div class="form-group">
-            <label for="image">{{ _('Image URL') }}</label>
+            <label for="email">{{ _('Correo Electrónico') }} *</label>
+            <input type="email" id="email" name="email" value="{{ employee.email if employee else '' }}" required>
+            <span class="field-error hidden">{{ _('Introduce una dirección de correo válida.') }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="dateOfContract">{{ _('Fecha de Contratación') }}</label>
+            {% set dt = employee.dateOfContract[:16] if employee and employee.dateOfContract else '' %}
+            <input type="datetime-local" id="dateOfContract" name="dateOfContract" value="{{ dt }}">
+            <span class="field-error hidden">{{ _('Selecciona una fecha y hora válidas.') }}</span>
+        </div>
+
+        <div class="form-group">
+            <label>{{ _('Habilidades (Skills)') }}</label>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="skills" value="MachineryDriving" 
+                    {% if employee and employee.skills and 'MachineryDriving' in employee.skills %}checked{% endif %}>
+                    {{ _('Conducción de Maquinaria') }}
+                </label>
+                <label>
+                    <input type="checkbox" name="skills" value="WritingReports"
+                    {% if employee and employee.skills and 'WritingReports' in employee.skills %}checked{% endif %}>
+                    {{ _('Redacción de Informes') }}
+                </label>
+                <label>
+                    <input type="checkbox" name="skills" value="CustomerRelationships"
+                    {% if employee and employee.skills and 'CustomerRelationships' in employee.skills %}checked{% endif %}>
+                    {{ _('Atención al Cliente') }}
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="username">{{ _('Nombre de Usuario') }} *</label>
+            <input type="text" id="username" name="username" value="{{ employee.username if employee else '' }}" required maxlength="50">
+            <span class="field-error hidden">{{ _('El nombre de usuario es obligatorio (max 50).') }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="password">{{ _('Contraseña') }} {% if not employee %}*{% endif %}</label>
+            <input type="password" id="password" name="password" minlength="6" maxlength="255" {% if not employee %}required{% endif %}>
+            <span class="text-muted" style="display:block; font-size: 0.8rem; margin-top:0.2rem;">
+                {% if employee %}{{ _('Deja en blanco para no cambiarla.') }}{% else %}{{ _('Mínimo 6 caracteres.') }}{% endif %}
+            </span>
+            <span class="field-error hidden">{{ _('La contraseña debe tener al menos 6 caracteres.') }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="image">{{ _('URL de la Imagen') }}</label>
             <input type="url" id="image" name="image" value="{{ employee.image if employee else '' }}">
+            <span class="field-error hidden">{{ _('Debe ser una URL válida (ej. https://...).') }}</span>
         </div>
 
         <div class="form-group">
-            <label for="store_id">{{ _('Store') }}</label>
+            <label for="store_id">{{ _('Tienda Asignada') }} *</label>
             <select id="store_id" name="store_id" required>
-                <option value="">-- {{ _('Select Store') }} --</option>
+                <option value="" disabled {% if not employee %}selected{% endif %}>-- {{ _('Seleccionar Tienda') }} --</option>
                 {% for store in stores %}
-                <option value="{{ store.id }}" {{ 'selected' if employee and employee.store_id==store.id else '' }}>{{
-                    _(store.name) }}</option>
+                <option value="{{ store.id }}" {{ 'selected' if employee and employee.store_id==store.id else '' }}>{{ _(store.name) }}</option>
                 {% endfor %}
             </select>
+            <span class="field-error hidden">{{ _('Debes asignar una tienda.') }}</span>
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">{{ _('Save') }}</button>
-            <a href="{{ url_for('list_employees') }}" class="btn btn-secondary">{{ _('Cancel') }}</a>
+            <button type="submit" class="btn-primary">
+                {% if employee %}{{ _('Guardar Cambios') }}{% else %}{{ _('Crear Empleado') }}{% endif %}
+            </button>
         </div>
     </form>
 </div>

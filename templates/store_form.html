@@ -12,27 +12,63 @@
 <div class="form-container">
     <a href="{{ url_for('list_stores') }}" class="btn-text"><i class="fas fa-arrow-left"></i> {{ _('Cancelar') }}</a>
 
-    <form method="POST" class="crud-form">
+    <form method="POST" class="crud-form validated-form" novalidate>
         <div class="form-group">
             <label for="name">{{ _('Nombre de la Tienda') }} *</label>
-            <input type="text" id="name" name="name" value="{{ store.name if store else '' }}" required>
+            <input type="text" id="name" name="name" value="{{ store.name if store else '' }}" required minlength="2" maxlength="100">
+            <span class="field-error hidden">{{ _('El nombre es obligatorio (2-100 caracteres).') }}</span>
         </div>
 
         <div class="form-group">
             <label for="address">{{ _('Dirección') }}</label>
-            <input type="text" id="address" name="address" value="{{ store.address if store else '' }}">
+            <input type="text" id="address" name="address" value="{{ store.address if store else '' }}" maxlength="200">
+            <span class="field-error hidden">{{ _('La dirección no debe exceder 200 caracteres.') }}</span>
         </div>
 
         <div class="form-group">
             <label for="location">{{ _('Coordenadas (Lat, Long)') }}</label>
             <input type="text" id="location" name="location" value="{{ store.location if store else '' }}"
-                placeholder="e.g. 52.5075, 13.3903">
+                placeholder="e.g. 52.5075, 13.3903" pattern="^-?\d+(\.\d+)?,\s*-?\d+(\.\d+)?$">
+            <span class="field-error hidden">{{ _('Formato inválido. Use "Latitud, Longitud" con números decimales.') }}</span>
         </div>
 
         <div class="form-group">
             <label for="image">{{ _('URL de la Imagen') }}</label>
             <input type="url" id="image" name="image" value="{{ store.image if store else '' }}"
                 placeholder="https://...">
+            <span class="field-error hidden">{{ _('Debe ser una URL válida (ej. https://...).') }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="url">{{ _('URL de la Tienda') }}</label>
+            <input type="url" id="url" name="url" value="{{ store.url if store else '' }}"
+                placeholder="https://...">
+            <span class="field-error hidden">{{ _('Debe ser una URL válida (ej. https://...).') }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="telephone">{{ _('Teléfono') }}</label>
+            <input type="tel" id="telephone" name="telephone" value="{{ store.telephone if store else '' }}" maxlength="50">
+            <span class="field-error hidden">{{ _('El teléfono no debe exceder 50 caracteres.') }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="countryCode">{{ _('Código ISO del País') }}</label>
+            <input type="text" id="countryCode" name="countryCode" value="{{ store.countryCode if store else '' }}"
+                placeholder="Ej. ES, DE" pattern="^[A-Za-z]{2}$" maxlength="2" title="{{ _('Dos letras (ej. ES, US, DE)') }}">
+            <span class="field-error hidden">{{ _('Debe ser exactamente 2 letras (código ISO).') }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="capacity">{{ _('Capacidad (m³)') }}</label>
+            <input type="number" id="capacity" name="capacity" value="{{ store.capacity if store else '' }}" min="0" step="1">
+            <span class="field-error hidden">{{ _('La capacidad debe ser un número entero positivo o cero.') }}</span>
+        </div>
+
+        <div class="form-group">
+            <label for="description">{{ _('Descripción') }}</label>
+            <textarea id="description" name="description" rows="4">{{ store.description if store else '' }}</textarea>
+            <span class="field-error hidden">{{ _('Descripción inválida.') }}</span>
         </div>
 
         <div class="form-actions">

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-03-04 18:44+0100\n"
+"POT-Creation-Date: 2026-03-31 09:37+0200\n"
 "PO-Revision-Date: 2026-02-24 16:49+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,409 +16,412 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.18.0\n"
 
-#: dummy_translations.py:4
-msgid "Leche"
-msgstr "Milk"
-
-#: dummy_translations.py:5
-msgid "Pan"
-msgstr "Bread"
-
-#: dummy_translations.py:6
-msgid "Huevos"
-msgstr "Eggs"
-
-#: dummy_translations.py:7
-msgid "Arroz"
-msgstr "Rice"
-
-#: dummy_translations.py:8
-msgid "Pasta"
-msgstr "Pasta"
-
-#: dummy_translations.py:9
-msgid "Manzanas"
-msgstr "Apples"
-
-#: dummy_translations.py:10
-msgid "Plátanos"
-msgstr "Bananas"
-
-#: dummy_translations.py:11
-msgid "Pollo"
-msgstr "Chicken"
-
-#: dummy_translations.py:12
-msgid "Ternera"
-msgstr "Beef"
-
-#: dummy_translations.py:13
-msgid "Agua"
-msgstr "Water"
-
-#: dummy_translations.py:16
-msgid "Store Alpha"
-msgstr "Store Alpha"
-
-#: dummy_translations.py:17
-msgid "Store Beta"
-msgstr "Store Beta"
-
-#: dummy_translations.py:18
-msgid "Store Gamma"
-msgstr "Store Gamma"
-
-#: dummy_translations.py:19
-msgid "Store Delta"
-msgstr "Store Delta"
-
-#: dummy_translations.py:22
-msgid "Friedrichstraße 44, 10969 Kreuzberg, Berlin"
+#: app.py:335 app.py:356
+msgid "El nombre es obligatorio y debe tener al menos 2 caracteres."
 msgstr ""
 
-#: dummy_translations.py:23
-msgid "Gran Vía 1, 28013 Madrid, Spain"
+#: app.py:343
+msgid "Store created successfully!"
 msgstr ""
 
-#: dummy_translations.py:24
-msgid "Corso Vittorio Emanuele II, 10123 Torino TO, Italy"
+#: app.py:351
+msgid "Store not found."
 msgstr ""
 
-#: dummy_translations.py:25
-msgid "Champs-Élysées, 75008 Paris, France"
+#: app.py:370
+msgid "Store updated successfully!"
 msgstr ""
 
-#: dummy_translations.py:28 templates/base.html:24 templates/dashboard.html:5
-msgid "Dashboard"
-msgstr "Dashboard"
+#: app.py:423 app.py:447
+msgid "El nombre es obligatorio y el precio debe ser mayor a 0."
+msgstr ""
 
-#: dummy_translations.py:29 templates/dashboard.html:14
-msgid "Tiendas"
-msgstr "Stores"
+#: app.py:429
+msgid "Product created successfully!"
+msgstr ""
 
-#: dummy_translations.py:30 templates/base.html:25
-msgid "Stores"
-msgstr "Stores"
+#: app.py:437
+msgid "Product not found."
+msgstr ""
 
-#: dummy_translations.py:31 templates/dashboard.html:20
-msgid "Productos"
-msgstr "Products"
+#: app.py:457
+msgid "Product updated successfully!"
+msgstr ""
 
-#: dummy_translations.py:32 templates/base.html:26
-msgid "Products"
-msgstr "Products"
+#: app.py:593 app.py:623
+msgid "Information is incomplete. Please check required fields."
+msgstr ""
 
-#: dummy_translations.py:33 templates/dashboard.html:26
-msgid "Empleados"
-msgstr "Employees"
+#: app.py:604
+msgid "Employee created successfully!"
+msgstr ""
 
-#: dummy_translations.py:34 templates/dashboard.html:6
-msgid "Resumen de la cadena de supermercados."
-msgstr "Supermarket chain overview."
+#: app.py:612
+#, fuzzy
+msgid "Employee not found."
+msgstr "No employees found."
 
-#: dummy_translations.py:35 templates/dashboard.html:15
-msgid "Ver Tiendas"
-msgstr "View Stores"
+#: app.py:645
+msgid "Employee updated successfully!"
+msgstr ""
 
-#: dummy_translations.py:36 templates/dashboard.html:21
-msgid "Ver Productos"
-msgstr "View Products"
-
-#: dummy_translations.py:37 templates/index.html:25 templates/stores.html:5
-msgid "Nuestras Tiendas"
-msgstr "Our Stores"
-
-#: dummy_translations.py:38 templates/stores.html:6
-msgid "Explora las ubicaciones de nuestra cadena."
-msgstr "Explore the locations of our chain."
-
-#: dummy_translations.py:39 templates/index.html:43 templates/products.html:5
-msgid "Catálogo Global de Productos"
-msgstr "Global Product Catalog"
-
-#: dummy_translations.py:40 templates/products.html:6
-msgid "Todos los artículos disponibles en nuestra red."
-msgstr "All items available in our network."
-
-#: dummy_translations.py:41 templates/products.html:25 templates/stores.html:23
-msgid "Detalles"
-msgstr "Details"
-
-#: dummy_translations.py:42 templates/employees.html:29
-msgid "Details"
-msgstr "Details"
-
-#: dummy_translations.py:43 templates/stores.html:10
-msgid "Añadir Tienda"
-msgstr "Add Store"
-
-#: dummy_translations.py:44 templates/products.html:10
-msgid "Añadir Producto"
-msgstr "Add Product"
-
-#: dummy_translations.py:45 templates/employee_detail.html:13
-#: templates/product_detail.html:15 templates/store_detail.html:29
-msgid "Editar"
-msgstr "Edit"
-
-#: dummy_translations.py:46 templates/employee_detail.html:16
-#: templates/product_detail.html:18 templates/store_detail.html:32
-#: templates/store_detail.html:78 templates/store_detail.html:118
-msgid "Borrar"
-msgstr "Delete"
-
-#: dummy_translations.py:47 templates/employee_detail.html:15
-#: templates/product_detail.html:17 templates/store_detail.html:31
-msgid "¿Estás seguro?"
-msgstr "Are you sure?"
-
-#: dummy_translations.py:48 templates/employee_detail.html:8
-#: templates/product_detail.html:11 templates/store_detail.html:26
-msgid "Volver"
-msgstr "Back"
-
-#: dummy_translations.py:49 templates/product_form.html:13
-#: templates/store_form.html:13
-msgid "Cancelar"
-msgstr "Cancel"
-
-#: dummy_translations.py:50 templates/store_form.html:17
-msgid "Nombre de la Tienda"
-msgstr "Store Name"
-
-#: dummy_translations.py:51 templates/product_form.html:17
-msgid "Nombre del Producto"
-msgstr "Product Name"
-
-#: dummy_translations.py:52 templates/store_detail.html:47
-#: templates/store_form.html:22
-msgid "Dirección"
-msgstr "Address"
-
-#: dummy_translations.py:53 templates/store_form.html:27
-msgid "Coordenadas (Lat, Long)"
-msgstr "Coordinates (Lat, Long)"
-
-#: dummy_translations.py:54 templates/product_form.html:40
-#: templates/store_form.html:33
-msgid "URL de la Imagen"
-msgstr "Image URL"
-
-#: dummy_translations.py:55 templates/index.html:48
-#: templates/product_form.html:22
-msgid "Precio Base"
-msgstr "Base Price"
-
-#: dummy_translations.py:56 templates/product_detail.html:33
-msgid "Precio"
-msgstr "Price"
-
-#: dummy_translations.py:57 templates/product_detail.html:37
-#: templates/product_form.html:28
-msgid "Tamaño / Formato"
-msgstr "Size / Format"
-
-#: dummy_translations.py:58 templates/product_detail.html:41
-msgid "País de Origen"
-msgstr "Country of Origin"
-
-#: dummy_translations.py:59 templates/product_form.html:34
-msgid "País de Origen (ISO Code)"
-msgstr "Country of Origin (ISO Code)"
-
-#: dummy_translations.py:60
-msgid "Disponible en tiendas"
-msgstr "Available in stores"
-
-#: dummy_translations.py:61
-msgid "Stock disponible"
-msgstr "Available Stock"
-
-#: dummy_translations.py:62 templates/base.html:35 templates/index.html:20
-msgid "Gestión inteligente para tu cadena de supermercados."
-msgstr "Smart management for your supermarket chain."
-
-#: dummy_translations.py:63 templates/base.html:7 templates/base.html:22
-#: templates/base.html:34 templates/base.html:45 templates/index.html:7
+#: templates/base.html:7 templates/base.html:29 templates/base.html:44
+#: templates/base.html:64 templates/employee_form.html:4 templates/index.html:7
 #: templates/index.html:19 templates/index.html:64
 #: templates/product_detail.html:3 templates/product_form.html:4
 #: templates/store_detail.html:3 templates/store_form.html:4
 msgid "FIWARE Smart Store"
 msgstr "FIWARE Smart Store"
 
-#: dummy_translations.py:65
-msgid "Employee"
-msgstr "Employee"
+#: templates/base.html:32 templates/dashboard.html:5 templates/home.html:6
+msgid "Dashboard"
+msgstr "Dashboard"
 
-#: dummy_translations.py:66 templates/base.html:27 templates/employees.html:3
-#: templates/employees.html:7
+#: templates/base.html:33 templates/home.html:14
+msgid "Stores"
+msgstr "Stores"
+
+#: templates/base.html:34 templates/home.html:19
+msgid "Products"
+msgstr "Products"
+
+#: templates/base.html:35 templates/employees.html:3 templates/employees.html:7
+#: templates/home.html:24
 msgid "Employees"
 msgstr "Employees"
 
-#: dummy_translations.py:67 templates/employees.html:9
-msgid "Add Employee"
-msgstr "Add Employee"
-
-#: dummy_translations.py:68 templates/employee_detail.html:3
-msgid "Employee Detail"
-msgstr "Employee Detail"
-
-#: dummy_translations.py:69
-msgid "Back to Employees"
-msgstr "Back to Employees"
-
-#: dummy_translations.py:70 templates/employee_detail.html:39
-#: templates/employee_form.html:21
-msgid "Salary"
-msgstr "Salary"
-
-#: dummy_translations.py:71 templates/employee_detail.html:43
-msgid "Assigned Store"
-msgstr "Assigned Store"
-
-#: dummy_translations.py:72 templates/employee_detail.html:47
-msgid "NGSI refStore"
-msgstr "NGSI refStore"
-
-#: dummy_translations.py:73 templates/employee_form.html:3
-#: templates/employee_form.html:7
-msgid "Edit Employee"
-msgstr "Edit Employee"
-
-#: dummy_translations.py:74 templates/employee_form.html:3
-#: templates/employee_form.html:7
-msgid "New Employee"
-msgstr "New Employee"
-
-#: dummy_translations.py:75 templates/employee_detail.html:35
-#: templates/employee_form.html:16
-msgid "Role"
-msgstr "Role"
-
-#: dummy_translations.py:76 templates/employee_form.html:34
-msgid "Select Store"
-msgstr "Select Store"
-
-#: dummy_translations.py:77
-msgid "View Employees"
-msgstr "View Employees"
-
-#: dummy_translations.py:78 templates/store_detail.html:134
-msgid "Plantilla de Empleados"
-msgstr "Staff List"
-
-#: dummy_translations.py:79 templates/store_detail.html:140
-msgid "Sin empleados asignados."
-msgstr "No employees assigned."
-
-#: dummy_translations.py:82
-msgid "Manager"
-msgstr "Manager"
-
-#: dummy_translations.py:83
-msgid "Cashier"
-msgstr "Cashier"
-
-#: dummy_translations.py:84
-msgid "Stock Clerk"
-msgstr "Stock Clerk"
-
-#: dummy_translations.py:85
-msgid "Assistant"
-msgstr "Assistant"
-
-#: dummy_translations.py:86
-msgid "Senior Assistant"
-msgstr "Senior Assistant"
-
-#: dummy_translations.py:88 templates/store_detail.html:71
-#: templates/store_detail.html:112
-msgid "Modificar"
-msgstr "Update"
-
-#: dummy_translations.py:89 templates/store_detail.html:55
-msgid "Inventario de Productos"
-msgstr "Product Inventory"
-
-#: dummy_translations.py:90 templates/store_detail.html:104
-msgid "Baldas"
-msgstr "Shelves"
-
-#: dummy_translations.py:91 templates/store_detail.html:126
-msgid "Nombre de la balda"
-msgstr "Shelf Name"
-
-#: dummy_translations.py:92 templates/store_detail.html:117
-msgid "¿Borrar balda?"
-msgstr "Delete Shelf?"
-
-#: dummy_translations.py:93 templates/store_detail.html:77
-msgid "¿Borrar producto del inventario?"
-msgstr "Remove product from inventory?"
-
-#: dummy_translations.py:94 templates/store_detail.html:90
-msgid "Añadir producto..."
-msgstr "Add product..."
-
-#: dummy_translations.py:95 templates/product_detail.html:62
-msgid "Añadir a tienda..."
-msgstr "Add to store..."
-
-#: dummy_translations.py:96 templates/product_detail.html:52
-#: templates/product_detail.html:67 templates/store_detail.html:63
-#: templates/store_detail.html:95
-msgid "Stock"
-msgstr "Stock"
-
-#: dummy_translations.py:97 templates/product_detail.html:45
-msgid "Tiendas disponibles"
-msgstr "Available stores"
+#: templates/base.html:45 templates/index.html:20
+msgid "Gestión inteligente para tu cadena de supermercados."
+msgstr "Smart management for your supermarket chain."
 
 #: templates/dashboard.html:3
 msgid "Dashboard - FIWARE Smart Store"
 msgstr "Dashboard - FIWARE Smart Store"
 
-#: templates/dashboard.html:27
+#: templates/dashboard.html:6
+msgid "Resumen de la cadena de supermercados."
+msgstr "Supermarket chain overview."
+
+#: templates/dashboard.html:50
+msgid "Tiendas"
+msgstr "Stores"
+
+#: templates/dashboard.html:51
+msgid "Ver Tiendas"
+msgstr "View Stores"
+
+#: templates/dashboard.html:56
+msgid "Productos"
+msgstr "Products"
+
+#: templates/dashboard.html:57
+msgid "Ver Productos"
+msgstr "View Products"
+
+#: templates/dashboard.html:62
+msgid "Empleados"
+msgstr "Employees"
+
+#: templates/dashboard.html:63
 msgid "Ver Empleados"
 msgstr "View Employees"
 
-#: templates/employee_detail.html:31 templates/employee_form.html:11
+#: templates/dashboard.html:69
+msgid "Modelo de Datos — Diagrama UML"
+msgstr ""
+
+#: templates/employee_detail.html:3
+msgid "Employee Detail"
+msgstr "Employee Detail"
+
+#: templates/employee_detail.html:8 templates/product_detail.html:11
+#: templates/store_detail.html:80
+msgid "Volver"
+msgstr "Back"
+
+#: templates/employee_detail.html:13 templates/employees.html:45
+#: templates/product_detail.html:15 templates/products.html:50
+#: templates/store_detail.html:83 templates/stores.html:41
+msgid "Editar"
+msgstr "Edit"
+
+#: templates/employee_detail.html:15 templates/product_detail.html:17
+#: templates/store_detail.html:85
+msgid "¿Estás seguro?"
+msgstr "Are you sure?"
+
+#: templates/employee_detail.html:16 templates/product_detail.html:18
+#: templates/store_detail.html:86 templates/store_detail.html:169
+#: templates/store_detail.html:212
+msgid "Borrar"
+msgstr "Delete"
+
+#: templates/employee_detail.html:32
 msgid "Name"
 msgstr "Name"
 
-#: templates/employee_form.html:27
-msgid "Image URL"
-msgstr "Image URL"
+#: templates/employee_detail.html:36
+msgid "Role"
+msgstr "Role"
 
-#: templates/employee_form.html:32 templates/employees.html:27
-msgid "Store"
-msgstr "Store"
+#: templates/employee_detail.html:40
+msgid "Salary"
+msgstr "Salary"
 
-#: templates/employee_form.html:43
-msgid "Save"
-msgstr "Save"
+#: templates/employee_detail.html:44
+msgid "Assigned Store"
+msgstr "Assigned Store"
 
-#: templates/employee_form.html:44
-msgid "Cancel"
+#: templates/employee_detail.html:48
+msgid "NGSI refStore"
+msgstr "NGSI refStore"
+
+#: templates/employee_form.html:4 templates/employee_form.html:8
+#, fuzzy
+msgid "Editar Empleado"
+msgstr "View Employees"
+
+#: templates/employee_form.html:4 templates/employee_form.html:8
+#, fuzzy
+msgid "Nuevo Empleado"
+msgstr "View Employees"
+
+#: templates/employee_form.html:13 templates/product_form.html:13
+#: templates/store_form.html:13
+msgid "Cancelar"
 msgstr "Cancel"
 
-#: templates/employees.html:35
-msgid "No employees found."
-msgstr "No employees found."
+#: templates/employee_form.html:17 templates/employees.html:18
+#: templates/index.html:47 templates/products.html:19 templates/stores.html:18
+msgid "Nombre"
+msgstr "Name"
+
+#: templates/employee_form.html:19 templates/product_form.html:19
+#: templates/store_form.html:19
+msgid "El nombre es obligatorio (2-100 caracteres)."
+msgstr ""
+
+#: templates/employee_form.html:23 templates/employees.html:19
+#, fuzzy
+msgid "Rol"
+msgstr "Role"
+
+#: templates/employee_form.html:25
+msgid "Selecciona un rol..."
+msgstr ""
+
+#: templates/employee_form.html:26
+msgid "Manager"
+msgstr "Manager"
+
+#: templates/employee_form.html:27
+msgid "Cashier"
+msgstr "Cashier"
+
+#: templates/employee_form.html:28
+#, fuzzy
+msgid "StockClerk"
+msgstr "Stock Clerk"
+
+#: templates/employee_form.html:30
+msgid "Debes seleccionar un rol válido."
+msgstr ""
+
+#: templates/employee_form.html:34 templates/employees.html:21
+#, fuzzy
+msgid "Salario"
+msgstr "Salary"
+
+#: templates/employee_form.html:36
+msgid "El salario debe ser mayor o igual a 0."
+msgstr ""
+
+#: templates/employee_form.html:40
+msgid "Correo Electrónico"
+msgstr ""
+
+#: templates/employee_form.html:42
+msgid "Introduce una dirección de correo válida."
+msgstr ""
+
+#: templates/employee_form.html:46
+msgid "Fecha de Contratación"
+msgstr ""
+
+#: templates/employee_form.html:49
+msgid "Selecciona una fecha y hora válidas."
+msgstr ""
+
+#: templates/employee_form.html:53
+msgid "Habilidades (Skills)"
+msgstr ""
+
+#: templates/employee_form.html:58
+msgid "Conducción de Maquinaria"
+msgstr ""
+
+#: templates/employee_form.html:63
+msgid "Redacción de Informes"
+msgstr ""
+
+#: templates/employee_form.html:68
+msgid "Atención al Cliente"
+msgstr ""
+
+#: templates/employee_form.html:74
+#, fuzzy
+msgid "Nombre de Usuario"
+msgstr "Product Name"
+
+#: templates/employee_form.html:76
+msgid "El nombre de usuario es obligatorio (max 50)."
+msgstr ""
+
+#: templates/employee_form.html:80
+msgid "Contraseña"
+msgstr ""
+
+#: templates/employee_form.html:83
+msgid "Deja en blanco para no cambiarla."
+msgstr ""
+
+#: templates/employee_form.html:83
+msgid "Mínimo 6 caracteres."
+msgstr ""
+
+#: templates/employee_form.html:85
+msgid "La contraseña debe tener al menos 6 caracteres."
+msgstr ""
+
+#: templates/employee_form.html:89 templates/product_form.html:44
+#: templates/store_form.html:36
+msgid "URL de la Imagen"
+msgstr "Image URL"
+
+#: templates/employee_form.html:91 templates/product_form.html:47
+#: templates/store_form.html:39 templates/store_form.html:46
+msgid "Debe ser una URL válida (ej. https://...)."
+msgstr ""
+
+#: templates/employee_form.html:95
+#, fuzzy
+msgid "Tienda Asignada"
+msgstr "Stores"
+
+#: templates/employee_form.html:97
+#, fuzzy
+msgid "Seleccionar Tienda"
+msgstr "Edit Store"
+
+#: templates/employee_form.html:102
+#, fuzzy
+msgid "Debes asignar una tienda."
+msgstr "Add to store..."
+
+#: templates/employee_form.html:107 templates/product_form.html:65
+#: templates/store_form.html:76
+msgid "Guardar Cambios"
+msgstr "Save Changes"
+
+#: templates/employee_form.html:107
+#, fuzzy
+msgid "Crear Empleado"
+msgstr "View Employees"
+
+#: templates/employees.html:9
+msgid "Add Employee"
+msgstr "Add Employee"
+
+#: templates/employees.html:17
+msgid "Avatar"
+msgstr ""
+
+#: templates/employees.html:20
+#, fuzzy
+msgid "Tienda"
+msgstr "Stores"
+
+#: templates/employees.html:22 templates/products.html:24
+#: templates/stores.html:22
+msgid "Acciones"
+msgstr ""
+
+#: templates/employees.html:42 templates/products.html:47
+#: templates/stores.html:38
+#, fuzzy
+msgid "Ver Detalles"
+msgstr "Details"
+
+#: templates/employees.html:48
+msgid "¿Estás seguro de eliminar este empleado de forma permanente?"
+msgstr ""
+
+#: templates/employees.html:49 templates/products.html:54
+#: templates/stores.html:45
+msgid "Eliminar"
+msgstr ""
+
+#: templates/employees.html:58
+msgid "No se encontraron empleados registrados."
+msgstr ""
+
+#: templates/home.html:2
+#, fuzzy
+msgid "Home"
+msgstr "Name"
+
+#: templates/home.html:35
+msgid "Entity Model (UML)"
+msgstr ""
+
+#: templates/index.html:25 templates/stores.html:5
+msgid "Nuestras Tiendas"
+msgstr "Our Stores"
 
 #: templates/index.html:31
 msgid "Productos en Stock:"
 msgstr "In Stock Products:"
 
-#: templates/index.html:47
-msgid "Nombre"
-msgstr "Name"
+#: templates/index.html:43 templates/products.html:5
+msgid "Catálogo Global de Productos"
+msgstr "Global Product Catalog"
+
+#: templates/index.html:48 templates/product_form.html:23
+msgid "Precio Base"
+msgstr "Base Price"
 
 #: templates/product_detail.html:6
 msgid "Detalles del producto."
 msgstr "Product details."
+
+#: templates/product_detail.html:34 templates/products.html:20
+msgid "Precio"
+msgstr "Price"
+
+#: templates/product_detail.html:38 templates/product_form.html:29
+msgid "Tamaño / Formato"
+msgstr "Size / Format"
+
+#: templates/product_detail.html:42
+msgid "País de Origen"
+msgstr "Country of Origin"
+
+#: templates/product_detail.html:46
+msgid "Tiendas disponibles"
+msgstr "Available stores"
+
+#: templates/product_detail.html:63 templates/product_detail.html:79
+#: templates/store_detail.html:154 templates/store_detail.html:189
+msgid "Stock"
+msgstr "Stock"
+
+#: templates/product_detail.html:73
+msgid ""
+"Añadir a\n"
+"                                    tienda..."
+msgstr ""
 
 #: templates/product_form.html:4 templates/product_form.html:8
 msgid "Editar Producto"
@@ -428,11 +431,35 @@ msgstr "Edit Product"
 msgid "Nuevo Producto"
 msgstr "New Product"
 
-#: templates/product_form.html:47 templates/store_form.html:40
-msgid "Guardar Cambios"
-msgstr "Save Changes"
+#: templates/product_form.html:17
+msgid "Nombre del Producto"
+msgstr "Product Name"
 
-#: templates/product_form.html:47
+#: templates/product_form.html:25
+msgid "El precio debe ser mayor a 0."
+msgstr ""
+
+#: templates/product_form.html:32
+msgid "No debe exceder los 50 caracteres."
+msgstr ""
+
+#: templates/product_form.html:36
+msgid "País de Origen (ISO Code)"
+msgstr "Country of Origin (ISO Code)"
+
+#: templates/product_form.html:39
+msgid "2 o 3 letras (ej. ES, FR)"
+msgstr ""
+
+#: templates/product_form.html:40
+msgid "Use el código ISO de 2 o 3 letras (ej. ES)."
+msgstr ""
+
+#: templates/product_form.html:51
+msgid "Color (#Hex)"
+msgstr ""
+
+#: templates/product_form.html:65
 msgid "Crear Producto"
 msgstr "Create Product"
 
@@ -440,21 +467,144 @@ msgstr "Create Product"
 msgid "Productos - FIWARE Smart Store"
 msgstr "Products - FIWARE Smart Store"
 
-#: templates/products.html:23
-msgid "Origen:"
-msgstr "Origin:"
+#: templates/products.html:6
+msgid "Todos los artículos disponibles en nuestra red."
+msgstr "All items available in our network."
+
+#: templates/products.html:10
+msgid "Añadir Producto"
+msgstr "Add Product"
+
+#: templates/products.html:18 templates/stores.html:17
+#, fuzzy
+msgid "Imagen"
+msgstr "Image URL"
+
+#: templates/products.html:21
+msgid "Tamaño"
+msgstr ""
+
+#: templates/products.html:22
+#, fuzzy
+msgid "Color"
+msgstr "Chicken"
 
 #: templates/products.html:23
-msgid "Desconocido"
-msgstr "Unknown"
+#, fuzzy
+msgid "Origen"
+msgstr "Origin:"
+
+#: templates/products.html:44
+msgid "N/A"
+msgstr ""
+
+#: templates/products.html:53
+msgid "¿Estás seguro de eliminar este producto de forma permanente?"
+msgstr ""
+
+#: templates/products.html:63
+msgid "No existen productos registrados en este momento."
+msgstr ""
+
+#: templates/shelf_form.html:2
+msgid "Shelf Form"
+msgstr ""
+
+#: templates/shelf_form.html:8
+#, fuzzy
+msgid "Edit Shelf"
+msgstr "Edit Employee"
+
+#: templates/shelf_form.html:10
+msgid "New Shelf"
+msgstr ""
+
+#: templates/shelf_form.html:14
+msgid "Back"
+msgstr ""
+
+#: templates/shelf_form.html:25
+msgid "Store"
+msgstr "Store"
+
+#: templates/shelf_form.html:31
+msgid "Shelf Name"
+msgstr ""
+
+#: templates/shelf_form.html:34
+msgid "e.g. Corner Unit"
+msgstr ""
+
+#: templates/shelf_form.html:37
+msgid "Max Capacity"
+msgstr ""
+
+#: templates/shelf_form.html:43
+msgid "Cancel"
+msgstr "Cancel"
+
+#: templates/shelf_form.html:45
+msgid "Save"
+msgstr "Save"
 
 #: templates/store_detail.html:6
 msgid "Detalles de la ubicación."
 msgstr "Location details."
 
-#: templates/store_detail.html:51
+#: templates/store_detail.html:103
+msgid "Condiciones Climáticas"
+msgstr ""
+
+#: templates/store_detail.html:121
+msgid "Últimos Tweets"
+msgstr ""
+
+#: templates/store_detail.html:134 templates/store_form.html:23
+#: templates/stores.html:19
+msgid "Dirección"
+msgstr "Address"
+
+#: templates/store_detail.html:138
 msgid "Coordenadas (Location)"
 msgstr "Coordinates (Location)"
+
+#: templates/store_detail.html:142
+msgid "Inventario de Productos"
+msgstr "Product Inventory"
+
+#: templates/store_detail.html:162 templates/store_detail.html:206
+msgid "Modificar"
+msgstr "Update"
+
+#: templates/store_detail.html:168
+msgid "¿Borrar producto del inventario?"
+msgstr "Remove product from inventory?"
+
+#: templates/store_detail.html:183
+msgid ""
+"Añadir\n"
+"                                    producto..."
+msgstr ""
+
+#: templates/store_detail.html:198
+msgid "Baldas"
+msgstr "Shelves"
+
+#: templates/store_detail.html:211
+msgid "¿Borrar balda?"
+msgstr "Delete Shelf?"
+
+#: templates/store_detail.html:220
+msgid "Nombre de la balda"
+msgstr "Shelf Name"
+
+#: templates/store_detail.html:228
+msgid "Plantilla de Empleados"
+msgstr "Staff List"
+
+#: templates/store_detail.html:234
+msgid "Sin empleados asignados."
+msgstr "No employees assigned."
 
 #: templates/store_form.html:4 templates/store_form.html:8
 msgid "Editar Tienda"
@@ -464,13 +614,101 @@ msgstr "Edit Store"
 msgid "Nueva Tienda"
 msgstr "New Store"
 
-#: templates/store_form.html:40
+#: templates/store_form.html:17
+msgid "Nombre de la Tienda"
+msgstr "Store Name"
+
+#: templates/store_form.html:25
+msgid "La dirección no debe exceder 200 caracteres."
+msgstr ""
+
+#: templates/store_form.html:29
+msgid "Coordenadas (Lat, Long)"
+msgstr "Coordinates (Lat, Long)"
+
+#: templates/store_form.html:32
+msgid "Formato inválido. Use \"Latitud, Longitud\" con números decimales."
+msgstr ""
+
+#: templates/store_form.html:43
+#, fuzzy
+msgid "URL de la Tienda"
+msgstr "Image URL"
+
+#: templates/store_form.html:50 templates/stores.html:21
+msgid "Teléfono"
+msgstr ""
+
+#: templates/store_form.html:52
+msgid "El teléfono no debe exceder 50 caracteres."
+msgstr ""
+
+#: templates/store_form.html:56
+msgid "Código ISO del País"
+msgstr ""
+
+#: templates/store_form.html:58
+msgid "Dos letras (ej. ES, US, DE)"
+msgstr ""
+
+#: templates/store_form.html:59
+msgid "Debe ser exactamente 2 letras (código ISO)."
+msgstr ""
+
+#: templates/store_form.html:63
+msgid "Capacidad (m³)"
+msgstr ""
+
+#: templates/store_form.html:65
+msgid "La capacidad debe ser un número entero positivo o cero."
+msgstr ""
+
+#: templates/store_form.html:69
+#, fuzzy
+msgid "Descripción"
+msgstr "Address"
+
+#: templates/store_form.html:71
+msgid "Descripción inválida."
+msgstr ""
+
+#: templates/store_form.html:76
 msgid "Crear Tienda"
 msgstr "Create Store"
 
 #: templates/stores.html:3
 msgid "Tiendas - FIWARE Smart Store"
 msgstr "Stores - FIWARE Smart Store"
+
+#: templates/stores.html:6
+msgid "Explora las ubicaciones de nuestra cadena."
+msgstr "Explore the locations of our chain."
+
+#: templates/stores.html:10
+msgid "Añadir Tienda"
+msgstr "Add Store"
+
+#: templates/stores.html:20
+msgid "Capacidad"
+msgstr ""
+
+#: templates/stores.html:44
+msgid "¿Estás seguro de eliminar esta tienda de forma permanente?"
+msgstr ""
+
+#: templates/stores.html:54
+msgid "No existen tiendas registradas en este momento."
+msgstr ""
+
+#: templates/stores_map.html:2 templates/stores_map.html:11
+#, fuzzy
+msgid "Stores Map"
+msgstr "Store Gamma"
+
+#: templates/stores_map.html:108
+#, fuzzy
+msgid "View details"
+msgstr "Details"
 
 #~ msgid "North District"
 #~ msgstr "North District"
@@ -498,18 +736,96 @@ msgstr "Stores - FIWARE Smart Store"
 #~ "                    Details"
 #~ msgstr "View Details"
 
-#: dummy_translations.py
-msgid "Balda 1"
-msgstr "Shelf 1"
+#~ msgid "Leche"
+#~ msgstr "Milk"
 
-#: dummy_translations.py
-msgid "Balda 2"
-msgstr "Shelf 2"
+#~ msgid "Pan"
+#~ msgstr "Bread"
 
-#: dummy_translations.py
-msgid "Balda 3"
-msgstr "Shelf 3"
+#~ msgid "Huevos"
+#~ msgstr "Eggs"
 
-#: dummy_translations.py
-msgid "12 unidades"
-msgstr "12 units"
+#~ msgid "Arroz"
+#~ msgstr "Rice"
+
+#~ msgid "Pasta"
+#~ msgstr "Pasta"
+
+#~ msgid "Manzanas"
+#~ msgstr "Apples"
+
+#~ msgid "Plátanos"
+#~ msgstr "Bananas"
+
+#~ msgid "Ternera"
+#~ msgstr "Beef"
+
+#~ msgid "Agua"
+#~ msgstr "Water"
+
+#~ msgid "Store Alpha"
+#~ msgstr "Store Alpha"
+
+#~ msgid "Store Beta"
+#~ msgstr "Store Beta"
+
+#~ msgid "Store Delta"
+#~ msgstr "Store Delta"
+
+#~ msgid "Friedrichstraße 44, 10969 Kreuzberg, Berlin"
+#~ msgstr ""
+
+#~ msgid "Gran Vía 1, 28013 Madrid, Spain"
+#~ msgstr ""
+
+#~ msgid "Corso Vittorio Emanuele II, 10123 Torino TO, Italy"
+#~ msgstr ""
+
+#~ msgid "Champs-Élysées, 75008 Paris, France"
+#~ msgstr ""
+
+#~ msgid "Disponible en tiendas"
+#~ msgstr "Available in stores"
+
+#~ msgid "Stock disponible"
+#~ msgstr "Available Stock"
+
+#~ msgid "Employee"
+#~ msgstr "Employee"
+
+#~ msgid "Back to Employees"
+#~ msgstr "Back to Employees"
+
+#~ msgid "New Employee"
+#~ msgstr "New Employee"
+
+#~ msgid "Select Store"
+#~ msgstr "Select Store"
+
+#~ msgid "View Employees"
+#~ msgstr "View Employees"
+
+#~ msgid "Assistant"
+#~ msgstr "Assistant"
+
+#~ msgid "Senior Assistant"
+#~ msgstr "Senior Assistant"
+
+#~ msgid "Añadir producto..."
+#~ msgstr "Add product..."
+
+#~ msgid "Desconocido"
+#~ msgstr "Unknown"
+
+#~ msgid "Balda 1"
+#~ msgstr "Shelf 1"
+
+#~ msgid "Balda 2"
+#~ msgstr "Shelf 2"
+
+#~ msgid "Balda 3"
+#~ msgstr "Shelf 3"
+
+#~ msgid "12 unidades"
+#~ msgstr "12 units"
+

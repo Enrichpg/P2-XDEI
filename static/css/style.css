@@ -819,3 +819,74 @@ body.dark-mode .btn-danger-icon { background: rgba(239,83,80,0.1); }
 body.dark-mode .btn-danger-icon:hover { background: rgba(239,83,80,0.2); }
 
 .text-center { text-align: center !important; }
+
+/* --- Form Validation --- */
+.validated-form input:invalid:not(:focus):not(:placeholder-shown),
+.validated-form select:invalid:not(:focus) {
+    border-color: var(--danger-color);
+    background-color: rgba(239, 83, 80, 0.05);
+}
+
+.validated-form input:valid:not(:placeholder-shown),
+.validated-form select:valid:not(:focus) {
+    border-color: var(--secondary-color);
+}
+
+.field-error {
+    color: var(--danger-color);
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+.field-error.hidden {
+    display: none;
+}
+
+/* --- Checkbox Group --- */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(0,0,0,0.02);
+    border-radius: 6px;
+}
+
+body.dark-mode .checkbox-group {
+    background: rgba(255,255,255,0.02);
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+}
+
+/* --- Flash Messages --- */
+.flash-messages {
+    margin-bottom: 1.5rem;
+}
+
+.flash-message {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    font-weight: 500;
+    box-shadow: var(--shadow);
+    color: white;
+}
+
+.flash-success { background: var(--secondary-color); }
+.flash-error { background: var(--danger-color); }
+.flash-warning { background: var(--accent-color); color: #333; }
+.flash-info { background: #3498db; }
