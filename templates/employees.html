@@ -17,6 +17,7 @@
                 <th>{{ _('Avatar') }}</th>
                 <th>{{ _('Nombre') }}</th>
                 <th>{{ _('Rol') }}</th>
+                <th>{{ _('Habilidades') }}</th>
                 <th>{{ _('Tienda') }}</th>
                 <th>{{ _('Salario') }}</th>
                 <th class="text-center">{{ _('Acciones') }}</th>
@@ -27,14 +28,39 @@
             <tr>
                 <td class="col-image text-center">
                     {% if employee.image %}
-                    <img class="thumbnail-avatar" src="{{ employee.image }}" alt="{{ employee.name }}"
+                    <img class="thumbnail-avatar hover-scale" src="{{ employee.image }}" alt="{{ employee.name }}"
                         onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
                     {% else %}
                     <div class="avatar-placeholder">{{ employee.name[0] }}</div>
                     {% endif %}
                 </td>
                 <td class="col-main"><strong>{{ employee.name }}</strong></td>
-                <td><span class="role-badge">{{ _(employee.role) }}</span></td>
+                <td>
+                    <span class="role-badge">
+                        {% if 'Manager' in employee.role %} <i class="fas fa-user-tie"></i>
+                        {% elif 'Cashier' in employee.role %} <i class="fas fa-cash-register"></i>
+                        {% elif 'Stock' in employee.role %} <i class="fas fa-boxes"></i>
+                        {% else %} <i class="fas fa-user-tag"></i> {% endif %}
+                        {{ _(employee.role) }}
+                    </span>
+                </td>
+                <td>
+                    {% if employee.skills %}
+                        <span class="skills-icons" style="font-size: 1.1rem; gap: 6px; display: inline-flex;">
+                        {% if 'MachineryDriving' in employee.skills %}
+                            <i class="fas fa-cogs" style="color: #4a5568;" title="Machinery Driving"></i>
+                        {% endif %}
+                        {% if 'WritingReports' in employee.skills %}
+                            <i class="fas fa-file-alt" style="color: #3182ce;" title="Writing Reports"></i>
+                        {% endif %}
+                        {% if 'CustomerRelationships' in employee.skills %}
+                            <i class="fas fa-users" style="color: #38a169;" title="Customer Relationships"></i>
+                        {% endif %}
+                        </span>
+                    {% else %}
+                        <span class="text-muted">-</span>
+                    {% endif %}
+                </td>
                 <td><i class="fas fa-store text-muted"></i> {{ _(employee.store.name) }}</td>
                 <td>{{ "%.2f"|format(employee.salary or 0) }}€</td>
                 <td class="col-actions text-center">
@@ -55,7 +81,7 @@
             </tr>
             {% else %}
             <tr>
-                <td colspan="6" class="text-center empty-state">{{ _('No se encontraron empleados registrados.') }}</td>
+                <td colspan="7" class="text-center empty-state">{{ _('No se encontraron empleados registrados.') }}</td>
             </tr>
             {% endfor %}
         </tbody>

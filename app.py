@@ -278,6 +278,24 @@ def list_stores():
         return {"id": store.id, "name": store.name, "address": store.address, 
                 "location": store.location, "image": store.image}, 201
     stores = Store.query.all()
+    
+    import data_layer
+    if getattr(data_layer, 'USE_ORION', False):
+        import orion
+        for store in stores:
+            urn = f"urn:ngsi-ld:Store:{store.id:03d}"
+            try:
+                orion_store = orion.get_store(urn)
+                if orion_store:
+                    temp_obj = orion_store.get('temperature', {})
+                    if 'value' in temp_obj:
+                        store.temperature = temp_obj['value']
+                    hum_obj = orion_store.get('relativeHumidity', {})
+                    if 'value' in hum_obj:
+                        store.relativeHumidity = hum_obj['value']
+            except Exception as e:
+                app.logger.warning("Could not fetch context for %s in list: %s", urn, e)
+                
     return render_template('stores.html', stores=stores)
 
 @app.route('/stores/map')

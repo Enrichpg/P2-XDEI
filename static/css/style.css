@@ -1014,3 +1014,11 @@ body.dark-mode .checkbox-group {
 .inv-theme .attr-list li::before { color: #639922; }
 .inv-theme .rel-badge { background: #EAF3DE; color: #3B6D11; }
 .dark-mode .inv-theme .rel-badge { background: #3B6D11; color: #EAF3DE; }
+
+/* Image Hover Scale */
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+.hover-scale:hover {
+    transform: scale(1.1);
+}

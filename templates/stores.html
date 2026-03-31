@@ -17,7 +17,10 @@
                 <th>{{ _('Imagen') }}</th>
                 <th>{{ _('Nombre') }}</th>
                 <th>{{ _('Dirección') }}</th>
+                <th>{{ _('País') }}</th>
                 <th>{{ _('Capacidad') }}</th>
+                <th>{{ _('Temp.') }}</th>
+                <th>{{ _('Hum.') }}</th>
                 <th>{{ _('Teléfono') }}</th>
                 <th class="text-center">{{ _('Acciones') }}</th>
             </tr>
@@ -31,7 +34,36 @@
                 </td>
                 <td class="col-main"><strong>{{ _(store.name) }}</strong></td>
                 <td><i class="fas fa-map-marker-alt text-muted"></i> {{ _(store.address) }}</td>
+                <td class="text-center">
+                    {% if store.countryCode %}
+                        <img src="https://flagcdn.com/20x15/{{ store.countryCode | lower }}.png" alt="{{ store.countryCode }}" title="{{ store.countryCode }}" style="border-radius: 2px;">
+                    {% else %}
+                        <span class="text-muted">-</span>
+                    {% endif %}
+                </td>
                 <td>{{ store.capacity or '-' }}</td>
+                <td>
+                    {% if store.temperature is defined and store.temperature is not none %}
+                        {% set t = store.temperature | float %}
+                        {% set t_color = '#3182ce' if t < 15 else ('#e53e3e' if t > 25 else '#dd6b20') %}
+                        <span style="color: {{ t_color }}; font-weight: 500;" title="Temperature">
+                            <i class="fas fa-thermometer-half"></i> {{ t }}°C
+                        </span>
+                    {% else %}
+                        <span class="text-muted" title="Temperature unavailable"><i class="fas fa-thermometer-empty"></i> N/A</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if store.relativeHumidity is defined and store.relativeHumidity is not none %}
+                        {% set h = store.relativeHumidity | float %}
+                        {% set h_color = '#3182ce' if h > 60 else ('#dd6b20' if h < 30 else '#38a169') %}
+                        <span style="color: {{ h_color }}; font-weight: 500;" title="Relative Humidity">
+                            <i class="fas fa-tint"></i> {{ h }}%
+                        </span>
+                    {% else %}
+                        <span class="text-muted" title="Humidity unavailable"><i class="fas fa-tint-slash"></i> N/A</span>
+                    {% endif %}
+                </td>
                 <td>{{ store.telephone or '-' }}</td>
                 <td class="col-actions text-center">
                     <div class="inline-actions">
@@ -51,7 +83,7 @@
             </tr>
             {% else %}
             <tr>
-                <td colspan="6" class="text-center empty-state">{{ _('No existen tiendas registradas en este momento.') }}</td>
+                <td colspan="9" class="text-center empty-state">{{ _('No existen tiendas registradas en este momento.') }}</td>
             </tr>
             {% endfor %}
         </tbody>
