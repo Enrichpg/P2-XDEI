@@ -5,42 +5,6 @@
 {% block header_title %}{{ _('Dashboard') }}{% endblock %}
 {% block header_subtitle %}{{ _('Resumen de la cadena de supermercados.') }}{% endblock %}
 
-{% block extra_head %}
-<style>
-    .mermaid-container {
-        background: var(--card-bg);
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow);
-        padding: 2rem;
-        margin-bottom: 3rem;
-        overflow-x: auto;
-    }
-
-    .mermaid-container h2 {
-        font-size: 1.25rem;
-        margin-bottom: 1.5rem;
-        color: var(--primary-color);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .mermaid-container h2 i {
-        font-size: 1.1rem;
-    }
-
-    .mermaid {
-        display: flex;
-        justify-content: center;
-    }
-
-    /* Fix Mermaid rendering in dark mode */
-    body.dark-mode .mermaid text {
-        fill: var(--text-color) !important;
-    }
-</style>
-{% endblock %}
-
 {% block content %}
 <section class="dashboard-stats">
     <div class="stats-grid">
@@ -64,76 +28,6 @@
         </div>
     </div>
 
-    <!-- Mermaid UML Class Diagram -->
-    <div class="mermaid-container">
-        <h2><i class="fas fa-project-diagram"></i> {{ _('Modelo de Datos — Diagrama UML') }}</h2>
-        <pre class="mermaid">
-classDiagram
-    direction LR
-
-    class Store {
-        +int id
-        +string name
-        +string address
-        +string location
-        +string image
-        +string url
-        +string telephone
-        +string countryCode
-        +int capacity
-        +string description
-        +float temperature*
-        +float relativeHumidity*
-        +list tweets*
-    }
-
-    class Product {
-        +int id
-        +string name
-        +float price
-        +string size
-        +string image
-        +string originCountry
-        +string color
-    }
-
-    class Employee {
-        +int id
-        +string name
-        +string image
-        +float salary
-        +string role
-        +string email
-        +string dateOfContract
-        +list skills
-        +string username
-        +string password
-        +int store_id
-    }
-
-    class Shelf {
-        +int id
-        +string name
-        +int store_id
-    }
-
-    class Inventory {
-        +int store_id
-        +int product_id
-        +int shelf_id
-        +int stock
-    }
-
-    Store "1" --> "*" Shelf : shelves
-    Store "1" --> "*" Employee : employees
-    Store "1" --> "*" Inventory : inventory
-    Product "1" --> "*" Inventory : inventory
-    Shelf "1" --> "*" Inventory : inventory
-
-    note for Store "* = Context Provider&#10;(Orion external)"
-        </pre>
-    </div>
-
     <div style="display:none">
         <!-- For Testing Compatibility -->
         <ul id="test-store-list">
@@ -148,20 +42,4 @@ classDiagram
         </ul>
     </div>
 </section>
-{% endblock %}
-
-{% block extra_scripts %}
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var isDark = document.body.classList.contains('dark-mode');
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: isDark ? 'dark' : 'default',
-            themeVariables: isDark
-                ? { primaryColor: '#2a4a4a', primaryTextColor: '#e0e0e0', lineColor: '#80cbc4', primaryBorderColor: '#4db6ac' }
-                : { primaryColor: '#e0f2f1', primaryTextColor: '#333', lineColor: '#00796b', primaryBorderColor: '#004d40' }
-        });
-    });
-</script>
 {% endblock %}

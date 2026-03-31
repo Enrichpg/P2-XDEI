@@ -260,6 +260,10 @@ def dashboard():
                           stores=stores,
                           products=products)
 
+@app.route('/architecture')
+def architecture():
+    return render_template('architecture.html')
+
 # --- STORES ---
 @app.route('/stores', methods=['GET', 'POST'])
 def list_stores():
