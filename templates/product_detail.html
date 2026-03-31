@@ -43,45 +43,79 @@
                 <p>{{ product.originCountry or 'N/A' }}</p>
             </div>
             <div class="info-group">
-                <label>{{ _('Tiendas disponibles') }}</label>
-                <div class="inventory-crud">
-                    <ul class="item-list">
-                        {% set store_totals = {} %}
-                        {% set store_names = {} %}
-                        {% for item in product.inventory_items %}
-                        {% if item.store %}
-                        {% set current_stock = store_totals.get(item.store_id, 0) %}
-                        {% set dummy = store_totals.update({item.store_id: current_stock + item.stock}) %}
-                        {% set dummy = store_names.update({item.store_id: item.store.name}) %}
+                <label>{{ _('Disponibilidad por Tienda') }}</label>
+                <div class="stores-crud" style="margin-top: 1rem;">
+                    {% set stores_with_product = {} %}
+                    {% for item in product.inventory_items %}
+                        {% if item.store_id not in stores_with_product %}
+                            {% set dummy = stores_with_product.update({item.store_id: []}) %}
                         {% endif %}
-                        {% endfor %}
-
-                        {% for store_id, total_stock in store_totals.items() %}
-                        <li class="list-item">
-                            <div class="item-main">
-                                <a href="{{ url_for('store_detail', id=store_id) }}">{{ _(store_names[store_id]) }}</a>
-                                <span class="text-muted">- {{ _('Stock') }}: {{ total_stock }}</span>
+                        {% set dummy = stores_with_product[item.store_id].append(item) %}
+                    {% endfor %}
+                    
+                    {% for store_id, items in stores_with_product.items() %}
+                        {% set s = items[0].store %}
+                        <div class="store-block" style="background:var(--card-bg); border-radius:8px; border:1px solid var(--border-color); margin-bottom:1rem; padding:1rem;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid var(--border-color); padding-bottom:5px;">
+                                <strong><a href="{{ url_for('store_detail', id=s.id) }}"><i class="fas fa-store"></i> {{ _(s.name) }}</a></strong>
+                                {% set t_stock = namespace(val=0) %}
+                                {% for i in items %} {% set t_stock.val = t_stock.val + i.stock %} {% endfor %}
+                                <span class="badge" style="background:#3182ce; color:white;">{{ _('Total Stock') }}: {{ t_stock.val }}</span>
                             </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-
-                    <div class="add-box">
-                        <form action="{{ url_for('add_product_to_store', product_id=product.id) }}" method="POST"
-                            class="add-form">
-                            <select name="store_id" required>
-                                <option value="" disabled selected>{{ _('Añadir a
-                                    tienda...') }}</option>
-                                {% for store in all_stores %}
-                                <option value="{{ store.id }}">{{ _(store.name) }}</option>
+                            
+                            <ul style="list-style:none; padding-left:10px; margin:0 0 10px 0;">
+                                {% for i in items %}
+                                <li style="display:flex; justify-content:space-between; font-size:0.9rem; margin-bottom:4px;">
+                                    <span><i class="fas fa-layer-group text-muted"></i> {{ _(i.shelf.name) }}</span>
+                                    <span>{{ i.stock }} u.</span>
+                                </li>
                                 {% endfor %}
-                            </select>
-                            <input type="number" name="stock" placeholder="{{ _('Stock') }}" min="1" required
-                                class="input-small">
-                            <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
-                        </form>
-                    </div>
+                            </ul>
+                            
+                            <!-- Add to empty shelf in this store -->
+                            <form action="{{ url_for('add_to_inventory', store_id=s.id) }}" method="POST" class="inline-form" style="display:flex; gap:10px; margin:0;">
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
+                                <input type="hidden" name="next" value="{{ url_for('product_detail', id=product.id) }}">
+                                <select name="shelf_id" required style="padding:4px; border-radius:4px; border:1px solid var(--border-color); flex-grow:1; font-size:0.85rem;">
+                                    <option value="" disabled selected>{{ _('Añadir a otra balda en esta tienda...') }}</option>
+                                    {% set used_shelves = [] %}
+                                    {% for i in items %}{% set dummy = used_shelves.append(i.shelf_id) %}{% endfor %}
+                                    {% for shelf in s.shelves %}
+                                        {% if shelf.id not in used_shelves %}
+                                        <option value="{{ shelf.id }}">{{ _(shelf.name) }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                                <input type="number" name="stock" placeholder="{{ _('Stock') }}" min="1" required class="input-small" style="padding:4px; font-size:0.85rem; width:80px;">
+                                <button type="submit" class="btn-primary btn-sm" title="{{ _('Añadir a inventario') }}"><i class="fas fa-plus"></i></button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                    
+                    {% if not stores_with_product %}
+                        <p class="text-muted">{{ _('Este producto no está disponible en ninguna tienda actualmente.') }}</p>
+                    {% endif %}
                 </div>
+            </div>
+            
+            <div class="info-group" style="padding: 1rem; border: 1px dashed var(--border-color); border-radius: 8px; margin-top:2rem;">
+                <label style="font-size:0.9rem; color:var(--text-muted);"><i class="fas fa-magic"></i> {{ _('Distribuir a una nueva Tienda') }}</label>
+                <form action="{{ url_for('add_product_to_store', product_id=product.id) }}" method="POST"
+                    class="add-form" style="margin-top:0.5rem;">
+                    <!-- Añadir a la primera balda de una tienda nueva -->
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <input type="hidden" name="next" value="{{ url_for('product_detail', id=product.id) }}">
+                    <select name="store_id" required>
+                        <option value="" disabled selected>{{ _('Selecciona tienda destino...') }}</option>
+                        {% for store in all_stores %}
+                            {% if store.id not in stores_with_product %}
+                            <option value="{{ store.id }}">{{ _(store.name) }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <input type="number" name="stock" placeholder="{{ _('Stock') }}" min="1" required class="input-small">
+                    <button type="submit" class="btn-secondary btn-sm" title="{{ _('Añadir a la primera balda disponible') }}"><i class="fas fa-dolly"></i> Enviar</button>
+                </form>
             </div>
         </div>
     </div>

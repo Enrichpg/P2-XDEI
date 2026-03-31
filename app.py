@@ -498,20 +498,29 @@ def delete_product(id):
 def add_to_inventory(store_id):
     product_id = request.form.get('product_id', type=int)
     stock = request.form.get('stock', default=0, type=int)
+    shelf_id = request.form.get('shelf_id', type=int)
+    
     if product_id:
-        # Try to find an existing Inventory row for this store+product (any shelf)
-        item = Inventory.query.filter_by(store_id=store_id, product_id=product_id).first()
+        if shelf_id:
+            item = Inventory.query.filter_by(store_id=store_id, product_id=product_id, shelf_id=shelf_id).first()
+        else:
+            item = Inventory.query.filter_by(store_id=store_id, product_id=product_id).first()
+
         if item:
             item.stock += stock
         else:
-            # Need a shelf_id for the composite PK — use the store's first shelf
-            shelf = Shelf.query.filter_by(store_id=store_id).first()
-            if shelf:
+            if not shelf_id:
+                shelf = Shelf.query.filter_by(store_id=store_id).first()
+                if shelf:
+                    shelf_id = shelf.id
+            if shelf_id:
                 item = Inventory(store_id=store_id, product_id=product_id,
-                                 shelf_id=shelf.id, stock=stock)
+                                 shelf_id=shelf_id, stock=stock)
                 db.session.add(item)
         db.session.commit()
-    return redirect(url_for('store_detail', id=store_id))
+        
+    next_url = request.form.get('next') or url_for('store_detail', id=store_id)
+    return redirect(next_url)
 
 @app.route('/stores/inventory/edit/<int:store_id>/<int:product_id>', methods=['POST'])
 def edit_inventory(store_id, product_id):
