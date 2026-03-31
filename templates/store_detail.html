@@ -109,7 +109,7 @@
                         <i class="fas fa-thermometer-half"></i> {{ t_val }} °C
                     </div>
                     {% else %}
-                    <div class="weather-item text-muted"><i class="fas fa-thermometer-empty"></i> N/A</div>
+                    <div class="weather-item text-muted"><span class="badge" style="background:#e2e8f0; color:#4a5568" title="{{ _('Requieres contexto FIWARE activo') }}"><i class="fas fa-thermometer-empty"></i> {{ _('Sin datos') }}</span></div>
                     {% endif %}
                     
                     {% if relativeHumidity is not none %}
@@ -119,7 +119,7 @@
                         <i class="fas fa-tint"></i> {{ h_val }} %
                     </div>
                     {% else %}
-                    <div class="weather-item text-muted"><i class="fas fa-tint-slash"></i> N/A</div>
+                    <div class="weather-item text-muted"><span class="badge" style="background:#e2e8f0; color:#4a5568" title="{{ _('Requieres contexto FIWARE activo') }}"><i class="fas fa-tint-slash"></i> {{ _('Sin datos') }}</span></div>
                     {% endif %}
                 </div>
             </div>
@@ -315,8 +315,8 @@
             {% if store.location %}
             var coords = "{{ store.location }}".split(',');
             if (coords.length === 2) {
-                var lng = parseFloat(coords[0].trim());
-                var lat = parseFloat(coords[1].trim());
+                var lat = parseFloat(coords[0].trim());
+                var lng = parseFloat(coords[1].trim());
                 var map = L.map('map').setView([lat, lng], 15);
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
                 L.marker([lat, lng]).addTo(map).bindPopup("<b>{{ store.name }}</b>").openPopup();

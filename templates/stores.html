@@ -50,7 +50,7 @@
                             <i class="fas fa-thermometer-half"></i> {{ t }}°C
                         </span>
                     {% else %}
-                        <span class="text-muted" title="Temperature unavailable"><i class="fas fa-thermometer-empty"></i> N/A</span>
+                        <span class="text-muted" title="Temperature unavailable"><span class="badge" style="background:#e2e8f0; color:#4a5568" title="{{ _('Requieres contexto FIWARE activo') }}"><i class="fas fa-thermometer-empty"></i> {{ _('Sin datos') }}</span></span>
                     {% endif %}
                 </td>
                 <td>
@@ -61,7 +61,7 @@
                             <i class="fas fa-tint"></i> {{ h }}%
                         </span>
                     {% else %}
-                        <span class="text-muted" title="Humidity unavailable"><i class="fas fa-tint-slash"></i> N/A</span>
+                        <span class="text-muted" title="Humidity unavailable"><span class="badge" style="background:#e2e8f0; color:#4a5568" title="{{ _('Requieres contexto FIWARE activo') }}"><i class="fas fa-tint-slash"></i> {{ _('Sin datos') }}</span></span>
                     {% endif %}
                 </td>
                 <td>{{ store.telephone or '-' }}</td>

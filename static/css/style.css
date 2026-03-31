@@ -948,14 +948,6 @@ body.dark-mode .checkbox-group {
     display: flex;
     align-items: center;
 }
-.attr-list li::before {
-    content: "";
-    display: inline-block;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
 .attr-list li.ctx-attr {
     opacity: 0.7;
     font-style: italic;
@@ -985,52 +977,36 @@ body.dark-mode .checkbox-group {
 
 /* Theme Colors */
 /* Store */
-.store-theme .icon-wrapper { background: #E1F5EE; }
-.store-theme .stroke-icon { stroke: #0F6E56; }
-.store-theme h4 { color: #0F6E56; }
-.store-theme .attr-list li::before { background-color: #1D9E75; }
-.store-theme .rel-badge { background: #E1F5EE; color: #0F6E56; }
-.dark-mode .store-theme .rel-badge { background: #0F6E56; color: #E1F5EE; }
 
-/* Employee */
-.emp-theme .icon-wrapper { background: #EEEDFE; }
-.emp-theme .stroke-icon { stroke: #534AB7; }
-.emp-theme h4 { color: #534AB7; }
-.emp-theme .attr-list li::before { background-color: #7F77DD; }
-.emp-theme .rel-badge { background: #EEEDFE; color: #534AB7; }
-.dark-mode .emp-theme .rel-badge { background: #534AB7; color: #EEEDFE; }
-
-/* Product */
-.prod-theme .icon-wrapper { background: #FAEEDA; }
-.prod-theme .stroke-icon { stroke: #854F0B; }
-.prod-theme h4 { color: #854F0B; }
-.prod-theme .attr-list li::before { background-color: #BA7517; }
-.prod-theme .rel-badge { background: #FAEEDA; color: #854F0B; }
-.dark-mode .prod-theme .rel-badge { background: #854F0B; color: #FAEEDA; }
-
-/* Shelf */
-.shelf-theme .icon-wrapper { background: #FAECE7; }
-.shelf-theme .stroke-icon { stroke: #993C1D; }
-.shelf-theme h4 { color: #993C1D; }
-.shelf-theme .attr-list li::before { background-color: #D85A30; }
-.shelf-theme .rel-badge { background: #FAECE7; color: #993C1D; }
-.dark-mode .shelf-theme .rel-badge { background: #993C1D; color: #FAECE7; }
-
-/* Inventory */
-.inv-theme .icon-wrapper { background: #EAF3DE; }
-.inv-theme .stroke-icon { stroke: #3B6D11; }
-.inv-theme h4 { color: #3B6D11; }
-.inv-theme .attr-list li::before { background-color: #639922; }
-.inv-theme .rel-badge { background: #EAF3DE; color: #3B6D11; }
-.dark-mode .inv-theme .rel-badge { background: #3B6D11; color: #EAF3DE; }
-
-/* Image Hover Scale */
-.hover-scale {
-    transition: transform 0.3s ease;
+.attr-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-right: 8px;
 }
-.hover-scale:hover {
-    transform: scale(1.1);
-}
-\n#map {\n    height: 500px;\n    width: 100%;\n    border-radius: var(--border-radius, 8px);\n    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);\n}
-\n.store-map-card { text-align: center; }\n.store-map-card img { width: 100%; border-radius: 6px; margin-bottom: 8px; max-height: 120px; object-fit: cover; }\n.store-map-card strong { display: block; font-size: 1.1em; margin-bottom: 4px; }\n
-\n.store-theme { border: 0.5px solid #5DCAA5; }\n.emp-theme { border: 0.5px solid #AFA9EC; }\n.prod-theme { border: 0.5px solid #EF9F27; }\n.shelf-theme { border: 0.5px solid #F0997B; }\n.inv-theme { border: 0.5px solid #97C459; }\n
+
+.entity-card.store .card-icon { background: #E1F5EE; }
+.entity-card.store .card-icon svg { stroke: #0F6E56; }
+.entity-card.store .attr-dot { background: #1D9E75; }
+.entity-card.store .rel-badge { background: #E1F5EE; color: #0F6E56; border: 0.5px solid #5DCAA5; }
+
+.entity-card.employee .card-icon { background: #EEEDFE; }
+.entity-card.employee .card-icon svg { stroke: #534AB7; }
+.entity-card.employee .attr-dot { background: #7F77DD; }
+.entity-card.employee .rel-badge { background: #EEEDFE; color: #534AB7; border: 0.5px solid #AFA9EC; }
+
+.entity-card.product .card-icon { background: #FAEEDA; }
+.entity-card.product .card-icon svg { stroke: #854F0B; }
+.entity-card.product .attr-dot { background: #BA7517; }
+.entity-card.product .rel-badge { background: #FAEEDA; color: #854F0B; border: 0.5px solid #EF9F27; }
+
+.entity-card.shelf .card-icon { background: #FAECE7; }
+.entity-card.shelf .card-icon svg { stroke: #993C1D; }
+.entity-card.shelf .attr-dot { background: #D85A30; }
+.entity-card.shelf .rel-badge { background: #FAECE7; color: #993C1D; border: 0.5px solid #F0997B; }
+
+.entity-card.inventory .card-icon { background: #EAF3DE; }
+.entity-card.inventory .card-icon svg { stroke: #3B6D11; }
+.entity-card.inventory .attr-dot { background: #639922; }
+.entity-card.inventory .rel-badge { background: #EAF3DE; color: #3B6D11; border: 0.5px solid #97C459; }

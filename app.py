@@ -129,10 +129,10 @@ def seed_data():
 
     # Create Stores
     stores_data = [
-        ("Bösebrücke Einkauf", "Bornholmer Straße 65, 10439 Berlin", "13.3986, 52.5547", "/static/img/stores/store_001.png", "https://bosebrucke.example.com", "+49 30 1234567", "DE", 1500, "Main Berlin flagship store located near the famous Bösebrücke bridge in Prenzlauer Berg."),
-        ("Checkpoint Markt", "Friedrichstraße 44, 10969 Berlin", "13.3903, 52.5075", "/static/img/stores/store_002.png", "https://checkpoint.example.com", "+49 30 2345678", "DE", 2200, "Historic Kreuzberg store near Checkpoint Charlie. Specialises in international products."),
-        ("East Side Galleria", "Mühlenstrasse 10, 10243 Berlin", "13.4447, 52.5031", "/static/img/stores/store_003.png", "https://eastside.example.com", "+49 30 3456789", "DE", 1800, "Trendy Friedrichshain store adjacent to the East Side Gallery, Berlin art wall landmark."),
-        ("Tower Trödelmarkt", "Panoramastraße 1A, 10178 Berlin", "13.4094, 52.5208", "/static/img/stores/store_004.png", "https://tower.example.com", "+49 30 4567890", "DE", 3000, "Premium store in Berlin Mitte, steps from the TV Tower and Museum Island.")
+        ("Bösebrücke Einkauf", "Bornholmer Straße 65, 10439 Berlin", "52.5583, 13.3881", "/static/img/stores/store_001.png", "https://bosebrucke.example.com", "+49 30 1234567", "DE", 1500, "Main Berlin flagship store located near the famous Bösebrücke bridge in Prenzlauer Berg."),
+        ("Checkpoint Markt", "Friedrichstraße 44, 10969 Berlin", "52.5075, 13.3904", "/static/img/stores/store_002.png", "https://checkpoint.example.com", "+49 30 2345678", "DE", 2200, "Historic Kreuzberg store near Checkpoint Charlie. Specialises in international products."),
+        ("East Side Galleria", "Mühlenstrasse 10, 10243 Berlin", "52.5051, 13.4432", "/static/img/stores/store_003.png", "https://eastside.example.com", "+49 30 3456789", "DE", 1800, "Trendy Friedrichshain store adjacent to the East Side Gallery, Berlin art wall landmark."),
+        ("Tower Trödelmarkt", "Panoramastraße 1A, 10178 Berlin", "52.5200, 13.3800", "/static/img/stores/store_004.png", "https://tower.example.com", "+49 30 4567890", "DE", 3000, "Premium store in Berlin Mitte, steps from the TV Tower and Museum Island.")
     ]
     stores = []
     for s in stores_data:
