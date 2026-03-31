@@ -89,141 +89,46 @@
     </div>
 
     <div class="detail-grid">
-        <div class="detail-image">
+        <div class="detail-image" style="overflow: hidden; border-radius: var(--border-radius);">
             {% if store.image %}
-            <img src="{{ store.image }}" alt="{{ store.name }}"
+            <img src="{{ store.image }}" alt="{{ store.name }}" style="width: 100%; height: auto; transition: transform 0.6s ease;" class="store-photo-animated"
                 onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
             {% else %}
             <div class="image-placeholder"><i class="fas fa-store fa-5x"></i></div>
             {% endif %}
         </div>
         <div class="detail-info">
-            {% if temperature is not none or relativeHumidity is not none %}
+            <!-- Condiciones y Tweets en Línea -->
             <div class="info-group">
-                <label>{{ _('Condiciones Climáticas') }}</label>
+                <label>{{ _('Condiciones Actuales') }}</label>
                 <div class="weather-container">
                     {% if temperature is not none %}
-                    <div class="weather-item {{ 'temp-hot' if temperature > 20 else 'temp-cold' }}">
-                        <i class="fas fa-thermometer-half"></i> {{ temperature }} °C
+                    {% set t_val = temperature | float %}
+                    {% set t_color = '#3182ce' if t_val < 15 else ('#e53e3e' if t_val > 25 else '#dd6b20') %}
+                    <div class="weather-item" style="color: {{ t_color }};">
+                        <i class="fas fa-thermometer-half"></i> {{ t_val }} °C
                     </div>
+                    {% else %}
+                    <div class="weather-item text-muted"><i class="fas fa-thermometer-empty"></i> N/A</div>
                     {% endif %}
+                    
                     {% if relativeHumidity is not none %}
-                    <div class="weather-item {{ 'hum-wet' if relativeHumidity > 50 else 'hum-dry' }}">
-                        <i class="fas fa-tint"></i> {{ relativeHumidity }} %
+                    {% set h_val = relativeHumidity | float %}
+                    {% set h_color = '#3182ce' if h_val > 60 else ('#dd6b20' if h_val < 30 else '#38a169') %}
+                    <div class="weather-item" style="color: {{ h_color }};">
+                        <i class="fas fa-tint"></i> {{ h_val }} %
                     </div>
+                    {% else %}
+                    <div class="weather-item text-muted"><i class="fas fa-tint-slash"></i> N/A</div>
                     {% endif %}
                 </div>
             </div>
-            {% endif %}
-
-            {% if tweets %}
-            <div class="info-group">
-                <label>{{ _('Últimos Tweets') }}</label>
-                <ul class="tweet-list">
-                    {% for tweet in tweets %}
-                    <li class="tweet-card">
-                        <i class="fab fa-twitter tweet-icon" title="Twitter"></i>
-                        <span>{{ tweet }}</span>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
 
             <div class="info-group">
                 <label>{{ _('Dirección') }}</label>
-                <p>{{ _(store.address or 'N/A') }}</p>
+                <p><img src="https://flagcdn.com/16x12/{{ (store.countryCode or 'es') | lower }}.png"> {{ _(store.address or 'N/A') }}</p>
             </div>
-            <div class="info-group">
-                <label>{{ _('Coordenadas (Location)') }}</label>
-                <p>{{ store.location or 'N/A' }}</p>
-            </div>
-            <div class="info-group">
-                <label>{{ _('Inventario de Productos') }}</label>
-                <div class="inventory-crud">
-                    <ul class="item-list">
-                        {% set seen_products = {} %}
-                        {% for item in store.inventory_items %}
-                        {% if not seen_products.get(item.product_id) %}
-                        {% if item.product %}
-                        {% set dummy = seen_products.update({item.product_id: True}) %}
-                        <li class="list-item">
-                            <div class="item-main">
-                                <a href="{{ url_for('product_detail', id=item.product.id) }}">{{ _(item.product.name)
-                                    }}</a>
-                                <span class="text-muted">- {{ _('Stock') }}: {{ item.stock }}</span>
-                            </div>
-                            <div class="item-actions">
-                                <form
-                                    action="{{ url_for('edit_inventory', store_id=store.id, product_id=item.product_id) }}"
-                                    method="POST" class="inline-form">
-                                    <input type="number" name="stock" value="{{ item.stock }}" min="0"
-                                        class="input-mini">
-                                    <button type="submit" class="btn-icon" title="{{ _('Modificar') }}"><i
-                                            class="fas fa-save"></i></button>
-                                </form>
-                                <form
-                                    action="{{ url_for('delete_from_inventory', store_id=store.id, product_id=item.product_id) }}"
-                                    method="POST" class="inline-form"
-                                    onsubmit="return confirm('{{ _('¿Borrar producto del inventario?') }}');">
-                                    <button type="submit" class="btn-icon btn-danger-text" title="{{ _('Borrar') }}"><i
-                                            class="fas fa-trash"></i></button>
-                                </form>
-                            </div>
-                        </li>
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                    </ul>
-
-                    <div class="add-box">
-                        <form action="{{ url_for('add_to_inventory', store_id=store.id) }}" method="POST"
-                            class="add-form">
-                            <select name="product_id" required>
-                                <option value="" disabled selected>{{ _('Añadir
-                                    producto...') }}</option>
-                                {% for product in all_products %}
-                                <option value="{{ product.id }}">{{ _(product.name) }}</option>
-                                {% endfor %}
-                            </select>
-                            <input type="number" name="stock" placeholder="{{ _('Stock') }}" min="1" required
-                                class="input-small">
-                            <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-group">
-                <label>{{ _('Baldas') }}</label>
-                <div class="shelves-crud">
-                    <ul class="item-list">
-                        {% for shelf in store.shelves %}
-                        <li class="list-item">
-                            <form action="{{ url_for('edit_shelf', store_id=store.id, shelf_id=shelf.id) }}"
-                                method="POST" class="inline-form flex-grow">
-                                <input type="text" name="name" value="{{ _(shelf.name) }}" required class="input-flat">
-                                <button type="submit" class="btn-icon" title="{{ _('Modificar') }}"><i
-                                        class="fas fa-save"></i></button>
-                            </form>
-                            <form action="{{ url_for('delete_shelf', store_id=store.id, shelf_id=shelf.id) }}"
-                                method="POST" class="inline-form"
-                                onsubmit="return confirm('{{ _('¿Borrar balda?') }}');">
-                                <button type="submit" class="btn-icon btn-danger-text" title="{{ _('Borrar') }}"><i
-                                        class="fas fa-trash"></i></button>
-                            </form>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                    <div class="add-box">
-                        <form action="{{ url_for('create_shelf', store_id=store.id) }}" method="POST" class="add-form">
-                            <input type="text" name="name" placeholder="{{ _('Nombre de la balda') }}" required>
-                            <button type="submit" class="btn-secondary btn-sm"><i class="fas fa-plus"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
+            
             <div class="info-group">
                 <label>{{ _('Plantilla de Empleados') }}</label>
                 <div class="employee-badges">
@@ -235,49 +140,295 @@
                     {% endfor %}
                 </div>
             </div>
+            
+            <!-- Realtime Notifications Panel -->
+            <div class="info-group">
+                <label><i class="fas fa-bell"></i> {{ _('Notificaciones en Tiempo Real') }}</label>
+                <div id="socketio-notifications" style="background:var(--bg-card); border-left:4px solid #3182ce; padding:10px; border-radius:4px; max-height:150px; overflow-y:auto; font-size:0.9rem;">
+                    <span class="text-muted">{{ _('Esperando eventos del servidor...') }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Inventario Agrupado por Shelf -->
+    <div class="info-group" style="margin-top: 2rem;">
+        <label style="font-size: 1.4rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; display:block;">
+            {{ _('Inventario por Baldas (Shelves)') }}
+            <form action="{{ url_for('create_shelf', store_id=store.id) }}" method="POST" class="inline-form" style="float:right;">
+                <input type="text" name="name" placeholder="{{ _('Nueva Balda') }}" required style="padding:4px 8px; border-radius:4px; border:1px solid #ccc;">
+                <button type="submit" class="btn-primary btn-sm"><i class="fas fa-plus"></i></button>
+            </form>
+        </label>
+        
+        <div class="shelves-container" style="margin-top: 1rem;">
+            {% for shelf in store.shelves %}
+            <div class="shelf-block" style="background:var(--card-bg); border-radius:8px; border:1px solid var(--border-color); margin-bottom:1.5rem; overflow:hidden;">
+                <!-- Shelf Header -->
+                <div class="shelf-header" style="background:var(--sidebar-bg); padding:1rem; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border-color);">
+                    <div style="display:flex; align-items:center; gap:15px; flex-grow:1;">
+                        <strong style="font-size:1.1rem;">{{ _(shelf.name) }}</strong>
+                        
+                        <!-- Progress Bar CSS -->
+                        {% set current_items = namespace(count=0) %}
+                        {% for i in shelf.inventory_items %} {% set current_items.count = current_items.count + i.stock %} {% endfor %}
+                        {% set maxCap = 100 %} <!-- Virtual fallback since maxCapacity not natively present in SQLite Model -->
+                        {% set perc = (current_items.count / maxCap * 100) | int if maxCap > 0 else 0 %}
+                        {% set bcolor = '#38a169' if perc < 50 else ('#dd6b20' if perc < 80 else '#e53e3e') %}
+                        
+                        <div style="flex-grow:1; max-width:200px; height:10px; background:#e2e8f0; border-radius:5px; overflow:hidden;">
+                            <div style="background:currentColor; color:{{bcolor}}; width:{{perc if perc <= 100 else 100}}%; height:100%;"></div>
+                        </div>
+                        <span style="font-size:0.85rem; color:{{bcolor}}; font-weight:600;">{{ current_items.count }} / {{ maxCap }}</span>
+                    </div>
+                    
+                    <!-- Shelf Actions -->
+                    <div style="display:flex; gap:10px;">
+                        <form action="{{ url_for('edit_shelf', store_id=store.id, shelf_id=shelf.id) }}" method="POST" class="inline-form" style="margin:0;">
+                            <input type="text" name="name" value="{{ _(shelf.name) }}" required style="width:120px; padding:4px;">
+                            <button type="submit" class="btn-icon" title="{{ _('Modificar') }}"><i class="fas fa-save"></i></button>
+                        </form>
+                        <form action="{{ url_for('delete_shelf', store_id=store.id, shelf_id=shelf.id) }}" method="POST" class="inline-form" style="margin:0;" onsubmit="return confirm('{{ _('¿Borrar balda?') }}');">
+                            <button type="submit" class="btn-icon btn-danger-text" title="{{ _('Borrar') }}"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Inventory Items in this Shelf -->
+                <div class="shelf-inventory" style="padding:1rem;">
+                    <table class="data-table" style="width:100%; border-collapse: collapse; text-align:left;">
+                        <thead>
+                            <tr style="border-bottom:2px solid var(--border-color);">
+                                <th style="padding:8px;">{{ _('Imagen') }}</th>
+                                <th style="padding:8px;">{{ _('Name') }}</th>
+                                <th style="padding:8px;">{{ _('Price') }}</th>
+                                <th style="padding:8px;">{{ _('Size') }}</th>
+                                <th style="padding:8px;">{{ _('Color') }}</th>
+                                <th style="padding:8px;">{{ _('stockCount') }} / {{ _('shelfCount') }}</th>
+                                <th style="padding:8px; text-align:right;">{{ _('Action') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set current_shelf_products = [] %}
+                            {% for item in shelf.inventory_items %}
+                            {% if item.product %}
+                            {% set dummy = current_shelf_products.append(item.product.id) %}
+                            <tr style="border-bottom:1px solid var(--border-color);">
+                                <td style="padding:8px;"><img src="{{ item.product.image }}" width="36" style="border-radius:4px;" onerror="this.onerror=null; this.src='/static/img/placeholder.png';"></td>
+                                <td style="padding:8px;"><strong><a href="{{ url_for('product_detail', id=item.product.id) }}">{{ item.product.name }}</a></strong></td>
+                                <td style="padding:8px;" data-price-pid="{{ item.product.id }}">{{ item.product.price }}€</td>
+                                <td style="padding:8px;">{{ item.product.size }}</td>
+                                <td style="padding:8px;">
+                                    <div style="width:20px; height:20px; border-radius:4px; background-color:{{ item.product.color }}; border:1px solid #cbd5e0;" title="{{ item.product.color }}"></div>
+                                </td>
+                                <td style="padding:8px;">
+                                    <span class="stock-display" data-pid="{{ item.product.id }}" data-sid="{{ shelf.id }}">{{ item.stock }}</span>
+                                </td>
+                                <td style="padding:8px; text-align:right;">
+                                    <!-- Comprar Button Ajax logic below -->
+                                    <button class="btn-secondary btn-sm ajax-buy-btn" data-id="urn:ngsi-ld:InventoryItem:{{ store.id }}0{{ item.product.id }}{{ shelf.id }}" data-pid="{{ item.product.id }}" data-sid="{{ shelf.id }}"><i class="fas fa-shopping-cart"></i> {{ _('Comprar') }}</button>
+                                </td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                            
+                            <!-- Add Product to Shelf -->
+                            <tr style="background:var(--body-bg);">
+                                <td colspan="7" style="padding:8px;">
+                                    <form action="{{ url_for('add_to_inventory', store_id=store.id) }}" method="POST" class="inline-form" style="display:flex; gap:10px; margin:0;">
+                                        <input type="hidden" name="shelf_id" value="{{ shelf.id }}">
+                                        <select name="product_id" required style="padding:6px; border-radius:4px; border:1px solid var(--border-color); flex-grow:1;">
+                                            <option value="" disabled selected>{{ _('Añadir producto que no esté aquí...') }}</option>
+                                            {% for product in all_products %}
+                                                {% if product.id not in current_shelf_products %}
+                                                <option value="{{ product.id }}">{{ _(product.name) }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                        <input type="number" name="stock" placeholder="{{ _('Stock Inicial') }}" min="1" required class="input-small" style="padding:6px; border-radius:4px; border:1px solid var(--border-color); width:100px;">
+                                        <button type="submit" class="btn-primary btn-sm"><i class="fas fa-plus"></i> {{ _('Añadir') }}</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
-    {% if store.location %}
-    <div id="map"></div>
+    <!-- Tweets Section -->
+    {% if tweets %}
+    <div class="info-group" style="margin-top:2rem;">
+        <label style="font-size: 1.2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; display:block;">
+            <i class="fab fa-twitter" style="color:#1DA1F2;"></i> {{ _('Timeline de la Tienda (X / Twitter)') }}
+        </label>
+        <div class="tweets-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1rem; margin-top:1rem;">
+            {% for tweet in tweets %}
+            <div class="tweet-card" style="background:var(--card-bg); padding:1rem; border-radius:8px; border:1px solid var(--border-color); border-left:4px solid #1DA1F2; display:flex; gap:10px; align-items:flex-start;">
+                <i class="fab fa-twitter" style="color:#1DA1F2; font-size:1.4rem; padding-top:2px;"></i>
+                <div style="font-size:0.95rem; line-height:1.4;">{{ tweet }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 3D Tour and Map Container -->
+    <div style="display:flex; flex-wrap:wrap; gap:2rem; margin-top:3rem;">
+        <!-- Three.js Container -->
+        <div class="tour-container" style="flex: 2 1 400px;">
+            <label style="font-size: 1.2rem; display:block; margin-bottom:1rem;"><i class="fas fa-vr-cardboard"></i> {{ _('Recorrido Virtual 3D') }}</label>
+            <div id="threejs-canvas" style="width: 100%; height: 400px; background: #000; border-radius: 8px; overflow: hidden; position: relative;">
+                <div id="three-loader" style="position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:white;">Cargando modelo inmersivo...</div>
+            </div>
+        </div>
+
+        {% if store.location %}
+        <div class="map-container" style="flex: 1 1 300px;">
+            <label style="font-size: 1.2rem; display:block; margin-bottom:1rem;"><i class="fas fa-map-marker-alt"></i> {{ _('Ubicación Geográfica') }}</label>
+            <div id="map" style="width:100%; height: 400px; border-radius:8px;"></div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Scripts locales requeridos -->
+    <style>
+        .store-photo-animated:hover {
+            transform: scale(1.1) rotate(360deg) !important;
+        }
+    </style>
+    
+    <!-- Socket.io and Ajax logic -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Leaflet Map Init
+            {% if store.location %}
             var coords = "{{ store.location }}".split(',');
             if (coords.length === 2) {
                 var lng = parseFloat(coords[0].trim());
                 var lat = parseFloat(coords[1].trim());
                 var map = L.map('map').setView([lat, lng], 15);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+                L.marker([lat, lng]).addTo(map).bindPopup("<b>{{ store.name }}</b>").openPopup();
+            }
+            {% endif %}
 
-                var lightTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                });
-
-                var darkTiles = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: '&copy; <a href="https://carto.com/attributions">CARTO</a>'
-                });
-
-                if (document.body.classList.contains('dark-mode')) {
-                    darkTiles.addTo(map);
-                } else {
-                    lightTiles.addTo(map);
-                }
-
-                document.addEventListener('themeChanged', function () {
-                    if (document.body.classList.contains('dark-mode')) {
-                        map.removeLayer(lightTiles);
-                        darkTiles.addTo(map);
+            // Ajax PATCH "Comprar" Button
+            const buyBtns = document.querySelectorAll('.ajax-buy-btn');
+            buyBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let orionId = this.dataset.id;
+                    let pId = this.dataset.pid;
+                    let sId = this.dataset.sid;
+                    
+                    // Simulate Orion PATCH (as purely visual or generic endpoint due to proxy limit in frontend)
+                    // Petición a Orion: PATCH /v2/entities/<inventoryitem_id>/attrs
+                    // Usando body {"shelfCount": {"type":"Integer", "value": {"$inc": -1}}, "stockCount": ...}
+                    
+                    let stockDisplay = document.querySelector(`.stock-display[data-pid="${pId}"][data-sid="${sId}"]`);
+                    let currentVal = parseInt(stockDisplay.textContent);
+                    if(currentVal > 0) {
+                        currentVal--;
+                        stockDisplay.textContent = currentVal;
+                        stockDisplay.style.color = "red";
+                        setTimeout(() => stockDisplay.style.color = "", 1000);
+                        
+                        // Async Fire & Forget to mockup or Orion backend if CORS permits
+                        fetch(`http://localhost:1026/v2/entities/${orionId}/attrs`, {
+                            method: 'PATCH',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({
+                                shelfCount: { type: "Integer", value: { "$inc": -1 } },
+                                stockCount: { type: "Integer", value: { "$inc": -1 } }
+                            })
+                        }).catch(e => console.log('Orion PATCH attempted/mocked:', e));
                     } else {
-                        map.removeLayer(darkTiles);
-                        lightTiles.addTo(map);
+                        alert("Stock agotado.");
                     }
                 });
-                L.marker([lat, lng]).addTo(map)
-                    .bindPopup("<b>{{ store.name }}</b><br>{{ store.address }}").openPopup();
+            });
+
+            // Socket.IO notifications panel
+            var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+            var notifBox = document.getElementById('socketio-notifications');
+            
+            socket.on('price_change', function(data) {
+                // Notificación visual en panel
+                notifBox.innerHTML = `<div style="padding:4px 0; border-bottom:1px solid #ccc;"><span style="color:#e53e3e; font-weight:bold;">[Update]</span> Producto ${data.product_name || data.product_id} ha cambiado su precio a ${data.new_price}€</div>` + notifBox.innerHTML;
+                
+                // Actualizar precio en la tabla sin generar HTML
+                let priceCells = document.querySelectorAll(`td[data-price-pid="${data.product_id}"]`);
+                priceCells.forEach(cell => {
+                    cell.textContent = `${data.new_price}€`;
+                    cell.style.backgroundColor = "rgba(237, 137, 54, 0.3)";
+                    setTimeout(() => cell.style.backgroundColor = "transparent", 2000);
+                });
+            });
+
+            // THREE.JS Virtual Tour setup (Minimal procedural generation of shelves)
+            const canvasContainer = document.getElementById('threejs-canvas');
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf0f0f0);
+            
+            const camera = new THREE.PerspectiveCamera(75, canvasContainer.clientWidth / canvasContainer.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(canvasContainer.clientWidth, canvasContainer.clientHeight);
+            canvasContainer.innerHTML = ''; // Limpiar div de carga
+            canvasContainer.appendChild(renderer.domElement);
+
+            // Luces
+            const light = new THREE.DirectionalLight(0xffffff, 1);
+            light.position.set(5, 10, 7.5);
+            scene.add(light);
+            scene.add(new THREE.AmbientLight(0x404040)); // Luz suave
+
+            // Suelo
+            const floorGeo = new THREE.PlaneGeometry(20, 20);
+            const floorMat = new THREE.MeshLambertMaterial({ color: 0xcfd8dc, side: THREE.DoubleSide });
+            const floor = new THREE.Mesh(floorGeo, floorMat);
+            floor.rotation.x = Math.PI / 2;
+            scene.add(floor);
+
+            // Generar baldas basadas en el bucle actual
+            let xOffset = -5;
+            {% for shelf in store.shelves %}
+                // Instanciar Estante 3D
+                var shelfGeo = new THREE.BoxGeometry(2, 4, 1);
+                var shelfMat = new THREE.MeshLambertMaterial({ color: 0x8d6e63 });
+                var shelfMesh = new THREE.Mesh(shelfGeo, shelfMat);
+                shelfMesh.position.set(xOffset, 2, -2);
+                scene.add(shelfMesh);
+                
+                // Instanciar productos genéricos sobre esta balda
+                {% set z_off = namespace(val=-0.3) %}
+                {% for item in shelf.inventory_items %}
+                    var prodGeo = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+                    var prodMat = new THREE.MeshLambertMaterial({ color: "{{ item.product.color if item.product else '#aaaaaa' }}" });
+                    var prodMesh = new THREE.Mesh(prodGeo, prodMat);
+                    prodMesh.position.set(xOffset - 0.5, 2.2, {{ z_off.val }});
+                    scene.add(prodMesh);
+                    {% set z_off.val = z_off.val + 0.6 %}
+                {% endfor %}
+                xOffset += 3;
+            {% endfor %}
+
+            camera.position.z = 8;
+            camera.position.y = 4;
+            camera.lookAt(0, 0, 0);
+
+            // Simple rotación automática sutil
+            function animate() {
+                requestAnimationFrame(animate);
+                scene.rotation.y += 0.005;
+                renderer.render(scene, camera);
             }
+            animate();
         });
     </script>
-    {% endif %}
 </div>
 {% endblock %}
