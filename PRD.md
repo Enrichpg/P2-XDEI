@@ -72,3 +72,4 @@ The two backends are **independent** — no data is synchronised between SQLite 
   - [Mermaid](https://mermaid.js.org/) — UML diagram rendering.
   - [Font Awesome](https://fontawesome.com/) — icon set.
   - [Socket.IO Client](https://socket.io/) — real-time notifications.
+\n## Final Quality Fixes (Block 5 Phase 2)\n- Leaflet maps sizing and display initialized cleanly.\n- Database state strict set to 4 stores.\n- Colors updated based on final specifications.\n- Context provider HTTP 201 statuses logged at startup.

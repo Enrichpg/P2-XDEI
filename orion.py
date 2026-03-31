@@ -321,7 +321,7 @@ def register_context_providers(store_ids):
         weather_desc = f"Weather Conditions {sid}"
         if weather_desc not in existing_descs:
             try:
-                _post("/registrations", {
+                res = _post("/registrations", {
                     "description": weather_desc,
                     "dataProvided": {
                         "entities": [{"id": sid, "type": "Store"}],
@@ -333,6 +333,7 @@ def register_context_providers(store_ids):
                     },
                     "status": "active"
                 })
+                print(f"[orion] Registered provider '{weather_desc}': HTTP {res.status_code}")
             except Exception as e:
                 print(f"[orion] Warning: could not register weather provider for {sid}: {e}")
 
@@ -340,7 +341,7 @@ def register_context_providers(store_ids):
         tweets_desc = f"Tweeting Cat Facts {sid}"
         if tweets_desc not in existing_descs:
             try:
-                _post("/registrations", {
+                res = _post("/registrations", {
                     "description": tweets_desc,
                     "dataProvided": {
                         "entities": [{"id": sid, "type": "Store"}],
@@ -352,6 +353,7 @@ def register_context_providers(store_ids):
                     },
                     "status": "active"
                 })
+                print(f"[orion] Registered provider '{tweets_desc}': HTTP {res.status_code}")
             except Exception as e:
                 print(f"[orion] Warning: could not register tweets provider for {sid}: {e}")
 

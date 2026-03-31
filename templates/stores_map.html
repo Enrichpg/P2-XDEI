@@ -11,13 +11,13 @@
     <h1 class="page-title"><i class="fa-solid fa-map-location-dot"></i> {{ _('Stores Map') }}</h1>
 </div>
 
-<div id="stores-map-full" style="height:600px"></div>
+<div id="map"></div>
 {% endblock %}
 
 {% block scripts %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var map = L.map('stores-map-full').setView([52.52, 13.40], 12);
+        var map = L.map('map').setView([52.52, 13.40], 12);
 
         var lightTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
