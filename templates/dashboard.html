@@ -28,6 +28,134 @@
         </div>
     </div>
 
+    </div>
+
+    <!-- Entities Grid -->
+    <div class="entities-grid">
+        <!-- STORE CARD -->
+        <div class="entity-card store-theme">
+            <div class="icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+            </div>
+            <h4>Store</h4>
+            <p class="desc">{{ _('Ubicación física de venta') }}</p>
+            <ul class="attr-list">
+                <li><span>name</span></li>
+                <li><span>address</span></li>
+                <li><span>location</span></li>
+                <li><span>image / url</span></li>
+                <li><span>telephone / countryCode</span></li>
+                <li><span>capacity</span></li>
+                <li><span>description</span></li>
+                <li class="ctx-attr"><span>temperature*</span></li>
+                <li class="ctx-attr"><span>relativeHumidity*</span></li>
+                <li class="ctx-attr"><span>tweets*</span></li>
+            </ul>
+            <hr>
+            <div class="badges">
+                <span class="rel-badge">→ Shelf</span>
+                <span class="rel-badge">→ Employee</span>
+                <span class="rel-badge">→ Inventory</span>
+            </div>
+        </div>
+
+        <!-- EMPLOYEE CARD -->
+        <div class="entity-card emp-theme">
+            <div class="icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-6 0v1z"/>
+                </svg>
+            </div>
+            <h4>Employee</h4>
+            <p class="desc">{{ _('Personal de la tienda') }}</p>
+            <ul class="attr-list">
+                <li><span>name</span></li>
+                <li><span>salary</span></li>
+                <li><span>role / email</span></li>
+                <li><span>dateOfContract</span></li>
+                <li><span>skills (Array)</span></li>
+                <li><span>username / password</span></li>
+                <li><span>store_id</span></li>
+            </ul>
+            <hr>
+            <div class="badges">
+                <span class="rel-badge">← Store</span>
+            </div>
+        </div>
+
+        <!-- PRODUCT CARD -->
+        <div class="entity-card prod-theme">
+            <div class="icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+            </div>
+            <h4>Product</h4>
+            <p class="desc">{{ _('Catálogo de artículos') }}</p>
+            <ul class="attr-list">
+                <li><span>name</span></li>
+                <li><span>price</span></li>
+                <li><span>size</span></li>
+                <li><span>originCountry</span></li>
+                <li><span>color</span></li>
+                <li><span>image</span></li>
+            </ul>
+            <hr>
+            <div class="badges">
+                <span class="rel-badge">→ Inventory</span>
+            </div>
+        </div>
+
+        <!-- SHELF CARD -->
+        <div class="entity-card shelf-theme">
+            <div class="icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                </svg>
+            </div>
+            <h4>Shelf</h4>
+            <p class="desc">{{ _('Unidad de almacenamiento') }}</p>
+            <ul class="attr-list">
+                <li><span>name</span></li>
+                <li><span>maxCapacity</span></li>
+                <li><span>store_id</span></li>
+            </ul>
+            <hr>
+            <div class="badges">
+                <span class="rel-badge">← Store</span>
+                <span class="rel-badge">→ Inventory</span>
+            </div>
+        </div>
+
+        <!-- INVENTORY CARD -->
+        <div class="entity-card inv-theme">
+            <div class="icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+            </div>
+            <h4>Inventory</h4>
+            <p class="desc">{{ _('Stock de producto') }}</p>
+            <ul class="attr-list">
+                <li><span>stockCount</span></li>
+                <li><span>shelfCount</span></li>
+                <li><span>store_id</span></li>
+                <li><span>product_id</span></li>
+                <li><span>shelf_id</span></li>
+            </ul>
+            <hr>
+            <div class="badges">
+                <span class="rel-badge">← Store</span>
+                <span class="rel-badge">← Product</span>
+                <span class="rel-badge">← Shelf</span>
+            </div>
+        </div>
+    </div>
+    
+    <p class="footer-note">* {{ _('Atributos dinámicos proporcionados por proveedores de contexto externos (FIWARE Orion)') }}</p>
+
     <div style="display:none">
         <!-- For Testing Compatibility -->
         <ul id="test-store-list">
