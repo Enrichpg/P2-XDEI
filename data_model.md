@@ -266,3 +266,4 @@ At startup the application registers the tutorial context provider in Orion for:
 
 > [!IMPORTANT]
 > `host.docker.internal` is used instead of `localhost` because Orion runs inside a Docker container and needs to reach the Flask app on the host machine.
+\n- Stores have explicit [lat,lng] coordinates initialized in python script seed

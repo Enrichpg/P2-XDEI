@@ -81,3 +81,4 @@ graph TD
 
 ### Real-time DOM Constraints
 - Notifications for 'price_change' and 'low_stock' populate pre-staged DOM elements (e.g., hidden slots) ensuring strict adherence to avoiding HTML document structure modification via JavaScript.
+- Socket.io integrated for real time prices and low stock.\n- Offline mode explicitly degrades to Sin datos.

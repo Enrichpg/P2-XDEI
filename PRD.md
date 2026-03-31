@@ -82,3 +82,4 @@ The two backends are **independent** — no data is synchronised between SQLite 
 ### Real-time Sockets and Core Workflows
 - **Flask-SocketIO Integration**: The application emits 'price_change' explicitly inside the patch function to notify instances directly without waiting for polling.
 - **DOM Updating Strategy**: Follows strict separation of concerns—JavaScript updates ONLY existing classes, IDs, and attributes, maintaining HTML purity (no direct innerHTML generation from JS).
+### Sockets and Real-time\n- Added Sockets\n### Offline Fallbacks\n- Added UI badge for context providers not running (Sin datos)
