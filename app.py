@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_babel import Babel, gettext as _, refresh
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 import logging
 import os
 
@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'super-secret-key' # Required for sessions
 
 db = SQLAlchemy(app)
-socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 def get_locale():
     # 1. Check if lang is in query params (highest priority)
@@ -481,6 +481,20 @@ def edit_product(id):
         product.image = request.form.get('image')
         product.color = request.form.get('color')
         db.session.commit()
+        
+        # Emitir evento en tiempo real para el cambio de precio
+        socketio.emit('price_change', {'product_id': id, 'new_price': price})
+        
+        # Sincronizar con Orion si está habilitado
+        import data_layer
+        if data_layer.USE_ORION:
+            import orion
+            orion_id = f"urn:ngsi-ld:Product:{id:03d}"
+            try:
+                orion._patch(f"/entities/{orion_id}/attrs", {"price": {"value": price, "type": "Number"}})
+            except Exception as e:
+                app.logger.error(f"Error sincronizando precio en Orion: {e}")
+
         flash(_('Product updated successfully!'), 'success')
         return redirect(url_for('product_detail', id=id))
     return render_template('product_form.html', product=product)

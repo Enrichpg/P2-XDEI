@@ -32,11 +32,12 @@ const socket = io();
 
 socket.on('price_change', function (data) {
     // Update all price displays for this product
+    const priceValue = data.new_price !== undefined ? data.new_price : data.price;
     document.querySelectorAll('[data-product-price][data-product-id="' + data.product_id + '"]').forEach(el => {
-        el.textContent = formatPrice(data.price);
+        el.textContent = formatPrice(priceValue);
     });
     // Show banner
-    addNotification('price', '💲 ' + (data.name || data.product_id) + ': ' + formatPrice(data.price));
+    addNotification('price', '💲 ' + (data.name || data.product_id) + ': ' + formatPrice(priceValue));
 });
 
 socket.on('low_stock', function (data) {
@@ -52,24 +53,42 @@ function formatPrice(cents) {
 }
 
 function addNotification(type, message, storeId) {
-    // Global panel if present
-    const panel = document.getElementById('notifications-panel');
-    const tpl = document.getElementById('notification-template');
-    if (panel && tpl) {
-        const clone = tpl.content.cloneNode(true);
-        const el = clone.querySelector('.notification-item');
-        const icon = clone.querySelector('i');
-        const text = clone.querySelector('.notification-text');
-
-        if (type === 'price') {
-            el.classList.add('price');
-            icon.className = 'fa-solid fa-tag';
-        } else {
-            icon.className = 'fa-solid fa-triangle-exclamation';
+    // Shift existing UI notifications down
+    for (let i = 2; i > 0; i--) {
+        let curr = document.getElementById('global-notif-' + i);
+        let currIcon = document.getElementById('global-notif-icon-' + i);
+        let currText = document.getElementById('global-notif-text-' + i);
+        
+        let prev = document.getElementById('global-notif-' + (i - 1));
+        let prevIcon = document.getElementById('global-notif-icon-' + (i - 1));
+        let prevText = document.getElementById('global-notif-text-' + (i - 1));
+        
+        if (curr && prev) {
+            curr.className = prev.className;
+            curr.style.display = prev.style.display;
+            if (currIcon && prevIcon) currIcon.className = prevIcon.className;
+            if (currText && prevText) currText.textContent = prevText.textContent;
         }
-
-        text.textContent = message;
-        panel.prepend(el);
+    }
+    
+    // Set notification 0
+    let first = document.getElementById('global-notif-0');
+    let firstIcon = document.getElementById('global-notif-icon-0');
+    let firstText = document.getElementById('global-notif-text-0');
+    
+    if (first && firstIcon && firstText) {
+        first.className = 'notification-item';
+        if (type === 'price') {
+            first.classList.add('price');
+            firstIcon.className = 'fa-solid fa-tag';
+        } else {
+            firstIcon.className = 'fa-solid fa-triangle-exclamation';
+        }
+        first.style.display = 'flex'; // or whatever is appropriate, 'block' or 'flex'
+        firstText.textContent = message;
+        
+        // Hide after some time to keep UI clean
+        setTimeout(() => { first.style.display = 'none'; }, 10000);
     }
 }
 

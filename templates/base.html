@@ -12,13 +12,20 @@
 </head>
 
 <body>
-    <div id="notifications-panel" class="notifications-panel"></div>
-    <template id="notification-template">
-        <div class="notification-item">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <span class="notification-text"></span>
+    <div id="notifications-panel" class="notifications-panel">
+        <div id="global-notif-0" class="notification-item" style="display:none;">
+            <i id="global-notif-icon-0" class="fa-solid fa-triangle-exclamation"></i>
+            <span id="global-notif-text-0" class="notification-text"></span>
         </div>
-    </template>
+        <div id="global-notif-1" class="notification-item" style="display:none;">
+            <i id="global-notif-icon-1" class="fa-solid fa-triangle-exclamation"></i>
+            <span id="global-notif-text-1" class="notification-text"></span>
+        </div>
+        <div id="global-notif-2" class="notification-item" style="display:none;">
+            <i id="global-notif-icon-2" class="fa-solid fa-triangle-exclamation"></i>
+            <span id="global-notif-text-2" class="notification-text"></span>
+        </div>
+    </div>
     <div class="lang-selector">
         <a href="{{ url_for('set_language', lang='es') }}">ES</a>
         <a href="{{ url_for('set_language', lang='en') }}">EN</a>

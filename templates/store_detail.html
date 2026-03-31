@@ -145,7 +145,13 @@
             <div class="info-group">
                 <label><i class="fas fa-bell"></i> {{ _('Notificaciones en Tiempo Real') }}</label>
                 <div id="socketio-notifications" style="background:var(--bg-card); border-left:4px solid #3182ce; padding:10px; border-radius:4px; max-height:150px; overflow-y:auto; font-size:0.9rem;">
-                    <span class="text-muted">{{ _('Esperando eventos del servidor...') }}</span>
+                    <span id="notif-waiting" class="text-muted">{{ _('Esperando eventos del servidor...') }}</span>
+                    <!-- Pre-prepared slots without generating new HTML via JS -->
+                    <div id="notif-slot-0" style="display:none; padding:4px 0; border-bottom:1px solid #ccc;"></div>
+                    <div id="notif-slot-1" style="display:none; padding:4px 0; border-bottom:1px solid #ccc;"></div>
+                    <div id="notif-slot-2" style="display:none; padding:4px 0; border-bottom:1px solid #ccc;"></div>
+                    <div id="notif-slot-3" style="display:none; padding:4px 0; border-bottom:1px solid #ccc;"></div>
+                    <div id="notif-slot-4" style="display:none; padding:4px 0; border-bottom:1px solid #ccc;"></div>
                 </div>
             </div>
         </div>
@@ -355,19 +361,45 @@
 
             // Socket.IO notifications panel
             var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
-            var notifBox = document.getElementById('socketio-notifications');
             
+            function pushNotification(htmlContent) {
+                var waitingMsg = document.getElementById('notif-waiting');
+                if (waitingMsg) {
+                    waitingMsg.style.display = 'none';
+                }
+                
+                // Shift existing notifications down
+                for (let i = 4; i > 0; i--) {
+                    let curr = document.getElementById('notif-slot-' + i);
+                    let prev = document.getElementById('notif-slot-' + (i - 1));
+                    curr.innerHTML = prev.innerHTML;
+                    curr.style.display = prev.style.display;
+                }
+                
+                // Set the new notification at slot 0
+                let first = document.getElementById('notif-slot-0');
+                first.innerHTML = htmlContent;
+                first.style.display = 'block';
+            }
+
             socket.on('price_change', function(data) {
                 // Notificación visual en panel
-                notifBox.innerHTML = `<div style="padding:4px 0; border-bottom:1px solid #ccc;"><span style="color:#e53e3e; font-weight:bold;">[Update]</span> Producto ${data.product_name || data.product_id} ha cambiado su precio a ${data.new_price}€</div>` + notifBox.innerHTML;
+                const date = new Date().toLocaleTimeString();
+                const priceValue = data.new_price !== undefined ? data.new_price : data.price;
+                pushNotification(`<span style="color:#e53e3e; font-weight:bold;">[${date}] [Update]</span> Producto ${data.name || data.product_id} ha cambiado su precio a ${priceValue}€`);
                 
                 // Actualizar precio en la tabla sin generar HTML
                 let priceCells = document.querySelectorAll(`td[data-price-pid="${data.product_id}"]`);
                 priceCells.forEach(cell => {
-                    cell.textContent = `${data.new_price}€`;
+                    cell.textContent = `${priceValue}€`;
                     cell.style.backgroundColor = "rgba(237, 137, 54, 0.3)";
                     setTimeout(() => cell.style.backgroundColor = "transparent", 2000);
                 });
+            });
+
+            socket.on('low_stock', function(data) {
+                const date = new Date().toLocaleTimeString();
+                pushNotification(`<span style="color:#dd6b20; font-weight:bold;">[${date}] [Low Stock]</span> Producto ${data.product_id} en tienda ${data.store_id} ha bajado a ${data.shelfCount} unidades`);
             });
 
             // THREE.JS Virtual Tour setup (Minimal procedural generation of shelves)

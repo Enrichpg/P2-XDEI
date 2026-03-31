@@ -114,6 +114,13 @@ body {
     transition: var(--transition);
 }
 
+.nav-links a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.2rem;
+}
+
 .nav-links a:hover {
     color: var(--secondary-color);
 }
