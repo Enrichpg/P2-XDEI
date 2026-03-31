@@ -280,6 +280,11 @@ def list_stores():
     stores = Store.query.all()
     return render_template('stores.html', stores=stores)
 
+@app.route('/stores/map')
+def stores_map():
+    stores = Store.query.all()
+    return render_template('stores_map.html', stores=stores)
+
 @app.route('/stores/<int:id>', methods=['GET', 'DELETE'])
 def store_detail(id):
     store = Store.query.get(id)

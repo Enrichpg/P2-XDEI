@@ -2,8 +2,8 @@
 
 {% block title %}{{ _('Modelo de Datos - FIWARE Smart Store') }}{% endblock %}
 
-{% block header_title %}{{ _('Arquitectura y Datos') }}{% endblock %}
-{% block header_subtitle %}{{ _('Visualización del modelo de entidades y dependencias externas') }}{% endblock %}
+{% block header_title %}{{ _('Modelo de Datos') }}{% endblock %}
+{% block header_subtitle %}{{ _('Visualización del modelo de clases UML y proveedores de contexto externos') }}{% endblock %}
 
 {% block extra_head %}
 <style>
@@ -128,10 +128,9 @@ classDiagram
         +string name
         +string image
         +float salary
-        +string role
         +string email
         +string dateOfContract
-        +list skills
+        +string skills "MachineryDriving, WritingReports, CustomerRelationships"
         +string username
         +string password
         +int store_id
