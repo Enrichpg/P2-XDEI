@@ -72,4 +72,13 @@ The two backends are **independent** — no data is synchronised between SQLite 
   - [Mermaid](https://mermaid.js.org/) — UML diagram rendering.
   - [Font Awesome](https://fontawesome.com/) — icon set.
   - [Socket.IO Client](https://socket.io/) — real-time notifications.
-\n## Final Quality Fixes (Block 5 Phase 2)\n- Leaflet maps sizing and display initialized cleanly.\n- Database state strict set to 4 stores.\n- Colors updated based on final specifications.\n- Context provider HTTP 201 statuses logged at startup.
+
+## Final Quality Fixes (Block 5 Phase 2)
+- Leaflet maps sizing and display initialized cleanly.
+- Database state strict set to 4 stores.
+- Colors updated based on final specifications.
+- Context provider HTTP 201 statuses logged at startup.
+
+### Real-time Sockets and Core Workflows
+- **Flask-SocketIO Integration**: The application emits 'price_change' explicitly inside the patch function to notify instances directly without waiting for polling.
+- **DOM Updating Strategy**: Follows strict separation of concerns—JavaScript updates ONLY existing classes, IDs, and attributes, maintaining HTML purity (no direct innerHTML generation from JS).

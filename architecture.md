@@ -78,3 +78,6 @@ graph TD
 - `static/img/stores/`: AI-generated store facade images (`.png`, excluded from version control via `.gitignore`).
 - `static/js/`: Client-side JavaScript (Socket.IO handler, Three.js scene, Mermaid init, etc.).
 - `dummy_translations.py`: Helper for dynamic string extraction.
+
+### Real-time DOM Constraints
+- Notifications for 'price_change' and 'low_stock' populate pre-staged DOM elements (e.g., hidden slots) ensuring strict adherence to avoiding HTML document structure modification via JavaScript.

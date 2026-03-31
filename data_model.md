@@ -135,7 +135,7 @@ The system is provisioned via the **`import-data.sh`** script with the following
 | Products / Shelf | ≥ 4 | At least 4 products assigned to every shelf |
 
 - **Products**: 10 products (Leche, Pan, Huevos, Arroz, Pasta, Manzanas, Plátanos, Pollo, Ternera, Agua). Each includes `size`, `price`, `color` (e.g. RGB hex), and `image`.
-- **Stores**: 4 stores (Store Alpha, Beta, Gamma, Delta) distributed across different countries. Each includes the new attributes: `url`, `telephone`, `countryCode`, `capacity`, and `description`.
+- **Stores**: 4 stores (Bösebrücke Einkauf, Checkpoint Markt, East Side Galleria, Tower Trödelmarkt) distributed across different countries. Each includes the new attributes: `url`, `telephone`, `countryCode`, `capacity`, and `description`.
 - **Employees**: 4 employees assigned across stores. Each employee record includes `email`, `dateOfContract`, `skills`, `username`, and `password`.
 
 ---
