@@ -23,6 +23,13 @@ until curl -s http://localhost:1026/version > /dev/null 2>&1; do
 done
 echo " ✅ Orion ready"
 
+echo "⏳ Waiting for Tutorial Context Provider..."
+until curl -s http://localhost:3000/version > /dev/null 2>&1; do
+  sleep 2
+  printf "."
+done
+echo " ✅ Tutorial ready"
+
 echo "📦 Loading initial data into Orion..."
 docker run --rm \
   -v "$REPO_DIR/import-data:/import-data" \

@@ -74,9 +74,10 @@ The two backends are **independent** — no data is synchronised between SQLite 
   - [Socket.IO Client](https://socket.io/) — real-time notifications.
 
 ## Final Quality Fixes (Block 5 Phase 2)
-- Leaflet maps sizing and display initialized cleanly.
+- **Stores Map**: Fixed Leaflet maps sizing via global CSS and implemented robust coordinate parsing in templates to handle both SQLite and Orion formats.
+- **Context Providers**: Implemented a wait loop in `start.sh` for the `tutorial` context-provider service to ensure it is ready before Orion registration, fixing "N/A" data issues.
+- **Product Colors**: Unified product color visualization by adding color swatches next to product names in all tables (Products, Store Detail) and providing a visual indicator in the Dashboard entity cards.
 - Database state strict set to 4 stores.
-- Colors updated based on final specifications.
 - Context provider HTTP 201 statuses logged at startup.
 
 ### Real-time Sockets and Core Workflows

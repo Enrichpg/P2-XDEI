@@ -33,11 +33,18 @@ const socket = io();
 socket.on('price_change', function (data) {
     // Update all price displays for this product
     const priceValue = data.new_price !== undefined ? data.new_price : data.price;
+    const formatted = formatPrice(priceValue);
+    
     document.querySelectorAll('[data-product-price][data-product-id="' + data.product_id + '"]').forEach(el => {
-        el.textContent = formatPrice(priceValue);
+        el.textContent = formatted;
+        // Visual feedback
+        el.style.transition = 'background-color 0.5s ease';
+        el.style.backgroundColor = 'rgba(255, 193, 7, 0.3)';
+        setTimeout(() => el.style.backgroundColor = 'transparent', 2000);
     });
+    
     // Show banner
-    addNotification('price', '💲 ' + (data.name || data.product_id) + ': ' + formatPrice(priceValue));
+    addNotification('price', '💲 ' + (data.name || data.product_id) + ': ' + formatted);
 });
 
 socket.on('low_stock', function (data) {
@@ -47,9 +54,9 @@ socket.on('low_stock', function (data) {
     );
 });
 
-function formatPrice(cents) {
-    if (cents === null || cents === undefined) return '–';
-    return (parseFloat(cents) / 100).toFixed(2) + ' €';
+function formatPrice(value) {
+    if (value === null || value === undefined) return '–';
+    return parseFloat(value).toFixed(2) + ' €';
 }
 
 function addNotification(type, message, storeId) {

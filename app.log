@@ -1,4 +1,21 @@
 nohup: ignoring input
+🐳 Starting Docker Compose...
+time="2026-03-23T18:44:13+01:00" level=warning msg="No services to build"
+ Container db-mongo Running 
+ Container fiware-orion Running 
+ Container fiware-tutorial Running 
+⏳ Waiting for Orion Context Broker...
+ ✅ Orion ready
+📦 Loading initial data into Orion...
+⏳ Loading context data  [1;32mdone[0m
+ ✅ Data loaded
+🚀 Starting Flask application on port 5000 ...
+/home/enrique/XDEI/P2-XDEI/app.py:625: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_product = not Product.query.get(inv.product_id)
+/home/enrique/XDEI/P2-XDEI/app.py:626: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_store = not Store.query.get(inv.store_id)
+/home/enrique/XDEI/P2-XDEI/app.py:627: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_shelf = not Shelf.query.get(inv.shelf_id)
 INFO:data_layer:[data_layer] Orion is reachable → using Orion Context Broker
 WARNING:werkzeug:Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
  * Serving Flask app 'app'
@@ -7,15 +24,107 @@ INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a
  * Running on http://127.0.0.1:5000
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
 INFO:werkzeug: * Restarting with stat
+/home/enrique/XDEI/P2-XDEI/app.py:625: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_product = not Product.query.get(inv.product_id)
+/home/enrique/XDEI/P2-XDEI/app.py:626: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_store = not Store.query.get(inv.store_id)
+/home/enrique/XDEI/P2-XDEI/app.py:627: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_shelf = not Shelf.query.get(inv.shelf_id)
 INFO:data_layer:[data_layer] Orion is reachable → using Orion Context Broker
 WARNING:werkzeug:Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 140-931-287
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:44:24] "GET / HTTP/1.1" 200 -
+/home/enrique/XDEI/P2-XDEI/app.py:281: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  store = Store.query.get(id)
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:44:35] "[35m[1mGET /stores/1 HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/flask/app.py", line 1498, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/flask_socketio/__init__.py", line 42, in __call__
+    return super().__call__(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/engineio/middleware.py", line 74, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/flask/app.py", line 1476, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/app.py", line 318, in store_detail
+    return render_template('store_detail.html', store=store, all_products=all_products,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "/home/enrique/XDEI/P2-XDEI/.venv/lib/python3.12/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/enrique/XDEI/P2-XDEI/templates/store_detail.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/enrique/XDEI/P2-XDEI/templates/base.html", line 51, in top-level template code
+    {% block content %}{% endblock %}
+  File "/home/enrique/XDEI/P2-XDEI/templates/store_detail.html", line 152, in block 'content'
+    <a href="{{ url_for('product_detail', id=item.product.id) }}">{{ _(item.product.name)
+TypeError: 'NoneType' object is not callable
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:39] "GET /stores/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:48] "[32mPOST /stores/inventory/add/1 HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:53] "GET /static/css/style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:53] "GET /static/js/main.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:54] "GET /socket.io/?EIO=4&transport=polling&t=PqRpP_u HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:54] "POST /socket.io/?EIO=4&transport=polling&t=PqRpQ6a&sid=0a7hFObKHy7tOzDqAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:54] "GET /socket.io/?EIO=4&transport=polling&t=PqRpQ6h&sid=0a7hFObKHy7tOzDqAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:54] "GET /socket.io/?EIO=4&transport=polling&t=PqRpQCq&sid=0a7hFObKHy7tOzDqAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:55] "GET /socket.io/?EIO=4&transport=polling&t=PqRpQEX&sid=0a7hFObKHy7tOzDqAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:56] "GET /stores HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:56] "GET /socket.io/?EIO=4&transport=websocket&sid=0a7hFObKHy7tOzDqAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:57] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:57] "GET /socket.io/?EIO=4&transport=polling&t=PqRpQpU HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:57] "GET /static/img/placeholder.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:57] "POST /socket.io/?EIO=4&transport=polling&t=PqRpQsF&sid=SNCJKakkNirH5v0kAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:57] "GET /socket.io/?EIO=4&transport=polling&t=PqRpQsK&sid=SNCJKakkNirH5v0kAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:58] "GET /socket.io/?EIO=4&transport=polling&t=PqRpQ-k&sid=SNCJKakkNirH5v0kAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:58] "GET /socket.io/?EIO=4&transport=polling&t=PqRpQ_7&sid=SNCJKakkNirH5v0kAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:59] "GET /stores/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:45:59] "GET /socket.io/?EIO=4&transport=websocket&sid=SNCJKakkNirH5v0kAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:46:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:46:00] "GET /socket.io/?EIO=4&transport=polling&t=PqRpRRM HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:46:00] "POST /socket.io/?EIO=4&transport=polling&t=PqRpRSp&sid=QNpC9vF_8v0T7_4nAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:46:00] "[36mGET /static/img/placeholder.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:46:00] "GET /socket.io/?EIO=4&transport=polling&t=PqRpRSr&sid=QNpC9vF_8v0T7_4nAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:46:00] "GET /socket.io/?EIO=4&transport=polling&t=PqRpRYC&sid=QNpC9vF_8v0T7_4nAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:46:33] "[33mGET /"/set_language/en/" HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 18:46:33] "GET /socket.io/?EIO=4&transport=websocket&sid=QNpC9vF_8v0T7_4nAAAE HTTP/1.1" 200 -
 INFO:werkzeug: * Detected change in '/home/enrique/XDEI/P2-XDEI/app.py', reloading
 INFO:werkzeug: * Restarting with stat
-/home/enrique/XDEI/P2-XDEI/app.py:615: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
-  if not Product.query.get(inv.product_id) or not Store.query.get(inv.store_id):
+/home/enrique/XDEI/P2-XDEI/app.py:625: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_product = not Product.query.get(inv.product_id)
+/home/enrique/XDEI/P2-XDEI/app.py:626: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_store = not Store.query.get(inv.store_id)
+/home/enrique/XDEI/P2-XDEI/app.py:627: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_shelf = not Shelf.query.get(inv.shelf_id)
 INFO:data_layer:[data_layer] Orion is reachable → using Orion Context Broker
 WARNING:werkzeug:Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
 WARNING:werkzeug: * Debugger is active!
 INFO:werkzeug: * Debugger PIN: 140-931-287
+./start.sh: line 39: 15310 Killed                  python3 app.py

@@ -29,7 +29,7 @@
             {% for store in stores %}
             <tr>
                 <td class="col-image text-center">
-                    <img class="thumbnail-avatar" src="{{ store.image }}" alt="{{ store.name }}"
+                    <img class="thumbnail-avatar store-photo-animated" src="{{ store.image }}" alt="{{ store.name }}"
                         onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
                 </td>
                 <td class="col-main"><strong>{{ _(store.name) }}</strong></td>

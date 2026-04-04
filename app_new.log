@@ -1,0 +1,76 @@
+nohup: ignoring input
+/home/enrique/XDEI/P2-XDEI/app.py:625: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_product = not Product.query.get(inv.product_id)
+/home/enrique/XDEI/P2-XDEI/app.py:626: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_store = not Store.query.get(inv.store_id)
+/home/enrique/XDEI/P2-XDEI/app.py:627: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_shelf = not Shelf.query.get(inv.shelf_id)
+INFO:data_layer:[data_layer] Orion is reachable → using Orion Context Broker
+WARNING:werkzeug:Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+ * Serving Flask app 'app'
+ * Debug mode: on
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+/home/enrique/XDEI/P2-XDEI/app.py:625: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_product = not Product.query.get(inv.product_id)
+/home/enrique/XDEI/P2-XDEI/app.py:626: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_store = not Store.query.get(inv.store_id)
+/home/enrique/XDEI/P2-XDEI/app.py:627: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_shelf = not Shelf.query.get(inv.shelf_id)
+INFO:data_layer:[data_layer] Orion is reachable → using Orion Context Broker
+WARNING:werkzeug:Werkzeug appears to be used in a production deployment. Consider switching to a production web server instead.
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 140-931-287
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:24] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:32] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:33] "GET /socket.io/?EIO=4&transport=polling&t=PqRvlK4 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:33] "POST /socket.io/?EIO=4&transport=polling&t=PqRvlPB&sid=d1AQXdgvQa8Z-vlTAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:33] "GET /socket.io/?EIO=4&transport=polling&t=PqRvlPC&sid=d1AQXdgvQa8Z-vlTAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:34] "GET /socket.io/?EIO=4&transport=polling&t=PqRvlUG&sid=d1AQXdgvQa8Z-vlTAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:34] "GET /socket.io/?EIO=4&transport=polling&t=PqRvlUU&sid=d1AQXdgvQa8Z-vlTAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:39] "GET /stores HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:39] "GET /socket.io/?EIO=4&transport=websocket&sid=d1AQXdgvQa8Z-vlTAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:40] "GET /socket.io/?EIO=4&transport=polling&t=PqRvmoP HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:40] "POST /socket.io/?EIO=4&transport=polling&t=PqRvmtX&sid=sKfq1rouvvOMrNEdAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:40] "GET /socket.io/?EIO=4&transport=polling&t=PqRvmtY&sid=sKfq1rouvvOMrNEdAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:40] "GET /socket.io/?EIO=4&transport=polling&t=PqRvmyR&sid=sKfq1rouvvOMrNEdAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:40] "GET /socket.io/?EIO=4&transport=polling&t=PqRvmyc&sid=sKfq1rouvvOMrNEdAAAC HTTP/1.1" 200 -
+/home/enrique/XDEI/P2-XDEI/app.py:281: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  store = Store.query.get(id)
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:44] "GET /stores/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:44] "GET /socket.io/?EIO=4&transport=websocket&sid=sKfq1rouvvOMrNEdAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:45] "GET /socket.io/?EIO=4&transport=polling&t=PqRvnrY HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:45] "POST /socket.io/?EIO=4&transport=polling&t=PqRvnwW&sid=v8c5v4CkwLBzrSBcAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:45] "GET /socket.io/?EIO=4&transport=polling&t=PqRvnwW.0&sid=v8c5v4CkwLBzrSBcAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:45] "GET /socket.io/?EIO=4&transport=polling&t=PqRvn_e&sid=v8c5v4CkwLBzrSBcAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:47] "[33mGET /"/set_language/es/" HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:47] "GET /socket.io/?EIO=4&transport=websocket&sid=v8c5v4CkwLBzrSBcAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:51] "GET /socket.io/?EIO=4&transport=polling&t=PqRvpFo HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:51] "POST /socket.io/?EIO=4&transport=polling&t=PqRvpGL&sid=CXh-bafGDYq25RI1AAAG HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:51] "GET /socket.io/?EIO=4&transport=polling&t=PqRvpGL.0&sid=CXh-bafGDYq25RI1AAAG HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:49] "GET /socket.io/?EIO=4&transport=polling&t=PqRvpLi&sid=CXh-bafGDYq25RI1AAAG HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:50] "GET /stores HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:50] "GET /socket.io/?EIO=4&transport=websocket&sid=CXh-bafGDYq25RI1AAAG HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:51] "GET /socket.io/?EIO=4&transport=polling&t=PqRvpri HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:51] "POST /socket.io/?EIO=4&transport=polling&t=PqRvpwj&sid=G_l8rn9_JdJBwVMzAAAI HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:51] "GET /socket.io/?EIO=4&transport=polling&t=PqRvpwl&sid=G_l8rn9_JdJBwVMzAAAI HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:51] "GET /socket.io/?EIO=4&transport=polling&t=PqRvq08&sid=G_l8rn9_JdJBwVMzAAAI HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:53] "GET /products HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:53] "GET /socket.io/?EIO=4&transport=websocket&sid=G_l8rn9_JdJBwVMzAAAI HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:53] "GET /socket.io/?EIO=4&transport=polling&t=PqRvqQS HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:53] "POST /socket.io/?EIO=4&transport=polling&t=PqRvqSL&sid=Sa8isjFpV-vt5AFFAAAK HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:54] "GET /socket.io/?EIO=4&transport=polling&t=PqRvqSO&sid=Sa8isjFpV-vt5AFFAAAK HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:54] "GET /socket.io/?EIO=4&transport=polling&t=PqRvqXr&sid=Sa8isjFpV-vt5AFFAAAK HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [23/Mar/2026 19:13:54] "GET /socket.io/?EIO=4&transport=polling&t=PqRvqYK&sid=Sa8isjFpV-vt5AFFAAAK HTTP/1.1" 200 -

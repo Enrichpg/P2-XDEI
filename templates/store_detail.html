@@ -144,14 +144,14 @@
             <!-- Realtime Notifications Panel -->
             <div class="info-group">
                 <label><i class="fas fa-bell"></i> {{ _('Notificaciones en Tiempo Real') }}</label>
-                <div id="socketio-notifications" style="background:var(--bg-card); border-left:4px solid #3182ce; padding:10px; border-radius:4px; max-height:150px; overflow-y:auto; font-size:0.9rem;">
+                <div id="socketio-notifications" class="notifications-list-container">
                     <span id="notif-waiting" class="text-muted">{{ _('Esperando eventos del servidor...') }}</span>
                     <!-- Pre-prepared slots without generating new HTML via JS -->
-                    <div id="notif-slot-0" style="display:none; padding:4px 0; border-bottom:1px solid #ccc;"></div>
-                    <div id="notif-slot-1" style="display:none; padding:4px 0; border-bottom:1px solid #ccc;"></div>
-                    <div id="notif-slot-2" style="display:none; padding:4px 0; border-bottom:1px solid #ccc;"></div>
-                    <div id="notif-slot-3" style="display:none; padding:4px 0; border-bottom:1px solid #ccc;"></div>
-                    <div id="notif-slot-4" style="display:none; padding:4px 0; border-bottom:1px solid #ccc;"></div>
+                    <div id="notif-slot-0" class="notif-slot"></div>
+                    <div id="notif-slot-1" class="notif-slot"></div>
+                    <div id="notif-slot-2" class="notif-slot"></div>
+                    <div id="notif-slot-3" class="notif-slot"></div>
+                    <div id="notif-slot-4" class="notif-slot"></div>
                 </div>
             </div>
         </div>
@@ -180,12 +180,10 @@
                         {% for i in shelf.inventory_items %} {% set current_items.count = current_items.count + i.stock %} {% endfor %}
                         {% set maxCap = 100 %} <!-- Virtual fallback since maxCapacity not natively present in SQLite Model -->
                         {% set perc = (current_items.count / maxCap * 100) | int if maxCap > 0 else 0 %}
-                        {% set bcolor = '#38a169' if perc < 50 else ('#dd6b20' if perc < 80 else '#e53e3e') %}
-                        
-                        <div style="flex-grow:1; max-width:200px; height:10px; background:#e2e8f0; border-radius:5px; overflow:hidden;">
-                            <div style="background:currentColor; color:{{bcolor}}; width:{{perc if perc <= 100 else 100}}%; height:100%;"></div>
+                        <div class="progress-container">
+                            <div class="progress-fill {{ 'low' if perc < 50 else ('medium' if perc < 80 else 'high') }}" style="width:{{perc if perc <= 100 else 100}}%;"></div>
                         </div>
-                        <span style="font-size:0.85rem; color:{{bcolor}}; font-weight:600;">{{ current_items.count }} / {{ maxCap }}</span>
+                        <span class="progress-label {{ 'low' if perc < 50 else ('medium' if perc < 80 else 'high') }}">{{ current_items.count }} / {{ maxCap }}</span>
                     </div>
                     
                     <!-- Shelf Actions -->
@@ -221,12 +219,14 @@
                             {% set dummy = current_shelf_products.append(item.product.id) %}
                             <tr style="border-bottom:1px solid var(--border-color);">
                                 <td style="padding:8px;"><img src="{{ item.product.image }}" width="36" style="border-radius:4px;" onerror="this.onerror=null; this.src='/static/img/placeholder.png';"></td>
-                                <td style="padding:8px;"><strong><a href="{{ url_for('product_detail', id=item.product.id) }}">{{ item.product.name }}</a></strong></td>
-                                <td style="padding:8px;" data-price-pid="{{ item.product.id }}">{{ item.product.price }}€</td>
-                                <td style="padding:8px;">{{ item.product.size }}</td>
                                 <td style="padding:8px;">
-                                    <div style="width:20px; height:20px; border-radius:4px; background-color:{{ item.product.color }}; border:1px solid #cbd5e0;" title="{{ item.product.color }}"></div>
+                                    <strong><a href="{{ url_for('product_detail', id=item.product.id) }}">{{ item.product.name }}</a></strong>
+                                    {% if item.product.color %}
+                                    <span class="color-swatch" style="background-color: {{ item.product.color }}; width: 12px; height: 12px; display: inline-block; border-radius: 3px; margin-left: 5px; vertical-align: middle;" title="{{ item.product.color }}"></span>
+                                    {% endif %}
                                 </td>
+                                <td style="padding:8px;" data-product-price data-product-id="{{ item.product.id }}">{{ "%.2f"|format(item.product.price) }}€</td>
+                                <td style="padding:8px;">{{ item.product.size }}</td>
                                 <td style="padding:8px;">
                                     <span class="stock-display" data-pid="{{ item.product.id }}" data-sid="{{ shelf.id }}">{{ item.stock }}</span>
                                 </td>
@@ -300,11 +300,6 @@
     </div>
 
     <!-- Scripts locales requeridos -->
-    <style>
-        .store-photo-animated:hover {
-            transform: scale(1.1) rotate(360deg) !important;
-        }
-    </style>
     
     <!-- Socket.io and Ajax logic -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
@@ -429,24 +424,37 @@
             // Generar baldas basadas en el bucle actual
             let xOffset = -5;
             {% for shelf in store.shelves %}
-                // Instanciar Estante 3D
-                var shelfGeo = new THREE.BoxGeometry(2, 4, 1);
-                var shelfMat = new THREE.MeshLambertMaterial({ color: 0x8d6e63 });
-                var shelfMesh = new THREE.Mesh(shelfGeo, shelfMat);
-                shelfMesh.position.set(xOffset, 2, -2);
-                scene.add(shelfMesh);
+                // Estructura del Estante (Postes laterales)
+                const poleGeo = new THREE.BoxGeometry(0.1, 4, 0.1);
+                const poleMat = new THREE.MeshLambertMaterial({ color: 0x4e342e });
                 
-                // Instanciar productos genéricos sobre esta balda
-                {% set z_off = namespace(val=-0.3) %}
+                const p1 = new THREE.Mesh(poleGeo, poleMat); p1.position.set(xOffset - 1, 2, -2.5); scene.add(p1);
+                const p2 = new THREE.Mesh(poleGeo, poleMat); p2.position.set(xOffset + 1, 2, -2.5); scene.add(p2);
+                const p3 = new THREE.Mesh(poleGeo, poleMat); p3.position.set(xOffset - 1, 2, -1.5); scene.add(p3);
+                const p4 = new THREE.Mesh(poleGeo, poleMat); p4.position.set(xOffset + 1, 2, -1.5); scene.add(p4);
+
+                // Niveles del estante
+                const boardGeo = new THREE.BoxGeometry(2, 0.05, 1);
+                const boardMat = new THREE.MeshLambertMaterial({ color: 0x8d6e63 });
+                for (let h = 0.5; h <= 4; h += 1.2) {
+                    const board = new THREE.Mesh(boardGeo, boardMat);
+                    board.position.set(xOffset, h, -2);
+                    scene.add(board);
+                }
+                
+                // Instanciar productos sobre los niveles
+                let level = 0.55;
                 {% for item in shelf.inventory_items %}
-                    var prodGeo = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+                    var prodGeo = new THREE.BoxGeometry(0.3, 0.4, 0.3);
                     var prodMat = new THREE.MeshLambertMaterial({ color: "{{ item.product.color if item.product else '#aaaaaa' }}" });
                     var prodMesh = new THREE.Mesh(prodGeo, prodMat);
-                    prodMesh.position.set(xOffset - 0.5, 2.2, {{ z_off.val }});
+                    // Colocar en niveles alternos para variedad visual
+                    prodMesh.position.set(xOffset - 0.6 + (Math.random()*1.2), level, -2 + (Math.random()*0.4 - 0.2));
                     scene.add(prodMesh);
-                    {% set z_off.val = z_off.val + 0.6 %}
+                    level = (level + 1.2) % 4;
+                    if (level < 0.55) level = 0.55;
                 {% endfor %}
-                xOffset += 3;
+                xOffset += 4;
             {% endfor %}
 
             camera.position.z = 8;

@@ -63,7 +63,7 @@ graph TD
 - `docker-compose.yml`: Docker Compose configuration for Orion Context Broker, MongoDB, and the tutorial context-provider container.
 - `.env`: Environment variables for `docker-compose.yml` (Orion/MongoDB versions and ports).
 - `import-data.sh`: Shell script to provision Orion with seed data (4 stores, 4 employees, 4 shelves/store, 10 products, ≥4 products/shelf).
-- `start.sh`: Script to start Docker services + Flask application.
+- `start.sh`: Script to start Docker services + Flask application. Now includes a wait loop for the `tutorial` context-provider service to ensure context data stability.
 - `stop.sh`: Script to stop the Flask application and Docker services.
 - `translations/`: Compiled and source translation files for `es` and `en`.
 - `templates/`:

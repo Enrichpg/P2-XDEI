@@ -87,7 +87,7 @@ Items available for sale across the chain.
 - `size` (String): e.g., "1L", "500g".
 - `image` (String): Local path to an AI-generated image (e.g., `/static/img/products/apples.png`). Not version-controlled.
 - `originCountry` (String): ISO country code, e.g., "ES".
-- `color` (String): RGB hex color code, e.g., "#FF5733". Stored as `Text` in both SQLite and NGSIv2.
+- `color` (String): RGB hex color code, e.g., "#FF5733". Stored as `Text` in both SQLite and NGSIv2. In the UI, this is represented by a 12x12px visual swatch next to the product name.
 
 ### Inventory
 Specific stock levels linking products to specific shelves within stores.

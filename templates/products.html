@@ -19,7 +19,6 @@
                 <th>{{ _('Nombre') }}</th>
                 <th>{{ _('Precio') }}</th>
                 <th>{{ _('Tamaño') }}</th>
-                <th>{{ _('Color') }}</th>
                 <th>{{ _('Origen') }}</th>
                 <th class="text-center">{{ _('Acciones') }}</th>
             </tr>
@@ -31,16 +30,14 @@
                     <img class="thumbnail-avatar" src="{{ product.image }}" alt="{{ product.name }}"
                         onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
                 </td>
-                <td class="col-main"><strong>{{ _(product.name) }}</strong></td>
-                <td><span class="price-badge">{{ "%.2f"|format(product.price) }}€</span></td>
-                <td>{{ product.size or '-' }}</td>
-                <td class="text-center">
+                <td class="col-main">
+                    <strong>{{ _(product.name) }}</strong>
                     {% if product.color %}
-                    <span class="color-swatch" style="background-color: {{ product.color }};" title="{{ product.color }}"></span>
-                    {% else %}
-                    -
+                    <span class="color-swatch" style="background-color: {{ product.color }}; width: 12px; height: 12px; display: inline-block; border-radius: 3px; margin-left: 5px; vertical-align: middle;" title="{{ product.color }}"></span>
                     {% endif %}
                 </td>
+                <td><span class="price-badge" data-product-price data-product-id="{{ product.id }}">{{ "%.2f"|format(product.price) }}€</span></td>
+                <td>{{ product.size or '-' }}</td>
                 <td>{{ product.originCountry or _('N/A') }}</td>
                 <td class="col-actions text-center">
                     <div class="inline-actions">
