@@ -81,4 +81,10 @@ graph TD
 
 ### Real-time DOM Constraints
 - Notifications for 'price_change' and 'low_stock' populate pre-staged DOM elements (e.g., hidden slots) ensuring strict adherence to avoiding HTML document structure modification via JavaScript.
-- Socket.io integrated for real time prices and low stock.\n- Offline mode explicitly degrades to Sin datos.
+- Socket.io integrated for real time prices and low stock.
+- Offline mode explicitly degrades to "Sin datos".
+
+### Visual Refinements (UI/UX)
+- Improved user feedback visually replacing pure text arrays or descriptions with `font-awesome` icons (Skills, Roles) and mapping Flags to countries.
+- Improved Employee and Store image feedback interactions with `hover` zoom, transform, and map interactions.
+- Standalone `Stores Map` tab added providing dynamic Leaflet map UI displaying all stores simultaneously.

@@ -21,7 +21,7 @@
     <div class="detail-grid">
         <div class="detail-image">
             {% if employee.image %}
-            <img src="{{ employee.image }}" alt="{{ employee.name }}"
+            <img src="{{ employee.image }}" alt="{{ employee.name }}" class="hover-scale" style="transition: transform 0.3s ease;"
                 onerror="this.onerror=null; this.src='/static/img/placeholder.png';">
             {% else %}
             <div class="image-placeholder"><i class="fas fa-user-tie fa-5x"></i></div>

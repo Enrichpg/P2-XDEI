@@ -19,7 +19,7 @@
                 <th>{{ _('Nombre') }}</th>
                 <th>{{ _('Precio') }}</th>
                 <th>{{ _('Tamaño') }}</th>
-                <th>{{ _('Origen') }}</th>
+                <th class="text-center">{{ _('Origen') }}</th>
                 <th class="text-center">{{ _('Acciones') }}</th>
             </tr>
         </thead>
@@ -38,7 +38,13 @@
                 </td>
                 <td><span class="price-badge" data-product-price data-product-id="{{ product.id }}">{{ "%.2f"|format(product.price) }}€</span></td>
                 <td>{{ product.size or '-' }}</td>
-                <td>{{ product.originCountry or _('N/A') }}</td>
+                <td class="text-center">
+                    {% if product.originCountry %}
+                        <img src="https://flagcdn.com/20x15/{{ product.originCountry | lower }}.png" alt="{{ product.originCountry }}" title="{{ product.originCountry }}" style="border-radius: 2px;">
+                    {% else %}
+                        <span class="text-muted">-</span>
+                    {% endif %}
+                </td>
                 <td class="col-actions text-center">
                     <div class="inline-actions">
                         <a href="{{ url_for('product_detail', id=product.id) }}" class="btn-icon btn-secondary-icon" title="{{ _('Ver Detalles') }}">

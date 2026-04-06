@@ -109,16 +109,16 @@ def seed_data():
 
     # Create Products
     products_data = [
-        ("Apples", 0.99, "S", "ES", "#FF5733", "/static/img/products/apples.png"),
-        ("Bananas", 1.49, "M", "EC", "#FFD700", "/static/img/products/bananas.png"),
-        ("Coconuts", 2.99, "M", "PH", "#8B4513", "/static/img/products/coconuts.png"),
-        ("Melons", 4.99, "XL", "ES", "#90EE90", "/static/img/products/melons.png"),
-        ("Kiwi Fruits", 1.89, "S", "NZ", "#6B8E23", "/static/img/products/kiwi.png"),
-        ("Strawberries", 2.49, "S", "ES", "#DC143C", "/static/img/products/strawberries.png"),
-        ("Raspberries", 3.29, "S", "FR", "#C71585", "/static/img/products/raspberries.png"),
-        ("Pineapples", 1.89, "L", "CR", "#FFA500", "/static/img/products/pineapples.png"),
-        ("Oranges", 1.29, "M", "ES", "#FF8C00", "/static/img/products/oranges.png"),
-        ("Grapes", 2.19, "S", "IT", "#800080", "/static/img/products/grapes.png")
+        ("Apples", 0.99, "S", "ES", "#FF5733", "https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?w=200"),
+        ("Bananas", 1.49, "M", "EC", "#FFD700", "https://images.unsplash.com/photo-1528825871115-3581a5387919?w=200"),
+        ("Coconuts", 2.99, "M", "PH", "#8B4513", "https://images.unsplash.com/photo-1557930811-37db03709bcf?w=200"),
+        ("Melons", 4.99, "XL", "ES", "#90EE90", "https://images.unsplash.com/photo-1571575173700-afb9492e6a50?w=200"),
+        ("Kiwi Fruits", 1.89, "S", "NZ", "#6B8E23", "https://images.unsplash.com/photo-1560155016-bd4879ae8f21?w=200"),
+        ("Strawberries", 2.49, "S", "ES", "#DC143C", "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=200"),
+        ("Raspberries", 3.29, "S", "FR", "#C71585", "https://images.unsplash.com/photo-1544070282-591d487cbc6c?w=200"),
+        ("Pineapples", 1.89, "L", "CR", "#FFA500", "https://images.unsplash.com/photo-1443831998611-464f8919d44c?w=200"),
+        ("Oranges", 1.29, "M", "ES", "#FF8C00", "https://images.unsplash.com/photo-1582284540020-8acaf01f344a?w=200"),
+        ("Grapes", 2.19, "S", "IT", "#800080", "https://images.unsplash.com/photo-1596333522248-1014bb22487c?w=200")
     ]
     products = []
     for p in products_data:
@@ -300,7 +300,8 @@ def list_stores():
 
 @app.route('/stores/map')
 def stores_map():
-    stores = Store.query.all()
+    import data_layer
+    stores = data_layer.get_all_stores()
     return render_template('stores_map.html', stores=stores)
 
 @app.route('/stores/<int:id>', methods=['GET', 'DELETE'])
@@ -750,23 +751,6 @@ if __name__ == '__main__':
         db.create_all()
         seed_data()
 
-        # Update product image seeds to be more descriptive
-        products_update_map = {
-            "Apples": "/static/img/products/apples.png",
-            "Bananas": "/static/img/products/bananas.png",
-            "Coconuts": "/static/img/products/coconuts.png",
-            "Melons": "/static/img/products/melons.png",
-            "Kiwi Fruits": "/static/img/products/kiwi.png",
-            "Strawberries": "/static/img/products/strawberries.png",
-            "Raspberries": "/static/img/products/raspberries.png",
-            "Pineapples": "/static/img/products/pineapples.png",
-            "Oranges": "/static/img/products/oranges.png",
-            "Grapes": "/static/img/products/grapes.png"
-        }
-        for name, img_url in products_update_map.items():
-            prod = Product.query.filter_by(name=name).first()
-            if prod and "wikimedia" in prod.image or "picsum" in prod.image:
-                prod.image = img_url
         db.session.commit()
 
         # Cleanup orphan inventory items (broken FK references)

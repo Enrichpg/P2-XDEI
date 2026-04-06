@@ -701,9 +701,8 @@ msgid "No existen tiendas registradas en este momento."
 msgstr ""
 
 #: templates/stores_map.html:2 templates/stores_map.html:11
-#, fuzzy
 msgid "Stores Map"
-msgstr "Tienda Gamma"
+msgstr "Mapa de Tiendas"
 
 #: templates/stores_map.html:108
 #, fuzzy
@@ -859,3 +858,133 @@ msgstr "Detalles"
 #~ msgid "Tower Trödelmarkt"
 #~ msgstr "Tower Trödelmarkt"
 
+msgid "Apples"
+msgstr "Manzanas"
+
+msgid "Bananas"
+msgstr "Plátanos"
+
+msgid "Coconuts"
+msgstr "Cocos"
+
+msgid "Melons"
+msgstr "Melones"
+
+msgid "Kiwi Fruits"
+msgstr "Kiwis"
+
+msgid "Strawberries"
+msgstr "Fresas"
+
+msgid "Raspberries"
+msgstr "Frambuesas"
+
+msgid "Pineapples"
+msgstr "Piñas"
+
+msgid "Oranges"
+msgstr "Naranjas"
+
+msgid "Grapes"
+msgstr "Uvas"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Price"
+msgstr "Precio"
+
+msgid "Size"
+msgstr "Tamaño"
+
+msgid "Color"
+msgstr "Color"
+
+msgid "stockCount"
+msgstr "Stock"
+
+msgid "shelfCount"
+msgstr "Balda"
+
+msgid "Action"
+msgstr "Acción"
+
+msgid "Comprar"
+msgstr "Comprar"
+
+msgid "Corner Unit"
+msgstr "Esquinero"
+
+msgid "Wall Unit 1"
+msgstr "Estante Mural 1"
+
+msgid "Wall Unit 2"
+msgstr "Estante Mural 2"
+
+msgid "Long Wall Unit"
+msgstr "Estante Mural Largo"
+
+msgid "Condiciones Actuales"
+msgstr "Condiciones Actuales"
+
+msgid "Requieres contexto FIWARE activo"
+msgstr "Se requiere contexto FIWARE activo"
+
+msgid "Sin datos"
+msgstr "Sin datos"
+
+msgid "Notificaciones en Tiempo Real"
+msgstr "Notificaciones en Tiempo Real"
+
+msgid "Esperando eventos del servidor..."
+msgstr "Esperando eventos del servidor..."
+
+msgid "Inventario por Baldas (Shelves)"
+msgstr "Inventario por Baldas (Shelves)"
+
+msgid "Nueva Balda"
+msgstr "Nueva Balda"
+
+msgid "Añadir producto que no esté aquí..."
+msgstr "Añadir producto que no esté aquí..."
+
+msgid "Stock Inicial"
+msgstr "Stock Inicial"
+
+msgid "Añadir"
+msgstr "Añadir"
+
+msgid "Timeline de la Tienda (X / Twitter)"
+msgstr "Cronología de la Tienda (X / Twitter)"
+
+msgid "Recorrido Virtual 3D"
+msgstr "Recorrido Virtual 3D"
+
+msgid "Ubicación Geográfica"
+msgstr "Ubicación Geográfica"
+
+msgid "Home - FIWARE Smart Store"
+msgstr "Inicio - FIWARE Smart Store"
+
+msgid "Ubicación física de venta"
+msgstr "Ubicación física de venta"
+
+msgid "Personal de la tienda"
+msgstr "Personal de la tienda"
+
+msgid "Catálogo de artículos"
+msgstr "Catálogo de artículos"
+
+msgid "Unidad de almacenamiento"
+msgstr "Unidad de almacenamiento"
+
+msgid "Stock de producto"
+msgstr "Stock de producto"
+
+msgid "Atributos dinámicos proporcionados por proveedores de contexto externos (FIWARE Orion)"
+msgstr "Atributos dinámicos proporcionados por proveedores de contexto externos (FIWARE Orion)"
+
+
+
+msgid "View details"
+msgstr "Ver detalles"

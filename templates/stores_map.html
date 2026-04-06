@@ -16,29 +16,28 @@
 
 {% block extra_scripts %}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         var map = L.map('map').setView([52.52, 13.40], 12);
 
         var lightTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
-        });
+        }).addTo(map);
 
-        var darkTiles = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-            attribution: '© CARTO'
+        var darkTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '© OpenStreetMap contributors, © CARTO'
         });
 
         if (document.body.classList.contains('dark-mode')) {
+            map.removeLayer(lightTiles);
             darkTiles.addTo(map);
-        } else {
-            lightTiles.addTo(map);
         }
 
         document.addEventListener('themeChanged', function () {
             if (document.body.classList.contains('dark-mode')) {
-                map.removeLayer(lightTiles);
+                if (map.hasLayer(lightTiles)) map.removeLayer(lightTiles);
                 darkTiles.addTo(map);
             } else {
-                map.removeLayer(darkTiles);
+                if (map.hasLayer(darkTiles)) map.removeLayer(darkTiles);
                 lightTiles.addTo(map);
             }
         });
@@ -46,40 +45,50 @@
         var storesData = [
             {% for s in stores %}
             {% set loc = s.location %}
-            {% if loc is mapping and loc.value is defined and loc.value.coordinates is defined %}
-                {% set slng = loc.value.coordinates[0] | float %}
-                {% set slat = loc.value.coordinates[1] | float %}
-            {% elif loc is string and ',' in loc %}
-                {% set parts = loc.replace('[','').replace(']','').split(',') %}
-                {% set slat = parts[0] | trim | float %}
-                {% set slng = parts[1] | trim | float %}
-            {% elif loc is string and ' ' in loc %}
-                {% set parts = loc.split(' ') %}
-                {% set slat = parts[0] | trim | float %}
-                {% set slng = parts[1] | trim | float %}
-            {% else %}
-                {% set slat, slng = 52.52, 13.40 %}
-            {% endif %}
-            
-            {% set sname = s.name.value if s.name is mapping else s.name %}
-            {% set simg = s.image.value if s.image is mapping else (s.image or '') %}
-            {% set scc = s.countryCode.value if s.countryCode is mapping else (s.countryCode or '') %}
-            {% set sdesc = s.description.value if s.description is mapping else (s.description or '') %}
-            {% set addr = s.address %}
-            {% set addrval = addr.value if addr is mapping else { } %}
-            {% set street = addrval.streetAddress if addrval is mapping else '' %}
-            {
-                id: "{{ s.id }}",
-                lat: {{ slat }},
-                lng: {{ slng }},
-                name: "{{ sname|e }}",
-                image: "{{ simg|e }}",
+        {% if loc is mapping and loc.value is defined and loc.value.coordinates is defined %}
+    {% set slng = loc.value.coordinates[0] | float %}
+    {% set slat = loc.value.coordinates[1] | float %}
+    {% elif loc is string and ',' in loc %}
+    {% set parts = loc.replace('[', '').replace(']', '').split(',') %}
+    {% set p0 = parts[0] | trim | float %}
+    {% set p1 = parts[1] | trim | float %}
+    {% if p0 < p1 and p0 < 25 %}
+    {% set slat, slng = p1, p0 %}
+    {% else %}
+    {% set slat, slng = p0, p1 %}
+    {% endif %}
+    {% elif loc is string and ' ' in loc %}
+    {% set parts = loc.split(' ') %}
+    {% set p0 = parts[0] | trim | float %}
+    {% set p1 = parts[1] | trim | float %}
+    {% if p0 < p1 and p0 < 25 %}
+    {% set slat, slng = p1, p0 %}
+    {% else %}
+    {% set slat, slng = p0, p1 %}
+    {% endif %}
+    {% else %}
+    {% set slat, slng = 52.52, 13.40 %}
+    {% endif %}
+
+    {% set sname = s.name.value if s.name is mapping else s.name %}
+    {% set simg = s.image.value if s.image is mapping else (s.image or '') %}
+    {% set scc = s.countryCode.value if s.countryCode is mapping else (s.countryCode or '') %}
+    {% set sdesc = s.description.value if s.description is mapping else (s.description or '') %}
+    {% set addr = s.address %}
+    {% set addrval = addr.value if addr is mapping else { } %}
+    {% set street = addrval.streetAddress if addrval is mapping else '' %}
+    {
+        id: "{{ s.id }}",
+            lat: {{ slat }},
+        lng: {{ slng }},
+        name: "{{ sname|e }}",
+            image: "{{ simg|e }}",
                 countryCode: "{{ scc|lower }}",
-                description: "{{ (sdesc[:80] + '…') if sdesc|length > 80 else sdesc|e }}",
-                street: "{{ street|e }}",
-                url: "{{ url_for('store_detail', id=s.id) }}"
-            } {% if not loop.last %},{% endif %}
-            {% endfor %}
+                    description: "{{ (sdesc[:80] + '…') if sdesc|length > 80 else sdesc|e }}",
+                        street: "{{ street|e }}",
+                            url: "{{ url_for('store_detail', id=s.id) }}"
+    } {% if not loop.last %}, {% endif %}
+    {% endfor %}
         ];
 
     var customIcon = L.divIcon({
@@ -94,20 +103,20 @@
         var marker = L.marker([s.lat, s.lng], { icon: customIcon }).addTo(map);
 
         var popupHtml = `
-            <div class="store-map-card">
-                ${s.image ? `<img src="${s.image}" alt="${s.name}" onerror="this.onerror=null; this.src='/static/img/placeholder.png';">` : ''}
-                <strong>${s.name}</strong>
-                ${s.countryCode ? `<img src="https://flagcdn.com/16x12/${s.countryCode}.png" style="vertical-align:middle;"> <span style="font-size:0.8rem;text-transform:uppercase;">${s.countryCode}</span>` : ''}
-                ${s.street ? `<small><i class="fas fa-map-marker-alt"></i> ${s.street}</small>` : ''}
-                ${s.description ? `<small>${s.description}</small>` : ''}
-                <a href="${s.url}" class="view-more">{{ _("View details") }} <i class="fas fa-arrow-right"></i></a>
-            </div>
-        `;
+                <div class="store-map-card">
+                    ${s.image ? `<img src="${s.image}" alt="${s.name}" onerror="this.onerror=null; this.src='/static/img/placeholder.png';">` : ''}
+                    <strong>${s.name}</strong>
+                    ${s.countryCode ? `<img src="https://flagcdn.com/16x12/${s.countryCode}.png" style="vertical-align:middle;"> <span style="font-size:0.8rem;text-transform:uppercase;">${s.countryCode}</span>` : ''}
+                    ${s.street ? `<small><i class="fas fa-map-marker-alt"></i> ${s.street}</small>` : ''}
+                    ${s.description ? `<small>${s.description}</small>` : ''}
+                    <a href="${s.url}" class="view-more">{{ _("View details") }} <i class="fas fa-arrow-right"></i></a>
+                </div>
+            `;
 
         marker.bindPopup(popupHtml, { maxWidth: 220 });
         marker.on('mouseover', function () { this.openPopup(); });
         marker.on('click', function () { window.location.href = s.url; });
     });
-});
+    });
 </script>
 {% endblock %}

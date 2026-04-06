@@ -265,5 +265,7 @@ At startup the application registers the tutorial context provider in Orion for:
 | 2 | Low stock | `InventoryItem` | `shelfCount` | `http://host.docker.internal:5000/subscriptions/low-stock` |
 
 > [!IMPORTANT]
+> [!IMPORTANT]
 > `host.docker.internal` is used instead of `localhost` because Orion runs inside a Docker container and needs to reach the Flask app on the host machine.
-\n- Stores have explicit [lat,lng] coordinates initialized in python script seed
+- Stores have explicit [lat,lng] coordinates initialized in python script seed
+- In the frontend layer, string enumerators or literal variables (such as Role, Skills, OriginCountry or Color) are mapped to interactive CSS/HTML items like FontAwesome Icons or flag images, to augment visual clarity without altering the backend strings.

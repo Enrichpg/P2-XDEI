@@ -701,9 +701,8 @@ msgid "No existen tiendas registradas en este momento."
 msgstr ""
 
 #: templates/stores_map.html:2 templates/stores_map.html:11
-#, fuzzy
 msgid "Stores Map"
-msgstr "Store Gamma"
+msgstr "Store Map"
 
 #: templates/stores_map.html:108
 #, fuzzy

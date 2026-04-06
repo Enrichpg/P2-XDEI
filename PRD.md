@@ -83,4 +83,14 @@ The two backends are **independent** — no data is synchronised between SQLite 
 ### Real-time Sockets and Core Workflows
 - **Flask-SocketIO Integration**: The application emits 'price_change' explicitly inside the patch function to notify instances directly without waiting for polling.
 - **DOM Updating Strategy**: Follows strict separation of concerns—JavaScript updates ONLY existing classes, IDs, and attributes, maintaining HTML purity (no direct innerHTML generation from JS).
-### Sockets and Real-time\n- Added Sockets\n### Offline Fallbacks\n- Added UI badge for context providers not running (Sin datos)
+### Sockets and Real-time
+- Added Sockets
+### Offline Fallbacks
+- Added UI badge for context providers not running (Sin datos)
+### Visual Refinements (UI/UX)
+- Improved employee photo interaction with CSS zoom effect on hover via `hover-scale` class.
+- Improved store images with zoom and 360 rotation CSS animations.
+- Dynamic color styling based on inventory count added to progress bars (low, medium, high indicators).
+- Compacted information in multiple views replacing text properties with recognizable FontAwesome icons and Country Flag images (e.g. Origin).
+- Added static sticky navigation highlighting the active section with seamless layout.
+- Added standalone `Stores Map` navigation tab and Leaflet map displaying real-time customized marker popups of active store details on hover and map-clicks redirecting to detail views.
