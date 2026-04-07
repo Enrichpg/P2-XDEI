@@ -156,6 +156,70 @@
     
     <p class="footer-note">* {{ _('Atributos dinámicos proporcionados por proveedores de contexto externos (FIWARE Orion)') }}</p>
 
+    <!-- UML Mermaid Diagram -->
+    <div class="mermaid-container" style="margin-top:2rem;">
+        <h2><i class="fas fa-project-diagram"></i> {{ _('Modelo de Datos UML') }}</h2>
+        <pre class="mermaid">
+erDiagram
+STORE ||--o{ SHELF : has
+STORE ||--o{ INVENTORYITEM : stocks
+STORE ||--o{ EMPLOYEE : employs
+PRODUCT ||--o{ INVENTORYITEM : "placed in"
+SHELF ||--o{ INVENTORYITEM : contains
+
+STORE {
+string id
+string name
+PostalAddress address
+GeoJSON location
+string image
+string url
+string telephone
+string countryCode
+float capacity
+string description
+float temperature
+float relativeHumidity
+string tweets
+}
+PRODUCT {
+string id
+string name
+integer price
+string size
+string image
+string originCountry
+string color
+}
+SHELF {
+string id
+string name
+integer maxCapacity
+string refStore
+}
+EMPLOYEE {
+string id
+string name
+string image
+float salary
+string category
+string email
+date dateOfContract
+array skills
+string username
+string refStore
+}
+INVENTORYITEM {
+string id
+string refStore
+string refShelf
+string refProduct
+integer stockCount
+integer shelfCount
+}
+        </pre>
+    </div>
+
     <div style="display:none">
         <!-- For Testing Compatibility -->
         <ul id="test-store-list">
@@ -170,4 +234,20 @@
         </ul>
     </div>
 </section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var isDark = document.body.classList.contains('dark-mode');
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: isDark ? 'dark' : 'default',
+            themeVariables: isDark
+                ? { primaryColor: '#2a4a4a', primaryTextColor: '#e0e0e0', lineColor: '#80cbc4', primaryBorderColor: '#4db6ac', nodeBorder: '#4db6ac' }
+                : { primaryColor: '#e0f2f1', primaryTextColor: '#333', lineColor: '#00796b', primaryBorderColor: '#004d40', nodeBorder: '#00796b' }
+        });
+    });
+</script>
 {% endblock %}
