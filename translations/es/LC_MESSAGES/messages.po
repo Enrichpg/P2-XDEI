@@ -482,7 +482,7 @@ msgstr "URL de la Imagen"
 
 #: templates/products.html:21
 msgid "Tamaño"
-msgstr ""
+msgstr "Tamaño"
 
 #: templates/products.html:22
 #, fuzzy
@@ -490,9 +490,8 @@ msgid "Color"
 msgstr "Pollo"
 
 #: templates/products.html:23
-#, fuzzy
 msgid "Origen"
-msgstr "Origen:"
+msgstr "Origen"
 
 #: templates/products.html:44
 msgid "N/A"
