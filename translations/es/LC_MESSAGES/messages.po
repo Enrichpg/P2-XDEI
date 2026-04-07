@@ -970,3 +970,15 @@ msgstr "Atributos dinámicos proporcionados por proveedores de contexto externos
 
 msgid "View details"
 msgstr "Ver detalles"
+
+#: templates/base.html:44
+msgid "Data Model"
+msgstr "Modelo de Datos"
+
+#: templates/products.html:26
+msgid "Size"
+msgstr "Tamaño"
+
+#: templates/products.html:27
+msgid "Origin"
+msgstr "Origen"
