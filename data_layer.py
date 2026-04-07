@@ -127,7 +127,7 @@ def _employee_to_ngsi(data: dict, store_int_id=None) -> dict:
     return {
         "name":           {"type": "Text",            "value": data.get("name", "")},
         "salary":         {"type": "Number",          "value": salary_val},
-        "role":           {"type": "Text",            "value": data.get("role", "") or ""},
+        "category":       {"type": "Text",            "value": data.get("category", "") or ""},
         "refStore":       {"type": "Relationship",    "value": ref_store},
         "image":          {"type": "Text",            "value": data.get("image", "") or ""},
         "email":          {"type": "Text",            "value": data.get("email", "") or ""},
@@ -200,7 +200,7 @@ def _ngsi_to_employee(entity: dict):
         id=_from_urn(entity["id"]),
         name=_val("name"),
         salary=_val("salary"),
-        role=_val("role"),
+        category=_val("category"),
         image=_val("image"),
         email=_val("email"),
         dateOfContract=_val("dateOfContract"),
@@ -559,7 +559,7 @@ def _sqlite_create_employee(data: dict):
         name=data.get("name"),
         image=data.get("image"),
         salary=data.get("salary"),
-        role=data.get("role"),
+        category=data.get("category"),
         store_id=data.get("store_id"),
         email=data.get("email"),
         dateOfContract=data.get("dateOfContract"),
@@ -580,7 +580,7 @@ def _sqlite_update_employee(int_id: int, data: dict):
     employee.name = data.get("name", employee.name)
     employee.image = data.get("image", employee.image)
     employee.salary = data.get("salary", employee.salary)
-    employee.role = data.get("role", employee.role)
+    employee.category = data.get("category", employee.category)
     employee.email = data.get("email", employee.email)
     employee.dateOfContract = data.get("dateOfContract", employee.dateOfContract)
     employee.skills = data.get("skills", employee.skills)

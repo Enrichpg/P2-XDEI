@@ -244,9 +244,7 @@
                                 <strong><a href="{{ url_for('product_detail', id=item.product.id) }}">{{
                                         _(item.product.name) }}</a></strong>
                                 {% if item.product.color %}
-                                <span class="color-swatch"
-                                    style="background-color: {{ item.product.color }}; width: 12px; height: 12px; display: inline-block; border-radius: 3px; margin-left: 5px; vertical-align: middle;"
-                                    title="{{ item.product.color }}"></span>
+                                <i class="fas fa-square" style="color: {{ item.product.color }}; margin-left: 5px; vertical-align: middle;" title="{{ item.product.color }}"></i>
                                 {% endif %}
                             </td>
                             <td style="padding:8px;" data-product-price data-product-id="{{ item.product.id }}">{{
