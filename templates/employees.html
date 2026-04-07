@@ -36,12 +36,12 @@
                 </td>
                 <td class="col-main"><strong>{{ employee.name }}</strong></td>
                 <td>
-                    <span class="role-badge">
-                        {% if 'Manager' in employee.role %} <i class="fas fa-user-tie"></i>
-                        {% elif 'Cashier' in employee.role %} <i class="fas fa-cash-register"></i>
-                        {% elif 'Stock' in employee.role %} <i class="fas fa-boxes"></i>
+                    <span class="category-badge">
+                        {% if 'Manager' in employee.category %} <i class="fas fa-user-tie"></i>
+                        {% elif 'Cashier' in employee.category %} <i class="fas fa-cash-register"></i>
+                        {% elif 'Stock' in employee.category %} <i class="fas fa-boxes"></i>
                         {% else %} <i class="fas fa-user-tag"></i> {% endif %}
-                        {{ _(employee.role) }}
+                        {{ _(employee.category) }}
                     </span>
                 </td>
                 <td>

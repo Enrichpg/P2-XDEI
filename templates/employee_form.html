@@ -20,12 +20,12 @@
         </div>
 
         <div class="form-group">
-            <label for="role">{{ _('Rol') }} *</label>
-            <select id="role" name="role" required>
-                <option value="" disabled {% if not employee or not employee.role %}selected{% endif %}>{{ _('Selecciona un rol...') }}</option>
-                <option value="Manager" {% if employee and employee.role == 'Manager' %}selected{% endif %}>{{ _('Manager') }}</option>
-                <option value="Cashier" {% if employee and employee.role == 'Cashier' %}selected{% endif %}>{{ _('Cashier') }}</option>
-                <option value="StockClerk" {% if employee and employee.role == 'StockClerk' %}selected{% endif %}>{{ _('StockClerk') }}</option>
+            <label for="category">{{ _('Rol') }} *</label>
+            <select id="category" name="category" required>
+                <option value="" disabled {% if not employee or not employee.category %}selected{% endif %}>{{ _('Selecciona un rol...') }}</option>
+                <option value="Manager" {% if employee and employee.category == 'Manager' %}selected{% endif %}>{{ _('Manager') }}</option>
+                <option value="Cashier" {% if employee and employee.category == 'Cashier' %}selected{% endif %}>{{ _('Cashier') }}</option>
+                <option value="StockClerk" {% if employee and employee.category == 'StockClerk' %}selected{% endif %}>{{ _('StockClerk') }}</option>
             </select>
             <span class="field-error hidden">{{ _('Debes seleccionar un rol válido.') }}</span>
         </div>
@@ -45,7 +45,7 @@
         <div class="form-group">
             <label for="dateOfContract">{{ _('Fecha de Contratación') }}</label>
             {% set dt = employee.dateOfContract[:16] if employee and employee.dateOfContract else '' %}
-            <input type="datetime-local" id="dateOfContract" name="dateOfContract" value="{{ dt }}">
+            <input type="date" id="dateOfContract" name="dateOfContract" value="{{ dt }}">
             <span class="field-error hidden">{{ _('Selecciona una fecha y hora válidas.') }}</span>
         </div>
 

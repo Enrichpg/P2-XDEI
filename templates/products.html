@@ -11,6 +11,11 @@
         }}</a>
 </div>
 
+<div class="filter-bar" style="margin-bottom: 1rem; display:flex; justify-content:flex-end;">
+    <input type="search" id="productSearch" placeholder="{{ _('Buscar producto...') }}" 
+           style="padding: 0.5rem; border-radius: var(--border-radius); border: 1px solid var(--border-color); width: 250px;">
+</div>
+
 <div class="table-responsive">
     <table class="data-table">
         <thead>
@@ -33,7 +38,7 @@
                 <td class="col-main">
                     <strong>{{ _(product.name) }}</strong>
                     {% if product.color %}
-                    <span class="color-swatch" style="background-color: {{ product.color }}; width: 12px; height: 12px; display: inline-block; border-radius: 3px; margin-left: 5px; vertical-align: middle;" title="{{ product.color }}"></span>
+                    <i class="fas fa-square" style="color: {{ product.color }}; margin-left: 5px; vertical-align: middle;" title="{{ product.color }}"></i>
                     {% endif %}
                 </td>
                 <td><span class="price-badge" data-product-price data-product-id="{{ product.id }}">{{ "%.2f"|format(product.price) }}€</span></td>
@@ -69,4 +74,22 @@
         </tbody>
     </table>
 </div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('productSearch');
+        if (searchInput) {
+            searchInput.addEventListener('keyup', function() {
+                let filter = this.value.toLowerCase();
+                let rows = document.querySelectorAll('.data-table tbody tr');
+                rows.forEach(row => {
+                    let text = row.cells[1].textContent.toLowerCase();
+                    row.style.display = text.includes(filter) ? '' : 'none';
+                });
+            });
+        }
+    });
+</script>
 {% endblock %}

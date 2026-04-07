@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'super-secret-key' # Required for sessions
 
 db = SQLAlchemy(app)
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet')
 
 def get_locale():
     # 1. Check if lang is in query params (highest priority)
@@ -91,7 +91,7 @@ class Employee(db.Model):
     name = db.Column(db.String(100), nullable=False)
     image = db.Column(db.String(255))
     salary = db.Column(db.Float)
-    role = db.Column(db.String(50), nullable=False)
+    category = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(100))
     dateOfContract = db.Column(db.String(50))
     skills = db.Column(db.String(255))
@@ -160,7 +160,7 @@ def seed_data():
         ("David López", "https://randomuser.me/api/portraits/men/75.jpg", 3200, "Manager", "david.lopez@tower.example", "2018-01-20T00:00:00Z", ["WritingReports","CustomerRelationships"], "david", "hashed_david000", stores[3].id)
     ]
     for e in employees_data:
-        emp = Employee(name=e[0], image=e[1], salary=e[2], role=e[3], email=e[4], dateOfContract=e[5], skills=json.dumps(e[6]), username=e[7], password=e[8], store_id=e[9])
+        emp = Employee(name=e[0], image=e[1], salary=e[2], category=e[3], email=e[4], dateOfContract=e[5], skills=json.dumps(e[6]), username=e[7], password=e[8], store_id=e[9])
         db.session.add(emp)
     db.session.commit()
 
@@ -604,13 +604,13 @@ def delete_shelf(store_id, shelf_id):
 def list_employees():
     if request.method == 'POST':
         data = request.get_json()
-        if not data or not data.get('name') or not data.get('role') or not data.get('store_id'):
+        if not data or not data.get('name') or not data.get('category') or not data.get('store_id'):
             return "Missing required fields", 400
-        employee = Employee(name=data['name'], role=data['role'], store_id=data['store_id'],
+        employee = Employee(name=data['name'], category=data['category'], store_id=data['store_id'],
                             image=data.get('image'), salary=data.get('salary'))
         db.session.add(employee)
         db.session.commit()
-        return {"id": employee.id, "name": employee.name, "role": employee.role,
+        return {"id": employee.id, "name": employee.name, "category": employee.category,
                 "store_id": employee.store_id, "image": employee.image, "salary": employee.salary}, 201
     employees = Employee.query.all()
     return render_template('employees.html', employees=employees)
@@ -632,7 +632,7 @@ def create_employee():
             salary = float(request.form.get('salary', 0))
         except ValueError:
             salary = 0
-        role = request.form.get('role')
+        category = request.form.get('category')
         store_id = request.form.get('store_id')
         email = request.form.get('email')
         dateOfContract = request.form.get('dateOfContract')
@@ -640,13 +640,13 @@ def create_employee():
         username = request.form.get('username')
         password = request.form.get('password')
         
-        if not name or not role or not store_id or not username or not password or not email:
+        if not name or not category or not store_id or not username or not password or not email:
             flash(_('Information is incomplete. Please check required fields.'), 'error')
             return render_template('employee_form.html', employee=None, stores=stores)
             
         import json
         employee = Employee(
-            name=name, image=image, salary=salary, role=role, 
+            name=name, image=image, salary=salary, category=category, 
             store_id=int(store_id), email=email, dateOfContract=dateOfContract,
             skills=json.dumps(skills), username=username, password=password
         )
@@ -665,12 +665,12 @@ def edit_employee(id):
     stores = Store.query.all()
     if request.method == 'POST':
         name = request.form.get('name')
-        role = request.form.get('role')
+        category = request.form.get('category')
         store_id = request.form.get('store_id')
         username = request.form.get('username')
         email = request.form.get('email')
 
-        if not name or not role or not store_id or not username or not email:
+        if not name or not category or not store_id or not username or not email:
             flash(_('Information is incomplete. Please check required fields.'), 'error')
             return render_template('employee_form.html', employee=employee, stores=stores)
 
@@ -680,7 +680,7 @@ def edit_employee(id):
             employee.salary = float(request.form.get('salary', 0))
         except ValueError:
             pass
-        employee.role = role
+        employee.category = category
         employee.store_id = int(store_id)
         employee.email = email
         employee.dateOfContract = request.form.get('dateOfContract')
@@ -777,4 +777,4 @@ if __name__ == '__main__':
             orion.register_context_providers(store_ids)
         orion.register_subscriptions()
 
-    socketio.run(app, debug=True, allow_unsafe_werkzeug=True, port=int(os.getenv("FLASK_PORT", 5000)))
+    socketio.run(app, debug=True, port=int(os.getenv("FLASK_PORT", 5000)))
