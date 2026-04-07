@@ -979,3 +979,21 @@ msgstr "Tamaño"
 #: templates/products.html:27
 msgid "Origin"
 msgstr "Origen"
+
+msgid "Image"
+msgstr "Imagen"
+
+msgid "Actions"
+msgstr "Acciones"
+
+msgid "Country"
+msgstr "País"
+
+msgid "Capacity"
+msgstr "Capacidad"
+
+msgid "Phone"
+msgstr "Teléfono"
+
+msgid "Address"
+msgstr "Dirección"
