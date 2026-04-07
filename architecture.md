@@ -40,7 +40,7 @@ graph TD
     - **Business Logic**: `app.py` handles routing, model definitions, and CRUD operations using SQLAlchemy ORM.
     - **Data Abstraction**: `data_layer.py` centralises all CRUD for Store, Product, and Employee. On startup it probes Orion; if reachable it routes all operations to Orion via NGSIv2 REST API, otherwise falls back to SQLite. It also provides a dedicated proxy endpoint (`POST /api/inventory/purchase`) logic handler to intercept and decrement stock, circumventing Orion CORS constraints and securing direct database access.
     - **Database (default)**: SQLite via SQLAlchemy for persistent local storage.
-    - **WebSocket**: Flask-SocketIO serves real-time events to connected browsers.
+    - **WebSocket**: Flask-SocketIO served via `eventlet` async backend for high-concurrency real-time events to connected browsers.
     - **Subscription Handler**: HTTP endpoint(s) that receive Orion subscription notifications (price change, low stock) and re-emit them as SocketIO events.
 - **FIWARE Integration**:
     - **Orion Context Broker**: NGSIv2-compliant context broker. Runs in Docker (`docker-compose.yml`).

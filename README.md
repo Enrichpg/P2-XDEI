@@ -8,6 +8,7 @@ Aplicación de gestión de cadenas de supermercados basada en **FIWARE Orion Con
 - Suscripciones NGSIv2 y notificaciones en tiempo real vía **Flask-SocketIO**
 - Interfaz multilingüe (ES/EN) con modo Dark/Light
 - Mapa Leaflet JS, recorrido virtual Three.js, diagrama UML Mermaid
+- **Nota**: El contenedor `tutorial` es necesario para suministrar los datos externos de temperatura, humedad y tweets.
 
 ## Repositorio GitHub
 
