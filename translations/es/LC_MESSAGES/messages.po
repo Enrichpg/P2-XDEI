@@ -130,7 +130,7 @@ msgstr "Ver Empleados"
 
 #: templates/dashboard.html:69
 msgid "Modelo de Datos — Diagrama UML"
-msgstr ""
+msgstr "Modelo de Datos — Diagrama UML"
 
 #: templates/employee_detail.html:3
 msgid "Employee Detail"
@@ -201,7 +201,7 @@ msgstr "Nombre"
 #: templates/employee_form.html:19 templates/product_form.html:19
 #: templates/store_form.html:19
 msgid "El nombre es obligatorio (2-100 caracteres)."
-msgstr ""
+msgstr "El nombre es obligatorio (2-100 caracteres)."
 
 #: templates/employee_form.html:23 templates/employees.html:19
 #, fuzzy
@@ -235,11 +235,11 @@ msgstr "Salario"
 
 #: templates/employee_form.html:36
 msgid "El salario debe ser mayor o igual a 0."
-msgstr ""
+msgstr "El salario debe ser mayor o igual a 0."
 
 #: templates/employee_form.html:40
 msgid "Correo Electrónico"
-msgstr ""
+msgstr "Correo Electrónico"
 
 #: templates/employee_form.html:42
 msgid "Introduce una dirección de correo válida."
@@ -247,7 +247,7 @@ msgstr ""
 
 #: templates/employee_form.html:46
 msgid "Fecha de Contratación"
-msgstr ""
+msgstr "Fecha de Contratación"
 
 #: templates/employee_form.html:49
 msgid "Selecciona una fecha y hora válidas."
@@ -255,7 +255,7 @@ msgstr ""
 
 #: templates/employee_form.html:53
 msgid "Habilidades (Skills)"
-msgstr ""
+msgstr "Habilidades (Skills)"
 
 #: templates/employee_form.html:58
 msgid "Conducción de Maquinaria"
@@ -280,7 +280,7 @@ msgstr ""
 
 #: templates/employee_form.html:80
 msgid "Contraseña"
-msgstr ""
+msgstr "Contraseña"
 
 #: templates/employee_form.html:83
 msgid "Deja en blanco para no cambiarla."
