@@ -599,6 +599,82 @@ def delete_shelf(store_id, shelf_id):
         db.session.commit()
     return redirect(url_for('store_detail', id=store_id))
 
+# --- PURCHASE API ---
+@app.route('/api/inventory/purchase', methods=['POST'])
+def purchase_inventory_item():
+    """Proxy endpoint for the 'Buy' button. Decrements stock by 1.
+
+    Expects JSON body: {"store_id": int, "product_id": int, "shelf_id": int}
+    Returns: {"ok": true, "stock": N} on success
+             {"ok": false, "error": "out_of_stock"} with HTTP 409 if stock is 0
+             {"ok": false, "error": "..."} with HTTP 400/500 on other errors
+    """
+    data = request.get_json(silent=True)
+    if not data:
+        return jsonify({"ok": False, "error": "invalid_request"}), 400
+
+    store_id = data.get('store_id')
+    product_id = data.get('product_id')
+    shelf_id = data.get('shelf_id')
+
+    if not all([store_id, product_id, shelf_id]):
+        return jsonify({"ok": False, "error": "missing_fields"}), 400
+
+    import data_layer
+    if data_layer.USE_ORION:
+        import orion
+        # Find the item by relationship query (store + shelf + product URNs)
+        try:
+            store_urn = f"urn:ngsi-ld:Store:{int(store_id):03d}"
+            shelf_urn = f"urn:ngsi-ld:Shelf:unit{int(shelf_id):03d}"
+            product_urn = f"urn:ngsi-ld:Product:{int(product_id):03d}"
+            items = orion.get_inventory_items(
+                store_id=store_urn, shelf_id=shelf_urn, product_id=product_urn
+            )
+            if not items:
+                return jsonify({"ok": False, "error": "item_not_found"}), 404
+
+            item = items[0]
+            item_id = item.get("id")
+
+            # get_entities uses keyValues, so values are plain integers
+            current_shelf = int(item.get("shelfCount", 0))
+            current_stock = int(item.get("stockCount", 0))
+
+            if current_shelf <= 0:
+                return jsonify({"ok": False, "error": "out_of_stock"}), 409
+
+            new_shelf = current_shelf - 1
+            new_stock = max(current_stock - 1, 0)
+
+            orion.update_inventory_item(item_id, {
+                "shelfCount": new_shelf,
+                "stockCount": new_stock
+            })
+
+            return jsonify({
+                "ok": True,
+                "shelfCount": new_shelf,
+                "stockCount": new_stock
+            })
+
+        except Exception as e:
+            app.logger.error(f"Orion purchase error: {e}")
+            return jsonify({"ok": False, "error": str(e)}), 500
+    else:
+        # SQLite fallback
+        item = Inventory.query.get((int(store_id), int(product_id), int(shelf_id)))
+        if not item:
+            return jsonify({"ok": False, "error": "item_not_found"}), 404
+
+        if item.stock <= 0:
+            return jsonify({"ok": False, "error": "out_of_stock"}), 409
+
+        item.stock -= 1
+        db.session.commit()
+
+        return jsonify({"ok": True, "stock": item.stock})
+
 # --- EMPLOYEES ---
 @app.route('/employees', methods=['GET', 'POST'])
 def list_employees():

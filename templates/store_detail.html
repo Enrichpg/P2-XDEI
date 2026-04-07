@@ -408,39 +408,63 @@
         }
         {% endif %}
 
-        // Ajax PATCH "Comprar" Button
+        // Ajax "Comprar" Button — calls Flask proxy instead of Orion directly
+        var currentStoreId = {{ store.id }};
         const buyBtns = document.querySelectorAll('.ajax-buy-btn');
         buyBtns.forEach(btn => {
             btn.addEventListener('click', function (e) {
                 e.preventDefault();
-                let orionId = this.dataset.id;
-                let pId = this.dataset.pid;
-                let sId = this.dataset.sid;
-
-                // Simulate Orion PATCH (as purely visual or generic endpoint due to proxy limit in frontend)
-                // Petición a Orion: PATCH /v2/entities/<inventoryitem_id>/attrs
-                // Usando body {"shelfCount": {"type":"Integer", "value": {"$inc": -1}}, "stockCount": ...}
-
+                let pId = parseInt(this.dataset.pid);
+                let sId = parseInt(this.dataset.sid);
                 let stockDisplay = document.querySelector(`.stock-display[data-pid="${pId}"][data-sid="${sId}"]`);
                 let currentVal = parseInt(stockDisplay.textContent);
-                if (currentVal > 0) {
-                    currentVal--;
-                    stockDisplay.textContent = currentVal;
-                    stockDisplay.style.color = "red";
-                    setTimeout(() => stockDisplay.style.color = "", 1000);
 
-                    // Async Fire & Forget to mockup or Orion backend if CORS permits
-                    fetch(`http://localhost:1026/v2/entities/${orionId}/attrs`, {
-                        method: 'PATCH',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            shelfCount: { type: "Integer", value: { "$inc": -1 } },
-                            stockCount: { type: "Integer", value: { "$inc": -1 } }
-                        })
-                    }).catch(e => console.log('Orion PATCH attempted/mocked:', e));
-                } else {
-                    alert("Stock agotado.");
+                if (currentVal <= 0) {
+                    alert("{{ _('Stock agotado.') }}");
+                    return;
                 }
+
+                // Disable button during request
+                this.disabled = true;
+                var self = this;
+
+                fetch('/api/inventory/purchase', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        store_id: currentStoreId,
+                        product_id: pId,
+                        shelf_id: sId
+                    })
+                })
+                .then(function (response) {
+                    return response.json().then(function (data) {
+                        return { status: response.status, body: data };
+                    });
+                })
+                .then(function (result) {
+                    if (result.body.ok) {
+                        // Update display with server-confirmed value
+                        var newVal = result.body.stock !== undefined
+                            ? result.body.stock
+                            : result.body.shelfCount;
+                        stockDisplay.textContent = newVal;
+                        stockDisplay.style.color = "red";
+                        setTimeout(function () { stockDisplay.style.color = ""; }, 1000);
+                    } else if (result.status === 409) {
+                        alert("{{ _('Stock agotado.') }}");
+                        stockDisplay.textContent = "0";
+                    } else {
+                        alert("{{ _('Error al procesar la compra.') }}");
+                    }
+                })
+                .catch(function (err) {
+                    console.error('Purchase error:', err);
+                    alert("{{ _('Error de conexión con el servidor.') }}");
+                })
+                .finally(function () {
+                    self.disabled = false;
+                });
             });
         });
 
