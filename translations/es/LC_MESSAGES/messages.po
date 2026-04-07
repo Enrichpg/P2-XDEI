@@ -20,43 +20,43 @@ msgstr ""
 
 #: app.py:335 app.py:356
 msgid "El nombre es obligatorio y debe tener al menos 2 caracteres."
-msgstr ""
+msgstr "El nombre es obligatorio y debe tener al menos 2 caracteres."
 
 #: app.py:343
 msgid "Store created successfully!"
-msgstr ""
+msgstr "¡Tienda creada con éxito!"
 
 #: app.py:351
 msgid "Store not found."
-msgstr ""
+msgstr "Tienda no encontrada."
 
 #: app.py:370
 msgid "Store updated successfully!"
-msgstr ""
+msgstr "¡Tienda actualizada con éxito!"
 
 #: app.py:423 app.py:447
 msgid "El nombre es obligatorio y el precio debe ser mayor a 0."
-msgstr ""
+msgstr "El nombre es obligatorio y el precio debe ser mayor a 0."
 
 #: app.py:429
 msgid "Product created successfully!"
-msgstr ""
+msgstr "¡Producto creado con éxito!"
 
 #: app.py:437
 msgid "Product not found."
-msgstr ""
+msgstr "Producto no encontrado."
 
 #: app.py:457
 msgid "Product updated successfully!"
-msgstr ""
+msgstr "¡Producto actualizado con éxito!"
 
 #: app.py:593 app.py:623
 msgid "Information is incomplete. Please check required fields."
-msgstr ""
+msgstr "La información está incompleta. Por favor, revisa los campos obligatorios."
 
 #: app.py:604
 msgid "Employee created successfully!"
-msgstr ""
+msgstr "¡Empleado creado con éxito!"
 
 #: app.py:612
 #, fuzzy
@@ -65,7 +65,7 @@ msgstr "No se encontraron empleados."
 
 #: app.py:645
 msgid "Employee updated successfully!"
-msgstr ""
+msgstr "¡Empleado actualizado con éxito!"
 
 #: templates/base.html:7 templates/base.html:29 templates/base.html:44
 #: templates/base.html:64 templates/employee_form.html:4 templates/index.html:7
@@ -179,14 +179,12 @@ msgid "NGSI refStore"
 msgstr "ID NGSI"
 
 #: templates/employee_form.html:4 templates/employee_form.html:8
-#, fuzzy
 msgid "Editar Empleado"
-msgstr "Ver Empleados"
+msgstr "Editar Empleado"
 
 #: templates/employee_form.html:4 templates/employee_form.html:8
-#, fuzzy
 msgid "Nuevo Empleado"
-msgstr "Ver Empleados"
+msgstr "Nuevo Empleado"
 
 #: templates/employee_form.html:13 templates/product_form.html:13
 #: templates/store_form.html:13
@@ -210,7 +208,7 @@ msgstr "Puesto"
 
 #: templates/employee_form.html:25
 msgid "Selecciona un rol..."
-msgstr ""
+msgstr "Selecciona un rol..."
 
 #: templates/employee_form.html:26
 msgid "Manager"
@@ -226,7 +224,7 @@ msgstr "Reponedor/a"
 
 #: templates/employee_form.html:30
 msgid "Debes seleccionar un rol válido."
-msgstr ""
+msgstr "Debes seleccionar un rol válido."
 
 #: templates/employee_form.html:34 templates/employees.html:21
 #, fuzzy
@@ -243,7 +241,7 @@ msgstr "Correo Electrónico"
 
 #: templates/employee_form.html:42
 msgid "Introduce una dirección de correo válida."
-msgstr ""
+msgstr "Introduce una dirección de correo válida."
 
 #: templates/employee_form.html:46
 msgid "Fecha de Contratación"
@@ -251,7 +249,7 @@ msgstr "Fecha de Contratación"
 
 #: templates/employee_form.html:49
 msgid "Selecciona una fecha y hora válidas."
-msgstr ""
+msgstr "Selecciona una fecha y hora válidas."
 
 #: templates/employee_form.html:53
 msgid "Habilidades (Skills)"
@@ -259,24 +257,23 @@ msgstr "Habilidades (Skills)"
 
 #: templates/employee_form.html:58
 msgid "Conducción de Maquinaria"
-msgstr ""
+msgstr "Conducción de Maquinaria"
 
 #: templates/employee_form.html:63
 msgid "Redacción de Informes"
-msgstr ""
+msgstr "Redacción de Informes"
 
 #: templates/employee_form.html:68
 msgid "Atención al Cliente"
-msgstr ""
+msgstr "Atención al Cliente"
 
 #: templates/employee_form.html:74
-#, fuzzy
 msgid "Nombre de Usuario"
-msgstr "Nombre del Producto"
+msgstr "Nombre de Usuario"
 
 #: templates/employee_form.html:76
 msgid "El nombre de usuario es obligatorio (max 50)."
-msgstr ""
+msgstr "El nombre de usuario es obligatorio (máx. 50)."
 
 #: templates/employee_form.html:80
 msgid "Contraseña"
@@ -284,15 +281,15 @@ msgstr "Contraseña"
 
 #: templates/employee_form.html:83
 msgid "Deja en blanco para no cambiarla."
-msgstr ""
+msgstr "Deja en blanco para no cambiarla."
 
 #: templates/employee_form.html:83
 msgid "Mínimo 6 caracteres."
-msgstr ""
+msgstr "Mínimo 6 caracteres."
 
 #: templates/employee_form.html:85
 msgid "La contraseña debe tener al menos 6 caracteres."
-msgstr ""
+msgstr "La contraseña debe tener al menos 6 caracteres."
 
 #: templates/employee_form.html:89 templates/product_form.html:44
 #: templates/store_form.html:36
@@ -302,22 +299,19 @@ msgstr "URL de la Imagen"
 #: templates/employee_form.html:91 templates/product_form.html:47
 #: templates/store_form.html:39 templates/store_form.html:46
 msgid "Debe ser una URL válida (ej. https://...)."
-msgstr ""
+msgstr "Debe ser una URL válida (ej. https://...)."
 
 #: templates/employee_form.html:95
-#, fuzzy
 msgid "Tienda Asignada"
-msgstr "Tiendas"
+msgstr "Tienda Asignada"
 
 #: templates/employee_form.html:97
-#, fuzzy
 msgid "Seleccionar Tienda"
-msgstr "Editar Tienda"
+msgstr "Seleccionar Tienda"
 
 #: templates/employee_form.html:102
-#, fuzzy
 msgid "Debes asignar una tienda."
-msgstr "Añadir a tienda..."
+msgstr "Debes asignar una tienda."
 
 #: templates/employee_form.html:107 templates/product_form.html:65
 #: templates/store_form.html:76
@@ -325,9 +319,8 @@ msgid "Guardar Cambios"
 msgstr "Guardar Cambios"
 
 #: templates/employee_form.html:107
-#, fuzzy
 msgid "Crear Empleado"
-msgstr "Ver Empleados"
+msgstr "Crear Empleado"
 
 #: templates/employees.html:9
 msgid "Add Employee"
@@ -335,46 +328,42 @@ msgstr "Añadir Empleado"
 
 #: templates/employees.html:17
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #: templates/employees.html:20
-#, fuzzy
 msgid "Tienda"
-msgstr "Tiendas"
+msgstr "Tienda"
 
 #: templates/employees.html:22 templates/products.html:24
 #: templates/stores.html:22
-#, fuzzy
 msgid "Acciones"
-msgstr "Cocos"
+msgstr "Acciones"
 
 #: templates/employees.html:42 templates/products.html:47
 #: templates/stores.html:38
-#, fuzzy
 msgid "Ver Detalles"
-msgstr "Detalles"
+msgstr "Ver Detalles"
 
 #: templates/employees.html:48
 msgid "¿Estás seguro de eliminar este empleado de forma permanente?"
-msgstr ""
+msgstr "¿Estás seguro de eliminar este empleado de forma permanente?"
 
 #: templates/employees.html:49 templates/products.html:54
 #: templates/stores.html:45
 msgid "Eliminar"
-msgstr ""
+msgstr "Eliminar"
 
 #: templates/employees.html:58
 msgid "No se encontraron empleados registrados."
-msgstr ""
+msgstr "No se encontraron empleados registrados."
 
 #: templates/home.html:2
-#, fuzzy
 msgid "Home"
-msgstr "Nombre"
+msgstr "Inicio"
 
 #: templates/home.html:35
 msgid "Entity Model (UML)"
-msgstr ""
+msgstr "Modelo de Entidad (UML)"
 
 #: templates/index.html:25 templates/stores.html:5
 msgid "Nuestras Tiendas"
@@ -437,11 +426,11 @@ msgstr "Nombre del Producto"
 
 #: templates/product_form.html:25
 msgid "El precio debe ser mayor a 0."
-msgstr ""
+msgstr "El precio debe ser mayor a 0."
 
 #: templates/product_form.html:32
 msgid "No debe exceder los 50 caracteres."
-msgstr ""
+msgstr "No debe exceder los 50 caracteres."
 
 #: templates/product_form.html:36
 msgid "País de Origen (ISO Code)"
@@ -449,15 +438,15 @@ msgstr "País de Origen (Código ISO)"
 
 #: templates/product_form.html:39
 msgid "2 o 3 letras (ej. ES, FR)"
-msgstr ""
+msgstr "2 o 3 letras (ej. ES, FR)"
 
 #: templates/product_form.html:40
 msgid "Use el código ISO de 2 o 3 letras (ej. ES)."
-msgstr ""
+msgstr "Use el código ISO de 2 o 3 letras (ej. ES)."
 
 #: templates/product_form.html:51
 msgid "Color (#Hex)"
-msgstr ""
+msgstr "Color (#Hex)"
 
 #: templates/product_form.html:65
 msgid "Crear Producto"
@@ -476,18 +465,16 @@ msgid "Añadir Producto"
 msgstr "Añadir Producto"
 
 #: templates/products.html:18 templates/stores.html:17
-#, fuzzy
 msgid "Imagen"
-msgstr "URL de la Imagen"
+msgstr "Imagen"
 
 #: templates/products.html:21
 msgid "Tamaño"
 msgstr "Tamaño"
 
 #: templates/products.html:22
-#, fuzzy
 msgid "Color"
-msgstr "Pollo"
+msgstr "Color"
 
 #: templates/products.html:23
 msgid "Origen"
@@ -495,32 +482,31 @@ msgstr "Origen"
 
 #: templates/products.html:44
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: templates/products.html:53
 msgid "¿Estás seguro de eliminar este producto de forma permanente?"
-msgstr ""
+msgstr "¿Estás seguro de eliminar este producto de forma permanente?"
 
 #: templates/products.html:63
 msgid "No existen productos registrados en este momento."
-msgstr ""
+msgstr "No existen productos registrados en este momento."
 
 #: templates/shelf_form.html:2
 msgid "Shelf Form"
-msgstr ""
+msgstr "Formulario de Estantería"
 
 #: templates/shelf_form.html:8
-#, fuzzy
 msgid "Edit Shelf"
-msgstr "Editar Empleado"
+msgstr "Editar Estantería"
 
 #: templates/shelf_form.html:10
 msgid "New Shelf"
-msgstr ""
+msgstr "Nueva Estantería"
 
 #: templates/shelf_form.html:14
 msgid "Back"
-msgstr ""
+msgstr "Atrás"
 
 #: templates/shelf_form.html:25
 msgid "Store"
@@ -528,15 +514,15 @@ msgstr "Tienda"
 
 #: templates/shelf_form.html:31
 msgid "Shelf Name"
-msgstr ""
+msgstr "Nombre de la Estantería"
 
 #: templates/shelf_form.html:34
 msgid "e.g. Corner Unit"
-msgstr ""
+msgstr "ej. Unidad de Esquina"
 
 #: templates/shelf_form.html:37
 msgid "Max Capacity"
-msgstr ""
+msgstr "Capacidad Máxima"
 
 #: templates/shelf_form.html:43
 msgid "Cancel"
@@ -552,11 +538,11 @@ msgstr "Detalles de la ubicación."
 
 #: templates/store_detail.html:103
 msgid "Condiciones Climáticas"
-msgstr ""
+msgstr "Condiciones Climáticas"
 
 #: templates/store_detail.html:121
 msgid "Últimos Tweets"
-msgstr ""
+msgstr "Últimos Tweets"
 
 #: templates/store_detail.html:134 templates/store_form.html:23
 #: templates/stores.html:19
@@ -619,7 +605,7 @@ msgstr "Nombre de la Tienda"
 
 #: templates/store_form.html:25
 msgid "La dirección no debe exceder 200 caracteres."
-msgstr ""
+msgstr "La dirección no debe exceder 200 caracteres."
 
 #: templates/store_form.html:29
 msgid "Coordenadas (Lat, Long)"
@@ -627,49 +613,47 @@ msgstr "Coordenadas (Lat, Long)"
 
 #: templates/store_form.html:32
 msgid "Formato inválido. Use \"Latitud, Longitud\" con números decimales."
-msgstr ""
+msgstr "Formato inválido. Use \"Latitud, Longitud\" con números decimales."
 
 #: templates/store_form.html:43
-#, fuzzy
 msgid "URL de la Tienda"
-msgstr "URL de la Imagen"
+msgstr "URL de la Tienda"
 
 #: templates/store_form.html:50 templates/stores.html:21
 msgid "Teléfono"
-msgstr ""
+msgstr "Teléfono"
 
 #: templates/store_form.html:52
 msgid "El teléfono no debe exceder 50 caracteres."
-msgstr ""
+msgstr "El teléfono no debe exceder 50 caracteres."
 
 #: templates/store_form.html:56
 msgid "Código ISO del País"
-msgstr ""
+msgstr "Código ISO del País"
 
 #: templates/store_form.html:58
 msgid "Dos letras (ej. ES, US, DE)"
-msgstr ""
+msgstr "Dos letras (ej. ES, US, DE)"
 
 #: templates/store_form.html:59
 msgid "Debe ser exactamente 2 letras (código ISO)."
-msgstr ""
+msgstr "Debe ser exactamente 2 letras (código ISO)."
 
 #: templates/store_form.html:63
 msgid "Capacidad (m³)"
-msgstr ""
+msgstr "Capacidad (m³)"
 
 #: templates/store_form.html:65
 msgid "La capacidad debe ser un número entero positivo o cero."
-msgstr ""
+msgstr "La capacidad debe ser un número entero positivo o cero."
 
 #: templates/store_form.html:69
-#, fuzzy
 msgid "Descripción"
-msgstr "Dirección"
+msgstr "Descripción"
 
 #: templates/store_form.html:71
 msgid "Descripción inválida."
-msgstr ""
+msgstr "Descripción inválida."
 
 #: templates/store_form.html:76
 msgid "Crear Tienda"
@@ -689,24 +673,23 @@ msgstr "Añadir Tienda"
 
 #: templates/stores.html:20
 msgid "Capacidad"
-msgstr ""
+msgstr "Capacidad"
 
 #: templates/stores.html:44
 msgid "¿Estás seguro de eliminar esta tienda de forma permanente?"
-msgstr ""
+msgstr "¿Estás seguro de eliminar esta tienda de forma permanente?"
 
 #: templates/stores.html:54
 msgid "No existen tiendas registradas en este momento."
-msgstr ""
+msgstr "No existen tiendas registradas en este momento."
 
 #: templates/stores_map.html:2 templates/stores_map.html:11
 msgid "Stores Map"
 msgstr "Mapa de Tiendas"
 
 #: templates/stores_map.html:108
-#, fuzzy
 msgid "View details"
-msgstr "Detalles"
+msgstr "Ver detalles"
 
 #~ msgid "Edit"
 #~ msgstr "Editar"

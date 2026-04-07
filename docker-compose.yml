@@ -50,6 +50,11 @@ services:
       - default
     ports:
       - "${TUTORIAL_APP_PORT}:${TUTORIAL_APP_PORT}"
+      - "${TUTORIAL_DUMMY_DEVICE_PORT}:${TUTORIAL_DUMMY_DEVICE_PORT}"
+    environment:
+      - "DEBUG=tutorial:*"
+      - "WEB_APP_PORT=${TUTORIAL_APP_PORT}"
+      - "CONTEXT_BROKER=http://orion-v2:1026/v2"
 
   # Databases
   mongo-db:

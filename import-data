@@ -83,7 +83,7 @@ for STORE_ID in 001 002 003 004; do
        \"attrs\": [\"temperature\", \"relativeHumidity\"]
      },
      \"provider\": {
-       \"http\": {\"url\": \"http://tutorial:3000/proxy/v1/random/weatherConditions\"},
+       \"http\": {\"url\": \"http://tutorial:3000/random/weatherConditions\"},
        \"legacyForwarding\": true
      },
      \"status\": \"active\"
@@ -104,7 +104,7 @@ for STORE_ID in 001 002 003 004; do
        \"attrs\": [\"tweets\"]
      },
      \"provider\": {
-       \"http\": {\"url\": \"http://tutorial:3000/proxy/v1/catfacts/tweets\"},
+       \"http\": {\"url\": \"http://tutorial:3000/catfacts/tweets\"},
        \"legacyForwarding\": true
      },
      \"status\": \"active\"

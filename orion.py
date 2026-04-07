@@ -328,7 +328,7 @@ def register_context_providers(store_ids):
                         "attrs": ["temperature", "relativeHumidity"]
                     },
                     "provider": {
-                        "http": {"url": "http://tutorial:3000/proxy/v1/random/weatherConditions"},
+                        "http": {"url": "http://tutorial:3000/random/weatherConditions"},
                         "legacyForwarding": True
                     },
                     "status": "active"
@@ -348,7 +348,7 @@ def register_context_providers(store_ids):
                         "attrs": ["tweets"]
                     },
                     "provider": {
-                        "http": {"url": "http://tutorial:3000/proxy/v1/catfacts/tweets"},
+                        "http": {"url": "http://tutorial:3000/catfacts/tweets"},
                         "legacyForwarding": True
                     },
                     "status": "active"
