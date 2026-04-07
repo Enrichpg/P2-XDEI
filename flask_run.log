@@ -464,3 +464,120 @@ INFO:werkzeug: * Debugger PIN: 268-346-317
 127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001161
 (353516) accepted ('127.0.0.1', 47568)
 127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /socket.io/?EIO=4&transport=polling&t=Prdm5ry&sid=xZN_1GVsqVFvcPfHAABG HTTP/1.1" 200 181 0.265224
+(353516) accepted ('127.0.0.1', 59912)
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /products HTTP/1.1" 200 23302 0.005360
+(353516) accepted ('127.0.0.1', 59928)
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /socket.io/?EIO=4&transport=websocket&sid=xZN_1GVsqVFvcPfHAABG HTTP/1.1" 200 0 330.408335
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/css/style.css HTTP/1.1" 304 209 0.002204
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/img/products/apple.jpg HTTP/1.1" 200 1358 0.001399
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/img/products/banana.jpg HTTP/1.1" 200 1380 0.001148
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/img/products/coconut.jpg HTTP/1.1" 200 1537 0.001461
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/js/main.js HTTP/1.1" 304 205 0.001294
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/img/products/melon.jpg HTTP/1.1" 200 1370 0.001667
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/img/products/kiwi.jpg HTTP/1.1" 200 1270 0.001629
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/img/products/strawberry.jpg HTTP/1.1" 200 1421 0.001635
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/img/products/raspberry.jpg HTTP/1.1" 200 1369 0.001522
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/img/products/pineapple.jpg HTTP/1.1" 200 1291 0.001650
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/img/products/orange.jpg HTTP/1.1" 200 1417 0.001332
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /static/img/products/grape.jpg HTTP/1.1" 200 1398 0.001829
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /socket.io/?EIO=4&transport=polling&t=PrdnMcx HTTP/1.1" 200 300 0.000476
+(353516) accepted ('127.0.0.1', 59942)
+127.0.0.1 - - [07/Apr/2026 13:48:04] "POST /socket.io/?EIO=4&transport=polling&t=PrdnMef&sid=IklLm5c8RjQ3X1IZAABI HTTP/1.1" 200 219 0.042237
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /socket.io/?EIO=4&transport=polling&t=PrdnMef.0&sid=IklLm5c8RjQ3X1IZAABI HTTP/1.1" 200 213 0.041635
+(353516) accepted ('127.0.0.1', 59948)
+(353516) accepted ('127.0.0.1', 59950)
+(353516) accepted ('127.0.0.1', 59960)
+(353516) accepted ('127.0.0.1', 59974)
+127.0.0.1 - - [07/Apr/2026 13:48:04] "GET /socket.io/?EIO=4&transport=polling&t=PrdnMgl&sid=IklLm5c8RjQ3X1IZAABI HTTP/1.1" 200 181 0.180565
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /set_language/en HTTP/1.1" 302 540 0.001019
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /products HTTP/1.1" 200 23302 0.004035
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /socket.io/?EIO=4&transport=websocket&sid=IklLm5c8RjQ3X1IZAABI HTTP/1.1" 200 0 9.021424
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/css/style.css HTTP/1.1" 304 209 0.001903
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/img/products/apple.jpg HTTP/1.1" 304 207 0.001591
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/js/main.js HTTP/1.1" 304 205 0.001486
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/img/products/banana.jpg HTTP/1.1" 304 208 0.000939
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/img/products/melon.jpg HTTP/1.1" 304 207 0.001100
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/img/products/coconut.jpg HTTP/1.1" 304 209 0.001851
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/img/products/raspberry.jpg HTTP/1.1" 304 212 0.001833
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/img/products/kiwi.jpg HTTP/1.1" 304 206 0.001616
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/img/products/strawberry.jpg HTTP/1.1" 304 213 0.001682
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/img/products/pineapple.jpg HTTP/1.1" 304 211 0.001361
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /socket.io/?EIO=4&transport=polling&t=PrdnOyV HTTP/1.1" 200 300 0.000382
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/img/products/grape.jpg HTTP/1.1" 304 207 0.001429
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /static/img/products/orange.jpg HTTP/1.1" 304 208 0.001476
+127.0.0.1 - - [07/Apr/2026 13:48:13] "POST /socket.io/?EIO=4&transport=polling&t=PrdnOz5&sid=15qsyuEBs6t-uSsdAABK HTTP/1.1" 200 219 0.042642
+127.0.0.1 - - [07/Apr/2026 13:48:13] "GET /socket.io/?EIO=4&transport=polling&t=PrdnOz6&sid=15qsyuEBs6t-uSsdAABK HTTP/1.1" 200 213 0.042458
+(353516) accepted ('127.0.0.1', 45720)
+127.0.0.1 - - [07/Apr/2026 13:48:14] "GET /socket.io/?EIO=4&transport=polling&t=PrdnOzt&sid=15qsyuEBs6t-uSsdAABK HTTP/1.1" 200 181 0.257928
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /set_language/es HTTP/1.1" 302 540 0.000890
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /products HTTP/1.1" 200 23348 0.004463
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /socket.io/?EIO=4&transport=websocket&sid=15qsyuEBs6t-uSsdAABK HTTP/1.1" 200 0 2.622979
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/css/style.css HTTP/1.1" 304 209 0.001297
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/img/products/coconut.jpg HTTP/1.1" 304 209 0.001399
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/img/products/banana.jpg HTTP/1.1" 304 208 0.001179
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/img/products/apple.jpg HTTP/1.1" 304 207 0.001550
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/img/products/melon.jpg HTTP/1.1" 304 207 0.000985
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/js/main.js HTTP/1.1" 304 205 0.001669
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/img/products/kiwi.jpg HTTP/1.1" 304 206 0.001665
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/img/products/raspberry.jpg HTTP/1.1" 304 212 0.001552
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/img/products/strawberry.jpg HTTP/1.1" 304 213 0.001383
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/img/products/pineapple.jpg HTTP/1.1" 304 211 0.001485
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/img/products/grape.jpg HTTP/1.1" 304 207 0.001372
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /static/img/products/orange.jpg HTTP/1.1" 304 208 0.001172
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /socket.io/?EIO=4&transport=polling&t=PrdnPj1 HTTP/1.1" 200 300 0.000272
+127.0.0.1 - - [07/Apr/2026 13:48:16] "POST /socket.io/?EIO=4&transport=polling&t=PrdnPjW&sid=nF3X0rgTkZoXqtAiAABM HTTP/1.1" 200 219 0.042662
+127.0.0.1 - - [07/Apr/2026 13:48:16] "GET /socket.io/?EIO=4&transport=polling&t=PrdnPjX&sid=nF3X0rgTkZoXqtAiAABM HTTP/1.1" 200 213 0.042466
+(353516) accepted ('127.0.0.1', 45724)
+127.0.0.1 - - [07/Apr/2026 13:48:17] "GET /socket.io/?EIO=4&transport=polling&t=PrdnPkJ&sid=nF3X0rgTkZoXqtAiAABM HTTP/1.1" 200 181 0.264800
+127.0.0.1 - - [07/Apr/2026 13:48:17] "GET /set_language/en HTTP/1.1" 302 540 0.001147
+127.0.0.1 - - [07/Apr/2026 13:48:17] "GET /products HTTP/1.1" 200 23302 0.003798
+127.0.0.1 - - [07/Apr/2026 13:48:17] "GET /socket.io/?EIO=4&transport=websocket&sid=nF3X0rgTkZoXqtAiAABM HTTP/1.1" 200 0 0.738596
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/css/style.css HTTP/1.1" 304 209 0.000984
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/apple.jpg HTTP/1.1" 304 207 0.001641
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/coconut.jpg HTTP/1.1" 304 209 0.001085
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/melon.jpg HTTP/1.1" 304 207 0.001674
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/js/main.js HTTP/1.1" 304 205 0.001728
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/banana.jpg HTTP/1.1" 304 208 0.001727
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/kiwi.jpg HTTP/1.1" 304 206 0.001862
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/pineapple.jpg HTTP/1.1" 304 211 0.001773
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/raspberry.jpg HTTP/1.1" 304 212 0.001467
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/strawberry.jpg HTTP/1.1" 304 213 0.001734
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/orange.jpg HTTP/1.1" 304 208 0.001512
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/grape.jpg HTTP/1.1" 304 207 0.001360
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /socket.io/?EIO=4&transport=polling&t=PrdnP_z HTTP/1.1" 200 300 0.000320
+127.0.0.1 - - [07/Apr/2026 13:48:18] "POST /socket.io/?EIO=4&transport=polling&t=PrdnQ0Z&sid=neKCvQ13gomJb3a7AABO HTTP/1.1" 200 219 0.043686
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /socket.io/?EIO=4&transport=polling&t=PrdnQ0a&sid=neKCvQ13gomJb3a7AABO HTTP/1.1" 200 213 0.043732
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /set_language/en HTTP/1.1" 302 540 0.000889
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /products HTTP/1.1" 200 23302 0.004745
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/css/style.css HTTP/1.1" 304 209 0.001441
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/coconut.jpg HTTP/1.1" 304 209 0.000998
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/js/main.js HTTP/1.1" 304 205 0.001339
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/apple.jpg HTTP/1.1" 304 207 0.001455
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/banana.jpg HTTP/1.1" 304 208 0.001878
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/strawberry.jpg HTTP/1.1" 304 213 0.001120
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/raspberry.jpg HTTP/1.1" 304 212 0.001506
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/melon.jpg HTTP/1.1" 304 207 0.001218
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/kiwi.jpg HTTP/1.1" 304 206 0.001334
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/orange.jpg HTTP/1.1" 304 208 0.001740
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/grape.jpg HTTP/1.1" 304 207 0.001903
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /static/img/products/pineapple.jpg HTTP/1.1" 304 211 0.001769
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /socket.io/?EIO=4&transport=polling&t=PrdnQ4s HTTP/1.1" 200 300 0.000516
+127.0.0.1 - - [07/Apr/2026 13:48:18] "POST /socket.io/?EIO=4&transport=polling&t=PrdnQ5M&sid=hqGzNa3GI5Pqs9U0AABQ HTTP/1.1" 200 219 0.040278
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /socket.io/?EIO=4&transport=polling&t=PrdnQ5N&sid=hqGzNa3GI5Pqs9U0AABQ HTTP/1.1" 200 213 0.040316
+(353516) accepted ('127.0.0.1', 44038)
+(353516) accepted ('127.0.0.1', 44050)
+127.0.0.1 - - [07/Apr/2026 13:48:18] "GET /socket.io/?EIO=4&transport=polling&t=PrdnQ69&sid=hqGzNa3GI5Pqs9U0AABQ HTTP/1.1" 200 181 0.273622
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /stores HTTP/1.1" 200 13208 0.969223
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /static/css/style.css HTTP/1.1" 304 209 0.001306
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /socket.io/?EIO=4&transport=websocket&sid=hqGzNa3GI5Pqs9U0AABQ HTTP/1.1" 200 0 4.339182
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001283
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /static/js/main.js HTTP/1.1" 304 205 0.000930
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.000755
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.000753
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001337
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /socket.io/?EIO=4&transport=polling&t=PrdnRF3 HTTP/1.1" 200 300 0.000288
+127.0.0.1 - - [07/Apr/2026 13:48:23] "POST /socket.io/?EIO=4&transport=polling&t=PrdnRGO&sid=GMk2rHXBq34b6cyoAABS HTTP/1.1" 200 219 0.041960
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /socket.io/?EIO=4&transport=polling&t=PrdnRGP&sid=GMk2rHXBq34b6cyoAABS HTTP/1.1" 200 213 0.041531
+(353516) accepted ('127.0.0.1', 44058)
+127.0.0.1 - - [07/Apr/2026 13:48:23] "GET /socket.io/?EIO=4&transport=polling&t=PrdnRHB&sid=GMk2rHXBq34b6cyoAABS HTTP/1.1" 200 181 0.257385
+127.0.0.1 - - [07/Apr/2026 13:48:43] "GET /socket.io/?EIO=4&transport=polling&t=PrdnQ1P&sid=neKCvQ13gomJb3a7AABO HTTP/1.1" 200 181 24.916700
