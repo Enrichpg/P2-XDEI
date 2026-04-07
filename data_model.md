@@ -48,7 +48,7 @@ erDiagram
         string name
         string image
         float salary
-        string role
+        string category
         string email
         date dateOfContract
         string skills "enum set"
@@ -94,7 +94,7 @@ Specific stock levels linking products to specific shelves within stores.
 - `store_id` (Integer, Foreign Key to Store)
 - `product_id` (Integer, Foreign Key to Product)
 - `shelf_id` (Integer, Foreign Key to Shelf)
-- `stock` (Integer, Default: 0): Current number of items on the shelf.
+- `stock` (Integer, Default: 0): Current number of items on the shelf. In the Product Detail view, this per-shelf count (`shelfCount` in NGSI) is distinctly displayed separately from the global `stockCount`.
 
 ### Shelf
 Storage units within a store.
@@ -111,7 +111,7 @@ Represents staff members assigned to a store. Each employee belongs to exactly *
 - `name` (String, Required): e.g., "John Doe".
 - `image` (String): URL to the employee's photo.
 - `salary` (Float): Annual or monthly salary.
-- `role` (String): e.g., "Manager", "Cashier".
+- `category` (String): e.g., "Manager", "Cashier".
 - `email` (String): e.g., "john.doe@smartstore.com".
 - `dateOfContract` (Date): Employment start date, e.g., "2024-03-15".
 - `skills` (String / List): One or more values from the enum set:
@@ -193,7 +193,7 @@ The `location` field (stored as `"lat, lng"` in SQLite) is converted to a GeoJSO
   "type": "Employee",
   "name":           { "type": "Text",      "value": "Juan García" },
   "salary":         { "type": "Number",    "value": 1800 },
-  "role":           { "type": "Text",      "value": "Manager" },
+  "category":       { "type": "Text",      "value": "Manager" },
   "email":          { "type": "Text",      "value": "juan.garcia@smartstore.com" },
   "dateOfContract": { "type": "DateTime",  "value": "2023-06-01T00:00:00.000Z" },
   "skills":         { "type": "StructuredValue", "value": ["MachineryDriving", "WritingReports"] },
@@ -228,7 +228,7 @@ The `location` field (stored as `"lat, lng"` in SQLite) is converted to a GeoJSO
 | `Product.color` | `color` | `Text` | RGB hex string, e.g. `#FF5733` |
 | `Employee.name` | `name` | `Text` | |
 | `Employee.salary` | `salary` | `Number` | |
-| `Employee.role` | `role` | `Text` | |
+| `Employee.category` | `category` | `Text` | |
 | `Employee.email` | `email` | `Text` | |
 | `Employee.dateOfContract` | `dateOfContract` | `DateTime` | ISO 8601 format |
 | `Employee.skills` | `skills` | `StructuredValue` | Array of enum strings |

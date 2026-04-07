@@ -10,7 +10,7 @@ The FIWARE Smart Store is a modern management platform for supermarket chains. I
 - **Store Management (CRUD)**: Create, view detail, edit, and delete store entities. Attributes: Name, Address, Location, Image, URL, Telephone, CountryCode (2 chars), Capacity (m³), Description, Temperature (context-provided), RelativeHumidity (context-provided). The detail view includes an interactive Leaflet map, inventory management (add/edit/delete products with stock), shelf management (full CRUD), and a Three.js virtual 3D walkthrough of the store.
 - **Product Management (CRUD)**: Create, view detail, edit, and delete product entities. Attributes: Name, Price, Size, OriginCountry, Image, Color (RGB hex string). The detail view includes store association and stock management.
 - **Employee Management (CRUD)**: Create, view detail, edit, and delete employee entities. Attributes: Name, Image, Salary, Role, Email, DateOfContract, Skills (`MachineryDriving`, `WritingReports`, `CustomerRelationships`), Username, Password. Each employee is assigned to exactly one Store (`refStore`).
-- **Inventory Tracking**: Display specific stock per store.
+- **Inventory Tracking**: Display specific stock per store. A custom backend proxy (`POST /api/inventory/purchase`) handles stock decrements by securely routing requests to Orion (avoiding CORS issues) or adjusting the local SQLite database directly.
 
 ### External Context Providers
 The application registers **external context providers** in Orion at startup for the following Store attributes:
@@ -58,7 +58,7 @@ The two backends are **independent** — no data is synchronised between SQLite 
 - **Mermaid UML Diagram**: Rendered on the Home/Dashboard page to visualize the entity model.
 
 ## Technical Requirements
-- **Backend**: Python/Flask with SQLAlchemy ORM and SQLite database (default) or FIWARE Orion Context Broker (when available). Flask-SocketIO for WebSocket support.
+- **Backend**: Python/Flask with SQLAlchemy ORM and SQLite database (default) or FIWARE Orion Context Broker (when available). Flask-SocketIO for WebSocket support is configured with the `eventlet` async backend for robust asynchronous event handling.
 - **Data Abstraction**: `data_layer.py` centralises all CRUD operations. It dispatches requests either to Orion (NGSIv2 REST API via `requests`) or to SQLite (SQLAlchemy), depending on availability.
 - **Context Providers**: The FIWARE tutorial context-provider container is declared in `docker-compose.yml` and registered in Orion at startup to supply `temperature`, `relativeHumidity`, and `tweets` for Store entities.
 - **Subscriptions**: Two NGSIv2 subscriptions are created in Orion at startup to watch for price changes and low-stock events.
@@ -94,3 +94,4 @@ The two backends are **independent** — no data is synchronised between SQLite 
 - Compacted information in multiple views replacing text properties with recognizable FontAwesome icons and Country Flag images (e.g. Origin).
 - Added static sticky navigation highlighting the active section with seamless layout.
 - Added standalone `Stores Map` navigation tab and Leaflet map displaying real-time customized marker popups of active store details on hover and map-clicks redirecting to detail views.
+- **Variety of semantic HTML5 inputs** (range sliders, date pickers, native search bars) integrated natively without overriding via JS, maintaining clean and semantic markup.
