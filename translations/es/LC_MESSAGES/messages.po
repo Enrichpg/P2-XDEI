@@ -157,14 +157,6 @@ msgstr "¿Estás seguro?"
 msgid "Borrar"
 msgstr "Borrar"
 
-#: templates/employee_detail.html:36
-msgid "Role"
-msgstr "Puesto"
-
-#: templates/employee_detail.html:40
-msgid "Salary"
-msgstr "Salario"
-
 #: templates/employee_detail.html:44
 msgid "Assigned Store"
 msgstr "Tienda Asignada"
@@ -318,10 +310,6 @@ msgstr "Crear Empleado"
 #: templates/employees.html:9
 msgid "Add Employee"
 msgstr "Añadir Empleado"
-
-#: templates/employees.html:17
-msgid "Avatar"
-msgstr "Avatar"
 
 #: templates/employees.html:20
 msgid "Tienda"
@@ -500,10 +488,6 @@ msgstr "Nueva Estantería"
 #: templates/shelf_form.html:14
 msgid "Back"
 msgstr "Atrás"
-
-#: templates/shelf_form.html:25
-msgid "Store"
-msgstr "Tienda"
 
 #: templates/shelf_form.html:31
 msgid "Shelf Name"
@@ -955,11 +939,32 @@ msgstr "Atributos dinámicos proporcionados por proveedores de contexto externos
 msgid "View details"
 msgstr "Ver detalles"
 
-msgid "Image"
-msgstr "Imagen"
+msgid "Avatar"
+msgstr "Avatar"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Skills"
+msgstr "Habilidades"
+
+msgid "Store"
+msgstr "Tienda"
+
+msgid "Salary"
+msgstr "Salario"
 
 msgid "Actions"
 msgstr "Acciones"
+
+msgid "Image"
+msgstr "Imagen"
+
+msgid "Address"
+msgstr "Dirección"
 
 msgid "Country"
 msgstr "País"
@@ -967,23 +972,23 @@ msgstr "País"
 msgid "Capacity"
 msgstr "Capacidad"
 
+msgid "Temp."
+msgstr "Temp."
+
+msgid "Hum."
+msgstr "Hum."
+
 msgid "Phone"
 msgstr "Teléfono"
 
-msgid "Address"
-msgstr "Dirección"
-
-msgid "Origin"
-msgstr "Origen"
+msgid "Price"
+msgstr "Precio"
 
 msgid "Size"
 msgstr "Tamaño"
 
-msgid "Name"
-msgstr "Nombre"
-
-msgid "Price"
-msgstr "Precio"
+msgid "Origin"
+msgstr "Origen"
 
 msgid "Data Model"
 msgstr "Modelo de Datos"
