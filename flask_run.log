@@ -1,0 +1,466 @@
+nohup: ignoring input
+/home/sergio/.local/lib/python3.10/site-packages/engineio/async_drivers/eventlet.py:1: EventletDeprecationWarning: 
+Eventlet is deprecated. It is currently being maintained in bugfix mode, and
+we strongly recommend against using it for new projects.
+
+If you are already using Eventlet, we recommend migrating to a different
+framework.  For more detail see
+https://eventlet.readthedocs.io/en/latest/asyncio/migration.html
+
+  from eventlet.green.threading import Event
+/home/sergio/XDEI/P2-XDEI/app.py:836: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_product = not Product.query.get(inv.product_id)
+/home/sergio/XDEI/P2-XDEI/app.py:837: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_store = not Store.query.get(inv.store_id)
+/home/sergio/XDEI/P2-XDEI/app.py:838: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_shelf = not Shelf.query.get(inv.shelf_id)
+INFO:data_layer:[data_layer] Orion is reachable → using Orion Context Broker
+INFO:werkzeug: * Restarting with stat
+/home/sergio/.local/lib/python3.10/site-packages/engineio/async_drivers/eventlet.py:1: EventletDeprecationWarning: 
+Eventlet is deprecated. It is currently being maintained in bugfix mode, and
+we strongly recommend against using it for new projects.
+
+If you are already using Eventlet, we recommend migrating to a different
+framework.  For more detail see
+https://eventlet.readthedocs.io/en/latest/asyncio/migration.html
+
+  from eventlet.green.threading import Event
+/home/sergio/XDEI/P2-XDEI/app.py:836: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_product = not Product.query.get(inv.product_id)
+/home/sergio/XDEI/P2-XDEI/app.py:837: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_store = not Store.query.get(inv.store_id)
+/home/sergio/XDEI/P2-XDEI/app.py:838: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_shelf = not Shelf.query.get(inv.shelf_id)
+INFO:data_layer:[data_layer] Orion is reachable → using Orion Context Broker
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 268-346-317
+(353516) wsgi starting up on http://127.0.0.1:5000
+(353516) accepted ('127.0.0.1', 51554)
+127.0.0.1 - - [07/Apr/2026 13:26:01] "GET /socket.io/?EIO=4&transport=polling&t=PrdiJkH HTTP/1.1" 200 300 0.000355
+127.0.0.1 - - [07/Apr/2026 13:26:01] "POST /socket.io/?EIO=4&transport=polling&t=PrdiJoU&sid=0wBmw_tHBAFRH1XNAAAA HTTP/1.1" 200 219 0.000963
+(353516) accepted ('127.0.0.1', 51558)
+(353516) accepted ('127.0.0.1', 51572)
+127.0.0.1 - - [07/Apr/2026 13:26:01] "GET /socket.io/?EIO=4&transport=polling&t=PrdiJoU.0&sid=0wBmw_tHBAFRH1XNAAAA HTTP/1.1" 200 181 0.000174
+(353516) accepted ('127.0.0.1', 51588)
+127.0.0.1 - - [07/Apr/2026 13:26:02] "GET /socket.io/?EIO=4&transport=polling&t=PrdiJzu HTTP/1.1" 200 300 0.000519
+127.0.0.1 - - [07/Apr/2026 13:26:02] "POST /socket.io/?EIO=4&transport=polling&t=PrdiJ-3&sid=qSKS_To9h-a1qwohAAAC HTTP/1.1" 200 219 0.000673
+127.0.0.1 - - [07/Apr/2026 13:26:02] "GET /socket.io/?EIO=4&transport=polling&t=PrdiJ-4&sid=qSKS_To9h-a1qwohAAAC HTTP/1.1" 200 213 0.000284
+(353516) accepted ('127.0.0.1', 51600)
+127.0.0.1 - - [07/Apr/2026 13:26:02] "GET /socket.io/?EIO=4&transport=polling&t=PrdiJ-B&sid=qSKS_To9h-a1qwohAAAC HTTP/1.1" 200 181 0.000206
+127.0.0.1 - - [07/Apr/2026 13:26:03] "GET /socket.io/?EIO=4&transport=polling&t=PrdiKDR HTTP/1.1" 200 300 0.000243
+127.0.0.1 - - [07/Apr/2026 13:26:03] "POST /socket.io/?EIO=4&transport=polling&t=PrdiKDV&sid=O5utg51ayq-eMmInAAAE HTTP/1.1" 200 219 0.000376
+127.0.0.1 - - [07/Apr/2026 13:26:03] "GET /socket.io/?EIO=4&transport=polling&t=PrdiKDW&sid=O5utg51ayq-eMmInAAAE HTTP/1.1" 200 213 0.000169
+(353516) accepted ('127.0.0.1', 51608)
+127.0.0.1 - - [07/Apr/2026 13:26:03] "GET /socket.io/?EIO=4&transport=polling&t=PrdiKDb&sid=O5utg51ayq-eMmInAAAE HTTP/1.1" 200 181 0.000129
+(353516) accepted ('127.0.0.1', 35646)
+127.0.0.1 - - [07/Apr/2026 13:28:35] "GET / HTTP/1.1" 200 12962 0.027357
+(353516) accepted ('127.0.0.1', 35648)
+127.0.0.1 - - [07/Apr/2026 13:28:35] "GET /static/css/style.css HTTP/1.1" 200 23602 0.005363
+127.0.0.1 - - [07/Apr/2026 13:28:36] "GET /static/js/main.js HTTP/1.1" 200 7980 0.001271
+(353516) accepted ('127.0.0.1', 35650)
+127.0.0.1 - - [07/Apr/2026 13:28:36] "GET /socket.io/?EIO=4&transport=polling&t=PrdivUB HTTP/1.1" 200 300 0.000472
+127.0.0.1 - - [07/Apr/2026 13:28:36] "POST /socket.io/?EIO=4&transport=polling&t=PrdivUG&sid=OHxkIWd9hqoelzsOAAAG HTTP/1.1" 200 219 0.044053
+127.0.0.1 - - [07/Apr/2026 13:28:36] "GET /socket.io/?EIO=4&transport=polling&t=PrdivUH&sid=OHxkIWd9hqoelzsOAAAG HTTP/1.1" 200 213 0.036134
+(353516) accepted ('127.0.0.1', 35664)
+127.0.0.1 - - [07/Apr/2026 13:28:36] "GET /socket.io/?EIO=4&transport=polling&t=PrdivWE&sid=OHxkIWd9hqoelzsOAAAG HTTP/1.1" 200 181 0.393756
+127.0.0.1 - - [07/Apr/2026 13:28:36] "GET /favicon.ico HTTP/1.1" 404 355 0.001013
+127.0.0.1 - - [07/Apr/2026 13:28:41] "GET /products HTTP/1.1" 200 23640 0.013723
+127.0.0.1 - - [07/Apr/2026 13:28:41] "GET /socket.io/?EIO=4&transport=websocket&sid=OHxkIWd9hqoelzsOAAAG HTTP/1.1" 200 0 4.774879
+127.0.0.1 - - [07/Apr/2026 13:28:41] "GET /static/css/style.css HTTP/1.1" 304 209 0.001450
+127.0.0.1 - - [07/Apr/2026 13:28:41] "GET /static/js/main.js HTTP/1.1" 304 205 0.001090
+127.0.0.1 - - [07/Apr/2026 13:28:41] "GET /socket.io/?EIO=4&transport=polling&t=Prdiwke HTTP/1.1" 200 300 0.000560
+127.0.0.1 - - [07/Apr/2026 13:28:41] "POST /socket.io/?EIO=4&transport=polling&t=PrdiwlC&sid=yUvgvPRMFLMAIun9AAAI HTTP/1.1" 200 219 0.041452
+127.0.0.1 - - [07/Apr/2026 13:28:41] "GET /socket.io/?EIO=4&transport=polling&t=PrdiwlD&sid=yUvgvPRMFLMAIun9AAAI HTTP/1.1" 200 213 0.040488
+(353516) accepted ('127.0.0.1', 53684)
+127.0.0.1 - - [07/Apr/2026 13:28:41] "GET /socket.io/?EIO=4&transport=polling&t=Prdiwl_&sid=yUvgvPRMFLMAIun9AAAI HTTP/1.1" 200 181 0.260725
+127.0.0.1 - - [07/Apr/2026 13:28:42] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000910
+127.0.0.1 - - [07/Apr/2026 13:28:42] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000752
+127.0.0.1 - - [07/Apr/2026 13:28:44] "GET /set_language/en HTTP/1.1" 302 540 0.001059
+127.0.0.1 - - [07/Apr/2026 13:28:44] "GET /products HTTP/1.1" 200 23640 0.005503
+127.0.0.1 - - [07/Apr/2026 13:28:44] "GET /socket.io/?EIO=4&transport=websocket&sid=yUvgvPRMFLMAIun9AAAI HTTP/1.1" 200 0 2.563490
+127.0.0.1 - - [07/Apr/2026 13:28:44] "GET /static/css/style.css HTTP/1.1" 304 209 0.000887
+127.0.0.1 - - [07/Apr/2026 13:28:44] "GET /static/js/main.js HTTP/1.1" 304 205 0.001059
+127.0.0.1 - - [07/Apr/2026 13:28:44] "GET /socket.io/?EIO=4&transport=polling&t=PrdixTl HTTP/1.1" 200 300 0.000520
+127.0.0.1 - - [07/Apr/2026 13:28:44] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001325
+127.0.0.1 - - [07/Apr/2026 13:28:44] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000953
+127.0.0.1 - - [07/Apr/2026 13:28:44] "POST /socket.io/?EIO=4&transport=polling&t=PrdixUH&sid=YbvXa59YYDIgVOu_AAAK HTTP/1.1" 200 219 0.042584
+127.0.0.1 - - [07/Apr/2026 13:28:44] "GET /socket.io/?EIO=4&transport=polling&t=PrdixUH.0&sid=YbvXa59YYDIgVOu_AAAK HTTP/1.1" 200 213 0.042601
+(353516) accepted ('127.0.0.1', 53690)
+127.0.0.1 - - [07/Apr/2026 13:28:44] "GET /socket.io/?EIO=4&transport=polling&t=PrdixV2&sid=YbvXa59YYDIgVOu_AAAK HTTP/1.1" 200 181 0.270328
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /stores HTTP/1.1" 200 13208 1.167700
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /socket.io/?EIO=4&transport=websocket&sid=YbvXa59YYDIgVOu_AAAK HTTP/1.1" 200 0 5.755858
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /static/css/style.css HTTP/1.1" 304 209 0.001222
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /static/img/stores/store_001.png HTTP/1.1" 200 935990 0.005887
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /static/img/stores/store_003.png HTTP/1.1" 200 1170509 0.006374
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /static/img/stores/store_002.png HTTP/1.1" 200 1168671 0.007578
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /static/js/main.js HTTP/1.1" 304 205 0.001360
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /static/img/stores/store_004.png HTTP/1.1" 200 972234 0.005623
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /socket.io/?EIO=4&transport=polling&t=Prdiy-D HTTP/1.1" 200 300 0.000430
+127.0.0.1 - - [07/Apr/2026 13:28:50] "POST /socket.io/?EIO=4&transport=polling&t=Prdiy-w&sid=lnJyymHg5DG2kcU3AAAM HTTP/1.1" 200 219 0.040680
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /socket.io/?EIO=4&transport=polling&t=Prdiy-w.0&sid=lnJyymHg5DG2kcU3AAAM HTTP/1.1" 200 213 0.040627
+(353516) accepted ('127.0.0.1', 47504)
+(353516) accepted ('127.0.0.1', 47516)
+(353516) accepted ('127.0.0.1', 47520)
+(353516) accepted ('127.0.0.1', 47524)
+127.0.0.1 - - [07/Apr/2026 13:28:50] "GET /socket.io/?EIO=4&transport=polling&t=Prdiy_h&sid=lnJyymHg5DG2kcU3AAAM HTTP/1.1" 200 181 0.254673
+127.0.0.1 - - [07/Apr/2026 13:28:59] "GET /set_language/es HTTP/1.1" 302 534 0.000864
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /stores HTTP/1.1" 200 13249 0.906461
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /socket.io/?EIO=4&transport=websocket&sid=lnJyymHg5DG2kcU3AAAM HTTP/1.1" 200 0 9.247359
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /static/css/style.css HTTP/1.1" 304 209 0.001399
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001144
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /static/js/main.js HTTP/1.1" 304 205 0.001328
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.001587
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001573
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001141
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /socket.io/?EIO=4&transport=polling&t=Prdi_LM HTTP/1.1" 200 300 0.000378
+127.0.0.1 - - [07/Apr/2026 13:29:00] "POST /socket.io/?EIO=4&transport=polling&t=Prdi_Lw&sid=vodSpNKJh8Nk9iAsAAAO HTTP/1.1" 200 219 0.040428
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /socket.io/?EIO=4&transport=polling&t=Prdi_Lx&sid=vodSpNKJh8Nk9iAsAAAO HTTP/1.1" 200 213 0.040307
+(353516) accepted ('127.0.0.1', 60302)
+127.0.0.1 - - [07/Apr/2026 13:29:00] "GET /socket.io/?EIO=4&transport=polling&t=Prdi_Mi&sid=vodSpNKJh8Nk9iAsAAAO HTTP/1.1" 200 181 0.260871
+127.0.0.1 - - [07/Apr/2026 13:29:22] "GET /set_language/en HTTP/1.1" 302 534 0.001040
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /stores HTTP/1.1" 200 13208 0.940334
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /socket.io/?EIO=4&transport=websocket&sid=vodSpNKJh8Nk9iAsAAAO HTTP/1.1" 200 0 22.579710
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /static/css/style.css HTTP/1.1" 304 209 0.000888
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001296
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.000808
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001187
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001740
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /static/js/main.js HTTP/1.1" 304 205 0.002100
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /socket.io/?EIO=4&transport=polling&t=Prdj4yu HTTP/1.1" 200 300 0.000276
+127.0.0.1 - - [07/Apr/2026 13:29:23] "POST /socket.io/?EIO=4&transport=polling&t=Prdj4za&sid=AwTVZE7WWW3I_4-4AAAQ HTTP/1.1" 200 219 0.042548
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /socket.io/?EIO=4&transport=polling&t=Prdj4zb&sid=AwTVZE7WWW3I_4-4AAAQ HTTP/1.1" 200 213 0.041797
+(353516) accepted ('127.0.0.1', 54194)
+127.0.0.1 - - [07/Apr/2026 13:29:23] "GET /socket.io/?EIO=4&transport=polling&t=Prdj4-T&sid=AwTVZE7WWW3I_4-4AAAQ HTTP/1.1" 200 181 0.260435
+127.0.0.1 - - [07/Apr/2026 13:29:38] "GET /products HTTP/1.1" 200 23640 0.005779
+127.0.0.1 - - [07/Apr/2026 13:29:38] "GET /static/css/style.css HTTP/1.1" 304 209 0.001487
+127.0.0.1 - - [07/Apr/2026 13:29:38] "GET /socket.io/?EIO=4&transport=websocket&sid=AwTVZE7WWW3I_4-4AAAQ HTTP/1.1" 200 0 15.109897
+127.0.0.1 - - [07/Apr/2026 13:29:38] "GET /static/js/main.js HTTP/1.1" 304 205 0.000945
+127.0.0.1 - - [07/Apr/2026 13:29:38] "GET /socket.io/?EIO=4&transport=polling&t=Prdj8lV HTTP/1.1" 200 300 0.000540
+127.0.0.1 - - [07/Apr/2026 13:29:38] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001690
+127.0.0.1 - - [07/Apr/2026 13:29:38] "POST /socket.io/?EIO=4&transport=polling&t=Prdj8mB&sid=GYqHrsFJfNkDvPySAAAS HTTP/1.1" 200 219 0.044442
+127.0.0.1 - - [07/Apr/2026 13:29:38] "GET /socket.io/?EIO=4&transport=polling&t=Prdj8mB.0&sid=GYqHrsFJfNkDvPySAAAS HTTP/1.1" 200 213 0.043271
+(353516) accepted ('127.0.0.1', 58908)
+127.0.0.1 - - [07/Apr/2026 13:29:39] "GET /socket.io/?EIO=4&transport=polling&t=Prdj8m_&sid=GYqHrsFJfNkDvPySAAAS HTTP/1.1" 200 181 0.265319
+127.0.0.1 - - [07/Apr/2026 13:29:55] "GET /set_language/en HTTP/1.1" 302 540 0.001075
+127.0.0.1 - - [07/Apr/2026 13:29:55] "GET /products HTTP/1.1" 200 23640 0.004957
+127.0.0.1 - - [07/Apr/2026 13:29:55] "GET /socket.io/?EIO=4&transport=websocket&sid=GYqHrsFJfNkDvPySAAAS HTTP/1.1" 200 0 15.899656
+127.0.0.1 - - [07/Apr/2026 13:29:55] "GET /static/css/style.css HTTP/1.1" 304 209 0.001594
+127.0.0.1 - - [07/Apr/2026 13:29:55] "GET /static/js/main.js HTTP/1.1" 304 205 0.001303
+127.0.0.1 - - [07/Apr/2026 13:29:55] "GET /socket.io/?EIO=4&transport=polling&t=PrdjClZ HTTP/1.1" 200 300 0.000631
+127.0.0.1 - - [07/Apr/2026 13:29:55] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001217
+127.0.0.1 - - [07/Apr/2026 13:29:55] "POST /socket.io/?EIO=4&transport=polling&t=PrdjCmB&sid=cVpaNFOQEoWlsOhaAAAU HTTP/1.1" 200 219 0.044277
+127.0.0.1 - - [07/Apr/2026 13:29:55] "GET /socket.io/?EIO=4&transport=polling&t=PrdjCmB.0&sid=cVpaNFOQEoWlsOhaAAAU HTTP/1.1" 200 213 0.043650
+(353516) accepted ('127.0.0.1', 51388)
+127.0.0.1 - - [07/Apr/2026 13:29:55] "GET /socket.io/?EIO=4&transport=polling&t=PrdjCn5&sid=cVpaNFOQEoWlsOhaAAAU HTTP/1.1" 200 181 0.258034
+127.0.0.1 - - [07/Apr/2026 13:29:58] "GET /set_language/es HTTP/1.1" 302 540 0.000910
+127.0.0.1 - - [07/Apr/2026 13:29:58] "GET /products HTTP/1.1" 200 23683 0.004889
+127.0.0.1 - - [07/Apr/2026 13:29:58] "GET /socket.io/?EIO=4&transport=websocket&sid=cVpaNFOQEoWlsOhaAAAU HTTP/1.1" 200 0 2.607603
+127.0.0.1 - - [07/Apr/2026 13:29:58] "GET /static/css/style.css HTTP/1.1" 304 209 0.001685
+127.0.0.1 - - [07/Apr/2026 13:29:58] "GET /static/js/main.js HTTP/1.1" 304 205 0.001310
+127.0.0.1 - - [07/Apr/2026 13:29:58] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001477
+127.0.0.1 - - [07/Apr/2026 13:29:58] "GET /socket.io/?EIO=4&transport=polling&t=PrdjDVm HTTP/1.1" 200 300 0.000417
+127.0.0.1 - - [07/Apr/2026 13:29:58] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001420
+127.0.0.1 - - [07/Apr/2026 13:29:58] "POST /socket.io/?EIO=4&transport=polling&t=PrdjDWG&sid=GemzAZ_clZzxx_gWAAAW HTTP/1.1" 200 219 0.041995
+127.0.0.1 - - [07/Apr/2026 13:29:58] "GET /socket.io/?EIO=4&transport=polling&t=PrdjDWH&sid=GemzAZ_clZzxx_gWAAAW HTTP/1.1" 200 213 0.040722
+(353516) accepted ('127.0.0.1', 54666)
+127.0.0.1 - - [07/Apr/2026 13:29:58] "GET /socket.io/?EIO=4&transport=polling&t=PrdjDX8&sid=GemzAZ_clZzxx_gWAAAW HTTP/1.1" 200 181 0.262204
+(353516) accepted ('127.0.0.1', 54488)
+127.0.0.1 - - [07/Apr/2026 13:32:34] "GET /products HTTP/1.1" 200 23910 0.004192
+(353516) accepted ('127.0.0.1', 54496)
+127.0.0.1 - - [07/Apr/2026 13:32:34] "GET /socket.io/?EIO=4&transport=websocket&sid=GemzAZ_clZzxx_gWAAAW HTTP/1.1" 200 0 156.023025
+127.0.0.1 - - [07/Apr/2026 13:32:34] "GET /static/css/style.css HTTP/1.1" 304 209 0.001826
+127.0.0.1 - - [07/Apr/2026 13:32:34] "GET /static/js/main.js HTTP/1.1" 304 205 0.001369
+127.0.0.1 - - [07/Apr/2026 13:32:34] "GET /socket.io/?EIO=4&transport=polling&t=PrdjpiC HTTP/1.1" 200 300 0.000373
+127.0.0.1 - - [07/Apr/2026 13:32:34] "POST /socket.io/?EIO=4&transport=polling&t=Prdjpin&sid=BZMsxNF2t0vkN42iAAAY HTTP/1.1" 200 219 0.040973
+127.0.0.1 - - [07/Apr/2026 13:32:34] "GET /socket.io/?EIO=4&transport=polling&t=Prdjpin.0&sid=BZMsxNF2t0vkN42iAAAY HTTP/1.1" 200 213 0.040783
+(353516) accepted ('127.0.0.1', 54504)
+127.0.0.1 - - [07/Apr/2026 13:32:34] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000922
+(353516) accepted ('127.0.0.1', 54518)
+127.0.0.1 - - [07/Apr/2026 13:32:35] "GET /socket.io/?EIO=4&transport=polling&t=Prdjpjc&sid=BZMsxNF2t0vkN42iAAAY HTTP/1.1" 200 181 0.267023
+127.0.0.1 - - [07/Apr/2026 13:32:35] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001035
+127.0.0.1 - - [07/Apr/2026 13:32:35] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001698
+127.0.0.1 - - [07/Apr/2026 13:32:35] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001259
+127.0.0.1 - - [07/Apr/2026 13:32:35] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000865
+127.0.0.1 - - [07/Apr/2026 13:32:38] "GET /set_language/es HTTP/1.1" 302 540 0.000980
+127.0.0.1 - - [07/Apr/2026 13:32:38] "GET /products HTTP/1.1" 200 23910 0.006104
+127.0.0.1 - - [07/Apr/2026 13:32:38] "GET /socket.io/?EIO=4&transport=websocket&sid=BZMsxNF2t0vkN42iAAAY HTTP/1.1" 200 0 3.506368
+127.0.0.1 - - [07/Apr/2026 13:32:38] "GET /static/css/style.css HTTP/1.1" 304 209 0.001149
+127.0.0.1 - - [07/Apr/2026 13:32:38] "GET /static/js/main.js HTTP/1.1" 304 205 0.001520
+127.0.0.1 - - [07/Apr/2026 13:32:38] "GET /socket.io/?EIO=4&transport=polling&t=PrdjqgP HTTP/1.1" 200 300 0.000385
+127.0.0.1 - - [07/Apr/2026 13:32:38] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001503
+127.0.0.1 - - [07/Apr/2026 13:32:38] "POST /socket.io/?EIO=4&transport=polling&t=Prdjqh3&sid=-GbaZBrHsytJL9FXAAAa HTTP/1.1" 200 219 0.043740
+127.0.0.1 - - [07/Apr/2026 13:32:38] "GET /socket.io/?EIO=4&transport=polling&t=Prdjqh4&sid=-GbaZBrHsytJL9FXAAAa HTTP/1.1" 200 213 0.043135
+(353516) accepted ('127.0.0.1', 34080)
+127.0.0.1 - - [07/Apr/2026 13:32:39] "GET /socket.io/?EIO=4&transport=polling&t=Prdjqi0&sid=-GbaZBrHsytJL9FXAAAa HTTP/1.1" 200 181 0.241935
+127.0.0.1 - - [07/Apr/2026 13:32:39] "GET /set_language/en HTTP/1.1" 302 540 0.001064
+127.0.0.1 - - [07/Apr/2026 13:32:39] "GET /products HTTP/1.1" 200 23867 0.004112
+127.0.0.1 - - [07/Apr/2026 13:32:39] "GET /socket.io/?EIO=4&transport=websocket&sid=-GbaZBrHsytJL9FXAAAa HTTP/1.1" 200 0 0.908742
+127.0.0.1 - - [07/Apr/2026 13:32:40] "GET /static/css/style.css HTTP/1.1" 304 209 0.001525
+127.0.0.1 - - [07/Apr/2026 13:32:40] "GET /static/js/main.js HTTP/1.1" 304 205 0.001135
+127.0.0.1 - - [07/Apr/2026 13:32:40] "GET /socket.io/?EIO=4&transport=polling&t=Prdjq_y HTTP/1.1" 200 300 0.000270
+127.0.0.1 - - [07/Apr/2026 13:32:40] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000977
+127.0.0.1 - - [07/Apr/2026 13:32:40] "POST /socket.io/?EIO=4&transport=polling&t=Prdjr0S&sid=n0PAO4jfJ2VKB2FZAAAc HTTP/1.1" 200 219 0.043357
+127.0.0.1 - - [07/Apr/2026 13:32:40] "GET /socket.io/?EIO=4&transport=polling&t=Prdjr0S.0&sid=n0PAO4jfJ2VKB2FZAAAc HTTP/1.1" 200 213 0.043461
+(353516) accepted ('127.0.0.1', 34082)
+127.0.0.1 - - [07/Apr/2026 13:32:40] "GET /socket.io/?EIO=4&transport=polling&t=Prdjr1I&sid=n0PAO4jfJ2VKB2FZAAAc HTTP/1.1" 200 181 0.251639
+127.0.0.1 - - [07/Apr/2026 13:32:58] "GET /set_language/es HTTP/1.1" 302 540 0.000965
+127.0.0.1 - - [07/Apr/2026 13:32:58] "GET /products HTTP/1.1" 200 23910 0.004535
+127.0.0.1 - - [07/Apr/2026 13:32:58] "GET /socket.io/?EIO=4&transport=websocket&sid=n0PAO4jfJ2VKB2FZAAAc HTTP/1.1" 200 0 18.396258
+127.0.0.1 - - [07/Apr/2026 13:32:58] "GET /static/css/style.css HTTP/1.1" 304 209 0.001464
+127.0.0.1 - - [07/Apr/2026 13:32:58] "GET /static/js/main.js HTTP/1.1" 304 205 0.001128
+127.0.0.1 - - [07/Apr/2026 13:32:58] "GET /socket.io/?EIO=4&transport=polling&t=PrdjvcR HTTP/1.1" 200 300 0.000627
+127.0.0.1 - - [07/Apr/2026 13:32:58] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000958
+127.0.0.1 - - [07/Apr/2026 13:32:58] "POST /socket.io/?EIO=4&transport=polling&t=Prdjvc-&sid=1UjzTS6EMx82HsOjAAAe HTTP/1.1" 200 219 0.040577
+127.0.0.1 - - [07/Apr/2026 13:32:58] "GET /socket.io/?EIO=4&transport=polling&t=Prdjvc-.0&sid=1UjzTS6EMx82HsOjAAAe HTTP/1.1" 200 213 0.040809
+(353516) accepted ('127.0.0.1', 49544)
+127.0.0.1 - - [07/Apr/2026 13:32:59] "GET /socket.io/?EIO=4&transport=polling&t=Prdjvdo&sid=1UjzTS6EMx82HsOjAAAe HTTP/1.1" 200 181 0.262909
+127.0.0.1 - - [07/Apr/2026 13:33:41] "GET /products HTTP/1.1" 200 23679 0.004341
+127.0.0.1 - - [07/Apr/2026 13:33:41] "GET /socket.io/?EIO=4&transport=websocket&sid=1UjzTS6EMx82HsOjAAAe HTTP/1.1" 200 0 42.560390
+127.0.0.1 - - [07/Apr/2026 13:33:41] "GET /static/css/style.css HTTP/1.1" 304 209 0.001722
+127.0.0.1 - - [07/Apr/2026 13:33:41] "GET /static/js/main.js HTTP/1.1" 304 205 0.001455
+127.0.0.1 - - [07/Apr/2026 13:33:41] "GET /socket.io/?EIO=4&transport=polling&t=Prdk46I HTTP/1.1" 200 300 0.000429
+127.0.0.1 - - [07/Apr/2026 13:33:42] "POST /socket.io/?EIO=4&transport=polling&t=Prdk471&sid=F_x4Lf27N77UYsloAAAg HTTP/1.1" 200 219 0.043126
+127.0.0.1 - - [07/Apr/2026 13:33:42] "GET /socket.io/?EIO=4&transport=polling&t=Prdk472&sid=F_x4Lf27N77UYsloAAAg HTTP/1.1" 200 213 0.041507
+(353516) accepted ('127.0.0.1', 56246)
+127.0.0.1 - - [07/Apr/2026 13:33:42] "GET /socket.io/?EIO=4&transport=polling&t=Prdk47u&sid=F_x4Lf27N77UYsloAAAg HTTP/1.1" 200 181 0.280317
+127.0.0.1 - - [07/Apr/2026 13:34:31] "GET /set_language/en HTTP/1.1" 302 540 0.001205
+127.0.0.1 - - [07/Apr/2026 13:34:31] "GET /products HTTP/1.1" 200 23636 0.005385
+127.0.0.1 - - [07/Apr/2026 13:34:31] "GET /socket.io/?EIO=4&transport=websocket&sid=F_x4Lf27N77UYsloAAAg HTTP/1.1" 200 0 49.034092
+127.0.0.1 - - [07/Apr/2026 13:34:31] "GET /static/css/style.css HTTP/1.1" 304 209 0.001540
+127.0.0.1 - - [07/Apr/2026 13:34:31] "GET /static/js/main.js HTTP/1.1" 304 205 0.001310
+127.0.0.1 - - [07/Apr/2026 13:34:31] "GET /socket.io/?EIO=4&transport=polling&t=PrdkGCI HTTP/1.1" 200 300 0.000441
+127.0.0.1 - - [07/Apr/2026 13:34:31] "POST /socket.io/?EIO=4&transport=polling&t=PrdkGD2&sid=FH793aphU9_Bn-0eAAAi HTTP/1.1" 200 219 0.046129
+127.0.0.1 - - [07/Apr/2026 13:34:31] "GET /socket.io/?EIO=4&transport=polling&t=PrdkGD3&sid=FH793aphU9_Bn-0eAAAi HTTP/1.1" 200 213 0.043079
+(353516) accepted ('127.0.0.1', 54280)
+127.0.0.1 - - [07/Apr/2026 13:34:31] "GET /socket.io/?EIO=4&transport=polling&t=PrdkGE0&sid=FH793aphU9_Bn-0eAAAi HTTP/1.1" 200 181 0.263826
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /stores HTTP/1.1" 200 13209 1.130120
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /static/css/style.css HTTP/1.1" 304 209 0.001225
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001061
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001148
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.001082
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /static/js/main.js HTTP/1.1" 304 205 0.000990
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001379
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /socket.io/?EIO=4&transport=websocket&sid=FH793aphU9_Bn-0eAAAi HTTP/1.1" 200 0 30.707476
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /socket.io/?EIO=4&transport=polling&t=PrdkNoI HTTP/1.1" 200 300 0.000720
+127.0.0.1 - - [07/Apr/2026 13:35:02] "POST /socket.io/?EIO=4&transport=polling&t=PrdkNp5&sid=Zyr0DjTZUj8_x1wsAAAk HTTP/1.1" 200 219 0.042187
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /socket.io/?EIO=4&transport=polling&t=PrdkNp5.0&sid=Zyr0DjTZUj8_x1wsAAAk HTTP/1.1" 200 213 0.041349
+(353516) accepted ('127.0.0.1', 55918)
+(353516) accepted ('127.0.0.1', 55920)
+127.0.0.1 - - [07/Apr/2026 13:35:02] "GET /socket.io/?EIO=4&transport=polling&t=PrdkNq0&sid=Zyr0DjTZUj8_x1wsAAAk HTTP/1.1" 200 181 0.258289
+127.0.0.1 - - [07/Apr/2026 13:35:58] "GET /products HTTP/1.1" 200 23873 0.005047
+127.0.0.1 - - [07/Apr/2026 13:35:58] "GET /socket.io/?EIO=4&transport=websocket&sid=Zyr0DjTZUj8_x1wsAAAk HTTP/1.1" 200 0 55.583078
+127.0.0.1 - - [07/Apr/2026 13:35:58] "GET /static/css/style.css HTTP/1.1" 304 209 0.001421
+127.0.0.1 - - [07/Apr/2026 13:35:58] "GET /static/js/main.js HTTP/1.1" 304 205 0.001056
+127.0.0.1 - - [07/Apr/2026 13:35:58] "GET /socket.io/?EIO=4&transport=polling&t=PrdkbTO HTTP/1.1" 200 300 0.000485
+127.0.0.1 - - [07/Apr/2026 13:35:58] "POST /socket.io/?EIO=4&transport=polling&t=PrdkbU6&sid=h0P3oRR_kCTgQPYZAAAm HTTP/1.1" 200 219 0.041778
+127.0.0.1 - - [07/Apr/2026 13:35:58] "GET /socket.io/?EIO=4&transport=polling&t=PrdkbU7&sid=h0P3oRR_kCTgQPYZAAAm HTTP/1.1" 200 213 0.041191
+127.0.0.1 - - [07/Apr/2026 13:35:58] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001124
+(353516) accepted ('127.0.0.1', 43656)
+127.0.0.1 - - [07/Apr/2026 13:35:58] "GET /socket.io/?EIO=4&transport=polling&t=PrdkbUu&sid=h0P3oRR_kCTgQPYZAAAm HTTP/1.1" 200 181 0.262418
+127.0.0.1 - - [07/Apr/2026 13:35:59] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000834
+127.0.0.1 - - [07/Apr/2026 13:35:59] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000809
+127.0.0.1 - - [07/Apr/2026 13:36:00] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000922
+127.0.0.1 - - [07/Apr/2026 13:36:09] "GET /set_language/en HTTP/1.1" 302 540 0.001049
+127.0.0.1 - - [07/Apr/2026 13:36:09] "GET /products HTTP/1.1" 200 23870 0.015564
+127.0.0.1 - - [07/Apr/2026 13:36:09] "GET /socket.io/?EIO=4&transport=websocket&sid=h0P3oRR_kCTgQPYZAAAm HTTP/1.1" 200 0 10.178019
+127.0.0.1 - - [07/Apr/2026 13:36:09] "GET /static/css/style.css HTTP/1.1" 304 209 0.001788
+127.0.0.1 - - [07/Apr/2026 13:36:09] "GET /static/js/main.js HTTP/1.1" 304 205 0.001320
+127.0.0.1 - - [07/Apr/2026 13:36:09] "GET /socket.io/?EIO=4&transport=polling&t=Prdke3a HTTP/1.1" 200 300 0.000447
+127.0.0.1 - - [07/Apr/2026 13:36:09] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001863
+127.0.0.1 - - [07/Apr/2026 13:36:09] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001371
+127.0.0.1 - - [07/Apr/2026 13:36:09] "POST /socket.io/?EIO=4&transport=polling&t=Prdke4A&sid=VYym9Nllk6amDj6rAAAo HTTP/1.1" 200 219 0.041718
+127.0.0.1 - - [07/Apr/2026 13:36:09] "GET /socket.io/?EIO=4&transport=polling&t=Prdke4B&sid=VYym9Nllk6amDj6rAAAo HTTP/1.1" 200 213 0.041826
+(353516) accepted ('127.0.0.1', 40672)
+127.0.0.1 - - [07/Apr/2026 13:36:09] "GET /socket.io/?EIO=4&transport=polling&t=Prdke4z&sid=VYym9Nllk6amDj6rAAAo HTTP/1.1" 200 181 0.261379
+127.0.0.1 - - [07/Apr/2026 13:36:14] "GET /set_language/es HTTP/1.1" 302 540 0.000924
+127.0.0.1 - - [07/Apr/2026 13:36:14] "GET /products HTTP/1.1" 200 23916 0.004823
+127.0.0.1 - - [07/Apr/2026 13:36:14] "GET /socket.io/?EIO=4&transport=websocket&sid=VYym9Nllk6amDj6rAAAo HTTP/1.1" 200 0 4.677798
+127.0.0.1 - - [07/Apr/2026 13:36:14] "GET /static/css/style.css HTTP/1.1" 304 209 0.001715
+127.0.0.1 - - [07/Apr/2026 13:36:14] "GET /static/js/main.js HTTP/1.1" 304 205 0.001351
+127.0.0.1 - - [07/Apr/2026 13:36:14] "GET /socket.io/?EIO=4&transport=polling&t=PrdkfJu HTTP/1.1" 200 300 0.000429
+127.0.0.1 - - [07/Apr/2026 13:36:14] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001174
+127.0.0.1 - - [07/Apr/2026 13:36:14] "POST /socket.io/?EIO=4&transport=polling&t=PrdkfKT&sid=zYTOZXuM0MOdIw7IAAAq HTTP/1.1" 200 219 0.041629
+127.0.0.1 - - [07/Apr/2026 13:36:14] "GET /socket.io/?EIO=4&transport=polling&t=PrdkfKU&sid=zYTOZXuM0MOdIw7IAAAq HTTP/1.1" 200 213 0.040736
+(353516) accepted ('127.0.0.1', 40678)
+127.0.0.1 - - [07/Apr/2026 13:36:14] "GET /socket.io/?EIO=4&transport=polling&t=PrdkfLG&sid=zYTOZXuM0MOdIw7IAAAq HTTP/1.1" 200 181 0.267132
+127.0.0.1 - - [07/Apr/2026 13:36:16] "GET /set_language/en HTTP/1.1" 302 540 0.000957
+127.0.0.1 - - [07/Apr/2026 13:36:16] "GET /products HTTP/1.1" 200 23870 0.004133
+127.0.0.1 - - [07/Apr/2026 13:36:16] "GET /socket.io/?EIO=4&transport=websocket&sid=zYTOZXuM0MOdIw7IAAAq HTTP/1.1" 200 0 2.174633
+127.0.0.1 - - [07/Apr/2026 13:36:16] "GET /static/css/style.css HTTP/1.1" 304 209 0.001343
+127.0.0.1 - - [07/Apr/2026 13:36:16] "GET /static/js/main.js HTTP/1.1" 304 205 0.000925
+127.0.0.1 - - [07/Apr/2026 13:36:16] "GET /socket.io/?EIO=4&transport=polling&t=PrdkfzK HTTP/1.1" 200 300 0.000435
+127.0.0.1 - - [07/Apr/2026 13:36:17] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001139
+127.0.0.1 - - [07/Apr/2026 13:36:17] "POST /socket.io/?EIO=4&transport=polling&t=Prdkfzw&sid=nzltR8xacisVEo9fAAAs HTTP/1.1" 200 219 0.044325
+127.0.0.1 - - [07/Apr/2026 13:36:17] "GET /socket.io/?EIO=4&transport=polling&t=Prdkfzx&sid=nzltR8xacisVEo9fAAAs HTTP/1.1" 200 213 0.043762
+(353516) accepted ('127.0.0.1', 57628)
+127.0.0.1 - - [07/Apr/2026 13:36:17] "GET /socket.io/?EIO=4&transport=polling&t=Prdkf-r&sid=nzltR8xacisVEo9fAAAs HTTP/1.1" 200 181 0.264380
+127.0.0.1 - - [07/Apr/2026 13:37:20] "GET /set_language/es HTTP/1.1" 302 540 0.000934
+127.0.0.1 - - [07/Apr/2026 13:37:20] "GET /products HTTP/1.1" 200 23916 0.003777
+127.0.0.1 - - [07/Apr/2026 13:37:20] "GET /socket.io/?EIO=4&transport=websocket&sid=nzltR8xacisVEo9fAAAs HTTP/1.1" 200 0 62.942329
+127.0.0.1 - - [07/Apr/2026 13:37:20] "GET /static/css/style.css HTTP/1.1" 304 209 0.001837
+127.0.0.1 - - [07/Apr/2026 13:37:20] "GET /static/js/main.js HTTP/1.1" 304 205 0.001386
+127.0.0.1 - - [07/Apr/2026 13:37:20] "GET /socket.io/?EIO=4&transport=polling&t=PrdkvSe HTTP/1.1" 200 300 0.000566
+127.0.0.1 - - [07/Apr/2026 13:37:20] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001173
+127.0.0.1 - - [07/Apr/2026 13:37:20] "POST /socket.io/?EIO=4&transport=polling&t=PrdkvTL&sid=7It6pKGoUB4z1WxIAAAu HTTP/1.1" 200 219 0.043244
+127.0.0.1 - - [07/Apr/2026 13:37:20] "GET /socket.io/?EIO=4&transport=polling&t=PrdkvTL.0&sid=7It6pKGoUB4z1WxIAAAu HTTP/1.1" 200 213 0.040442
+(353516) accepted ('127.0.0.1', 45626)
+127.0.0.1 - - [07/Apr/2026 13:37:20] "GET /socket.io/?EIO=4&transport=polling&t=PrdkvUI&sid=7It6pKGoUB4z1WxIAAAu HTTP/1.1" 200 181 0.252566
+127.0.0.1 - - [07/Apr/2026 13:37:29] "GET /stores HTTP/1.1" 200 13250 0.876142
+127.0.0.1 - - [07/Apr/2026 13:37:29] "GET /static/css/style.css HTTP/1.1" 304 209 0.002137
+127.0.0.1 - - [07/Apr/2026 13:37:29] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001744
+127.0.0.1 - - [07/Apr/2026 13:37:29] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.001684
+127.0.0.1 - - [07/Apr/2026 13:37:29] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001477
+127.0.0.1 - - [07/Apr/2026 13:37:29] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001011
+127.0.0.1 - - [07/Apr/2026 13:37:29] "GET /socket.io/?EIO=4&transport=websocket&sid=7It6pKGoUB4z1WxIAAAu HTTP/1.1" 200 0 8.926324
+127.0.0.1 - - [07/Apr/2026 13:37:29] "GET /static/js/main.js HTTP/1.1" 304 205 0.001255
+127.0.0.1 - - [07/Apr/2026 13:37:29] "GET /socket.io/?EIO=4&transport=polling&t=PrdkxkR HTTP/1.1" 200 300 0.000318
+127.0.0.1 - - [07/Apr/2026 13:37:29] "POST /socket.io/?EIO=4&transport=polling&t=Prdkxl5&sid=roB7yvUFJOifH3TzAAAw HTTP/1.1" 200 219 0.042219
+127.0.0.1 - - [07/Apr/2026 13:37:29] "GET /socket.io/?EIO=4&transport=polling&t=Prdkxl5.0&sid=roB7yvUFJOifH3TzAAAw HTTP/1.1" 200 213 0.042047
+(353516) accepted ('127.0.0.1', 49542)
+(353516) accepted ('127.0.0.1', 49546)
+(353516) accepted ('127.0.0.1', 49558)
+(353516) accepted ('127.0.0.1', 49568)
+127.0.0.1 - - [07/Apr/2026 13:37:30] "GET /socket.io/?EIO=4&transport=polling&t=Prdkxls&sid=roB7yvUFJOifH3TzAAAw HTTP/1.1" 200 181 0.262197
+127.0.0.1 - - [07/Apr/2026 13:37:31] "GET /set_language/es HTTP/1.1" 302 534 0.000969
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /stores HTTP/1.1" 200 13251 0.852425
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /socket.io/?EIO=4&transport=websocket&sid=roB7yvUFJOifH3TzAAAw HTTP/1.1" 200 0 1.933401
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /static/css/style.css HTTP/1.1" 304 209 0.001489
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001517
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001602
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.001381
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001706
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /static/js/main.js HTTP/1.1" 304 205 0.002196
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /socket.io/?EIO=4&transport=polling&t=PrdkyJT HTTP/1.1" 200 300 0.000340
+127.0.0.1 - - [07/Apr/2026 13:37:32] "POST /socket.io/?EIO=4&transport=polling&t=PrdkyK4&sid=-ikA38ROujYULP-lAAAy HTTP/1.1" 200 219 0.044059
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /socket.io/?EIO=4&transport=polling&t=PrdkyK4.0&sid=-ikA38ROujYULP-lAAAy HTTP/1.1" 200 213 0.043825
+(353516) accepted ('127.0.0.1', 49578)
+127.0.0.1 - - [07/Apr/2026 13:37:32] "GET /socket.io/?EIO=4&transport=polling&t=PrdkyKs&sid=-ikA38ROujYULP-lAAAy HTTP/1.1" 200 181 0.267028
+127.0.0.1 - - [07/Apr/2026 13:37:33] "GET /set_language/en HTTP/1.1" 302 534 0.000891
+127.0.0.1 - - [07/Apr/2026 13:37:34] "GET /stores HTTP/1.1" 200 13208 1.071424
+127.0.0.1 - - [07/Apr/2026 13:37:34] "GET /set_language/en HTTP/1.1" 302 534 0.000899
+127.0.0.1 - - [07/Apr/2026 13:37:35] "GET /stores HTTP/1.1" 200 13207 0.915365
+127.0.0.1 - - [07/Apr/2026 13:37:35] "GET /set_language/es HTTP/1.1" 302 534 0.000929
+127.0.0.1 - - [07/Apr/2026 13:37:36] "GET /stores HTTP/1.1" 200 13249 1.008590
+127.0.0.1 - - [07/Apr/2026 13:37:36] "GET /set_language/en HTTP/1.1" 302 534 0.001311
+127.0.0.1 - - [07/Apr/2026 13:37:37] "GET /stores HTTP/1.1" 200 13209 0.900576
+127.0.0.1 - - [07/Apr/2026 13:37:37] "GET /socket.io/?EIO=4&transport=websocket&sid=-ikA38ROujYULP-lAAAy HTTP/1.1" 200 0 5.327164
+127.0.0.1 - - [07/Apr/2026 13:37:37] "GET /static/css/style.css HTTP/1.1" 304 209 0.001366
+127.0.0.1 - - [07/Apr/2026 13:37:37] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.000748
+127.0.0.1 - - [07/Apr/2026 13:37:37] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.000790
+127.0.0.1 - - [07/Apr/2026 13:37:37] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001518
+127.0.0.1 - - [07/Apr/2026 13:37:37] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001151
+127.0.0.1 - - [07/Apr/2026 13:37:37] "GET /static/js/main.js HTTP/1.1" 304 205 0.001198
+127.0.0.1 - - [07/Apr/2026 13:37:37] "GET /socket.io/?EIO=4&transport=polling&t=PrdkzjU HTTP/1.1" 200 300 0.000314
+127.0.0.1 - - [07/Apr/2026 13:37:37] "POST /socket.io/?EIO=4&transport=polling&t=Prdkzk4&sid=ySiueDfSPwcSMkuaAAA0 HTTP/1.1" 200 219 0.050492
+127.0.0.1 - - [07/Apr/2026 13:37:37] "GET /socket.io/?EIO=4&transport=polling&t=Prdkzk5&sid=ySiueDfSPwcSMkuaAAA0 HTTP/1.1" 200 213 0.050482
+(353516) accepted ('127.0.0.1', 39798)
+(353516) accepted ('127.0.0.1', 39804)
+(353516) accepted ('127.0.0.1', 39808)
+(353516) accepted ('127.0.0.1', 39822)
+127.0.0.1 - - [07/Apr/2026 13:37:38] "GET /socket.io/?EIO=4&transport=polling&t=Prdkzky&sid=ySiueDfSPwcSMkuaAAA0 HTTP/1.1" 200 181 0.260980
+127.0.0.1 - - [07/Apr/2026 13:37:49] "GET /set_language/es HTTP/1.1" 302 534 0.000869
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /stores HTTP/1.1" 200 13249 1.145353
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /socket.io/?EIO=4&transport=websocket&sid=ySiueDfSPwcSMkuaAAA0 HTTP/1.1" 200 0 12.820622
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /static/css/style.css HTTP/1.1" 304 209 0.000908
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001082
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.000929
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.000906
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /static/js/main.js HTTP/1.1" 304 205 0.002070
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001683
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /socket.io/?EIO=4&transport=polling&t=Prdl0yT HTTP/1.1" 200 300 0.000373
+127.0.0.1 - - [07/Apr/2026 13:37:51] "POST /socket.io/?EIO=4&transport=polling&t=Prdl0z4&sid=UjNhvvxIFQvHa_b7AAA2 HTTP/1.1" 200 219 0.042141
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /socket.io/?EIO=4&transport=polling&t=Prdl0z5&sid=UjNhvvxIFQvHa_b7AAA2 HTTP/1.1" 200 213 0.042131
+(353516) accepted ('127.0.0.1', 39170)
+127.0.0.1 - - [07/Apr/2026 13:37:51] "GET /socket.io/?EIO=4&transport=polling&t=Prdl0zt&sid=UjNhvvxIFQvHa_b7AAA2 HTTP/1.1" 200 181 0.259567
+127.0.0.1 - - [07/Apr/2026 13:39:45] "GET /products HTTP/1.1" 200 23734 0.005851
+127.0.0.1 - - [07/Apr/2026 13:39:45] "GET /socket.io/?EIO=4&transport=websocket&sid=UjNhvvxIFQvHa_b7AAA2 HTTP/1.1" 200 0 113.705623
+127.0.0.1 - - [07/Apr/2026 13:39:45] "GET /static/css/style.css HTTP/1.1" 304 209 0.001077
+127.0.0.1 - - [07/Apr/2026 13:39:45] "GET /static/js/main.js HTTP/1.1" 304 205 0.001881
+127.0.0.1 - - [07/Apr/2026 13:39:45] "GET /socket.io/?EIO=4&transport=polling&t=PrdlSpk HTTP/1.1" 200 300 0.000432
+127.0.0.1 - - [07/Apr/2026 13:39:45] "POST /socket.io/?EIO=4&transport=polling&t=PrdlSqW&sid=5LL15SHRJkQhlyT4AAA4 HTTP/1.1" 200 219 0.042161
+127.0.0.1 - - [07/Apr/2026 13:39:45] "GET /socket.io/?EIO=4&transport=polling&t=PrdlSqX&sid=5LL15SHRJkQhlyT4AAA4 HTTP/1.1" 200 213 0.039197
+(353516) accepted ('127.0.0.1', 42144)
+127.0.0.1 - - [07/Apr/2026 13:39:45] "GET /socket.io/?EIO=4&transport=polling&t=PrdlSrL&sid=5LL15SHRJkQhlyT4AAA4 HTTP/1.1" 200 181 0.261746
+/home/sergio/XDEI/P2-XDEI/app.py:430: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  product = Product.query.get(id)
+127.0.0.1 - - [07/Apr/2026 13:39:56] "GET /products/10 HTTP/1.1" 200 20621 0.033387
+127.0.0.1 - - [07/Apr/2026 13:39:56] "GET /static/css/style.css HTTP/1.1" 304 209 0.001852
+127.0.0.1 - - [07/Apr/2026 13:39:56] "GET /static/js/main.js HTTP/1.1" 304 205 0.001634
+127.0.0.1 - - [07/Apr/2026 13:39:56] "GET /socket.io/?EIO=4&transport=polling&t=PrdlVgO HTTP/1.1" 200 300 0.000430
+127.0.0.1 - - [07/Apr/2026 13:39:56] "GET /socket.io/?EIO=4&transport=websocket&sid=5LL15SHRJkQhlyT4AAA4 HTTP/1.1" 200 0 11.329996
+127.0.0.1 - - [07/Apr/2026 13:39:57] "POST /socket.io/?EIO=4&transport=polling&t=PrdlVgY&sid=SAn18RJZcNYv3aVuAAA6 HTTP/1.1" 200 219 0.043688
+127.0.0.1 - - [07/Apr/2026 13:39:57] "GET /socket.io/?EIO=4&transport=polling&t=PrdlVgZ&sid=SAn18RJZcNYv3aVuAAA6 HTTP/1.1" 200 213 0.043309
+(353516) accepted ('127.0.0.1', 34806)
+127.0.0.1 - - [07/Apr/2026 13:39:57] "GET /socket.io/?EIO=4&transport=polling&t=PrdlVhc&sid=SAn18RJZcNYv3aVuAAA6 HTTP/1.1" 200 181 0.250705
+127.0.0.1 - - [07/Apr/2026 13:40:03] "GET /products HTTP/1.1" 200 23734 0.004336
+127.0.0.1 - - [07/Apr/2026 13:40:03] "GET /socket.io/?EIO=4&transport=websocket&sid=SAn18RJZcNYv3aVuAAA6 HTTP/1.1" 200 0 6.187001
+127.0.0.1 - - [07/Apr/2026 13:40:03] "GET /static/css/style.css HTTP/1.1" 304 209 0.000994
+127.0.0.1 - - [07/Apr/2026 13:40:03] "GET /static/js/main.js HTTP/1.1" 304 205 0.001009
+127.0.0.1 - - [07/Apr/2026 13:40:03] "GET /socket.io/?EIO=4&transport=polling&t=PrdlXH0 HTTP/1.1" 200 300 0.000442
+127.0.0.1 - - [07/Apr/2026 13:40:03] "POST /socket.io/?EIO=4&transport=polling&t=PrdlXHb&sid=c5EXWFTiBwLA4n2RAAA8 HTTP/1.1" 200 219 0.041661
+127.0.0.1 - - [07/Apr/2026 13:40:03] "GET /socket.io/?EIO=4&transport=polling&t=PrdlXHc&sid=c5EXWFTiBwLA4n2RAAA8 HTTP/1.1" 200 213 0.041577
+(353516) accepted ('127.0.0.1', 34810)
+127.0.0.1 - - [07/Apr/2026 13:40:03] "GET /socket.io/?EIO=4&transport=polling&t=PrdlXIL&sid=c5EXWFTiBwLA4n2RAAA8 HTTP/1.1" 200 181 0.267880
+127.0.0.1 - - [07/Apr/2026 13:40:06] "GET /set_language/en HTTP/1.1" 302 540 0.000813
+127.0.0.1 - - [07/Apr/2026 13:40:06] "GET /products HTTP/1.1" 200 23688 0.004941
+127.0.0.1 - - [07/Apr/2026 13:40:06] "GET /socket.io/?EIO=4&transport=websocket&sid=c5EXWFTiBwLA4n2RAAA8 HTTP/1.1" 200 0 2.939550
+127.0.0.1 - - [07/Apr/2026 13:40:06] "GET /static/css/style.css HTTP/1.1" 304 209 0.001036
+127.0.0.1 - - [07/Apr/2026 13:40:06] "GET /static/js/main.js HTTP/1.1" 304 205 0.001138
+127.0.0.1 - - [07/Apr/2026 13:40:06] "GET /socket.io/?EIO=4&transport=polling&t=PrdlY69 HTTP/1.1" 200 300 0.000505
+127.0.0.1 - - [07/Apr/2026 13:40:06] "POST /socket.io/?EIO=4&transport=polling&t=PrdlY6d&sid=xpk24GUPxbNh-vArAAA- HTTP/1.1" 200 219 0.042756
+127.0.0.1 - - [07/Apr/2026 13:40:06] "GET /socket.io/?EIO=4&transport=polling&t=PrdlY6e&sid=xpk24GUPxbNh-vArAAA- HTTP/1.1" 200 213 0.042707
+(353516) accepted ('127.0.0.1', 44910)
+127.0.0.1 - - [07/Apr/2026 13:40:07] "GET /socket.io/?EIO=4&transport=polling&t=PrdlY7R&sid=xpk24GUPxbNh-vArAAA- HTTP/1.1" 200 181 0.264102
+127.0.0.1 - - [07/Apr/2026 13:40:27] "GET /set_language/es HTTP/1.1" 302 540 0.001784
+127.0.0.1 - - [07/Apr/2026 13:40:27] "GET /products HTTP/1.1" 200 23734 0.005547
+127.0.0.1 - - [07/Apr/2026 13:40:27] "GET /socket.io/?EIO=4&transport=websocket&sid=xpk24GUPxbNh-vArAAA- HTTP/1.1" 200 0 20.614254
+127.0.0.1 - - [07/Apr/2026 13:40:27] "GET /static/css/style.css HTTP/1.1" 304 209 0.001401
+127.0.0.1 - - [07/Apr/2026 13:40:27] "GET /static/js/main.js HTTP/1.1" 304 205 0.001091
+127.0.0.1 - - [07/Apr/2026 13:40:27] "GET /socket.io/?EIO=4&transport=polling&t=PrdldFQ HTTP/1.1" 200 300 0.000523
+127.0.0.1 - - [07/Apr/2026 13:40:28] "POST /socket.io/?EIO=4&transport=polling&t=PrdldF_&sid=3VKQAAg9BiOvxLkmAABA HTTP/1.1" 200 219 0.043970
+127.0.0.1 - - [07/Apr/2026 13:40:28] "GET /socket.io/?EIO=4&transport=polling&t=PrdldG0&sid=3VKQAAg9BiOvxLkmAABA HTTP/1.1" 200 213 0.044144
+(353516) accepted ('127.0.0.1', 41130)
+127.0.0.1 - - [07/Apr/2026 13:40:28] "GET /socket.io/?EIO=4&transport=polling&t=PrdldGq&sid=3VKQAAg9BiOvxLkmAABA HTTP/1.1" 200 181 0.267468
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /stores HTTP/1.1" 200 13251 1.027814
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /socket.io/?EIO=4&transport=websocket&sid=3VKQAAg9BiOvxLkmAABA HTTP/1.1" 200 0 11.188602
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /static/css/style.css HTTP/1.1" 304 209 0.001823
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001517
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.001620
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /static/js/main.js HTTP/1.1" 304 205 0.001172
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001054
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001126
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /socket.io/?EIO=4&transport=polling&t=Prdlg4s HTTP/1.1" 200 300 0.000515
+127.0.0.1 - - [07/Apr/2026 13:40:39] "POST /socket.io/?EIO=4&transport=polling&t=Prdlg5X&sid=4kMAzllEC-1f9bpTAABC HTTP/1.1" 200 219 0.040176
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /socket.io/?EIO=4&transport=polling&t=Prdlg5Y&sid=4kMAzllEC-1f9bpTAABC HTTP/1.1" 200 213 0.037013
+(353516) accepted ('127.0.0.1', 55706)
+127.0.0.1 - - [07/Apr/2026 13:40:39] "GET /socket.io/?EIO=4&transport=polling&t=Prdlg6L&sid=4kMAzllEC-1f9bpTAABC HTTP/1.1" 200 181 0.268391
+127.0.0.1 - - [07/Apr/2026 13:40:51] "GET /set_language/en HTTP/1.1" 302 534 0.001034
+127.0.0.1 - - [07/Apr/2026 13:40:51] "GET /stores HTTP/1.1" 200 13209 0.886540
+127.0.0.1 - - [07/Apr/2026 13:40:51] "GET /socket.io/?EIO=4&transport=websocket&sid=4kMAzllEC-1f9bpTAABC HTTP/1.1" 200 0 12.007853
+127.0.0.1 - - [07/Apr/2026 13:40:52] "GET /static/css/style.css HTTP/1.1" 304 209 0.000958
+127.0.0.1 - - [07/Apr/2026 13:40:52] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.000868
+127.0.0.1 - - [07/Apr/2026 13:40:52] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.000850
+127.0.0.1 - - [07/Apr/2026 13:40:52] "GET /static/js/main.js HTTP/1.1" 304 205 0.001178
+127.0.0.1 - - [07/Apr/2026 13:40:52] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.000893
+127.0.0.1 - - [07/Apr/2026 13:40:52] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.000818
+127.0.0.1 - - [07/Apr/2026 13:40:52] "GET /socket.io/?EIO=4&transport=polling&t=Prdlj7J HTTP/1.1" 200 300 0.000393
+127.0.0.1 - - [07/Apr/2026 13:40:52] "POST /socket.io/?EIO=4&transport=polling&t=Prdlj7q&sid=D5r88xdpFsdHkSnIAABE HTTP/1.1" 200 219 0.042013
+127.0.0.1 - - [07/Apr/2026 13:40:52] "GET /socket.io/?EIO=4&transport=polling&t=Prdlj7q.0&sid=D5r88xdpFsdHkSnIAABE HTTP/1.1" 200 213 0.041119
+(353516) accepted ('127.0.0.1', 60876)
+(353516) accepted ('127.0.0.1', 60880)
+127.0.0.1 - - [07/Apr/2026 13:40:52] "GET /socket.io/?EIO=4&transport=polling&t=Prdlj8b&sid=D5r88xdpFsdHkSnIAABE HTTP/1.1" 200 181 0.262946
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /products HTTP/1.1" 200 24142 0.005460
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /socket.io/?EIO=4&transport=websocket&sid=D5r88xdpFsdHkSnIAABE HTTP/1.1" 200 0 100.776506
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /static/css/style.css HTTP/1.1" 304 209 0.001404
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /static/js/main.js HTTP/1.1" 304 205 0.001520
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /socket.io/?EIO=4&transport=polling&t=Prdm5qP HTTP/1.1" 200 300 0.000545
+127.0.0.1 - - [07/Apr/2026 13:42:33] "POST /socket.io/?EIO=4&transport=polling&t=Prdm5r9&sid=xZN_1GVsqVFvcPfHAABG HTTP/1.1" 200 219 0.040464
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /socket.io/?EIO=4&transport=polling&t=Prdm5rA&sid=xZN_1GVsqVFvcPfHAABG HTTP/1.1" 200 213 0.038385
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001000
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000939
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000904
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000915
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.000894
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001161
+(353516) accepted ('127.0.0.1', 47568)
+127.0.0.1 - - [07/Apr/2026 13:42:33] "GET /socket.io/?EIO=4&transport=polling&t=Prdm5ry&sid=xZN_1GVsqVFvcPfHAABG HTTP/1.1" 200 181 0.265224

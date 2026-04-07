@@ -1,0 +1,200 @@
+nohup: ignoring input
+/home/sergio/.local/lib/python3.10/site-packages/engineio/async_drivers/eventlet.py:1: EventletDeprecationWarning: 
+Eventlet is deprecated. It is currently being maintained in bugfix mode, and
+we strongly recommend against using it for new projects.
+
+If you are already using Eventlet, we recommend migrating to a different
+framework.  For more detail see
+https://eventlet.readthedocs.io/en/latest/asyncio/migration.html
+
+  from eventlet.green.threading import Event
+/home/sergio/XDEI/P2-XDEI/app.py:836: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_product = not Product.query.get(inv.product_id)
+/home/sergio/XDEI/P2-XDEI/app.py:837: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_store = not Store.query.get(inv.store_id)
+/home/sergio/XDEI/P2-XDEI/app.py:838: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_shelf = not Shelf.query.get(inv.shelf_id)
+INFO:data_layer:[data_layer] Orion is reachable → using Orion Context Broker
+INFO:werkzeug: * Restarting with stat
+/home/sergio/.local/lib/python3.10/site-packages/engineio/async_drivers/eventlet.py:1: EventletDeprecationWarning: 
+Eventlet is deprecated. It is currently being maintained in bugfix mode, and
+we strongly recommend against using it for new projects.
+
+If you are already using Eventlet, we recommend migrating to a different
+framework.  For more detail see
+https://eventlet.readthedocs.io/en/latest/asyncio/migration.html
+
+  from eventlet.green.threading import Event
+/home/sergio/XDEI/P2-XDEI/app.py:836: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_product = not Product.query.get(inv.product_id)
+/home/sergio/XDEI/P2-XDEI/app.py:837: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_store = not Store.query.get(inv.store_id)
+/home/sergio/XDEI/P2-XDEI/app.py:838: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  missing_shelf = not Shelf.query.get(inv.shelf_id)
+INFO:data_layer:[data_layer] Orion is reachable → using Orion Context Broker
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 268-346-317
+(309835) wsgi starting up on http://127.0.0.1:5000
+(309835) accepted ('127.0.0.1', 57192)
+127.0.0.1 - - [07/Apr/2026 12:56:36] "GET /socket.io/?EIO=4&transport=polling&t=PrdbaKj HTTP/1.1" 200 300 0.000615
+127.0.0.1 - - [07/Apr/2026 12:56:36] "GET /socket.io/?EIO=4&transport=polling&t=PrdbaaS HTTP/1.1" 200 300 0.000379
+(309835) accepted ('127.0.0.1', 57198)
+127.0.0.1 - - [07/Apr/2026 12:56:36] "POST /socket.io/?EIO=4&transport=polling&t=Prdbamu&sid=TXucXLwk6Jv0NRKCAAAA HTTP/1.1" 200 219 0.001220
+127.0.0.1 - - [07/Apr/2026 12:56:36] "GET /socket.io/?EIO=4&transport=polling&t=Prdbamu.0&sid=TXucXLwk6Jv0NRKCAAAA HTTP/1.1" 200 213 0.002949
+(309835) accepted ('127.0.0.1', 57210)
+(309835) accepted ('127.0.0.1', 57216)
+127.0.0.1 - - [07/Apr/2026 12:56:36] "POST /socket.io/?EIO=4&transport=polling&t=Prdbamz&sid=Y0iTIukadu8VvgCCAAAB HTTP/1.1" 200 219 0.000788
+127.0.0.1 - - [07/Apr/2026 12:56:36] "GET /socket.io/?EIO=4&transport=polling&t=Prdbam-&sid=Y0iTIukadu8VvgCCAAAB HTTP/1.1" 200 213 0.000254
+127.0.0.1 - - [07/Apr/2026 12:56:36] "GET /socket.io/?EIO=4&transport=polling&t=Prdban4&sid=TXucXLwk6Jv0NRKCAAAA HTTP/1.1" 200 181 0.000196
+(309835) accepted ('127.0.0.1', 57230)
+127.0.0.1 - - [07/Apr/2026 12:56:36] "GET /socket.io/?EIO=4&transport=polling&t=Prdban7&sid=Y0iTIukadu8VvgCCAAAB HTTP/1.1" 200 181 0.009641
+(309835) accepted ('127.0.0.1', 57246)
+(309835) accepted ('127.0.0.1', 57260)
+127.0.0.1 - - [07/Apr/2026 12:56:51] "GET / HTTP/1.1" 200 12984 0.065471
+127.0.0.1 - - [07/Apr/2026 12:56:51] "GET /static/css/style.css HTTP/1.1" 304 209 0.007194
+127.0.0.1 - - [07/Apr/2026 12:56:51] "GET /static/js/main.js HTTP/1.1" 304 205 0.001400
+127.0.0.1 - - [07/Apr/2026 12:56:51] "GET /socket.io/?EIO=4&transport=polling&t=PrdbeX9 HTTP/1.1" 200 300 0.000443
+127.0.0.1 - - [07/Apr/2026 12:56:51] "POST /socket.io/?EIO=4&transport=polling&t=PrdbeZn&sid=yJoZTJ_ZdJZuG8JBAAAE HTTP/1.1" 200 219 0.000834
+(309835) accepted ('127.0.0.1', 38320)
+127.0.0.1 - - [07/Apr/2026 12:56:51] "GET /socket.io/?EIO=4&transport=polling&t=PrdbeZn.0&sid=yJoZTJ_ZdJZuG8JBAAAE HTTP/1.1" 200 213 0.000333
+127.0.0.1 - - [07/Apr/2026 12:56:51] "GET /socket.io/?EIO=4&transport=polling&t=PrdbeZx&sid=yJoZTJ_ZdJZuG8JBAAAE HTTP/1.1" 200 181 0.000252
+127.0.0.1 - - [07/Apr/2026 12:56:52] "GET /socket.io/?EIO=4&transport=polling&t=Prdbeaa&sid=yJoZTJ_ZdJZuG8JBAAAE HTTP/1.1" 200 181 0.000246
+127.0.0.1 - - [07/Apr/2026 12:56:54] "GET /products HTTP/1.1" 200 23681 0.021972
+127.0.0.1 - - [07/Apr/2026 12:56:54] "GET /static/css/style.css HTTP/1.1" 304 209 0.001754
+127.0.0.1 - - [07/Apr/2026 12:56:54] "GET /socket.io/?EIO=4&transport=websocket&sid=yJoZTJ_ZdJZuG8JBAAAE HTTP/1.1" 200 0 2.540051
+127.0.0.1 - - [07/Apr/2026 12:56:54] "GET /static/js/main.js HTTP/1.1" 304 205 0.001680
+127.0.0.1 - - [07/Apr/2026 12:56:54] "GET /socket.io/?EIO=4&transport=polling&t=PrdbfCt HTTP/1.1" 200 300 0.000599
+127.0.0.1 - - [07/Apr/2026 12:56:54] "POST /socket.io/?EIO=4&transport=polling&t=PrdbfD1&sid=c0nmLdd9Qi9D97_AAAAG HTTP/1.1" 200 219 0.001016
+(309835) accepted ('127.0.0.1', 38326)
+127.0.0.1 - - [07/Apr/2026 12:56:54] "GET /socket.io/?EIO=4&transport=polling&t=PrdbfD2&sid=c0nmLdd9Qi9D97_AAAAG HTTP/1.1" 200 181 0.000248
+127.0.0.1 - - [07/Apr/2026 12:56:54] "GET /socket.io/?EIO=4&transport=polling&t=PrdbfE1&sid=c0nmLdd9Qi9D97_AAAAG HTTP/1.1" 200 181 0.000309
+127.0.0.1 - - [07/Apr/2026 12:56:55] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.004432
+127.0.0.1 - - [07/Apr/2026 12:56:55] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.004310
+127.0.0.1 - - [07/Apr/2026 12:56:55] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.006253
+127.0.0.1 - - [07/Apr/2026 12:56:58] "GET /set_language/en HTTP/1.1" 302 540 0.001488
+127.0.0.1 - - [07/Apr/2026 12:56:58] "GET /products HTTP/1.1" 200 23640 0.007160
+127.0.0.1 - - [07/Apr/2026 12:56:58] "GET /socket.io/?EIO=4&transport=websocket&sid=c0nmLdd9Qi9D97_AAAAG HTTP/1.1" 200 0 3.601741
+127.0.0.1 - - [07/Apr/2026 12:56:58] "GET /static/css/style.css HTTP/1.1" 304 209 0.002059
+127.0.0.1 - - [07/Apr/2026 12:56:58] "GET /static/js/main.js HTTP/1.1" 304 205 0.001847
+127.0.0.1 - - [07/Apr/2026 12:56:58] "GET /socket.io/?EIO=4&transport=polling&t=Prdbg7_ HTTP/1.1" 200 300 0.000493
+127.0.0.1 - - [07/Apr/2026 12:56:58] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001654
+127.0.0.1 - - [07/Apr/2026 12:56:58] "POST /socket.io/?EIO=4&transport=polling&t=Prdbg8t&sid=fU25K6Bhdv4mGPPbAAAI HTTP/1.1" 200 219 0.000985
+127.0.0.1 - - [07/Apr/2026 12:56:58] "GET /socket.io/?EIO=4&transport=polling&t=Prdbg8u&sid=fU25K6Bhdv4mGPPbAAAI HTTP/1.1" 200 213 0.000483
+(309835) accepted ('127.0.0.1', 58848)
+127.0.0.1 - - [07/Apr/2026 12:56:58] "GET /socket.io/?EIO=4&transport=polling&t=Prdbg9F&sid=fU25K6Bhdv4mGPPbAAAI HTTP/1.1" 200 181 0.000265
+127.0.0.1 - - [07/Apr/2026 12:57:42] "GET /set_language/es HTTP/1.1" 302 540 0.004142
+127.0.0.1 - - [07/Apr/2026 12:57:42] "GET /products HTTP/1.1" 200 23681 0.011878
+127.0.0.1 - - [07/Apr/2026 12:57:42] "GET /socket.io/?EIO=4&transport=websocket&sid=fU25K6Bhdv4mGPPbAAAI HTTP/1.1" 200 0 44.536899
+127.0.0.1 - - [07/Apr/2026 12:57:43] "GET /static/css/style.css HTTP/1.1" 304 209 0.002021
+127.0.0.1 - - [07/Apr/2026 12:57:43] "GET /static/js/main.js HTTP/1.1" 304 205 0.001628
+127.0.0.1 - - [07/Apr/2026 12:57:43] "GET /socket.io/?EIO=4&transport=polling&t=Prdbr3W HTTP/1.1" 200 300 0.000729
+127.0.0.1 - - [07/Apr/2026 12:57:43] "POST /socket.io/?EIO=4&transport=polling&t=Prdbr4R&sid=3YQ9TbSJJf4kxDoOAAAK HTTP/1.1" 200 219 0.001005
+127.0.0.1 - - [07/Apr/2026 12:57:43] "GET /socket.io/?EIO=4&transport=polling&t=Prdbr4S&sid=3YQ9TbSJJf4kxDoOAAAK HTTP/1.1" 200 213 0.000421
+(309835) accepted ('127.0.0.1', 46706)
+127.0.0.1 - - [07/Apr/2026 12:57:43] "GET /static/img/placeholder.png HTTP/1.1" 304 213 0.001652
+127.0.0.1 - - [07/Apr/2026 12:57:43] "GET /socket.io/?EIO=4&transport=polling&t=Prdbr4l&sid=3YQ9TbSJJf4kxDoOAAAK HTTP/1.1" 200 181 0.000365
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:001 in list: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:002 in list: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:003 in list: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:004 in list: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /stores HTTP/1.1" 200 13242 0.605046
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /static/css/style.css HTTP/1.1" 304 209 0.001620
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001666
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.003162
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001842
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /static/js/main.js HTTP/1.1" 304 205 0.001706
+(309835) accepted ('127.0.0.1', 55630)
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001814
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /socket.io/?EIO=4&transport=polling&t=Prdbtkv HTTP/1.1" 200 300 0.000435
+127.0.0.1 - - [07/Apr/2026 12:57:54] "POST /socket.io/?EIO=4&transport=polling&t=Prdbtly&sid=-6CpAeIklGzbW4e4AAAM HTTP/1.1" 200 219 0.000827
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /socket.io/?EIO=4&transport=polling&t=Prdbtlz&sid=-6CpAeIklGzbW4e4AAAM HTTP/1.1" 200 213 0.000325
+(309835) accepted ('127.0.0.1', 55634)
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /socket.io/?EIO=4&transport=websocket&sid=3YQ9TbSJJf4kxDoOAAAK HTTP/1.1" 200 0 10.988071
+127.0.0.1 - - [07/Apr/2026 12:57:54] "GET /socket.io/?EIO=4&transport=polling&t=PrdbtmO&sid=-6CpAeIklGzbW4e4AAAM HTTP/1.1" 200 181 0.000271
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /set_language/en HTTP/1.1" 302 534 0.001430
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:001 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:001 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4f820>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:002 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:002 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4f2e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:003 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:003 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4e9e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:004 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:004 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4d120>: Failed to establish a new connection: [Errno 111] Connection refused'))
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /stores HTTP/1.1" 200 13186 0.013451
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /socket.io/?EIO=4&transport=websocket&sid=-6CpAeIklGzbW4e4AAAM HTTP/1.1" 200 0 11.193421
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /static/css/style.css HTTP/1.1" 304 209 0.002011
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001902
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.001908
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001772
+(309835) accepted ('127.0.0.1', 46598)
+(309835) accepted ('127.0.0.1', 46606)
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001520
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /static/js/main.js HTTP/1.1" 304 205 0.001222
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /socket.io/?EIO=4&transport=polling&t=PrdbwXN HTTP/1.1" 200 300 0.000547
+127.0.0.1 - - [07/Apr/2026 12:58:05] "POST /socket.io/?EIO=4&transport=polling&t=PrdbwY6&sid=IO9FTUtUo3GvU6i4AAAO HTTP/1.1" 200 219 0.000829
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /socket.io/?EIO=4&transport=polling&t=PrdbwY7&sid=IO9FTUtUo3GvU6i4AAAO HTTP/1.1" 200 213 0.000296
+(309835) accepted ('127.0.0.1', 46608)
+127.0.0.1 - - [07/Apr/2026 12:58:05] "GET /socket.io/?EIO=4&transport=polling&t=PrdbwYp&sid=IO9FTUtUo3GvU6i4AAAO HTTP/1.1" 200 181 0.000299
+(309835) accepted ('127.0.0.1', 51946)
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:001 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:001 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753dac0dac20>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:002 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:002 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4d030>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:003 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:003 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4e4a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:004 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:004 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4eb90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /stores HTTP/1.1" 200 13186 0.013090
+(309835) accepted ('127.0.0.1', 51960)
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /socket.io/?EIO=4&transport=websocket&sid=IO9FTUtUo3GvU6i4AAAO HTTP/1.1" 200 0 634.651537
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/css/style.css HTTP/1.1" 200 23602 0.002095
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001662
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.001335
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001124
+(309835) accepted ('127.0.0.1', 51962)
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/js/main.js HTTP/1.1" 304 205 0.001648
+(309835) accepted ('127.0.0.1', 51968)
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001518
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /socket.io/?EIO=4&transport=polling&t=PrdeLWP HTTP/1.1" 200 300 0.000492
+127.0.0.1 - - [07/Apr/2026 13:08:40] "POST /socket.io/?EIO=4&transport=polling&t=PrdeLWh&sid=LgZTHXtzZ4n0A_0nAAAQ HTTP/1.1" 200 219 0.000768
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /socket.io/?EIO=4&transport=polling&t=PrdeLWi&sid=LgZTHXtzZ4n0A_0nAAAQ HTTP/1.1" 200 213 0.000321
+(309835) accepted ('127.0.0.1', 51982)
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /socket.io/?EIO=4&transport=polling&t=PrdeLYQ&sid=LgZTHXtzZ4n0A_0nAAAQ HTTP/1.1" 200 181 0.000166
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /socket.io/?EIO=4&transport=polling&t=PrdeLaK&sid=LgZTHXtzZ4n0A_0nAAAQ HTTP/1.1" 200 181 0.000175
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:001 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:001 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4dc90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:002 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:002 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4c2e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:003 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:003 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753dac0d9420>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:004 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:004 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753dac0d9d50>: Failed to establish a new connection: [Errno 111] Connection refused'))
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /stores HTTP/1.1" 200 13186 0.009133
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /socket.io/?EIO=4&transport=websocket&sid=LgZTHXtzZ4n0A_0nAAAQ HTTP/1.1" 200 0 0.554739
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/css/style.css HTTP/1.1" 304 209 0.001540
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.001358
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.001408
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001010
+(309835) accepted ('127.0.0.1', 51984)
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.001322
+127.0.0.1 - - [07/Apr/2026 13:08:40] "GET /static/js/main.js HTTP/1.1" 304 205 0.001576
+127.0.0.1 - - [07/Apr/2026 13:08:41] "GET /socket.io/?EIO=4&transport=polling&t=PrdeLgv HTTP/1.1" 200 300 0.000463
+127.0.0.1 - - [07/Apr/2026 13:08:41] "POST /socket.io/?EIO=4&transport=polling&t=PrdeLhZ&sid=XbGU-Q-nAhEg9qYQAAAS HTTP/1.1" 200 219 0.000775
+127.0.0.1 - - [07/Apr/2026 13:08:41] "GET /socket.io/?EIO=4&transport=polling&t=PrdeLhZ.0&sid=XbGU-Q-nAhEg9qYQAAAS HTTP/1.1" 200 213 0.000242
+(309835) accepted ('127.0.0.1', 51992)
+127.0.0.1 - - [07/Apr/2026 13:08:41] "GET /socket.io/?EIO=4&transport=polling&t=PrdeLi9&sid=XbGU-Q-nAhEg9qYQAAAS HTTP/1.1" 200 181 0.000233
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:001 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:001 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4f0a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:002 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:002 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4ded0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:003 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:003 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753da7f4fa90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+WARNING:app:Could not fetch context for urn:ngsi-ld:Store:004 in list: HTTPConnectionPool(host='localhost', port=1026): Max retries exceeded with url: /v2/entities/urn:ngsi-ld:Store:004 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x753dac0dba00>: Failed to establish a new connection: [Errno 111] Connection refused'))
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /stores HTTP/1.1" 200 13186 0.008293
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /socket.io/?EIO=4&transport=websocket&sid=XbGU-Q-nAhEg9qYQAAAS HTTP/1.1" 200 0 1.727925
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /static/css/style.css HTTP/1.1" 304 209 0.001361
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /static/img/stores/store_002.png HTTP/1.1" 304 213 0.001029
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /static/img/stores/store_001.png HTTP/1.1" 304 213 0.000794
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /static/img/stores/store_003.png HTTP/1.1" 304 214 0.001153
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /static/img/stores/store_004.png HTTP/1.1" 304 213 0.000940
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /static/js/main.js HTTP/1.1" 304 205 0.000758
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /socket.io/?EIO=4&transport=polling&t=PrdeM7h HTTP/1.1" 200 300 0.000510
+127.0.0.1 - - [07/Apr/2026 13:08:42] "POST /socket.io/?EIO=4&transport=polling&t=PrdeM8I&sid=tGqiqXmHVcCCLGtLAAAU HTTP/1.1" 200 219 0.000606
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /socket.io/?EIO=4&transport=polling&t=PrdeM8J&sid=tGqiqXmHVcCCLGtLAAAU HTTP/1.1" 200 213 0.000210
+(309835) accepted ('127.0.0.1', 51994)
+127.0.0.1 - - [07/Apr/2026 13:08:42] "GET /socket.io/?EIO=4&transport=polling&t=PrdeM8q&sid=tGqiqXmHVcCCLGtLAAAU HTTP/1.1" 200 181 0.000288
+[orion] Registered provider 'Weather Conditions urn:ngsi-ld:Store:001': HTTP 201
+[orion] Registered provider 'Tweeting Cat Facts urn:ngsi-ld:Store:001': HTTP 201
+[orion] Registered provider 'Weather Conditions urn:ngsi-ld:Store:002': HTTP 201
+[orion] Registered provider 'Tweeting Cat Facts urn:ngsi-ld:Store:002': HTTP 201
+[orion] Registered provider 'Weather Conditions urn:ngsi-ld:Store:003': HTTP 201
+[orion] Registered provider 'Tweeting Cat Facts urn:ngsi-ld:Store:003': HTTP 201
+[orion] Registered provider 'Weather Conditions urn:ngsi-ld:Store:004': HTTP 201
+[orion] Registered provider 'Tweeting Cat Facts urn:ngsi-ld:Store:004': HTTP 201
+[orion] Registered subscription: Product price change notification
+[orion] Registered subscription: Low stock notification

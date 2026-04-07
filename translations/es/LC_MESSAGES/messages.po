@@ -59,9 +59,8 @@ msgid "Employee created successfully!"
 msgstr "¡Empleado creado con éxito!"
 
 #: app.py:612
-#, fuzzy
 msgid "Employee not found."
-msgstr "No se encontraron empleados."
+msgstr "Empleado no encontrado."
 
 #: app.py:645
 msgid "Employee updated successfully!"
@@ -202,7 +201,6 @@ msgid "El nombre es obligatorio (2-100 caracteres)."
 msgstr "El nombre es obligatorio (2-100 caracteres)."
 
 #: templates/employee_form.html:23 templates/employees.html:19
-#, fuzzy
 msgid "Rol"
 msgstr "Puesto"
 
@@ -227,7 +225,6 @@ msgid "Debes seleccionar un rol válido."
 msgstr "Debes seleccionar un rol válido."
 
 #: templates/employee_form.html:34 templates/employees.html:21
-#, fuzzy
 msgid "Salario"
 msgstr "Salario"
 
@@ -410,7 +407,7 @@ msgstr "Existencias"
 msgid ""
 "Añadir a\n"
 "                                    tienda..."
-msgstr ""
+msgstr "Añadir a tienda..."
 
 #: templates/product_form.html:4 templates/product_form.html:8
 msgid "Editar Producto"
@@ -569,7 +566,7 @@ msgstr "¿Borrar producto del inventario?"
 msgid ""
 "Añadir\n"
 "                                    producto..."
-msgstr ""
+msgstr "Añadir producto..."
 
 #: templates/store_detail.html:198
 msgid "Baldas"
